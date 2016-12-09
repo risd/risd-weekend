@@ -1,0 +1,294 @@
+.information__container {
+
+}
+
+.information {
+
+}
+
+.information__title {
+
+}
+
+.information__section {
+
+}
+
+.information__main-description-container {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid;
+
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+  };
+  @include media($laptop) {
+    @include span-columns(8 of 8);
+  };
+  @include media($desktop) {
+    @include span-columns(10 of 10);
+  };
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.information__main-description {
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+  };
+  @include media($laptop) {
+    @include span-columns(5 of 8);
+    @include shift(3);
+  };
+  @include media($desktop) {
+    @include span-columns(6 of 10);
+    @include shift(4);
+  };
+
+  p {
+    max-width: 40em;
+  }
+
+  a {
+    @include transition(color 0.1s ease);
+  }
+
+  p + p {
+    margin-top: 2rem;
+  }
+}
+
+.information__subsection {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+  };
+  @include media($laptop) {
+    @include span-columns(8 of 8);
+  };
+  @include media($desktop) {
+    @include span-columns(8 of 8);
+  };
+}
+
+.information__subsection-title {
+  @include text-size($medium);
+  text-transform: uppercase;
+
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($laptop) {
+    @include span-columns(3 of 8);
+  };
+  @include media($desktop) {
+    @include span-columns(4 of 10);
+  };
+}
+
+.information__subsection-description {
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($laptop) {
+    @include span-columns(5 of 8);
+    @include omega;
+  };
+  @include media($desktop) {
+    @include span-columns(6 of 10);
+    @include omega;
+  };
+
+  p {
+    max-width: 40em;
+  }
+
+  p + h3 {
+    margin-top: 2rem;
+  }
+
+  p + p {
+    margin-top: 2rem;
+  }
+
+  a {
+    @include transition(color 0.1s ease);
+  }
+}
+
+.information__button {
+  display: inline-block;
+
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+  };
+  @include media($laptop) {
+    @include span-columns(5 of 8);
+    @include shift(3);
+  };
+  @include media($desktop) {
+    @include span-columns(6 of 10);
+    @include shift(4);
+  };
+}
+
+.information__button-link {
+  @include text-size($medium);
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: none;
+  padding: $space--xxsmall;
+  background-color: $black;
+  color: $white;
+  @include transition(all 0.1s ease);
+}
+
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  .information__main-description-container {
+    border-color: $black;
+  }
+  .information__main-description {
+    color: $white;
+    a {
+      border-color: $black;
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+  .information__subsection {
+    border-color: $black;
+  }
+  .information__subsection-title {
+    color: $black;
+  }
+  .information__subsection-description {
+    color: $white;
+    a {
+      border-color: $black;
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+  .information__button-link {
+    background-color: $white;
+    color: $black;
+    &:hover {
+      background-color: $black;
+      color: $white;
+    }
+  }
+}
+
+.layout__white {
+  .information__main-description-container {
+    border-color: $campaign-color;
+  }
+  .information__main-description {
+    color: $black;
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+  .information__subsection {
+    border-color: $campaign-color;
+  }
+  .information__subsection-title {
+    color: $campaign-color;
+  }
+  .information__subsection-description {
+    color: $black;
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+  .information__button-link {
+    background-color: $black;
+    color: $white;
+    &:hover {
+      background-color: $campaign-color;
+      color: $white;
+    }
+  }
+}
+
+.layout__black {
+  .information__main-description-container {
+    border-color: $campaign-color;
+  }
+  .information__main-description {
+    color: $white;
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+  .information__subsection {
+    border-color: $campaign-color;
+  }
+  .information__subsection-title {
+    color: $campaign-color;
+  }
+  .information__subsection-description {
+    color: $white;
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+  .information__button-link {
+    background-color: $campaign-color;
+    color: $white;
+    &:hover {
+      background-color: $white;
+      color: $campaign-color;
+    }
+  }
+}

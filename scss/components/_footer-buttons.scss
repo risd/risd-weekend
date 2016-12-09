@@ -1,0 +1,91 @@
+.footer-buttons__container {
+
+}
+
+.footer-buttons {
+  border-bottom: 2px solid;
+
+  &:first-child {
+    border-top: 2px solid;
+  }
+
+}
+
+.footer-buttons__link {
+  display: block;
+  padding: 4rem 2rem;
+  border-bottom: none;
+
+  color: $campaign-color;
+
+  // font-size: 13vmin;
+  line-height: 0.844;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  word-break: break-word;
+
+  @include transition(color 0.2s ease);
+
+  &:hover {
+    color: $black;
+  }
+
+  @include media($mobile) {
+    @include text-size($large);
+    line-height: 0.844 !important;
+  };
+  @include media($tablet) {
+    @include text-size($huge);
+  };
+
+}
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  .footer-buttons {
+    border-color: $black;
+    &:first-child {
+      border-color: $black;
+    }
+  }
+  .footer-buttons__link {
+    color: $black;
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+.layout__white {
+  .footer-buttons {
+    border-color: $campaign-color;
+    &:first-child {
+      border-color: $campaign-color;
+    }
+  }
+  .footer-buttons__link {
+    color: $campaign-color;
+    &:hover {
+      color: $black;
+    }
+  }
+}
+
+.layout__black {
+  .footer-buttons {
+    border-color: $white;
+    &:first-child {
+      border-color: $white;
+    }
+  }
+  .footer-buttons__link {
+    color: $white;
+    &:hover {
+      color: $campaign-color;
+    }
+  }
+}

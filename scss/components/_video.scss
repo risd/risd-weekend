@@ -1,0 +1,74 @@
+.video-module {
+  width: 100%;
+  margin-top: 60px;
+}
+
+.video-module__container {
+  position: relative;
+	padding-bottom: calc(100vh - 60px);
+	height: 0;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.video-module__title-container {
+  // height: 8rem;
+  padding: 1rem 2rem;
+  background-color: $campaign-color;
+  color: rgb(255, 255, 255);
+}
+
+.video-module__title {
+  @include text-size($large);
+  text-transform: uppercase;
+}
+
+.video-module__subtitle {
+  @include text-size($medium);
+}
+
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  .video-module__title-container {
+    background-color: $white;
+  }
+  .video-module__title {
+    color: $black;
+  }
+  .video-module__subtitle {
+    color: $black;
+  }
+}
+
+.layout__white {
+  .video-module__title-container {
+    background-color: $white;
+  }
+  .video-module__title {
+    color: $campaign-color;
+  }
+  .video-module__subtitle {
+    color: $campaign-color;
+  }
+}
+
+.layout__black {
+  .video-module__title-container {
+    background-color: $campaign-color;
+  }
+  .video-module__title {
+    color: $black;
+  }
+  .video-module__subtitle {
+    color: $black;
+  }
+}

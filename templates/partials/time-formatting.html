@@ -1,0 +1,112 @@
+{# Display time according to editorial style guide #}
+{# if a start time exists #}
+{% if item.start_time %}
+
+  {# if the start time is in the morning #}
+  {% if item.start_time|date('a') === "am" %}
+    {# set morning start to true #}
+    {% set morning_start = true %}
+  {# else if the start time is in the evening #}
+  {% elseif item.start_time|date('a') === "pm" %}
+    {# set morning start to false #}
+    {% set morning_start = false %}
+  {% else %}
+    {# set morning start to undefined #}
+    {% set morning_start = undefined %}
+  {% endif %}
+
+  {# and if end time exists #}
+  {% if item.end_time %}
+    {# if the end time is in the morning #}
+    {% if item.end_time|date('a') === "am" %}
+      {# set morning end to true #}
+      {% set morning_end = true %}
+    {# else if the end time is in the evening #}
+    {% elseif item.end_time|date('a') === "pm" %}
+      {# set morning end to false #}
+      {% set morning_end = false %}
+    {% else %}
+      {# set morning end to undefined #}
+      {% set morning_end = undefined %}
+    {% endif %}
+  {% else %}
+    {# set morning end to undefined #}
+    {% set morning_end = undefined %}
+  {% endif %}
+
+  {# if there is only a start time #}
+  {% if morning_end === undefined %}
+    {# if the minutes is 00 #}
+    {% if item.start_time|date('i') === '00' %}
+      {# show only the hh am/pm #}
+      <time class="component__time">{{ item.start_time|date('g a') }}</time>
+    {% else %}
+      {# show hh:mm am/pm #}
+      <time class="component__time">{{ item.start_time|date('g:i a') }}</time>
+    {% endif %}
+
+  {# if there start time and end time are in the morning #}
+  {% elseif morning_start === true && morning_end === true %}
+    {# for the start time, if the minutes is 00 #}
+    {% if item.start_time|date('i') === '00' %}
+      {# show only the hh #}
+      <time class="component__time">{{ item.start_time|date('g') }}
+    {% else %}
+      {# show hh:mm #}
+      <time class="component__time">{{ item.start_time|date('g:i') }}
+    {% endif %}
+    {% if item.end_time %}
+      {# for the end time, if the minutes is 00 #}
+      {% if item.end_time|date('i') === '00' %}
+        {# show only the - hh am #}
+        &#8211; {{ item.end_time|date('g a') }}</time>
+      {% else %}
+        {# show - hh:mm am #}
+        &#8211; {{ item.end_time|date('g:i a') }}</time>
+      {% endif %}
+    {% endif %}
+
+  {# if there start time and end time are in the evening #}
+  {% elseif morning_start === false && morning_end === false %}
+    {# for the start time, if the minutes is 00 #}
+    {% if item.start_time|date('i') === '00' %}
+      {# show only the hh #}
+      <time class="component__time">{{ item.start_time|date('g') }}
+    {% else %}
+      {# show hh:mm #}
+      <time class="component__time">{{ item.start_time|date('g:i') }}
+    {% endif %}
+    {% if item.end_time %}
+      {# for the end time, if the minutes is 00 #}
+      {% if item.end_time|date('i') === '00' %}
+        {# show only the - hh pm #}
+        &#8211; {{ item.end_time|date('g a') }}</time>
+      {% else %}
+        {# show - hh:mm pm #}
+        &#8211; {{ item.end_time|date('g:i a') }}</time>
+      {% endif %}
+    {% endif %}
+
+  {# if there start time is in the morning and end time in the evening #}
+  {% elseif morning_start === true && morning_end === false %}
+    {# for the start time, if the minutes is 00 #}
+    {% if item.start_time|date('i') === '00' %}
+      {# show only the hh am #}
+      <time class="component__time">{{ item.start_time|date('g a') }}
+    {% else %}
+      {# show hh:mm am #}
+      <time class="component__time">{{ item.start_time|date('g:i a') }}
+    {% endif %}
+    {% if item.end_time %}
+      {# for the end time, if the minutes is 00 #}
+      {% if item.end_time|date('i') === '00' %}
+        {# show only the - hh pm #}
+        &#8211; {{ item.end_time|date('g a') }}</time>
+      {% else %}
+        {# show - hh:mm pm #}
+        &#8211; {{ item.end_time|date('g:i a') }}</time>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+{% endif %}

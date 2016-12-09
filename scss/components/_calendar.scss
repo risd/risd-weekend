@@ -1,0 +1,301 @@
+.calendar-box__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calendar-box {
+  flex-wrap: wrap;
+
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+    display: flex;
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+    display: flex;
+  };
+  @include media($laptop) {
+    @include span-columns(8 of 8);
+    display: flex;
+  };
+  @include media($desktop) {
+    @include span-columns(10 of 10);
+    display: flex;
+  };
+}
+
+.calendar-box__toggle {
+  display: flex;
+  // justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.calendar-box__button {
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: $space--xxsmall;
+  @include text-size($medium);
+  @include transition(all 0.2s ease);
+
+  @include media($mobile) {
+    text-align: center;
+    flex-basis: 100%;
+    margin-bottom: 0.2rem;
+    margin-right: 0;
+  };
+  @include media($tablet) {
+    margin-right: 1rem;
+    flex-basis: auto;
+    padding: 0.25rem 0.5rem;
+    text-align: center;
+    margin-bottom: none;
+  };
+}
+
+.calendar-box__button--active {
+
+}
+
+.calendar-box__column {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  flex-basis: 100%;
+}
+
+.calendar-box__column--hidden {
+  display: none;
+}
+
+.calendar-box__section-title {
+  @include text-size($large);
+  font-weight: bold;
+  text-transform: uppercase;
+  word-break: break-word;
+  margin-top: 2rem;
+  color: $white;
+}
+
+.calendar-box__item {
+  padding: $space--small 0;
+  border-bottom: 2px solid;
+  width: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+
+  @include transition(all 0.2s ease);
+
+  @include media($tablet) {
+    padding: $space--medium 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.calendar-box__item--hover {
+  padding: $space--small;
+  @include media($tablet) {
+    padding: $space--medium;
+  }
+}
+
+.calendar-box__item-toggle {
+  width: auto;
+  display: inline-block;
+  flex-grow: 0;
+  order: 3;
+  flex-basis: 100%;
+  text-align: center;
+  margin-top: $space--small;
+  line-height: 0;
+
+  @include media($tablet) {
+    margin-top: 0;
+    text-align: left;
+    flex-basis: auto;
+    order: 2;
+    line-height: 1;
+  };
+
+  &:after {
+    font-family: $font--symbols;
+    font-weight: bold;
+    @include text-size($medium);
+    content: "ﬂ";
+    display: inline-block;
+    transform: rotate(45deg);
+  }
+}
+
+.calendar-box__item-toggle--active {
+  &:after {
+    transform: rotate(0deg);
+  }
+}
+
+.calendar-box__item--priority {
+
+}
+
+.calendar-box__header {
+  width: auto;
+  display: inline-block;
+  flex-grow: 1;
+  flex-basis: 100%;
+  margin-right: $space--small;
+  order: 1;
+
+  @include media($tablet) {
+    flex-basis: 90%;
+  };
+}
+
+.calendar-box__title {
+  display: block;
+  @include text-size($medium);
+  @include transition(all 0.2s ease);
+}
+
+.calendar-box__subtitle {
+  font-weight: normal;
+  font-style: italic;
+}
+
+.calendar-box__info {
+  display: inline;
+  font-weight: bold;
+}
+
+.calendar-box__description {
+  flex-grow: 1;
+  flex-basis: 100%;
+  margin-top: $space--small;
+  order: 2;
+
+  @include media($tablet) {
+    order: 3;
+  };
+}
+
+.calendar-box__description--hidden {
+  display: none;
+}
+
+
+.calendar-box__tag {
+
+}
+
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  .calendar-box__button {
+    color: $black;
+    background-color: $campaign-color;
+    &:hover {
+      color: $white;
+      background-color: $black;
+    }
+  }
+  .calendar-box__button--active {
+    color: $white;
+    background-color: $black;
+  }
+  .calendar-box__item {
+    border-color: $white;
+    color: $white;
+  }
+  .calendar-box__item--hover {
+    background-color: $white;
+    color: $campaign-color;
+    .calendar-box__title {
+      color: $campaign-color;
+    }
+  }
+  .calendar-box__title {
+    color: $white;
+  }
+  .calendar-box__info {
+    color: $black;
+  }
+  .calendar-box__description {
+    color: $black;
+  }
+}
+
+.layout__white {
+  .calendar-box__button {
+    color: $campaign-color;
+    background-color: $white;
+    &:hover {
+      color: $white;
+      background-color: $campaign-color;
+    }
+  }
+  .calendar-box__button--active {
+    color: $white;
+    background-color: $campaign-color;
+  }
+  .calendar-box__item {
+    border-color: $black;
+    color: $black;
+  }
+  .calendar-box__item--hover {
+    background-color: $black;
+    color: $white;
+    .calendar-box__title {
+      color: $white;
+    }
+  }
+  .calendar-box__title {
+    color: $black;
+  }
+  .calendar-box__info {
+    color: $campaign-color;
+  }
+  .calendar-box__description {
+    color: $campaign-color;
+  }
+}
+
+.layout__black {
+  .calendar-box__button {
+    color: $white;
+    background-color: $black;
+    &:hover {
+      color: $campaign-color;
+      background-color: $white;
+    }
+  }
+  .calendar-box__button--active {
+    color: $campaign-color;
+    background-color: $white;
+  }
+  .calendar-box__item {
+    border-color: $campaign-color;
+    color: $campaign-color;
+  }
+  .calendar-box__item--hover {
+    background-color: $campaign-color;
+    color: $black;
+    .calendar-box__title {
+      color: $black;
+    }
+  }
+  .calendar-box__title {
+    color: $campaign-color;
+  }
+  .calendar-box__info {
+    color: $white;
+  }
+  .calendar-box__description {
+    color: $white;
+  }
+}

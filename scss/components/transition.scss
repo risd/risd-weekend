@@ -1,0 +1,134 @@
+.transition-text__container {
+
+}
+
+.transition-text {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+  };
+  @include media($laptop) {
+    @include span-columns(8 of 8);
+  };
+  @include media($desktop) {
+    @include span-columns(8 of 8);
+  };
+}
+
+.transition-text__title {
+  @include text-size($medium);
+
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($laptop) {
+    @include span-columns(3 of 8);
+  };
+  @include media($desktop) {
+    @include span-columns(4 of 10);
+  };
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+.transition-text__description {
+  @include text-size($medium);
+
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($laptop) {
+    @include span-columns(5 of 8);
+    @include omega;
+  };
+  @include media($desktop) {
+    @include span-columns(6 of 10);
+    @include omega;
+  };
+
+  p {
+    max-width: 40em;
+  }
+
+  p + h3 {
+    margin-top: 2rem;
+  }
+
+  p + p {
+    margin-top: 2rem;
+  }
+
+  a {
+    @include transition(color 0.1s ease);
+  }
+}
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  .transition-text__container {
+    color: $black;
+  }
+
+  .transition-text__description {
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+}
+
+.layout__white {
+  .transition-text__container {
+    color: $campaign-color;
+  }
+
+  .transition-text__description {
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+}
+
+.layout__black {
+  .transition-text__container {
+    color: $white;
+  }
+
+  .transition-text__description {
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+}

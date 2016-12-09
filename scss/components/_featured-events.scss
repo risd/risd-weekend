@@ -1,0 +1,101 @@
+.featured-events__container {
+
+}
+
+.featured-events {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: space-between;
+}
+
+.featured-events__item {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+
+  @include media($mobile) {
+    min-height: auto;
+    flex-basis: 100%;
+  };
+  @include media($tablet) {
+    min-height: 150px;
+    flex-basis: calc(50% - 0.5rem);
+    margin-right: 1rem;
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  };
+  @include media($laptop) {
+    flex-basis: calc((100%/3) - (1rem*2/3));
+    margin-right: 1rem;
+    &:nth-child(2n) {
+      margin-right: 1rem;
+    }
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  };
+  @include media($desktop) {
+    flex-basis: calc(25% - 0.75rem);
+    margin-right: 1rem;
+    &:nth-child(2n) {
+      margin-right: 1rem;
+    }
+    &:nth-child(3n) {
+      margin-right: 1rem;
+    }
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+  };
+}
+
+.featured-events__item-link {
+  cursor: pointer;
+  flex-grow: 1;
+  @include text-size($medium);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 1rem;
+  border-bottom: none;
+  @include transition(all 0.2s ease);
+  word-break: break-word;
+}
+
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  .featured-events__item-link {
+    color: $white;
+    background-color: $black;
+    &:hover {
+      color: $black;
+      background-color: $white;
+    }
+  }
+}
+
+.layout__white {
+  .featured-events__item-link {
+    color: $white;
+    background-color: $campaign-color;
+    &:hover {
+      color: $white;
+      background-color: $black;
+    }
+  }
+}
+
+.layout__black {
+  .featured-events__item-link {
+    color: $campaign-color;
+    background-color: $white;
+    &:hover {
+      color: $white;
+      background-color: $campaign-color;
+    }
+  }
+}

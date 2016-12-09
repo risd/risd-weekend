@@ -1,0 +1,21 @@
+<footer class="footer">
+
+  {% set home = cms.home %}
+  {% set audiences = cms.audiences %}
+
+  <div class="main-nav {{ }}">
+    <div class="main-nav__container">
+      <div class="main-nav__item" id="main-nav__risd">RISD</div>
+      {% for audience in audiences %}
+        {% if audience.name|lower === item.name|lower %}
+          <div class="main-nav__item main-nav__item--active" id="main-nav__modifier--1"><a class="main-nav__link" href="{{url(audience)}}">{{audience.name}}</a></div>
+        {% else %}
+          <div class="main-nav__item" id="main-nav__modifier--1"><a class="main-nav__link" href="{{url(audience)}}">{{audience.name}}</a></div>
+        {% endif %}
+      {% endfor %}
+      <div class="main-nav__item" id="main-nav__week">WEEK—</div>
+      <div class="main-nav__item" id="main-nav__end">END<span class="main-nav__item--superscript">&#xB9;&#x2076;</span></div>
+    </div>
+  </div>
+
+</footer>

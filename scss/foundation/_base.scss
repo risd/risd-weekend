@@ -1,0 +1,216 @@
+//Basic Setup-------------------------------------------
+
+
+html {
+  font-family: $font__primary;
+  font-weight: normal;
+  @include text-size($regular);
+
+}
+
+body {
+  font-weight: normal;
+  &::-webkit-scrollbar {
+    width: 10px;
+  	height: 10px;
+  }
+}
+
+
+main {
+
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+h1 {
+  font-family: $font__primary;
+  font-weight: bold;
+  line-height: $lineHeight--tight;
+  @include media($mobile) {
+  };
+  @include media($tablet) {
+  };
+}
+
+h2 {
+  font-family: $font__primary;
+  font-weight: bold;
+  @include media($mobile) {
+  };
+  @include media($tablet) {
+  };
+}
+
+h3 {
+  font-family: $font__primary;
+  font-weight: bold;
+  @include media($mobile) {
+  };
+  @include media($tablet) {
+  };
+}
+
+h4 {
+  font-family: $font__primary;
+  font-weight: bold;
+  @include media($mobile) {
+  };
+  @include media($tablet) {
+  };
+}
+
+h5 {
+  font-family: $font__primary;
+  font-weight: bold;
+  @include media($mobile) {
+  };
+  @include media($tablet) {
+  };
+}
+
+h6 {
+  font-family: $font--primary;
+  font-weight: bold;
+  @include media($mobile) {
+  };
+  @include media($tablet) {
+  };
+}
+
+p {
+  font-family: $font__primary;
+  font-weight: normal;
+
+  @include media($mobile) {
+  };
+  @include media($tablet) {
+  };
+}
+
+a {
+  border-bottom: 2px solid;
+  display: inline;
+
+  p & {
+    display: inline;
+  }
+
+}
+
+strong {
+  font-weight: bold;
+}
+
+i,
+em {
+  font-style: italic;
+}
+
+u {
+  text-decoration: none;
+}
+
+blockquote {
+  font-family: $font__primary;
+  font-weight: normal;
+  margin-left: $space--xxlarge;
+}
+
+cite {
+  display: block;
+  text-align: right;
+  font-family: $font__primary;
+  font-style: italic;
+  &:before {
+    content: "— ";
+  }
+}
+
+ol {
+  font-weight: normal;
+  margin-bottom: $space--xsmall;
+
+  li {
+
+  }
+}
+
+ul {
+  font-weight: normal;
+  margin-bottom: $space--xsmall;
+
+  li {
+
+  }
+}
+
+div,
+img {
+  width: 100%;
+}
+
+iframe {
+  width: 100%;
+}
+
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  background-color: $campaign-color;
+  &::-webkit-scrollbar-track-piece {
+    background-color: $black;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $white;
+  }
+  ::selection {
+    background: $black--highlight;
+    color: $white--highlight;
+  }
+  ::-moz-selection {
+    background: $black--highlight;
+    color: $white--highlight;
+  }
+}
+
+.layout__white {
+  background-color: $white;
+  &::-webkit-scrollbar-track-piece {
+    background-color: $campaign-color;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $black;
+  }
+  ::selection {
+    background: $campaign-color--highlight;
+    color: $black--highlight;
+  }
+  ::-moz-selection {
+    background: $campaign-color--highlight;
+    color: $black--highlight;
+  }
+}
+
+.layout__black {
+  background-color: $black;
+  &::-webkit-scrollbar-track-piece {
+    background-color: $white;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $campaign-color;
+  }
+  ::selection {
+    background: $campaign-color--highlight;
+    color: $white--highlight;
+  }
+  ::-moz-selection {
+    background: $campaign-color--highlight;
+    color: $white--highlight;
+  }
+}

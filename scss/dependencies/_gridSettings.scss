@@ -1,0 +1,8 @@
+// $visual-grid: true;
+$max-width: 100vw;
+$column: modular-scale(3, 1em, $golden);
+$gutter: modular-scale(1, 1em, $golden);
+$mobile: new-breakpoint(min-width 300px 6);
+$tablet: new-breakpoint(min-width 768px 6);
+$laptop: new-breakpoint(min-width 1024px 9);
+$desktop: new-breakpoint(min-width 1824px 12);

@@ -9,12 +9,61 @@
 
 {# Confused what extends and blocks do? Watch a primer: #}
 {# http://www.webhook.com/docs/template-inheritance-blocks/ #}
-{% extends "templates/partials/base.html" %}
+{% extends "templates/partials/base-without-header.html" %}
+
+{% set item = cms.audiences[0] %}
+
+{% block body_attributes %}
+  class="layout__{{ item.page_color_scheme|lower }}"
+{% endblock %}
 
 {% block content %}
 
-  <h1>404 - Nothing to see here</h1>
+  {% set events = cms.events %}
+  {% for event in events %}
+    {% set event.modal_id = "modal-"+loop.index %}
+    {# event_link = '#', lowercase, ' ' replaced with '-', non-alphanumeric characters except for ' ' and '-' replaced with '', multiple consecutive '-' replaced with '-' #}
+    {% set event.event_link = event.name|lower|replace(' ','-','g')|replace('[^a-zA-Z0-9 -]','','g')|replace('-+','-','g') %}
+  {% endfor %}
+  {% set infoSnippets = item.information_snippets %}
 
-  <p><a href="/">Take me home!</a></p>
+
+  {# Set color scheme #}
+
+  {% if item.page_color_scheme %}
+    {% set item.page_background = item.page_color_scheme|replace('.html', '', 'g') %}
+  {% else %}
+    {% set item.page_background = 'layout__white' %}
+  {% endif %}
+
+  {# <script>
+    console.log({{item|json|safe}});
+  </script> #}
+
+  <main class="page">
+
+    {# Poster Moment #}
+
+    <a href="/">
+      <div class="poster-moment">
+        <div class="poster-moment__container">
+          <div class="poster-moment__item" id="poster-moment__risd">RISD</div>
+          <div class="poster-moment__item--active poster-moment__item--modifiers">
+            <div class="poster-moment__item poster-moment__item--modifier" id="poster-moment__modifier--2">FOUR</div>
+            <div class="poster-moment__item poster-moment__item--modifier" id="poster-moment__modifier--3">O</div>
+            <div class="poster-moment__item poster-moment__item--modifier" id="poster-moment__modifier--1">FOUR</div>
+          </div>
+          <div class="poster-moment__item--modifiers">
+            <div class="poster-moment__item poster-moment__item--modifier">{{ modifier_line.line }}</div>
+          </div>
+          <div class="poster-moment__item" id="poster-moment__week">WEEK—</div>
+          <div class="poster-moment__item" id="poster-moment__end">END<span class="poster-moment__item--superscript">&#xB9;&#x2076;</span></div>
+        </div>
+      </div>
+    </a>
+
+
+
+  </main>
 
 {% endblock %}

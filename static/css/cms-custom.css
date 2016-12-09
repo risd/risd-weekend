@@ -1,0 +1,42 @@
+@charset "UTF-8";
+html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+figure[data-type=quote] cite:before {
+  content: "—";
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+body a {
+  display: inline;
+}
+
+.wh-logo {
+  background-image: url("../images/logo.svg");
+  background-color: white;
+  width: 255px;
+  height: 100px;
+  border-radius: 0;
+  background-size: 245px 160px;
+}
+
+.wy-control .big-name {
+  text-rendering: optimizeLegibility;
+}
+
+.redactor-editor {
+  display: flex;
+  flex-wrap: wrap;
+}
+.redactor-editor figure[data-type=quote] {
+  border-left: none;
+}
+
+/*# sourceMappingURL=cms-custom.css.map */

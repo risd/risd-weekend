@@ -1,0 +1,47 @@
+.announcement__container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.announcement {
+  flex-basis: 51%;
+  flex-grow: 1;
+  width: auto;
+  @include text-size($large);
+}
+
+.announcement__date {
+
+}
+
+.announcement__location {
+  @include media($tablet) {
+    margin-left: 4.1em;
+  };
+  @include media($laptop) {
+    margin-left: 6.3em;
+  };
+}
+
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  .announcement {
+    color: $black;
+  }
+}
+
+.layout__white {
+  .announcement {
+    color: $campaign-color;
+  }
+}
+
+.layout__black {
+  .announcement {
+    color: $white;
+  }
+}

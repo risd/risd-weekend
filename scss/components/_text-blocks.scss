@@ -1,0 +1,182 @@
+.section-title {
+  // position: fixed;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background-color: $black;
+  color: $white;
+
+  padding-top: 4vmin;
+  padding-bottom: 4vmin;
+
+
+  @include media($mobile) {
+    margin-top: $space--xxlarge;
+    margin-bottom: $space--large;
+  };
+  @include media($tablet) {
+    margin-top: $space--xxlarge;
+    margin-bottom: $space--xlarge;
+  };
+  @include media($laptop) {
+    margin-top: $space--xxlarge;
+    margin-bottom: $space--xxlarge;
+  };
+  @include media($desktop) {
+    margin-top: $space--xxlarge;
+    margin-bottom: $space--xxlarge;
+  };
+}
+
+.section-title__item {
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: 0.05em;
+
+  @include media($mobile) {
+    font-size: 12vmin;
+  };
+  @include media($tablet) {
+    font-size: 12vmin;
+  };
+  @include media($laptop) {
+    font-size: 12vmin;
+  };
+  @include media($desktop) {
+    font-size: 12vmin;
+  };
+}
+
+.text-block__container {
+  display: flex;
+  flex-wrap: wrap;
+  @include media($mobile) {
+    padding: 0;
+  };
+  @include media($tablet) {
+    padding: $space--large 0;
+  };
+  @include media($laptop) {
+    padding: $space--xxlarge 0;
+  };
+  @include media($desktop) {
+    padding: $space--xxxlarge 0;
+  };
+}
+
+.text-block {
+  padding-bottom: $space--large;
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+  };
+  @include media($tablet) {
+    @include span-columns(4 of 6);
+    @include shift(1);
+  };
+  @include media($laptop) {
+    @include span-columns(5 of 9);
+    @include shift(1);
+  };
+  @include media($desktop) {
+    @include span-columns(6 of 12);
+    @include shift(2);
+  };
+}
+
+.text-block--large {
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+  };
+  @include media($tablet) {
+    @include span-columns(4 of 6);
+    @include shift(1);
+  };
+  @include media($laptop) {
+    @include span-columns(7 of 9);
+    @include shift(1);
+  };
+  @include media($desktop) {
+    @include span-columns(8 of 12);
+    @include shift(2);
+  };
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.text-block__introduction {
+  padding-bottom: $space--medium;
+}
+
+.text-block__body {
+
+}
+
+.text-block__body--two-column {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.text-block__two-column {
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+  };
+  @include media($tablet) {
+    @include span-columns(4 of 4);
+    margin-bottom: 0
+  };
+  @include media($laptop) {
+    @include span-columns(3 of 7);
+    margin-bottom: $space--large;
+    &:nth-child(2n) {
+      @include shift(1);
+    }
+  };
+  @include media($desktop) {
+    @include span-columns(4 of 8);
+    &:nth-child(2n) {
+      @include shift(0);
+    }
+  };
+
+  &:nth-child(2n) {
+    @include omega;
+  }
+}
+
+.text-block__section-title {
+  // padding-top: $space--medium;
+  padding-bottom: $space--xxsmall;
+  width: 100%;
+}
+
+.text-block__title {
+  padding-top: $space--medium;
+  padding-bottom: $space--xxsmall;
+}
+
+.text-block__subtitle {
+
+}
+
+.text-block__information {
+  list-style: none;
+}
+
+.text-block__information-primary {
+
+}
+
+.text-block__information-secondary {
+
+}
+
+.text-block__description {
+
+}

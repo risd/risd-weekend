@@ -1,0 +1,88 @@
+.section__container {
+  padding-bottom: 10rem;
+
+  &:first-of-type {
+    padding-top: 10rem;
+  }
+
+  @include media($mobile) {
+    @include outer-container(80vw);
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 8);
+    @include shift(1);
+    @include omega;
+  };
+  @include media($laptop) {
+    @include span-columns(8 of 10);
+    @include shift(1);
+    @include omega;
+  };
+  @include media($desktop) {
+    @include span-columns(8 of 12);
+    @include shift(2);
+    @include omega;
+  };
+}
+
+.section__container--wide {
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+  };
+  @include media($tablet) {
+    @include span-columns(8 of 8);
+  };
+  @include media($laptop) {
+    @include span-columns(10 of 10);
+  };
+  @include media($desktop) {
+    @include span-columns(12 of 12);
+  };
+}
+
+.section__title {
+  @include text-size($huge);
+  // font-size: 13vmin;
+  text-transform: uppercase;
+  word-break: break-word;
+
+  padding-bottom: 1rem;
+
+  &::after {
+    content: "—";
+
+    display: block;
+    margin-top: -0.3em;
+  }
+}
+
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  .section__title {
+    color: $white;
+    &::after {
+      color: $black;
+    }
+  }
+}
+
+.layout__white {
+  .section__title {
+    color: $black;
+    &::after {
+      color: $campaign-color;
+    }
+  }
+}
+
+.layout__black {
+  .section__title {
+    color: $campaign-color;
+    &::after {
+      color: $white;
+    }
+  }
+}

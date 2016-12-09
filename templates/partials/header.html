@@ -1,4 +1,17 @@
-{# Simple search form, remove from search index #}
-<form action="/search-results/" method="get" data-search-index="false">
- <input type="text" name="q" placeholder="Search" id="tipue_search_input" />
-</form>
+<header class="header {% block header_attributes %}{% endblock %}">
+  {% set infoSnippets = item.information_snippets %}
+
+  <nav class="nav">
+    <a class="nav__item nav__item--activator">Menu</a>
+    <a class="nav__item nav__item--deactivator">×</a>
+    <a class="nav__item nav__item--pages" href="/">RISD Weekend</a>
+    <a class="nav__item nav__item--pages" href="#events">Events</a>
+    {% for information in infoSnippets %}
+      {% if information.show_in_nav === true %}
+        <a class="nav__item nav__item--pages" href="#{{ information.name|lower|replace(' ', '-', 'g') }}">{{ information.name }}</a>
+      {% endif %}
+    {% endfor %}
+    <a class="nav__item nav__item--pages" href="http://attend.com/RISDWeekend16" target="_blank">Register</a>
+  </nav>
+
+</header>

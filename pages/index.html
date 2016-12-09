@@ -1,41 +1,62 @@
-{# ------------------------------------------------------- #}
+{% extends "templates/partials/base-without-header.html" %}
 
-{# YOUR HOMEPAGE #}
+{% block title %}{% parent %}{% endblock %}
 
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
+{% block body_attributes %}
+  class="layout__black layout__transition"
+{% endblock %}
 
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-
-{# ------------------------------------------------------- #}
-
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
-{% extends "templates/partials/base.html" %}
-
-{# This sets our page <title>. It will append "- Homepage" to the site title defined in base. #}
-{% block title %}{% parent %} - Homepage{% endblock %}
+{% set home = cms.home %}
+{% set audiences = cms.audiences %}
+{% set transition = cms.transitionpage %}
 
 {% block content %}
 
-  <h1>Hello world!</h1>
+  <main class="home">
 
-  <p>This is your homepage, located at /pages/index.html.</p>
+    {% if transition.transition_page_active === true %}
 
-  <p><a href="/cms/">Looking for the CMS?</a></p>
+      <div class="poster-moment">
+        <a class="nav__anchor nav__anchor--home" id=""></a>
+        <div class="poster-moment__container">
+          <div class="poster-moment__item" id="poster-moment__modifier--2">RISD</div>
+          <div class="poster-moment__item--active poster-moment__item--modifiers">
+            <div class="poster-moment__item poster-moment__item--modifier" id="poster-moment__modifier--3">Save</div>
+            <div class="poster-moment__item poster-moment__item--modifier" id="poster-moment__modifier--4">the</div>
+            <div class="poster-moment__item poster-moment__item--modifier" id="poster-moment__modifier--2">date</div>
+          </div>
+          <div class="poster-moment__item" id="poster-moment__modifier--3">WEEK—</div>
+          <div class="poster-moment__item" id="poster-moment__modifier--4">END<span class="poster-moment__item--superscript">&#xB9;&#8311;</span></div>
+          {% if item.name|lower === "families" || item.name|lower === "alumni" %}
+            <div class="poster-moment__button">
+              <a href="http://attend.com/RISDWeekend16" target="_blank" class="poster-moment__button-link">Register now</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
 
-  {# If you have at least content page type, we show a list. #}
-  {% if cms_types|size !== 0 %}
+      <section class="section__container transition-text__container">
+        <article class="transition-text">
+          <div class="transition-text__title">{{ transition.location|safe }}</div>
+          <div class="transition-text__description">{{ transition.description|safe }}<br><a href="{{ transition.past_year_schedule_link }}">{{ transition.past_year_schedule_title }}</a></div>
+        </article>
+      </section>
 
-    <h3>Content types you've created in the CMS so far.</h3>
+    {% else %}
 
-    <ul>
-    {% for type in cms_types %}
-      <li><a href="{{ url(type) }}">{{ type.name }}</a></li>
-    {% endfor %}
-    </ul>
+    <div class="main-nav">
+      <div class="main-nav__container">
+        <div class="main-nav__item" id="main-nav__risd">RISD</div>
+        {% for audience in audiences %}
+          <div class="main-nav__item" id="main-nav__modifier--{{ loop.index }}"><a class="main-nav__link" href="{{url(audience)}}">{{audience.name}}</a></div>
+        {% endfor %}
+        <div class="main-nav__item" id="main-nav__week">WEEK—</div>
+        <div class="main-nav__item" id="main-nav__end">END<span class="main-nav__item--superscript">&#xB9;&#x2076;</span></div>
+      </div>
+    </div>
 
-  {% endif %}
+    {% endif %}
+
+  </main>
 
 {% endblock %}

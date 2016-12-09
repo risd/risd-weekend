@@ -1,85 +1,201 @@
-{# ------------------------------------------------------- #}
-
-{# YOUR BASE TEMPLATE. EVERYTHING GETS LOADED INTO THIS PAGE. #}
-
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-
-{# ------------------------------------------------------- #}
-
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
 
   {# Grab the title and description from the CMS general settings. #}
   {% set site_title = getSetting('site_name')%}
   {% set site_description = getSetting('site_description')%}
+  {% set site_url = getSetting('site_url')%}
+  {% set site_analytics = getSetting('analytics_id') %}
+
+  {% if page_facebook_image %}
+    {% set facebook_image = site_url + page_facebook_image %}
+  {% else %}
+    {% set facebook_image = site_url + "static/images/social/facebook_01.png" %}
+  {% endif %}
+
+  {% if page_twitter_image %}
+    {% set twitter_image = site_url + page_twitter_image %}
+  {% else %}
+    {% set twitter_image = site_url + "static/images/social/twitter_01.png" %}
+  {% endif %}
+
+  {% if page_url %}
+    {% set facebook_url = page_url %}
+  {% else %}
+    {% set facebook_url = site_url %}
+  {% endif %}
 
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}{{ site_title|default('Webhook site') }}{% endblock %}</title>
-    <meta name="description" content="{% block description %}{{ site_description|default('Built with Webhook.') }}{% endblock %}">
-    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8"/>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+    <title>{% block title %}{{ site_title }}{% endblock %}</title>
+    <meta content="{{ site_description }}" name="description"/>
+    <meta content="width=device-width" name="viewport"/>
 
-    <link rel="shortcut icon" href="/static/images/favicon.png">
-    <link rel="apple-touch-icon" href="/static/images/touch-icon.png">
+    {# This will pull from the styleguide content type in the CMS. Remove comments from code below to enable facebook and twitter image meta data #}
+    <meta property="og:image" content="{{ facebook_image }}"/>
+    <meta property="og:image:width" content="640" />
+    <meta property="og:image:height" content="442" />
+    <meta property="og:title" content="{% block title %}{{ site_title }}{% endblock %}"/>
+    <meta property="og:url" content="{{ facebook_url }}"/>
+    <meta property="og:description" content="{{ site_description }}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="{% block title %}{{ site_title }}{% endblock %}"/>
+    <meta name="twitter:description" content="{{ site_description }}"/>
+    <meta name="twitter:image" content="{{ twitter_image }}"/>
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/641934/7340352/css/fonts.css" />
 
-    {# Put your CSS in here and we'll minify it into one file. No CDN scripts. More info: #}
-    {# http://www.webhook.com/docs/minify-your-js-and-css/ #}
+    {# Use http://www.favicon-generator.org/ to generate favicon files #}
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/images/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/images/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/images/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/images/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/images/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/images/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/images/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/images/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/static/images/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/static/images/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css" rel="stylesheet"/>
 
     <!-- build:css /static/css/minified.css -->
-    <link rel="stylesheet" href="/static/css/main.css"/>
-    <link rel="stylesheet" href="/static/css/wysiwyg_figures.css"/>
+    <link rel="stylesheet" href="/static/css/site.css"/>
     <!-- endbuild -->
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
     {# Useful block for loading outside scripts in other pages. #}
     {% block head_extra %}{% endblock %}
   </head>
+
   <body {% block body_attributes %}{% endblock %}>
     {% block body %}
-      <!--[if lt IE 7]>
-        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-      <![endif]-->
+    <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
 
-      {% block header %}
-        {% include "templates/partials/header.html" %}
-      {% endblock %}
+    {% block header %}
+      {% include "templates/partials/header.html" %}
+    {% endblock %}
 
-      {# By default, your inner pages will load into this block. #}
-      {% block content %}{% endblock %}
 
-      {% block footer %}
-        {% include "templates/partials/footer.html" %}
-      {% endblock %}
+    {% block content %}
 
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    {% endblock %}
 
-      {# Put your JS in here and we'll minify it into one file. No CDN scripts. More info: #}
-      {# http://www.webhook.com/docs/minify-your-js-and-css/ #}
 
-      <!-- build:js /static/javascript/minified.js -->
-      <script src="/static/javascript/main.js"></script>
-      <!-- endbuild -->
+    {% block footer %}
+      {# {% include "templates/partials/footer.html" %} #}
+    {% endblock %}
 
-      {% block scripts_extra %}{% endblock %}
+    {% block modal_content %}
 
-      {# Google Analytics code. Feel free to remove. #}
-      <script>
-        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src='//www.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
-      </script>
+    {% endblock %}
+
+
+<!-- build:js /static/javascript/minified.js -->
+    <script src="/static/javascript/site.js"></script>
+<!-- endbuild -->
+
+    {% block scripts_extra %}{% endblock %}
+
+    {# Google Analytics code. Feel free to remove. #}
+    {# replace UA-XXXXXXX-XX with analytics account number #}
+    <script>
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', '{{ site_analytics }}', 'auto');
+      ga('send', 'pageview');
+
+
+      function _gaLt(event) {
+
+        /* If GA is blocked or not loaded then don't track */
+        if (!ga.hasOwnProperty("loaded") || ga.loaded != true) {
+          return;
+        }
+
+        var el = event.srcElement || event.target;
+
+        /* Loop up the DOM tree through parent elements if clicked element is not a link (eg: an image inside a link) */
+        while (el && (typeof el.tagName == 'undefined' || el.tagName.toLowerCase() != 'a' || !el.href)) {
+          el = el.parentNode;
+        }
+
+        /* if a link has been clicked */
+        if (el && el.href) {
+
+          var link = el.href;
+
+          /* Only if it is an external link */
+          if (link.indexOf(location.host) == -1 && !link.match(/^javascript\:/i)) {
+            /* Is target set and not _(self|parent|top)? */
+            var target = (el.target && !el.target.match(/^_(self|parent|top)$/i)) ? el.target : false;
+
+            var hbrun = false; // tracker has not yet run
+
+            /* HitCallback to open link in same window after tracker */
+            var hitBack = function() {
+              /* run once only */
+              if (hbrun) return;
+              hbrun = true;
+              window.location.href = link;
+            };
+
+            /* If target opens a new window then just track */
+            if (el.target && !el.target.match(/^_(self|parent|top)$/i)) {
+              ga(
+                "send", "event", "Outgoing Links", link,
+                document.location.pathname + document.location.search
+              );
+            } else {
+              /* send event with callback */
+              ga(
+                "send", "event", "Outgoing Links", link,
+                document.location.pathname + document.location.search, {
+                  "hitCallback": hitBack
+                }
+              );
+
+              /* Run hitCallback if GA takes too long */
+              setTimeout(hitBack, 1000);
+
+              /* Prevent standard click */
+              event.preventDefault ? event.preventDefault() : event.returnValue = !1;
+            }
+          }
+
+        }
+      }
+
+      /* Attach the event to all clicks in the document after page has loaded */
+      var w = window;
+      w.addEventListener ? w.addEventListener("load", function() {
+        document.body.addEventListener("click", _gaLt, !1)
+      }, !1) : w.attachEvent && w.attachEvent("onload", function() {
+        document.body.attachEvent("onclick", _gaLt)
+      });
+
+    </script>
+
     {% endblock %}
   </body>
 </html>

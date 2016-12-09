@@ -1,0 +1,323 @@
+.modal__container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6000;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.modal {
+  cursor: auto;
+  @include media($mobile) {
+    @include outer-container(80vw);
+    height: 100vh;
+  };
+  @include media($tablet) {
+    @include outer-container(100vw);
+  };
+}
+
+.modal__item {
+  display: none;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 10vh 0;
+  @include omega;
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+    display: none;
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 8);
+    @include shift(1);
+    display: none;
+  };
+  @include media($laptop) {
+    @include span-columns(8 of 10);
+    @include shift(1);
+    display: none;
+  };
+  @include media($desktop) {
+    @include span-columns(10 of 12);
+    @include shift(1);
+    display: none;
+  };
+}
+
+.modal__item-toggle {
+  @include text-size($large);
+  cursor: pointer;
+  @include transition(color 0.1s ease);
+  @include media($mobile) {
+    padding: 1rem 0;
+    left: 50%;
+    position: initial;
+    width: 100%;
+    text-align: right;
+  };
+  @include media($tablet) {
+    padding: 2rem 0 2rem 2rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+  };
+  @include media($laptop) {
+
+  };
+  @include media($desktop) {
+
+  };
+}
+
+.modal__header {
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+  };
+  @include media($laptop) {
+    @include span-columns(4 of 8);
+  };
+  @include media($desktop) {
+    @include span-columns(5 of 10);
+  };
+}
+
+.modal__title {
+  @include text-size($large);
+  font-weight: bold;
+  text-transform: uppercase;
+  word-break: break-word;
+  margin-bottom: 0.3rem;
+}
+
+.modal__subtitle {
+  font-style: italic;
+  text-transform: none;
+}
+
+.modal__info {
+  @include text-size($medium);
+  font-weight: bold;
+}
+
+.modal__description {
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($laptop) {
+    @include span-columns(4 of 8);
+    @include omega;
+  };
+  @include media($desktop) {
+    @include span-columns(5 of 10);
+    @include omega;
+  };
+
+  @include text-size($regular);
+  font-weight: bold;
+
+  &::before {
+    @include text-size($huge);
+    content: "—";
+
+    @include media($mobile) {
+      margin-top: -1rem;
+      display: none;
+    };
+
+    @include media($laptop) {
+      margin-top: -0.1rem;
+      margin-left: -0.05em;
+      display: block;
+    };
+
+  }
+
+  p:first-child {
+    @include media($mobile) {
+      margin-top: 1rem;
+    };
+
+    @include media($laptop) {
+      margin-top: -0.5rem;
+    };
+  }
+
+  p {
+    max-width: 40em;
+  }
+}
+
+.modal__subevent {
+  margin-top: 2rem;
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+    @include omega;
+  };
+  @include media($laptop) {
+    @include span-columns(4 of 8);
+    @include shift(4);
+    @include omega;
+  };
+  @include media($desktop) {
+    @include span-columns(5 of 10);
+    @include shift(5);
+    @include omega;
+  };
+}
+
+.modal__subevent-title {
+  @include text-size($regular);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.modal__subevent-subtitle {
+
+}
+
+.modal__subevent-info {
+  @include text-size($regular);
+}
+
+.modal__subevent-description {
+  @include text-size($regular);
+}
+
+.modal--on {
+  display: flex;
+}
+
+.modal--fade_in {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__body--noscroll {
+  overflow: hidden;
+}
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  .modal__container {
+    background-color: $white;
+  }
+  .modal__item-toggle {
+    color: $black;
+    &:hover {
+      color: $campaign-color;
+    }
+  }
+  .modal__title {
+    color: $black;
+  }
+  .modal__info {
+    color: $campaign-color;
+  }
+  .modal__description {
+    color: $campaign-color;
+    &::before {
+      color: $black;
+    }
+  }
+  .modal__subevent-title {
+    color: $black;
+  }
+  .modal__subevent-info {
+    color: $black;
+  }
+  .modal__subevent-description {
+    color: $campaign-color;
+  }
+}
+
+.layout__white {
+  .modal__container {
+    background-color: $black;
+  }
+  .modal__item-toggle {
+    color: $campaign-color;
+    &:hover {
+      color: $white;
+    }
+  }
+  .modal__title {
+    color: $campaign-color;
+  }
+  .modal__info {
+    color: $white;
+  }
+  .modal__description {
+    color: $white;
+    &::before {
+      color: $campaign-color;
+    }
+  }
+  .modal__subevent-title {
+    color: $campaign-color;
+  }
+  .modal__subevent-info {
+    color: $campaign-color;
+  }
+  .modal__subevent-description {
+    color: $white;
+  }
+}
+
+.layout__black {
+  .modal__container {
+    background-color: $campaign-color;
+  }
+  .modal__item-toggle {
+    color: $white;
+    &:hover {
+      color: $black;
+    }
+  }
+  .modal__title {
+    color: $white;
+  }
+  .modal__info {
+    color: $black;
+  }
+  .modal__description {
+    color: $black;
+    &::before {
+      color: $white;
+    }
+  }
+  .modal__subevent-info {
+    color: $white;
+  }
+  .modal__subevent-title {
+    color: $white;
+  }
+  .modal__subevent-description {
+    color: $black;
+  }
+}

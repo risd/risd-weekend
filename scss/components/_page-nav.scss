@@ -1,0 +1,231 @@
+.header {
+  text-align: center;
+  z-index: 2000;
+
+  @include media($mobile) {
+    @include outer-container(90vw);
+  };
+
+  @include media($tablet) {
+    @include outer-container(100vw);
+  };
+}
+
+.nav {
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5000;
+  list-style: none;
+  margin-bottom: 0;
+
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  };
+
+  @include media($tablet) {
+    @include span-columns(8 of 8);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  };
+
+  @include media($laptop) {
+    @include span-columns(10 of 10);
+    display: flex;
+  };
+
+  @include media($desktop) {
+    @include span-columns(12 of 12);
+    display: flex;
+  };
+}
+
+.nav--up {
+  top: -100px;
+}
+
+.nav--down {
+  top: 0;
+}
+
+
+.nav__item {
+  justify-content: center;
+  padding: $space--small 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  border-bottom: none;
+  @include transition(color 0.1s ease);
+
+  @include media($mobile) {
+    @include text-size($medium);
+    width: 100%;
+    display: none;
+    flex-grow: 0;
+    align-items: center;
+    border-bottom: 2px solid;
+    &:last-child {
+      border-bottom: none;
+    }
+  };
+
+  @include media($tablet) {
+    @include text-size($regular);
+    display: flex;
+    width: auto;
+    justify-content: center;
+    flex-grow: 1;
+    height: 60px;
+    align-items: stretch;
+    border-bottom: none;
+  };
+
+}
+
+.nav__item--activator {
+  cursor: pointer;
+  @include text-size($medium);
+  @include media($mobile) {
+    display: flex;
+  };
+
+  @include media($tablet) {
+    display: none;
+  };
+
+  @include media($laptop) {
+    display: none;
+  };
+
+  @include media($desktop) {
+    display: none;
+  };
+}
+
+.nav__item--deactivator {
+  cursor: pointer;
+  font-weight: normal;
+  @include text-size($large);
+
+  @include media($mobile) {
+    display: none;
+  };
+
+  @include media($tablet) {
+    display: none;
+  };
+
+  @include media($laptop) {
+    display: none;
+  };
+
+  @include media($desktop) {
+    display: none;
+  };
+}
+
+.nav__item--active {
+
+  @include media($tablet) {
+
+    & + .nav__item {
+    }
+
+  };
+
+}
+
+.nav__item--show {
+  display: flex;
+}
+
+.nav__item--hide {
+  display: none;
+}
+
+.nav--toggled {
+  height: 100%;
+}
+
+.body--no-scroll {
+  overflow: hidden;
+}
+
+.nav__anchor {
+  position: relative;
+  top: -100px;
+  visibility: hidden;
+  display: block;
+}
+
+.nav__anchor--home {
+  position: absolute;
+  top: 0;
+}
+
+
+
+// Theme colors --------------------------------------------- //
+
+.layout__campaign-color {
+  .nav {
+    background-color: $black;
+  }
+  .nav__item {
+    color: $white;
+    border-color: $campaign-color;
+    &:hover {
+      color: $campaign-color;
+    }
+  }
+  .nav__item--active {
+    color: $campaign-color;
+    &:hover {
+      color: $campaign-color;
+    }
+  }
+}
+
+.layout__white {
+  .nav {
+    background-color: $campaign-color;
+  }
+  .nav__item {
+    color: $black;
+    border-color: $white;
+    &:hover {
+      color: $white;
+    }
+  }
+  .nav__item--active {
+    color: $white;
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+.layout__black {
+  .nav {
+    background-color: $white;
+  }
+  .nav__item {
+    color: $campaign-color;
+    border-color: $black;
+    &:hover {
+      color: $black;
+    }
+  }
+  .nav__item--active {
+    color: $black;
+    &:hover {
+      color: $black;
+    }
+  }
+}
