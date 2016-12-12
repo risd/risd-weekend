@@ -1,19 +1,22 @@
 .poster-moment {
   background-color: $campaign-color;
   width: 100%;
-  height: 100vh;
+  // height: 100vh;
   font-family: $font__primary;
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 0;
+  // margin-top: 0;
   align-content: stretch;
 }
 
 .poster-moment__container {
   display: flex;
   flex-wrap: wrap;
+  // flex-direction: column;
+  margin: 4rem auto 0 auto;
   // cursor: e-resize;
   @include media($mobile) {
     @include outer-container(90%);
@@ -48,7 +51,7 @@
   }
 }
 
-.poster-moment__item--modifier {
+.poster-moment__modifier {
   @include transition(margin 0.2s ease);
 }
 
@@ -191,6 +194,11 @@
     @include shift(0);
   };
 }
+.poster-moment__transition {
+  width: auto;
+  flex-grow: 0;
+  flex-basis: auto;
+}
 
 
 
@@ -223,7 +231,7 @@
   .poster-moment__item {
     color: $black;
   }
-  .poster-moment__item--modifier {
+  .poster-moment__modifier {
     color: $white;
   }
   .poster-moment__button-link {
@@ -243,7 +251,7 @@
   .poster-moment__item {
     color: $black;
   }
-  .poster-moment__item--modifier {
+  .poster-moment__modifier {
     color: $campaign-color;
   }
   .poster-moment__button-link {
@@ -263,7 +271,7 @@
   .poster-moment__item {
     color: $white;
   }
-  .poster-moment__item--modifier {
+  .poster-moment__modifier {
     color: $campaign-color;
   }
   .poster-moment__button-link {

@@ -27,6 +27,7 @@
 
 .transition-text__title {
   @include text-size($medium);
+  text-align: left;
 
   @include media($mobile) {
     @include span-columns(6 of 6);
@@ -37,6 +38,8 @@
     @include omega;
   };
   @include media($laptop) {
+    text-align: right;
+    padding-right: 3rem;
     @include span-columns(3 of 8);
   };
   @include media($desktop) {
@@ -44,7 +47,10 @@
   };
 
   h2 {
-    margin-bottom: 1rem;
+    margin-bottom: calc(30 / 21 * 1em);
+    @include media($laptop) {
+      margin-bottom: calc( 36 / 24 * 1em);
+    };
   }
 }
 
@@ -73,11 +79,17 @@
   }
 
   p + h3 {
-    margin-top: 2rem;
+    margin-top: calc(30 / 21 * 1em);
+    @include media($laptop) {
+      margin-top: calc( 36 / 24 * 1em);
+    };
   }
 
   p + p {
-    margin-top: 2rem;
+    margin-top: calc(30 / 21 * 1em);
+    @include media($laptop) {
+      margin-top: calc( 36 / 24 * 1em);
+    };
   }
 
   a {
