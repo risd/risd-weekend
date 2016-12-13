@@ -369,15 +369,15 @@ iframe {
   background-color: black;
 }
 .layout__white ::-moz-selection {
-  background: rgba(0, 244, 217, 0.98);
+  background: rgba(0, 244, 217, 0.99);
   color: rgba(0, 0, 0, 0.99);
 }
 .layout__white ::selection {
-  background: rgba(0, 244, 217, 0.98);
+  background: rgba(0, 244, 217, 0.99);
   color: rgba(0, 0, 0, 0.99);
 }
 .layout__white ::-moz-selection {
-  background: rgba(0, 244, 217, 0.98);
+  background: rgba(0, 244, 217, 0.99);
   color: rgba(0, 0, 0, 0.99);
 }
 
@@ -391,15 +391,15 @@ iframe {
   background-color: #00f4d9;
 }
 .layout__black ::-moz-selection {
-  background: rgba(0, 244, 217, 0.98);
+  background: rgba(0, 244, 217, 0.99);
   color: rgba(255, 255, 255, 0.99);
 }
 .layout__black ::selection {
-  background: rgba(0, 244, 217, 0.98);
+  background: rgba(0, 244, 217, 0.99);
   color: rgba(255, 255, 255, 0.99);
 }
 .layout__black ::-moz-selection {
-  background: rgba(0, 244, 217, 0.98);
+  background: rgba(0, 244, 217, 0.99);
   color: rgba(255, 255, 255, 0.99);
 }
 
@@ -1353,7 +1353,7 @@ iframe {
 }
 @media screen and (min-width: 1824px) {
   #poster-moment__modifier--2 {
-    margin-left: 11.46316%;
+    margin-left: 45.85264%;
   }
 }
 
@@ -1383,7 +1383,7 @@ iframe {
 }
 @media screen and (min-width: 1824px) {
   #poster-moment__modifier--3 {
-    margin-left: 22.92632%;
+    margin-left: 34.38948%;
   }
 }
 
@@ -1413,7 +1413,7 @@ iframe {
 }
 @media screen and (min-width: 1824px) {
   #poster-moment__modifier--4 {
-    margin-left: 0%;
+    margin-left: 57.3158%;
   }
 }
 

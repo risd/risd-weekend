@@ -161,7 +161,7 @@
     @include shift(1);
   };
   @include media($desktop) {
-    @include shift(1);
+    @include shift(4);
   };
 }
 #poster-moment__modifier--3 {
@@ -176,7 +176,7 @@
     @include shift(2);
   };
   @include media($desktop) {
-    @include shift(2);
+    @include shift(3);
   };
 }
 #poster-moment__modifier--4 {
@@ -191,7 +191,7 @@
     @include shift(1);
   };
   @include media($desktop) {
-    @include shift(0);
+    @include shift(5);
   };
 }
 .poster-moment__transition {
