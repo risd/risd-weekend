@@ -1,8 +1,55 @@
-.transition-text__container {
+/* Sections ----------------------------------------------- */
+
+.transition-section__container {
+  padding-bottom: 4rem;
+
+  &:first-of-type {
+    padding-top: 6rem;
+  }
+
+  @include media($mobile) {
+    @include outer-container(80vw);
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 8);
+    @include shift(1);
+    @include omega;
+  };
+  @include media($laptop) {
+    @include span-columns(6 of 10);
+    @include shift(2);
+    @include omega;
+  };
+  @include media($desktop) {
+    @include span-columns(6 of 12);
+    @include shift(3);
+    @include omega;
+  };
+}
+.transition-section__title {
+  @include text-size($large);
+  // font-size: 13vmin;
+  text-transform: uppercase;
+  word-break: break-word;
+
+  padding-bottom: 1rem;
+
+  &::after {
+    content: "—";
+
+    display: block;
+    margin-top: -0.6em;
+  }
+}
+
+
+/* Intro ----------------------------------------------- */
+
+.transition-intro__container {
 
 }
 
-.transition-text {
+.transition-intro {
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 2px solid;
@@ -11,84 +58,38 @@
     border-bottom: none;
   }
 
-  @include media($mobile) {
-    @include span-columns(6 of 6);
-  };
-  @include media($tablet) {
-    @include span-columns(6 of 6);
-  };
-  @include media($laptop) {
-    @include span-columns(8 of 8);
-  };
-  @include media($desktop) {
-    @include span-columns(8 of 8);
-  };
 }
 
-.transition-text__title {
+.transition-intro__title {
   @include text-size($medium);
   text-align: left;
 
-  @include media($mobile) {
-    @include span-columns(6 of 6);
-    @include omega;
-  };
-  @include media($tablet) {
-    @include span-columns(6 of 6);
-    @include omega;
-  };
-  @include media($laptop) {
-    text-align: right;
-    padding-right: 3rem;
-    @include span-columns(3 of 8);
-  };
-  @include media($desktop) {
-    @include span-columns(4 of 10);
-  };
-
   h2 {
-    margin-bottom: calc(30 / 21 * 1em);
+    margin-bottom: calc(30 / 21 * 0.5em);
     @include media($laptop) {
-      margin-bottom: calc( 36 / 24 * 1em);
+      margin-bottom: calc( 36 / 24 * 0.5em);
     };
   }
 }
 
-.transition-text__description {
+.transition-intro__description {
   @include text-size($medium);
-
-  @include media($mobile) {
-    @include span-columns(6 of 6);
-    @include omega;
-  };
-  @include media($tablet) {
-    @include span-columns(6 of 6);
-    @include omega;
-  };
-  @include media($laptop) {
-    @include span-columns(5 of 8);
-    @include omega;
-  };
-  @include media($desktop) {
-    @include span-columns(6 of 10);
-    @include omega;
-  };
 
   p {
     max-width: 40em;
   }
 
   p + h3 {
-    margin-top: calc(30 / 21 * 1em);
+    margin-top: calc(30 / 21 * 0.5em);
     @include media($laptop) {
-      margin-top: calc( 36 / 24 * 1em);
+      margin-top: calc( 36 / 24 * 0.5em);
     };
   }
 
   p + p {
-    margin-top: calc(30 / 21 * 1em);
+    margin-top: calc(30 / 21 * 0.5em);
     @include media($laptop) {
-      margin-top: calc( 36 / 24 * 1em);
+      margin-top: calc( 36 / 24 * 0.5em);
     };
   }
 
@@ -98,29 +99,188 @@
 }
 
 
+/* Information ----------------------------------------------- */
+
+.transition-information__container {
+
+}
+
+.transition-information {
+
+}
+
+.transition-information__title {
+
+}
+
+.transition-information__section {
+
+}
+
+.transition-information__main-description-container {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.transition-information__main-description {
+
+  p {
+    max-width: 40em;
+  }
+
+  a {
+    @include transition(color 0.1s ease);
+  }
+
+  p + p {
+    margin-top: 2rem;
+  }
+}
+
+.transition-information__subsection {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.transition-information__subsection-title {
+  @include text-size($medium);
+  text-transform: uppercase;
+
+}
+
+.transition-information__subsection-description {
+
+  p {
+    max-width: 40em;
+  }
+
+  p + h3 {
+    margin-top: 2rem;
+  }
+
+  p + p {
+    margin-top: 2rem;
+  }
+
+  a {
+    @include transition(color 0.1s ease);
+  }
+}
+
+.transition-information__button {
+  display: inline-block;
+
+  @include media($mobile) {
+    @include span-columns(6 of 6);
+  };
+  @include media($tablet) {
+    @include span-columns(6 of 6);
+  };
+  @include media($laptop) {
+    @include span-columns(5 of 8);
+    @include shift(3);
+  };
+  @include media($desktop) {
+    @include span-columns(6 of 10);
+    @include shift(4);
+  };
+}
+
+.transition-information__button-link {
+  @include text-size($medium);
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: none;
+  padding: $space--xxsmall;
+  background-color: $black;
+  color: $white;
+  @include transition(all 0.1s ease);
+}
+
+
 // Theme colors --------------------------------------------- //
 
 .layout__campaign-color {
-  .transition-text__container {
+  .transition-section__title {
+    color: $white;
+    &::after {
+      color: $black;
+    }
+  }
+
+  .transition-intro__container {
     color: $black;
   }
 
-  .transition-text__description {
+  .transition-intro__description {
     a {
       border-color: $campaign-color;
       &:hover {
         color: $campaign-color;
       }
+    }
+  }
+  .transition-information__main-description-container {
+    border-color: $black;
+  }
+  .transition-information__main-description {
+    color: $white;
+    a {
+      border-color: $black;
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+  .transition-information__subsection {
+    border-color: $black;
+  }
+  .transition-information__subsection-title {
+    color: $black;
+  }
+  .transition-information__subsection-description {
+    color: $white;
+    a {
+      border-color: $black;
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+  .transition-information__button-link {
+    background-color: $white;
+    color: $black;
+    &:hover {
+      background-color: $black;
+      color: $white;
     }
   }
 }
 
 .layout__white {
-  .transition-text__container {
+  .transition-section__title {
+    color: $black;
+    &::after {
+      color: $campaign-color;
+    }
+  }
+
+  .transition-intro__container {
     color: $campaign-color;
   }
 
-  .transition-text__description {
+  .transition-intro__description {
     a {
       border-color: $campaign-color;
       &:hover {
@@ -128,19 +288,98 @@
       }
     }
   }
-}
 
-.layout__black {
-  .transition-text__container {
-    color: $white;
+  .transition-information__main-description-container {
+    border-color: $campaign-color;
   }
-
-  .transition-text__description {
+  .transition-information__main-description {
+    color: $black;
     a {
       border-color: $campaign-color;
       &:hover {
         color: $campaign-color;
       }
+    }
+  }
+  .transition-information__subsection {
+    border-color: $campaign-color;
+  }
+  .transition-information__subsection-title {
+    color: $campaign-color;
+  }
+  .transition-information__subsection-description {
+    color: $black;
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+  .transition-information__button-link {
+    background-color: $black;
+    color: $white;
+    &:hover {
+      background-color: $campaign-color;
+      color: $white;
+    }
+  }
+}
+
+.layout__black {
+  .transition-section__title {
+    color: $campaign-color;
+    &::after {
+      color: $white;
+    }
+  }
+
+  .transition-intro__container {
+    color: $white;
+  }
+
+  .transition-intro__description {
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+
+  .transition-information__main-description-container {
+    border-color: $campaign-color;
+  }
+  .transition-information__main-description {
+    color: $white;
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+  .transition-information__subsection {
+    border-color: $campaign-color;
+  }
+  .transition-information__subsection-title {
+    color: $campaign-color;
+  }
+  .transition-information__subsection-description {
+    color: $white;
+    a {
+      border-color: $campaign-color;
+      &:hover {
+        color: $campaign-color;
+      }
+    }
+  }
+  .transition-information__button-link {
+    background-color: $campaign-color;
+    color: $white;
+    &:hover {
+      background-color: $white;
+      color: $campaign-color;
     }
   }
 }
