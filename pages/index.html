@@ -9,7 +9,7 @@
 {% set home = cms.home %}
 {% set audiences = cms.audiences %}
 {% set transition = cms.transitionpage %}
-{% set infoSnippets = cms.informationsnippets %}
+{% set infoSnippets = transition.information_sections %}
 
 {% block content %}
 
@@ -29,44 +29,43 @@
         </div>
       </div>
 
-      <section class="section__container transition-text__container">
-        <article class="transition-text">
-          <div class="transition-text__title">{{ transition.location|safe }}</div>
-          <div class="transition-text__description">{{ transition.description|safe }}<br><a href="{{ transition.past_year_schedule_link }}">{{ transition.past_year_schedule_title }}</a></div>
+      <section class="transition-section__container transition-intro__container">
+        <article class="transition-intro">
+          <div class="transition-intro__title">{{ transition.location|safe }}</div>
+          <div class="transition-intro__description">{{ transition.description|safe }}<br><a href="{{ transition.past_year_schedule_link }}">{{ transition.past_year_schedule_title }}</a></div>
         </article>
       </section>
 
       {# Information Sections #}
       {% for information in infoSnippets %}
-        {% if information.show_on_transition_page === true %}
-          <section class="section__container information__container" id="{{ information.name|lower|replace(' ', '-', 'g') }}">
-            <h1 class="section__title">{{ information.name }}</h1>
-            <article class="information__section">
-            {% if information.main_description %}
-              <div class="information__main-description-container">
-                <div class="information__main-description">{{ information.main_description|safe }}</div>
-              </div>
+        <section class="transition-section__container transition-information__container" id="{{ information.name|lower|replace(' ', '-', 'g') }}">
+          <h1 class="transition-section__title">{{ information.name }}</h1>
+          <article class="transition-information__section">
+          {% if information.main_description %}
+            <div class="transition-information__main-description-container">
+              <div class="transition-information__main-description">{{ information.main_description|safe }}</div>
+            </div>
+          {% endif %}
+            {% if information.subsections %}
+              {% for subsection in information.subsections %}
+                <div class="transition-information__subsection">
+                {% if subsection.title %}.
+
+                  <h2 class="transition-information__subsection-title">{{ subsection.title }}</h2>
+                {% else %}
+                  <h2 class="transition-information__subsection-title">&#160;</h2>
+                {% endif %}
+                  <div class="transition-information__subsection-description">{{ subsection.description|safe }}</div>
+                </div>
+              {% endfor %}
             {% endif %}
-              {% if information.subsections %}
-                {% for subsection in information.subsections %}
-                  <div class="information__subsection">
-                  {% if subsection.title %}
-                    <h2 class="information__subsection-title">{{ subsection.title }}</h2>
-                  {% else %}
-                    <h2 class="information__subsection-title">&#160;</h2>
-                  {% endif %}
-                    <div class="information__subsection-description">{{ subsection.description|safe }}</div>
-                  </div>
-                {% endfor %}
-              {% endif %}
-            </article>
-            {% if information.button_text %}
-              <div class="information__button">
-                <a href="{{ information.button_link }}" target="_blank" class="information__button-link">{{ information.button_text }}</a>
-              </div>
-            {% endif %}
-          </section>
-        {% endif %}
+          </article>
+          {% if information.button_text %}
+            <div class="transition-information__button">
+              <a href="{{ information.button_link }}" target="_blank" class="transition-information__button-link">{{ information.button_text }}</a>
+            </div>
+          {% endif %}
+        </section>
       {% endfor %}
 
     {% else %}
