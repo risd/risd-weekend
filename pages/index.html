@@ -32,7 +32,10 @@
       <section class="transition-section__container transition-intro__container">
         <article class="transition-intro">
           <div class="transition-intro__title">{{ transition.location|safe }}</div>
-          <div class="transition-intro__description">{{ transition.description|safe }}<br><a href="{{ transition.past_year_schedule_link }}">{{ transition.past_year_schedule_title }}</a></div>
+          <div class="transition-intro__description">
+            {{ transition.description|safe }}
+            <a href="{{ transition.past_year_schedule_link }}">{{ transition.past_year_schedule_title }}</a>
+          </div>
         </article>
       </section>
 
@@ -48,12 +51,12 @@
           {% endif %}
             {% if information.subsections %}
               {% for subsection in information.subsections %}
+                <script>
+                  console.log({{subsection|json|safe}});
+                </script>
                 <div class="transition-information__subsection">
-                {% if subsection.title %}.
-
+                {% if subsection.title %}
                   <h2 class="transition-information__subsection-title">{{ subsection.title }}</h2>
-                {% else %}
-                  <h2 class="transition-information__subsection-title">&#160;</h2>
                 {% endif %}
                   <div class="transition-information__subsection-description">{{ subsection.description|safe }}</div>
                 </div>
