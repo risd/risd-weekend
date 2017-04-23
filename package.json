@@ -1,6 +1,6 @@
 {
-  "name": "webhook-generate",
-  "version": "0.0.1",
+  "name": "risd-weekend",
+  "version": "1.0.0",
   "description": "Grunt site generator for risd/webhook",
   "repository": {
     "type": "git",
@@ -12,7 +12,8 @@
     "url": "https://github.com/risd/webhook-generate/issues"
   },
   "scripts": {
-    "start": "rm-wh serve"
+    "start": "rm-wh serve",
+    "deploy": "rm-wh deploy"
   },
   "homepage": "https://github.com/risd/webhook-generate",
   "dependencies": {
