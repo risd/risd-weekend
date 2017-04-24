@@ -13,12 +13,9 @@
   },
   "browser": {},
   "scripts": {
-    "start": "wh serve",
-    "build": "wh build",
-    "deploy": "rm-deploy --prefix=risd-weekend",
-    "wh-deploy": "rm-deploy --bucket=master",
-    "init-webhook": "wh init risd-weekend",
-    "wh-update": "wh update"
+    "start": "rm-wh serve",
+    "deploy:fonts": "rm-gcloud-put-dir static/fonts --siteName=cdn --at=fonts",
+    "deploy": "rm-wh deploy --branch=master"
   },
   "homepage": "https://github.com/webhook/webhook-generate",
   "dependencies": {
