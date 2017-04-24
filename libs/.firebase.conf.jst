@@ -1,6 +1,10 @@
 {
   "secretKey"   : "<%= secretKey %>",
-  "siteName"    : "<%= siteName %>"<% if (noSearch) { %>,
-  "noSearch"    : <%= noSearch %><% } %><% if (imageproxy) { %>,
-  "imageproxy"  : "<%= imageproxy %>"<% } %>
+  "siteName"   : "<%= siteName %>",
+  "firebase"   : "<%= firebase %>",
+  "embedly"    : "<%= embedlyKey %>",
+  "server"     : "<%= serverAddr %>",
+  "custom"     : true<% if (noSearch) { %>,
+  "noSearch"   : <%= noSearch %><% } %><% if (imageproxy) { %>,
+  "imageproxy" : "<%= imageproxy %>"<% } %>
 }
