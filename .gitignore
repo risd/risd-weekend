@@ -14,9 +14,12 @@ results
 
 npm-debug.log
 node_modules
-.sass-cache
-*.map
-*.css
 
-.build
-.firebase.conf
+/.build
+/.firebase.conf
+/.risdmedia.conf
+
+.sass-cache/
+.db/
+
+.build-order/default
