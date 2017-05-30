@@ -73,12 +73,12 @@
       <div class="poster-moment__container">
         <div class="poster-moment__item" id="poster-moment__risd">RISD</div>
         <div class="poster-moment__item--active poster-moment__item--modifiers">
-          <div class="poster-moment__item poster-moment__item--modifier" id="poster-moment__modifier--1">{{ item.name }}</div>
+          <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">{{ item.name }}</div>
         </div>
         {% for modifier in item.wordmark_modifiers %}
             <div class="poster-moment__item--inactive poster-moment__item--modifiers">
             {% for modifier_line in modifier.modifier_lines %}
-              <div class="poster-moment__item poster-moment__item--modifier" id="poster-moment__modifier--{{loop.index}}">{{ modifier_line.line }}</div>
+              <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--{{loop.index}}">{{ modifier_line.line }}</div>
             {% endfor %}
             </div>
         {% endfor %}
