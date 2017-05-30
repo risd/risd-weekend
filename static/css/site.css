@@ -2323,7 +2323,6 @@ iframe {
   text-transform: uppercase;
   word-break: break-word;
   margin-top: 2rem;
-  color: white;
 }
 @media screen and (min-width: 0px) {
   .calendar-box__section-title {
@@ -2527,6 +2526,9 @@ iframe {
 .layout__campaign-color .calendar-box__description {
   color: black;
 }
+.layout__campaign-color .calendar-box__section-title {
+  color: black;
+}
 
 .layout__white .calendar-box__button {
   color: #00f4d9;
@@ -2560,6 +2562,9 @@ iframe {
 .layout__white .calendar-box__description {
   color: #00f4d9;
 }
+.layout__white .calendar-box__section-title {
+  color: #00f4d9;
+}
 
 .layout__black .calendar-box__button {
   color: white;
@@ -2591,6 +2596,9 @@ iframe {
   color: white;
 }
 .layout__black .calendar-box__description {
+  color: white;
+}
+.layout__black .calendar-box__section-title {
   color: white;
 }
 
