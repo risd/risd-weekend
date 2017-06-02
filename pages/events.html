@@ -1,15 +1,5 @@
-{# ------------------------------------------------------- #}
-{# ONE OFF VIEW contact #}
-{# This page can use any data from http:localhost:2000/cms/#/form/contact/ #}
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-{# ------------------------------------------------------- #}
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
-{% extends "templates/partials/base-without-header.html" %}
-{# This sets our page <title>. It will append this contact's name to the site title defined in base.html #}
+{% extends "templates/partials/base-alternate-header.html" %}
+
 {% block title %}{% parent %} - Test{% endblock %}
 
 {% block body_attributes %}
@@ -32,6 +22,9 @@
     <section class="transition-section__container calendar-box__container">
 
       <h1 class="section__title">Events</h1>
+      <div class="calendar-box__wordmark-container">
+        {% include "templates/partials/wordmark.html" %}
+      </div>
 
       <div class="calendar-box">
         {% for day in events | sort('day') | groupBy('day') %}
@@ -55,6 +48,10 @@
           {% endfor %}
 
           {% for event in day|sort('start_time_order') %}
+
+            {% if loop.first %}
+              <div class="calendar-box__item-container">
+            {% endif %}
 
             <div class="calendar-box__item" data-modal-source-id="{{ event.event_link }}">
               <div class="calendar-box__header">
@@ -203,6 +200,9 @@
               {% endif %}
 
             </div>
+            {% if loop.last %}
+              </div>
+            {% endif %}
           {% endfor %}
         </div>
           {% if loop.last %}

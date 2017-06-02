@@ -1,7 +1,21 @@
 @media print {
 
+  .header {
+    display: none;
+  }
+
   .page {
-    margin: auto 20%;
+    margin: auto 10%;
+  }
+
+  .calendar-box__wordmark-container {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .calendar-box__wordmark {
+    width: 150pt;
   }
 
   .calendar-box__container {
@@ -9,26 +23,51 @@
   }
 
   .section__title {
-    font-size: 60pt;
-    padding-bottom: 0;
+    display: none;
   }
 
   .calendar-box__section-title {
-    font-size: 40pt;
-    page-break-before: always;
+    font-size: 20pt;
+    column-span: all;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   .calendar-box__header {
-
+    display: block;
   }
 
   .calendar-box__column {
     display: block;
+    page-break-before: always;
+    padding-top: 3rem;
+    // columns: 2;
+    // column-gap: 3rem;
+    // -webkit-columns: 2;
+    // -webkit-column-gap: 3rem;
+    // -moz-columns: 2;
+    // -moz-column-gap: 3rem;
+
+    &:first-child {
+      page-break-before: auto;
+      padding-top: 0;
+    }
+  }
+
+  .calendar-box__item-container {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .calendar-box__item {
+    flex-basis: calc(50% - 3rem);
+    margin-right: 3rem;
     page-break-inside: avoid;
-    display: block;
+    display: inline-block;
+    border-bottom-width: 1px;
+    flex-grow: 0;
   }
 
   .calendar-box__item-toggle {
@@ -36,7 +75,7 @@
   }
 
   .calendar-box__title {
-
+    font-size: 12pt;
   }
 
   .calendar-box__subtitle {
@@ -45,6 +84,8 @@
 
   .calendar-box__info {
     font-weight: normal;
+    width: 100%;
+    font-size: 9pt;
   }
 
 
@@ -69,5 +110,5 @@
 }
 
 // @page {
-//   margin: 0;
+//   margin: 1in;
 // }

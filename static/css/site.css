@@ -2494,6 +2494,10 @@ iframe {
   display: none;
 }
 
+.calendar-box__wordmark-container {
+  display: none;
+}
+
 .layout__campaign-color .calendar-box__button {
   color: black;
   background-color: #3ff1dd;
@@ -4201,8 +4205,22 @@ iframe {
 }
 
 @media print {
+  .header {
+    display: none;
+  }
+
   .page {
-    margin: auto 20%;
+    margin: auto 10%;
+  }
+
+  .calendar-box__wordmark-container {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .calendar-box__wordmark {
+    width: 150pt;
   }
 
   .calendar-box__container {
@@ -4210,30 +4228,62 @@ iframe {
   }
 
   .section__title {
-    font-size: 60pt;
-    padding-bottom: 0;
+    display: none;
   }
 
   .calendar-box__section-title {
-    font-size: 40pt;
-    page-break-before: always;
+    font-size: 20pt;
+    -moz-column-span: all;
+         column-span: all;
+  }
+  .calendar-box__section-title:first-child {
+    margin-top: 0;
+  }
+
+  .calendar-box__header {
+    display: block;
   }
 
   .calendar-box__column {
     display: block;
+    page-break-before: always;
+    padding-top: 3rem;
+  }
+  .calendar-box__column:first-child {
+    page-break-before: auto;
+    padding-top: 0;
+  }
+
+  .calendar-box__item-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
 
   .calendar-box__item {
+    -ms-flex-preferred-size: calc(50% - 3rem);
+        flex-basis: calc(50% - 3rem);
+    margin-right: 3rem;
     page-break-inside: avoid;
-    display: block;
+    display: inline-block;
+    border-bottom-width: 1px;
+    -ms-flex-positive: 0;
+        flex-grow: 0;
   }
 
   .calendar-box__item-toggle {
     display: none;
   }
 
+  .calendar-box__title {
+    font-size: 12pt;
+  }
+
   .calendar-box__info {
     font-weight: normal;
+    width: 100%;
+    font-size: 9pt;
   }
 
   .layout__white .section__title::after {
