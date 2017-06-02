@@ -1,6 +1,6 @@
 {# ------------------------------------------------------- #}
-{# INDIVIDUAL VIEW FOR EACH audiences #}
-{# This page can use any data from http:localhost:2000/cms/#/form/audiences/ #}
+{# ONE OFF VIEW contact #}
+{# This page can use any data from http:localhost:2000/cms/#/form/contact/ #}
 {# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
 {# http://paularmstrong.github.io/swig/docs/tags/ #}
 {# Learn about calling data into Webhook pages here: #}
@@ -8,19 +8,13 @@
 {# ------------------------------------------------------- #}
 {# Confused what extends and blocks do? Watch a primer: #}
 {# http://www.webhook.com/docs/template-inheritance-blocks/ #}
-{% extends "templates/partials/base.html" %}
-{# This sets our page <title>. It will append this audiences's name to the site title defined in base.html #}
-{% block title %}{% parent %} - {{ item.name }}{% endblock %}
+{% extends "templates/partials/base-without-header.html" %}
+{# This sets our page <title>. It will append this contact's name to the site title defined in base.html #}
+{% block title %}{% parent %} - Test{% endblock %}
 
 {% block body_attributes %}
-  class="layout__{{ item.page_color_scheme|lower }}"
+  class="layout__white"
 {% endblock %}
-
-{% set page_facebook_image = "static/images/social/facebook-" + item.name|lower + ".png" %}
-{% set page_twitter_image = "static/images/social/twitter-" + item.name|lower + ".png" %}
-{% set page_url = getSetting('site_url') + getCurrentUrl()|replace('^/','','g') %}
-
-{% set livestream = cms.livestream %}
 
 {% block content %}
 
@@ -30,124 +24,30 @@
     {# event_link = '#', lowercase, ' ' replaced with '-', non-alphanumeric characters except for ' ' and '-' replaced with '', multiple consecutive '-' replaced with '-' #}
     {% set event.event_link = event.name|lower|replace(' ','-','g')|replace('[^a-zA-Z0-9 -]','','g')|replace('-+','-','g') %}
   {% endfor %}
-  {% set infoSnippets = item.information_snippets %}
-
-
-  {# Set color scheme #}
-
-  {% if item.page_color_scheme %}
-    {% set item.page_background = item.page_color_scheme|replace('.html', '', 'g') %}
-  {% else %}
-    {% set item.page_background = 'layout__white' %}
-  {% endif %}
-
-  {# <script>
-    console.log({{item|json|safe}});
-  </script> #}
 
   <main class="page">
 
-    {# Livestream #}
-
-    {% if livestream.show_livestream === true %}
-      <div class="video-module">
-        {% if livestream.link %}
-          <div class="video-module__container"><iframe id="ls_embed_1475874412" src="//livestream.com/accounts/2814969/events/6424084/player?width=640&height=360&enableInfoAndActivity=true&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1475874412" src="//livestream.com/assets/plugins/referrer_tracking.js"></script></div>
-          {% if livestream.title %}
-            <div class="video-module__title-container">
-              <h2 class="video-module__title">{{ livestream.title }}</h2>
-            {% if livestream.subtitle %}
-              <h3 class="video-module__subtitle">{{ livestream.subtitle }}</h3>
-            {% endif %}
-          {% endif %}
-          </div>
-        {% endif %}
-      </div>
-    {% endif %}
-
-
-    {# Poster Moment #}
-
-    <div class="poster-moment">
-      <a class="nav__anchor nav__anchor--home" id=""></a>
-      <div class="poster-moment__container">
-        <div class="poster-moment__item" id="poster-moment__risd">RISD</div>
-        <div class="poster-moment__item--active poster-moment__item--modifiers">
-          <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">{{ item.name }}</div>
-        </div>
-        {% for modifier in item.wordmark_modifiers %}
-            <div class="poster-moment__item--inactive poster-moment__item--modifiers">
-            {% for modifier_line in modifier.modifier_lines %}
-              <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--{{loop.index}}">{{ modifier_line.line }}</div>
-            {% endfor %}
-            </div>
-        {% endfor %}
-        <div class="poster-moment__item" id="poster-moment__week">WEEK—</div>
-        <div class="poster-moment__item" id="poster-moment__end">END<span class="poster-moment__item--superscript">&#xB9;&#x2076;</span></div>
-        {% if item.name|lower === "families" || item.name|lower === "alumni" %}
-          <div class="poster-moment__button">
-            <a href="http://attend.com/RISDWeekend16" target="_blank" class="poster-moment__button-link">Register now</a>
-          </div>
-        {% endif %}
-      </div>
-    </div>
-
-
-    {# Address and Time #}
-    <section class="section__container" id="">
-      <div class="announcement__container">
-        <h2 class="announcement announcement__date">October 7–9, 2016</h2>
-        <h2 class="announcement announcement__location">RISD Campus<br>Providence, RI</h2>
-      </div>
-    </section>
-
-
-    {# Grouped Featured events #}
-    {% for eventGroup in item.audience_specific_events %}
-      {% if loop.first %}
-        {# <a class="nav__anchor" id="events"></a> #}
-      {% endif %}
-        <section class="section__container featured-events__container" id="{{ eventGroup.special_events_section_name|lower|replace(' ','-','g') }}">
-          <h1 class="section__title">{{ eventGroup.special_events_section_name }}</h1>
-          {% for event in eventGroup.events %}
-            {% if loop.first %}
-              <div class="featured-events">
-            {% endif %}
-                <div class="featured-events__item" data-modal-source-id="{{ event.event_link }}"><a href="#{{ event.event_link }}" class="featured-events__item-link">{{ event.name }}</a></div>
-            {% if loop.last %}
-              </div>
-            {% endif %}
-          {% endfor %}
-          </section>
-      {% if loop.last %}
-      {% endif %}
-    {% endfor %}
-
-
     {# Event Schedule #}
 
-    <section class="section__container calendar-box__container" id="events">
+    <section class="transition-section__container calendar-box__container">
 
       <h1 class="section__title">Events</h1>
 
       <div class="calendar-box">
-        <div class="calendar-box__toggle">
-          <h4 class="calendar-box__button calendar-box__button--active" id="calendar-box__button--friday">Friday</h4>
-          <h4 class="calendar-box__button" id="calendar-box__button--saturday">Saturday</h4>
-          <h4 class="calendar-box__button" id="calendar-box__button--sunday">Sunday</h4>
-        </div>
         {% for day in events | sort('day') | groupBy('day') %}
-
           {% if loop.first %}
         <div class="calendar-box__column-container">
           {% endif %}
 
           {% if loop.index === 1 %}
             <div class="calendar-box__column" id="calendar-box__column--friday">
+              <h2 class="calendar-box__section-title">Friday</h2>
           {% elseif loop.index === 2 %}
-            <div class="calendar-box__column calendar-box__column--hidden" id="calendar-box__column--saturday">
+            <div class="calendar-box__column" id="calendar-box__column--saturday">
+              <h2 class="calendar-box__section-title">Saturday</h2>
           {% elseif loop.index === 3 %}
-            <div class="calendar-box__column calendar-box__column--hidden" id="calendar-box__column--sunday">
+            <div class="calendar-box__column" id="calendar-box__column--sunday">
+              <h2 class="calendar-box__section-title">Sunday</h2>
           {% endif %}
 
           {% for event in day %}
@@ -156,7 +56,7 @@
 
           {% for event in day|sort('start_time_order') %}
 
-            <a href="#{{ event.event_link }}" class="calendar-box__item" data-modal-source-id="{{ event.event_link }}">
+            <div class="calendar-box__item" data-modal-source-id="{{ event.event_link }}">
               <div class="calendar-box__header">
                 <h4 class="calendar-box__title">
                 {{ event.name }}
@@ -302,7 +202,7 @@
                 <div class="calendar-box__item-toggle"></div>
               {% endif %}
 
-            </a>
+            </div>
           {% endfor %}
         </div>
           {% if loop.last %}
@@ -312,56 +212,7 @@
       </div>
     </section>
 
-
-    {# Information Sections #}
-    {% for information in infoSnippets %}
-    <section class="section__container information__container" id="{{ information.name|lower|replace(' ', '-', 'g') }}">
-    {% if information.show_in_nav === true %}
-      {# <a class="nav__anchor" id="{{ information.name|lower|replace(' ', '-', 'g') }}"></a> #}
-    {% endif %}
-      <h1 class="section__title">{{ information.name }}</h1>
-      <article class="information__section">
-      {% if information.main_description %}
-        <div class="information__main-description-container">
-          <div class="information__main-description">{{ information.main_description|safe }}</div>
-        </div>
-      {% endif %}
-        {% if information.subsections %}
-          {% for subsection in information.subsections %}
-            <div class="information__subsection">
-            {% if subsection.title %}
-              <h2 class="information__subsection-title">{{ subsection.title }}</h2>
-            {% else %}
-              <h2 class="information__subsection-title">&#160;</h2>
-            {% endif %}
-              <div class="information__subsection-description">{{ subsection.description|safe }}</div>
-            </div>
-          {% endfor %}
-        {% endif %}
-      </article>
-      {% if information.button_text %}
-        <div class="information__button">
-          <a href="{{ information.button_link }}" target="_blank" class="information__button-link">{{ information.button_text }}</a>
-        </div>
-      {% endif %}
-    </section>
-    {% endfor %}
-
-
-    {# Footer Buttons #}
-    {% for buttons in item.footer_buttons %}
-      {% if loop.first %}
-        <section class="section__container--wide footer-buttons__container">
-      {% endif %}
-          <div class="footer-buttons"><a href="{{ buttons.button_link }}" class="footer-buttons__link" target="_blank">{{ buttons.button_text }}</a></div>
-      {% if loop.last %}
-        </section>
-      {% endif %}
-    {% endfor %}
-
-
   </main>
-
 {% endblock %}
 
 {% block modal_content %}

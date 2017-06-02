@@ -75,7 +75,6 @@
   text-transform: uppercase;
   word-break: break-word;
   margin-top: 2rem;
-  color: $white;
 }
 
 .calendar-box__item {
@@ -228,6 +227,9 @@
   .calendar-box__description {
     color: $black;
   }
+  .calendar-box__section-title {
+    color: $black;
+  }
 }
 
 .layout__white {
@@ -263,6 +265,9 @@
   .calendar-box__description {
     color: $campaign-color;
   }
+  .calendar-box__section-title {
+    color: $campaign-color;
+  }
 }
 
 .layout__black {
@@ -296,6 +301,9 @@
     color: $white;
   }
   .calendar-box__description {
+    color: $white;
+  }
+  .calendar-box__section-title {
     color: $white;
   }
 }

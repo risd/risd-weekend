@@ -1,0 +1,73 @@
+@media print {
+
+  .page {
+    margin: auto 20%;
+  }
+
+  .calendar-box__container {
+    padding-top: 3rem !important;
+  }
+
+  .section__title {
+    font-size: 60pt;
+    padding-bottom: 0;
+  }
+
+  .calendar-box__section-title {
+    font-size: 40pt;
+    page-break-before: always;
+  }
+
+  .calendar-box__header {
+
+  }
+
+  .calendar-box__column {
+    display: block;
+  }
+
+  .calendar-box__item {
+    page-break-inside: avoid;
+    display: block;
+  }
+
+  .calendar-box__item-toggle {
+    display: none;
+  }
+
+  .calendar-box__title {
+
+  }
+
+  .calendar-box__subtitle {
+
+  }
+
+  .calendar-box__info {
+    font-weight: normal;
+  }
+
+
+
+
+  // Theme colors --------------------------------------------- //
+
+  .layout__white {
+    .section__title {
+      &::after {
+        color: $campaign-color--print;
+      }
+    }
+    .calendar-box__info {
+      color: $campaign-color--print;
+    }
+    .calendar-box__section-title {
+      color: $campaign-color--print;
+    }
+  }
+
+}
+
+// @page {
+//   margin: 0;
+// }
