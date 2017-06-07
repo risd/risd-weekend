@@ -9,7 +9,7 @@ function PosterMomentLayout(opts) {
 
   console.log('PosterMomentLayout initialized.');
 
-  var containerWidth = $('.poster-moment__container').width();
+  var containerWidth;
   var itemWidth;
   var maxShift;
   var randomShift;
@@ -21,8 +21,9 @@ function PosterMomentLayout(opts) {
   }, 2000);
 
   function itemShift() {
+    containerWidth = $('.poster-moment__container').width()
     $('.poster-moment__item').each(function() {
-      itemWidth = $(this).width();
+      itemWidth = $(this).outerWidth();
       maxShift = (containerWidth - itemWidth) / 2;
       randomShift = Math.floor(Math.random() * maxShift);
       randomShiftPercentage = (randomShift / containerWidth) * 100;
