@@ -1,15 +1,5 @@
-{# ------------------------------------------------------- #}
-{# INDIVIDUAL VIEW FOR EACH audiences #}
-{# This page can use any data from http:localhost:2000/cms/#/form/audiences/ #}
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-{# ------------------------------------------------------- #}
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
-{# This sets our page <title>. It will append this audiences's name to the site title defined in base.html #}
+
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 
 {% block body_attributes %}
@@ -84,12 +74,12 @@
         {% endfor %}
         <div class="poster-moment__item" id="poster-moment__week">WEEK—</div>
         <div class="poster-moment__item" id="poster-moment__end">END<span class="poster-moment__item--superscript">&#xB9;&#8311;</span></div>
-        {% if item.name|lower === "families" || item.name|lower === "alumni" %}
-          <div class="poster-moment__button">
-            <a href="http://attend.com/RISDWeekend16" target="_blank" class="poster-moment__button-link">Register now</a>
-          </div>
-        {% endif %}
       </div>
+      {% if item.register_button === true %}
+        <div class="poster-moment__button">
+        <a href="{{ item.register_button_url }}" target="_blank" class="poster-moment__button-link">{{ item.register_button_text }}</a>
+        </div>
+      {% endif %}
     </div>
 
 

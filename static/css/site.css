@@ -1096,15 +1096,15 @@ iframe {
   font-family: "Gotham Narrow A", "Gotham Narrow B", "Helvetica", sans-serif;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
   -ms-flex-pack: center;
       justify-content: center;
   -ms-flex-align: center;
       align-items: center;
   margin-top: 0;
-  -ms-flex-line-pack: stretch;
-      align-content: stretch;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
 
 .poster-moment__container {
@@ -1112,6 +1112,14 @@ iframe {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  height: 100vh;
+  margin-top: 3rem;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 @media screen and (min-width: 300px) {
   .poster-moment__container {
@@ -1208,10 +1216,13 @@ iframe {
 
 .poster-moment__button {
   text-align: center;
-  margin-top: 7rem;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 .poster-moment__button-link {
+  display: block;
+  border: none;
   text-transform: uppercase;
   font-weight: bold;
   padding: 0.5rem 1rem;
@@ -1463,57 +1474,57 @@ iframe {
 }
 
 .layout__campaign-color .poster-moment {
-  background-color: black;
+  background-color: white;
 }
 .layout__campaign-color .poster-moment__item {
-  color: #3ff1dd;
+  color: black;
 }
 .layout__campaign-color .poster-moment__modifier {
-  color: white;
+  color: #3ff1dd;
 }
 .layout__campaign-color .poster-moment__button-link {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
 }
 .layout__campaign-color .poster-moment__button-link:hover {
   background-color: #3ff1dd;
-  color: black;
+  color: white;
 }
 
 .layout__white .poster-moment {
-  background-color: #3ff1dd;
+  background-color: black;
 }
 .layout__white .poster-moment__item {
-  color: black;
+  color: #3ff1dd;
 }
 .layout__white .poster-moment__modifier {
   color: white;
 }
 .layout__white .poster-moment__button-link {
-  background-color: white;
-  color: #3ff1dd;
+  background-color: #3ff1dd;
+  color: black;
 }
 .layout__white .poster-moment__button-link:hover {
-  background-color: black;
-  color: #3ff1dd;
+  background-color: white;
+  color: black;
 }
 
 .layout__black .poster-moment {
-  background-color: white;
+  background-color: #3ff1dd;
 }
 .layout__black .poster-moment__item {
   color: black;
 }
 .layout__black .poster-moment__modifier {
-  color: #3ff1dd;
+  color: white;
 }
 .layout__black .poster-moment__button-link {
-  background-color: #3ff1dd;
-  color: white;
+  background-color: white;
+  color: #3ff1dd;
 }
 .layout__black .poster-moment__button-link:hover {
   background-color: black;
-  color: white;
+  color: #3ff1dd;
 }
 
 .layout__transition .poster-moment--transition {

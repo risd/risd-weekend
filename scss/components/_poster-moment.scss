@@ -4,16 +4,21 @@
   height: 100vh;
   font-family: $font__primary;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-top: 0;
-  align-content: stretch;
+  align-content: center;
+  flex-direction: column;
 }
 
 .poster-moment__container {
   display: flex;
   flex-wrap: wrap;
+  height: 100vh;
+  margin-top: 3rem;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   // cursor: e-resize;
   @include media($mobile) {
     @include outer-container(90%);
@@ -97,10 +102,12 @@
 
 .poster-moment__button {
   text-align: center;
-  margin-top: 7rem;
+  align-self: flex-end;
 }
 
 .poster-moment__button-link {
+  display: block;
+  border: none;
   @include text-size($large);
   text-transform: uppercase;
   font-weight: bold;
@@ -228,6 +235,26 @@
 
 .layout__campaign-color {
   .poster-moment {
+    background-color: $white;
+  }
+  .poster-moment__item {
+    color: $black;
+  }
+  .poster-moment__modifier {
+    color: $campaign-color;
+  }
+  .poster-moment__button-link {
+    background-color: $black;
+    color: $white;
+    &:hover {
+      background-color: $campaign-color;
+      color: $white;
+    }
+  }
+}
+
+.layout__white {
+  .poster-moment {
     background-color: $black;
   }
   .poster-moment__item {
@@ -237,16 +264,16 @@
     color: $white;
   }
   .poster-moment__button-link {
-    background-color: $white;
+    background-color: $campaign-color;
     color: $black;
     &:hover {
-      background-color: $campaign-color;
+      background-color: $white;
       color: $black;
     }
   }
 }
 
-.layout__white {
+.layout__black {
   .poster-moment {
     background-color: $campaign-color;
   }
@@ -262,26 +289,6 @@
     &:hover {
       background-color: $black;
       color: $campaign-color;
-    }
-  }
-}
-
-.layout__black {
-  .poster-moment {
-    background-color: $white;
-  }
-  .poster-moment__item {
-    color: $black;
-  }
-  .poster-moment__modifier {
-    color: $campaign-color;
-  }
-  .poster-moment__button-link {
-    background-color: $campaign-color;
-    color: $white;
-    &:hover {
-      background-color: $black;
-      color: $white;
     }
   }
 }
