@@ -228,31 +228,31 @@
     background-color: $white;
   }
   .modal__item-toggle {
-    color: $black;
+    color: $campaign-color;
     &:hover {
-      color: $campaign-color;
-    }
-  }
-  .modal__title {
-    color: $black;
-  }
-  .modal__info {
-    color: $campaign-color;
-  }
-  .modal__description {
-    color: $campaign-color;
-    &::before {
       color: $black;
     }
   }
-  .modal__subevent-title {
+  .modal__title {
+    color: $campaign-color;
+  }
+  .modal__info {
     color: $black;
+  }
+  .modal__description {
+    color: $black;
+    &::before {
+      color: $campaign-color;
+    }
+  }
+  .modal__subevent-title {
+    color: $campaign-color;
   }
   .modal__subevent-info {
-    color: $black;
+    color: $campaign-color;
   }
   .modal__subevent-description {
-    color: $campaign-color;
+    color: $black;
   }
 }
 

@@ -3105,31 +3105,31 @@ iframe {
   background-color: white;
 }
 .layout__campaign-color .modal__item-toggle {
-  color: black;
+  color: #3ff1dd;
 }
 .layout__campaign-color .modal__item-toggle:hover {
-  color: #3ff1dd;
+  color: black;
 }
 .layout__campaign-color .modal__title {
-  color: black;
+  color: #3ff1dd;
 }
 .layout__campaign-color .modal__info {
-  color: #3ff1dd;
+  color: black;
 }
 .layout__campaign-color .modal__description {
-  color: #3ff1dd;
+  color: black;
 }
 .layout__campaign-color .modal__description::before {
-  color: black;
+  color: #3ff1dd;
 }
 .layout__campaign-color .modal__subevent-title {
-  color: black;
+  color: #3ff1dd;
 }
 .layout__campaign-color .modal__subevent-info {
-  color: black;
+  color: #3ff1dd;
 }
 .layout__campaign-color .modal__subevent-description {
-  color: #3ff1dd;
+  color: black;
 }
 
 .layout__white .modal__container {
@@ -3556,28 +3556,28 @@ iframe {
   border-color: black;
 }
 .layout__campaign-color .information__main-description {
-  color: white;
+  color: black;
 }
 .layout__campaign-color .information__main-description a {
-  border-color: black;
+  border-color: white;
 }
 .layout__campaign-color .information__main-description a:hover {
-  color: black;
+  color: white;
 }
 .layout__campaign-color .information__subsection {
   border-color: black;
 }
 .layout__campaign-color .information__subsection-title {
-  color: black;
-}
-.layout__campaign-color .information__subsection-description {
   color: white;
 }
+.layout__campaign-color .information__subsection-description {
+  color: black;
+}
 .layout__campaign-color .information__subsection-description a {
-  border-color: black;
+  border-color: white;
 }
 .layout__campaign-color .information__subsection-description a:hover {
-  color: black;
+  color: white;
 }
 .layout__campaign-color .information__button-link {
   background-color: white;

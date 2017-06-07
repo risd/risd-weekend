@@ -184,11 +184,11 @@
     border-color: $black;
   }
   .information__main-description {
-    color: $white;
+    color: $black;
     a {
-      border-color: $black;
+      border-color: $white;
       &:hover {
-        color: $black;
+        color: $white;
       }
     }
   }
@@ -196,14 +196,14 @@
     border-color: $black;
   }
   .information__subsection-title {
-    color: $black;
+    color: $white;
   }
   .information__subsection-description {
-    color: $white;
+    color: $black;
     a {
-      border-color: $black;
+      border-color: $white;
       &:hover {
-        color: $black;
+        color: $white;
       }
     }
   }
