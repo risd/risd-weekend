@@ -19,6 +19,7 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+  flex-direction: column;
   // cursor: e-resize;
   @include media($mobile) {
     @include outer-container(90%);
@@ -52,8 +53,9 @@
 
 .poster-moment__item {
   position: relative;
-  flex-basis: 100%;
-  flex-grow: 1;
+  // flex-basis: 100%;
+  // flex-grow: 1;
+  width: auto;
   display: inline-block;
   font-weight: bold;
   line-height: 0.844;
@@ -61,7 +63,8 @@
   animation-name: fadeIn;
   text-transform: uppercase;
   font-size: 13vmin;
-  @include transition(color 0.2s ease);
+  left: 0;
+  @include transition(all 0.5s ease);
 }
 
 @keyframes fadeIn {
@@ -78,8 +81,12 @@
   }
 }
 
+.poster-moment__item--modifiers {
+  width: auto;
+}
+
 .poster-moment__modifier {
-  @include transition(margin 0.2s ease);
+  @include transition(all 0.5s ease);
 }
 
 .poster-moment__item--active {
@@ -119,109 +126,109 @@
 
 
 #poster-moment__risd {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(2)
-  };
-  @include media($tablet) {
-    @include shift(2);
-  };
-  @include media($laptop) {
-    @include shift(2);
-  };
-  @include media($desktop) {
-    @include shift(2);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(2)
+  // };
+  // @include media($tablet) {
+  //   @include shift(2);
+  // };
+  // @include media($laptop) {
+  //   @include shift(2);
+  // };
+  // @include media($desktop) {
+  //   @include shift(2);
+  // };
 }
 #poster-moment__week {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(1)
-  };
-  @include media($tablet) {
-    @include shift(0);
-  };
-  @include media($laptop) {
-    @include shift(1);
-  };
-  @include media($desktop) {
-    @include shift(3);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(1)
+  // };
+  // @include media($tablet) {
+  //   @include shift(0);
+  // };
+  // @include media($laptop) {
+  //   @include shift(1);
+  // };
+  // @include media($desktop) {
+  //   @include shift(3);
+  // };
 }
 #poster-moment__end {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(2)
-  };
-  @include media($tablet) {
-    @include shift(1);
-  };
-  @include media($laptop) {
-    @include shift(2);
-  };
-  @include media($desktop) {
-    @include shift(4);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(2)
+  // };
+  // @include media($tablet) {
+  //   @include shift(1);
+  // };
+  // @include media($laptop) {
+  //   @include shift(2);
+  // };
+  // @include media($desktop) {
+  //   @include shift(4);
+  // };
 }
 #poster-moment__modifier--1 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(1)
-  };
-  @include media($tablet) {
-    @include shift(1);
-  };
-  @include media($laptop) {
-    @include shift(0);
-  };
-  @include media($desktop) {
-    @include shift(3);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(1)
+  // };
+  // @include media($tablet) {
+  //   @include shift(1);
+  // };
+  // @include media($laptop) {
+  //   @include shift(0);
+  // };
+  // @include media($desktop) {
+  //   @include shift(3);
+  // };
 }
 #poster-moment__modifier--2 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(0)
-  };
-  @include media($tablet) {
-    @include shift(0);
-  };
-  @include media($laptop) {
-    @include shift(1);
-  };
-  @include media($desktop) {
-    @include shift(4);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(0)
+  // };
+  // @include media($tablet) {
+  //   @include shift(0);
+  // };
+  // @include media($laptop) {
+  //   @include shift(1);
+  // };
+  // @include media($desktop) {
+  //   @include shift(4);
+  // };
 }
 #poster-moment__modifier--3 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(2)
-  };
-  @include media($tablet) {
-    @include shift(1);
-  };
-  @include media($laptop) {
-    @include shift(2);
-  };
-  @include media($desktop) {
-    @include shift(3);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(2)
+  // };
+  // @include media($tablet) {
+  //   @include shift(1);
+  // };
+  // @include media($laptop) {
+  //   @include shift(2);
+  // };
+  // @include media($desktop) {
+  //   @include shift(3);
+  // };
 }
 #poster-moment__modifier--4 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(1)
-  };
-  @include media($tablet) {
-    @include shift(2);
-  };
-  @include media($laptop) {
-    @include shift(1);
-  };
-  @include media($desktop) {
-    @include shift(5);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(1)
+  // };
+  // @include media($tablet) {
+  //   @include shift(2);
+  // };
+  // @include media($laptop) {
+  //   @include shift(1);
+  // };
+  // @include media($desktop) {
+  //   @include shift(5);
+  // };
 }
 .poster-moment__transition {
   width: auto;

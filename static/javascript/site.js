@@ -9924,7 +9924,7 @@ var activeNav = require('./activeNav.js')();
 var scheduleToggle = require('./scheduleToggle.js')();
 var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
-// var posterMomentLayout = require('./posterMomentLayout.js')();
+var posterMomentLayout = require('./posterMomentLayout.js')();
 var eventModal = require('./eventModal.js')({
   $events: $('.calendar-box__item').has('.calendar-box__item-toggle'),
   $featuredEvents: $('.featured-events__item'),
@@ -9937,7 +9937,7 @@ var eventModal = require('./eventModal.js')({
 eventModal.openModal();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./scheduleHover.js":7,"./scheduleToggle.js":8,"./scrollAnchor.js":9,"jquery":1}],5:[function(require,module,exports){
+},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./posterMomentLayout.js":7,"./scheduleHover.js":8,"./scheduleToggle.js":9,"./scrollAnchor.js":10,"jquery":1}],5:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
@@ -10061,6 +10061,55 @@ function MobileMenuToggle() {
 },{}],7:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
+
+module.exports = PosterMomentLayout;
+
+function PosterMomentLayout(opts) {
+  if (!(this instanceof PosterMomentLayout)) {
+    return new PosterMomentLayout(opts);
+  }
+
+  console.log('PosterMomentLayout initialized.');
+
+  var containerWidth = $('.poster-moment__container').width();
+  var itemWidth;
+  var maxShift;
+  var randomShift;
+  var randomShiftPercentage;
+  var randomBoolean;
+
+  setInterval(function() {
+    itemShift();
+  }, 2000);
+
+  function itemShift() {
+    $('.poster-moment__item').each(function() {
+      itemWidth = $(this).width();
+      maxShift = (containerWidth - itemWidth) / 2;
+      randomShift = Math.floor(Math.random() * maxShift);
+      randomShiftPercentage = (randomShift / containerWidth) * 100;
+      randomBoolean = Math.random() >= 0.5;
+      console.dir($(this));
+      console.log(itemWidth);
+      console.log(maxShift);
+      console.log(randomShift);
+      console.log(randomShiftPercentage);
+      console.log(randomBoolean);
+      if (randomBoolean === true) {
+        $(this).css('left', (randomShiftPercentage + '%'));
+      } else {
+        $(this).css('left', (-randomShiftPercentage + '%'));
+      }
+    });
+  }
+
+
+}
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],8:[function(require,module,exports){
+(function (global){
+var $ = global.jQuery;
 // Modernizr is being used as a global variable
 
 module.exports = ScheduleHover;
@@ -10089,7 +10138,7 @@ function ScheduleHover() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10118,7 +10167,7 @@ function ScheduleToggle() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 

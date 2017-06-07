@@ -11,32 +11,35 @@ function PosterMomentLayout(opts) {
 
   var containerWidth = $('.poster-moment__container').width();
   var itemWidth;
-  var maxMargin;
-  var randomMargin;
-  var randomMarginPercentage;
-  console.log("containerWidth: " + containerWidth);
+  var maxShift;
+  var randomShift;
+  var randomShiftPercentage;
+  var randomBoolean;
 
-  setRandomMargin();
+  setInterval(function() {
+    itemShift();
+  }, 2000);
 
-  function setRandomMargin() {
-    $('.poster-moment__transition').each(function(index, el) {
+  function itemShift() {
+    $('.poster-moment__item').each(function() {
       itemWidth = $(this).width();
-      maxMargin = containerWidth - itemWidth;
-      randomMarginLeft = getRandomInteger(0, maxMargin);
-      randomMarginLeftPercentage = randomMarginLeft / containerWidth * 100 + "%";
-      randomMarginRight = containerWidth - itemWidth - randomMarginLeft;
-      randomMarginRightPercentage = randomMarginRight / containerWidth * 100 + "%";
-
-      console.log(itemWidth + ", " + maxMargin + ", " + randomMarginLeftPercentage);
-
-      $(this).css({
-        marginLeft: randomMarginLeftPercentage
-      });
+      maxShift = (containerWidth - itemWidth) / 2;
+      randomShift = Math.floor(Math.random() * maxShift);
+      randomShiftPercentage = (randomShift / containerWidth) * 100;
+      randomBoolean = Math.random() >= 0.5;
+      console.dir($(this));
+      console.log(itemWidth);
+      console.log(maxShift);
+      console.log(randomShift);
+      console.log(randomShiftPercentage);
+      console.log(randomBoolean);
+      if (randomBoolean === true) {
+        $(this).css('left', (randomShiftPercentage + '%'));
+      } else {
+        $(this).css('left', (-randomShiftPercentage + '%'));
+      }
     });
-
-    function getRandomInteger(min, max) {
-      return Math.random() * (max - min) + min;
-    }
   }
+
 
 }

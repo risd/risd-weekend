@@ -90,6 +90,7 @@
 
 .nav__item--activator {
   cursor: pointer;
+  border-bottom: none;
   @include text-size($medium);
   @include media($mobile) {
     display: flex;
