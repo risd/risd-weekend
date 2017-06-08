@@ -10072,34 +10072,34 @@ function PosterMomentLayout(opts) {
   console.log('PosterMomentLayout initialized.');
 
   var containerWidth;
+  var $item = $('.poster-moment__item');
   var itemWidth;
   var maxShift;
   var randomShift;
   var randomShiftPercentage;
   var randomBoolean;
 
+  // $('.poster-moment__container').click(function() {
+  //   itemShift();
+  // });
+
   setInterval(function() {
     itemShift();
   }, 2000);
 
   function itemShift() {
-    containerWidth = $('.poster-moment__container').width()
-    $('.poster-moment__item').each(function() {
+    containerWidth = $('.poster-moment__container').width();
+    $item.each(function() {
       itemWidth = $(this).outerWidth();
-      maxShift = (containerWidth - itemWidth) / 2;
+      maxShift = itemWidth / 2;
       randomShift = Math.floor(Math.random() * maxShift);
       randomShiftPercentage = (randomShift / containerWidth) * 100;
       randomBoolean = Math.random() >= 0.5;
-      console.dir($(this));
-      console.log(itemWidth);
-      console.log(maxShift);
-      console.log(randomShift);
-      console.log(randomShiftPercentage);
-      console.log(randomBoolean);
+
       if (randomBoolean === true) {
-        $(this).css('left', (randomShiftPercentage + '%'));
+        $(this).css('left', ('calc(' + randomShiftPercentage + '% - 1em)'));
       } else {
-        $(this).css('left', (-randomShiftPercentage + '%'));
+        $(this).css('left', ('calc(-' + randomShiftPercentage + '% + 1em)'));
       }
     });
   }
