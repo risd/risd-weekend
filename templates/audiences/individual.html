@@ -122,9 +122,9 @@
 
       <div class="calendar-box">
         <div class="calendar-box__toggle">
-          <h4 class="calendar-box__button calendar-box__button--active" id="calendar-box__button--friday">Friday</h4>
-          <h4 class="calendar-box__button" id="calendar-box__button--saturday">Saturday</h4>
-          <h4 class="calendar-box__button" id="calendar-box__button--sunday">Sunday</h4>
+          <h4 class="calendar-box__button active" id="calendar-box__button--friday" data-filter="friday">Friday</h4>
+          <h4 class="calendar-box__button" id="calendar-box__button--saturday" data-filter="saturday">Saturday</h4>
+          <h4 class="calendar-box__button" id="calendar-box__button--sunday" data-filter="sunday">Sunday</h4>
         </div>
         {% for day in events | sort('day') | groupBy('day') %}
 

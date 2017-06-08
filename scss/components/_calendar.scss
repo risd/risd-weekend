@@ -52,10 +52,10 @@
     text-align: center;
     margin-bottom: none;
   };
-}
 
-.calendar-box__button--active {
+  &.active {
 
+  }
 }
 
 .calendar-box__column {
@@ -206,10 +206,10 @@
       color: $white;
       background-color: $black;
     }
-  }
-  .calendar-box__button--active {
-    color: $white;
-    background-color: $black;
+    &.active {
+      color: $white;
+      background-color: $black;
+    }
   }
   .calendar-box__item {
     border-color: $white;
@@ -244,10 +244,10 @@
       color: $white;
       background-color: $campaign-color;
     }
-  }
-  .calendar-box__button--active {
-    color: $white;
-    background-color: $campaign-color;
+    &.active {
+      color: $white;
+      background-color: $campaign-color;
+    }
   }
   .calendar-box__item {
     border-color: $black;
@@ -282,10 +282,10 @@
       color: $campaign-color;
       background-color: $white;
     }
-  }
-  .calendar-box__button--active {
-    color: $campaign-color;
-    background-color: $white;
+    &.active {
+      color: $campaign-color;
+      background-color: $white;
+    }
   }
   .calendar-box__item {
     border-color: $campaign-color;

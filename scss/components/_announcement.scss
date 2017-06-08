@@ -9,6 +9,18 @@
   flex-grow: 1;
   width: auto;
   @include text-size($large);
+  @include media($mobile) {
+    line-height: 1;
+  };
+  @include media($tablet) {
+    line-height: 1;
+  };
+  @include media($laptop) {
+    line-height: 1;
+  };
+  @include media($desktop) {
+    line-height: 1;
+  };
 }
 
 .announcement__date {

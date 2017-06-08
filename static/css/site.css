@@ -1066,6 +1066,26 @@ iframe {
     line-height: calc(72 / 64);
   }
 }
+@media screen and (min-width: 300px) {
+  .announcement {
+    line-height: 1;
+  }
+}
+@media screen and (min-width: 768px) {
+  .announcement {
+    line-height: 1;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .announcement {
+    line-height: 1;
+  }
+}
+@media screen and (min-width: 1824px) {
+  .announcement {
+    line-height: 1;
+  }
+}
 
 @media screen and (min-width: 768px) {
   .announcement__location {
@@ -1970,6 +1990,26 @@ iframe {
     line-height: calc(36 / 24);
   }
 }
+@media screen and (min-width: 300px) {
+  .featured-events__item-link {
+    line-height: 1;
+  }
+}
+@media screen and (min-width: 768px) {
+  .featured-events__item-link {
+    line-height: 1;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .featured-events__item-link {
+    line-height: 1;
+  }
+}
+@media screen and (min-width: 1824px) {
+  .featured-events__item-link {
+    line-height: 1;
+  }
+}
 
 .layout__campaign-color .featured-events__item-link {
   color: white;
@@ -2312,7 +2352,7 @@ iframe {
   color: white;
   background-color: black;
 }
-.layout__campaign-color .calendar-box__button--active {
+.layout__campaign-color .calendar-box__button.active {
   color: white;
   background-color: black;
 }
@@ -2348,7 +2388,7 @@ iframe {
   color: white;
   background-color: #3ff1dd;
 }
-.layout__white .calendar-box__button--active {
+.layout__white .calendar-box__button.active {
   color: white;
   background-color: #3ff1dd;
 }
@@ -2384,7 +2424,7 @@ iframe {
   color: #3ff1dd;
   background-color: white;
 }
-.layout__black .calendar-box__button--active {
+.layout__black .calendar-box__button.active {
   color: #3ff1dd;
   background-color: white;
 }
