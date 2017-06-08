@@ -39,7 +39,6 @@ function ScheduleToggle() {
 
 
   if (lastFilter) {
-    console.log(lastFilter);
     filterAudiences(lastFilter);
   }
 
