@@ -83,6 +83,8 @@
 
 .poster-moment__item--modifiers {
   width: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .poster-moment__modifier {
@@ -90,7 +92,7 @@
 }
 
 .poster-moment__item--active {
-  display: inline-block;
+  // display: inline-block;
 }
 
 .poster-moment__item--inactive {

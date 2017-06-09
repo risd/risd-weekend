@@ -1220,14 +1220,14 @@ iframe {
 }
 .poster-moment__item--modifiers {
   width: auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
 
 .poster-moment__modifier {
   transition: all 0.5s ease;
-}
-
-.poster-moment__item--active {
-  display: inline-block;
 }
 
 .poster-moment__item--inactive {

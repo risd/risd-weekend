@@ -10,7 +10,7 @@ function PosterMomentLayout(opts) {
   console.log('PosterMomentLayout initialized.');
 
   var containerWidth;
-  var $item = $('.poster-moment__item');
+  var $item;
   var itemWidth;
   var maxShift;
   var randomShift;
@@ -22,6 +22,7 @@ function PosterMomentLayout(opts) {
   // });
 
   setInterval(function() {
+    $item = $('.poster-moment__item');
     itemShift();
   }, 2000);
 

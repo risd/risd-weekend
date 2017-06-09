@@ -31,9 +31,6 @@
     {% set item.page_background = 'layout__white' %}
   {% endif %}
 
-  {# <script>
-    console.log({{item|json|safe}});
-  </script> #}
 
   <main class="page">
 
@@ -41,8 +38,8 @@
 
     {% if livestream.show_livestream === true %}
       <div class="video-module">
-        {% if livestream.link %}
-          <div class="video-module__container"><iframe id="ls_embed_1475874412" src="//livestream.com/accounts/2814969/events/6424084/player?width=640&height=360&enableInfoAndActivity=true&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1475874412" src="//livestream.com/assets/plugins/referrer_tracking.js"></script></div>
+        {% if livestream.embed_code %}
+          <div class="video-module__container">{{ livestream.embed_code }}</div>
           {% if livestream.title %}
             <div class="video-module__title-container">
               <h2 class="video-module__title">{{ livestream.title }}</h2>
@@ -662,4 +659,8 @@
     {% endfor %}
     </div>
   </aside>
+
+  <script type="application/json" id="modifiers">
+    {{ item.wordmark_modifiers|json|safe }}
+  </script>
 {% endblock %}

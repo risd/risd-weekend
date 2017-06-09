@@ -4,49 +4,42 @@ var $ = global.jQuery;
 module.exports = ModifierToggle;
 
 function ModifierToggle() {
-    if (!(this instanceof ModifierToggle)) {
-        return new ModifierToggle();
-    }
+  if (!(this instanceof ModifierToggle)) {
+    return new ModifierToggle();
+  }
 
-    console.log('ModifierToggle initialized.');
+  console.log('ModifierToggle initialized.');
 
-    switchModifier();
+  var modifierContainer = $('.poster-moment__container');
+  var modifiers = JSON.parse($("#modifiers").html());
+  console.log(modifiers);
+  var modifierLines = JSON.parse($("#modifiers").html());
+  var modifierLine;
+  var modifierLength = modifiers.length;
+  var currentIndex = 0;
+  var currentModifier = modifiers[0];
+  var nextModifier = modifiers[0];
 
-    var modifierContainer = $('.poster-moment__container');
-    var modifiers = $('.poster-moment__item--modifiers');
-    var modifierLength = modifiers.length;
-    var currentModifier;
-    var nextModifier;
+  switchModifier();
 
-    function switchModifier() {
+  function switchModifier() {
 
-      $('.poster-moment').click(function() {
-        console.log('poster-moment clicked');
+    $('.poster-moment').click(function() {
+      console.log('poster-moment clicked');
+      modifierLines = modifiers[currentIndex].modifier_lines;
+      console.log(modifierLines);
+      $('.poster-moment__item--modifiers').empty();
+      for (var j = 0; j < modifierLines.length; j++) {
+        modifierLine = modifierLines[j];
+        $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
+      }
+      // $('#poster-moment__modifier--1').text(modifiers[currentIndex].name);
 
-        modifiers.each(function(index, el) {
-          currentModifier = $(this);
-          nextModifier = currentModifier.next();
-          firstModifier = modifiers.first();
-          if ($(this).hasClass('poster-moment__item--active') && index === modifierLength - 1) {
-
-            console.log('active item and last item');
-            console.log(currentModifier.text() + ', ' + nextModifier.text());
-            // firstModifier.addClass('poster-moment__item--active').removeClass('poster-moment__item--inactive').siblings().not(firstModifier).addClass('poster-moment__item--inactive').removeClass('poster-moment__item--active');
-
-          } else if ($(this).hasClass('poster-moment__item--active') && index !== modifierLength - 1) {
-            console.log('active item and not last item');
-            console.log(currentModifier.text() + ', ' + nextModifier.text());
-            // nextModifier.removeClass('poster-moment__item--inactive').addClass('poster-moment__item--active').siblings().not(nextModifier).addClass('poster-moment__item--inactive').removeClass('poster-moment__item--active');
-          }
-
-          console.log(currentModifier.text() + ', ' + nextModifier.text());
-
-          // $(this).removeClass('poster-moment__item--active').addClass('poster-moment__item--inactive');
-          // nextModifier.removeClass('poster-moment__item--inactive').addClass('poster-moment__item--active').siblings().not(currentModifier).addClass('poster-moment__item--inactive').removeClass('poster-moment__item--active');
-
-        });
-
-
-      });
-    }
+      if (currentIndex === modifiers.length - 1) {
+        currentIndex = 0;
+      } else {
+        currentIndex ++;
+      }
+    });
+  }
 }

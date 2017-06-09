@@ -1,3 +1,4 @@
+
 var $ = global.jQuery;
 
 module.exports = EventModal;
@@ -7,42 +8,59 @@ function EventModal(opts) {
     return new EventModal(opts);
   }
 
-    console.log('EventModal initialized.');
+  console.log('EventModal initialized.');
 
-    this.$events = opts.$events;
-    this.$featuredEvents = opts.$featuredEvents;
-    this.$modalContainer = opts.$modalContainer;
-    this.$modalToggle = opts.$modalToggle;
+  var $events = $('.calendar-box__item').has('.calendar-box__item-toggle');
+  var $featuredEvents = $('.featured-events__item');
+  var $modalContainer = $('.modal__container');
+  var $modalToggle = $('.modal__item-toggle');
+  var $activeEvent;
+  var lastHash;
 
-    this.$events.on('click', this.openModal);
-    this.$featuredEvents.on('click', this.openModal);
-    this.$modalToggle.on('click', this.closeModal);
-    this.$modalContainer.on('click', this.closeModal);
+  openModal($(this));
 
-}
+  $events.click(function() {
+    openModal($(this));
+  });
 
-EventModal.prototype.openModal = function () {
+  $featuredEvents.click(function() {
+    openModal($(this));
+  });
 
-  if ($(this).data('modal-source-id')) {
-    modalID = $(this).data('modal-source-id');
-  } else {
-    modalID = window.location.hash.replace('#','');
+  $modalToggle.click(function(e) {
+    closeModal();
+  });
+
+  $(document).keydown(function(e) {
+    if (e.keyCode == 27) {
+      if ($('.modal--on').length > 0) {
+        closeModal();
+      }
+    }
+  });
+
+  function openModal(activeEvent) {
+    if (activeEvent.data('modal-source-id')) {
+      modalID = activeEvent.data('modal-source-id');
+    } else {
+      modalID = window.location.hash.replace('#','');
+    }
+
+    modalTarget = $(".modal__item[data-modal-target-id='" + modalID +"']");
+
+    if ($('.modal__container').has(modalTarget).length) {
+      $('.modal__container').addClass('modal--fade_in');
+      modalTarget.addClass('modal--on');
+      $('body').addClass('modal__body--noscroll');
+    }
+
+    lastHash = window.location.hash;
   }
 
-  modalTarget = $(".modal__item[data-modal-target-id='" + modalID +"']");
-
-  if ($('.modal__container').has(modalTarget).length) {
-    $('.modal__container').addClass('modal--fade_in');
-    modalTarget.addClass('modal--on');
-    $('body').addClass('modal__body--noscroll');
-  }
-
-};
-
-EventModal.prototype.closeModal = function (e) {
-  if (e.target === this) {
+  function closeModal() {
     $('.modal__container').removeClass('modal--fade_in');
     $('.modal__item').removeClass('modal--on');
     $('body').removeClass('modal__body--noscroll');
+    history.replaceState({}, '', lastHash);
   }
-};
+}

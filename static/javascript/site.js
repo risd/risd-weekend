@@ -9864,6 +9864,7 @@ function activeNav() {
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],3:[function(require,module,exports){
 (function (global){
+
 var $ = global.jQuery;
 
 module.exports = EventModal;
@@ -9873,45 +9874,62 @@ function EventModal(opts) {
     return new EventModal(opts);
   }
 
-    console.log('EventModal initialized.');
+  console.log('EventModal initialized.');
 
-    this.$events = opts.$events;
-    this.$featuredEvents = opts.$featuredEvents;
-    this.$modalContainer = opts.$modalContainer;
-    this.$modalToggle = opts.$modalToggle;
+  var $events = $('.calendar-box__item').has('.calendar-box__item-toggle');
+  var $featuredEvents = $('.featured-events__item');
+  var $modalContainer = $('.modal__container');
+  var $modalToggle = $('.modal__item-toggle');
+  var $activeEvent;
+  var lastHash;
 
-    this.$events.on('click', this.openModal);
-    this.$featuredEvents.on('click', this.openModal);
-    this.$modalToggle.on('click', this.closeModal);
-    this.$modalContainer.on('click', this.closeModal);
+  openModal($(this));
 
-}
+  $events.click(function() {
+    openModal($(this));
+  });
 
-EventModal.prototype.openModal = function () {
+  $featuredEvents.click(function() {
+    openModal($(this));
+  });
 
-  if ($(this).data('modal-source-id')) {
-    modalID = $(this).data('modal-source-id');
-  } else {
-    modalID = window.location.hash.replace('#','');
+  $modalToggle.click(function(e) {
+    closeModal();
+  });
+
+  $(document).keydown(function(e) {
+    if (e.keyCode == 27) {
+      if ($('.modal--on').length > 0) {
+        closeModal();
+      }
+    }
+  });
+
+  function openModal(activeEvent) {
+    if (activeEvent.data('modal-source-id')) {
+      modalID = activeEvent.data('modal-source-id');
+    } else {
+      modalID = window.location.hash.replace('#','');
+    }
+
+    modalTarget = $(".modal__item[data-modal-target-id='" + modalID +"']");
+
+    if ($('.modal__container').has(modalTarget).length) {
+      $('.modal__container').addClass('modal--fade_in');
+      modalTarget.addClass('modal--on');
+      $('body').addClass('modal__body--noscroll');
+    }
+
+    lastHash = window.location.hash;
   }
 
-  modalTarget = $(".modal__item[data-modal-target-id='" + modalID +"']");
-
-  if ($('.modal__container').has(modalTarget).length) {
-    $('.modal__container').addClass('modal--fade_in');
-    modalTarget.addClass('modal--on');
-    $('body').addClass('modal__body--noscroll');
-  }
-
-};
-
-EventModal.prototype.closeModal = function (e) {
-  if (e.target === this) {
+  function closeModal() {
     $('.modal__container').removeClass('modal--fade_in');
     $('.modal__item').removeClass('modal--on');
     $('body').removeClass('modal__body--noscroll');
+    history.replaceState({}, '', lastHash);
   }
-};
+}
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],4:[function(require,module,exports){
@@ -9925,19 +9943,11 @@ var scheduleToggle = require('./scheduleToggle.js')();
 var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
 var posterMomentLayout = require('./posterMomentLayout.js')();
-var eventModal = require('./eventModal.js')({
-  $events: $('.calendar-box__item').has('.calendar-box__item-toggle'),
-  $featuredEvents: $('.featured-events__item'),
-  $modalContainer: $('.modal__container'),
-  $modalToggle: $('.modal__item-toggle')
-});
-
-// var modifierToggle = require('./modifierToggle.js')();
-
-eventModal.openModal();
+var eventModal = require('./eventModal.js')();
+var modifierToggle = require('./modifierToggle.js')();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./posterMomentLayout.js":7,"./scheduleHover.js":8,"./scheduleToggle.js":9,"./scrollAnchor.js":10,"jquery":1}],5:[function(require,module,exports){
+},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierToggle.js":7,"./posterMomentLayout.js":8,"./scheduleHover.js":9,"./scheduleToggle.js":10,"./scrollAnchor.js":11,"jquery":1}],5:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
@@ -10061,6 +10071,55 @@ function MobileMenuToggle() {
 },{}],7:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
+// Modernizr is being used as a global variable
+
+module.exports = ModifierToggle;
+
+function ModifierToggle() {
+  if (!(this instanceof ModifierToggle)) {
+    return new ModifierToggle();
+  }
+
+  console.log('ModifierToggle initialized.');
+
+  var modifierContainer = $('.poster-moment__container');
+  var modifiers = JSON.parse($("#modifiers").html());
+  console.log(modifiers);
+  var modifierLines = JSON.parse($("#modifiers").html());
+  var modifierLine;
+  var modifierLength = modifiers.length;
+  var currentIndex = 0;
+  var currentModifier = modifiers[0];
+  var nextModifier = modifiers[0];
+
+  switchModifier();
+
+  function switchModifier() {
+
+    $('.poster-moment').click(function() {
+      console.log('poster-moment clicked');
+      modifierLines = modifiers[currentIndex].modifier_lines;
+      console.log(modifierLines);
+      $('.poster-moment__item--modifiers').empty();
+      for (var j = 0; j < modifierLines.length; j++) {
+        modifierLine = modifierLines[j];
+        $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
+      }
+      // $('#poster-moment__modifier--1').text(modifiers[currentIndex].name);
+
+      if (currentIndex === modifiers.length - 1) {
+        currentIndex = 0;
+      } else {
+        currentIndex ++;
+      }
+    });
+  }
+}
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],8:[function(require,module,exports){
+(function (global){
+var $ = global.jQuery;
 
 module.exports = PosterMomentLayout;
 
@@ -10072,7 +10131,7 @@ function PosterMomentLayout(opts) {
   console.log('PosterMomentLayout initialized.');
 
   var containerWidth;
-  var $item = $('.poster-moment__item');
+  var $item;
   var itemWidth;
   var maxShift;
   var randomShift;
@@ -10084,6 +10143,7 @@ function PosterMomentLayout(opts) {
   // });
 
   setInterval(function() {
+    $item = $('.poster-moment__item');
     itemShift();
   }, 2000);
 
@@ -10108,7 +10168,7 @@ function PosterMomentLayout(opts) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10139,7 +10199,7 @@ function ScheduleHover() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10211,7 +10271,7 @@ function ScheduleToggle() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
