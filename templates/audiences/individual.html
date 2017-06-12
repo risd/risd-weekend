@@ -96,6 +96,8 @@
       {% endif %}
         <section class="section__container featured-events__container" id="{{ eventGroup.special_events_section_name|lower|replace(' ','-','g') }}">
           <h1 class="section__title">{{ eventGroup.special_events_section_name }}</h1>
+          <div class="section__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit vitae, cum harum tenetur suscipit quos sit fuga dolorem aperiam veniam, repellat quia minima, quam consequuntur sapiente dicta. Est eos, quam perspiciatis consequatur eum voluptates explicabo maxime dolores quo quasi nisi consequuntur nobis debitis, delectus laudantium officiis tempora ducimus impedit obcaecati.</div>
+          {# <div class="section__description">{{ eventGroup.special_events_description|safe }}</div> #}
           {% for event in eventGroup.events %}
             {% if loop.first %}
               <div class="featured-events">

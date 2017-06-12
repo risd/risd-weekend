@@ -1883,10 +1883,29 @@ iframe {
   margin-top: -0.3em;
 }
 
+@media screen and (min-width: 0px) {
+  .section__description {
+    font-size: 21px;
+    line-height: calc(30 / 21);
+  }
+}
+@media screen and (min-width: 768px) {
+  .section__description {
+    font-size: 24px;
+    line-height: calc(36 / 24);
+  }
+}
+.section__description p + p {
+  margin-top: 1rem;
+}
+
 .layout__campaign-color .section__title {
   color: white;
 }
 .layout__campaign-color .section__title::after {
+  color: black;
+}
+.layout__campaign-color .section__description {
   color: black;
 }
 
@@ -1896,11 +1915,17 @@ iframe {
 .layout__white .section__title::after {
   color: #3ff1dd;
 }
+.layout__white .section__description {
+  color: black;
+}
 
 .layout__black .section__title {
   color: #3ff1dd;
 }
 .layout__black .section__title::after {
+  color: white;
+}
+.layout__black .section__description {
   color: white;
 }
 
