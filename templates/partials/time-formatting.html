@@ -39,10 +39,10 @@
     {# if the minutes is 00 #}
     {% if item.start_time|date('i') === '00' %}
       {# show only the hh am/pm #}
-      <time class="calendar-box__info">{{ item.start_time|date('g a') }}</time>
+      <time class="{{ itemClass }}">{{ item.start_time|date('g a') }}</time>
     {% else %}
       {# show hh:mm am/pm #}
-      <time class="calendar-box__info">{{ item.start_time|date('g:i a') }}</time>
+      <time class="{{ itemClass }}">{{ item.start_time|date('g:i a') }}</time>
     {% endif %}
 
   {# if there start time and end time are in the morning #}
@@ -50,10 +50,10 @@
     {# for the start time, if the minutes is 00 #}
     {% if item.start_time|date('i') === '00' %}
       {# show only the hh #}
-      <time class="calendar-box__info">{{ item.start_time|date('g') }}
+      <time class="{{ itemClass }}">{{ item.start_time|date('g') }}
     {% else %}
       {# show hh:mm #}
-      <time class="calendar-box__info">{{ item.start_time|date('g:i') }}
+      <time class="{{ itemClass }}">{{ item.start_time|date('g:i') }}
     {% endif %}
     {% if item.end_time %}
       {# for the end time, if the minutes is 00 #}
@@ -71,10 +71,10 @@
     {# for the start time, if the minutes is 00 #}
     {% if item.start_time|date('i') === '00' %}
       {# show only the hh #}
-      <time class="calendar-box__info">{{ item.start_time|date('g') }}
+      <time class="{{ itemClass }}">{{ item.start_time|date('g') }}
     {% else %}
       {# show hh:mm #}
-      <time class="calendar-box__info">{{ item.start_time|date('g:i') }}
+      <time class="{{ itemClass }}">{{ item.start_time|date('g:i') }}
     {% endif %}
     {% if item.end_time %}
       {# for the end time, if the minutes is 00 #}
@@ -92,10 +92,10 @@
     {# for the start time, if the minutes is 00 #}
     {% if item.start_time|date('i') === '00' %}
       {# show only the hh am #}
-      <time class="calendar-box__info">{{ item.start_time|date('g a') }}
+      <time class="{{ itemClass }}">{{ item.start_time|date('g a') }}
     {% else %}
       {# show hh:mm am #}
-      <time class="calendar-box__info">{{ item.start_time|date('g:i a') }}
+      <time class="{{ itemClass }}">{{ item.start_time|date('g:i a') }}
     {% endif %}
     {% if item.end_time %}
       {# for the end time, if the minutes is 00 #}

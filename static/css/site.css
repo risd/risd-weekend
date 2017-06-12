@@ -2924,6 +2924,16 @@ iframe {
   }
 }
 
+.modal__subevent-subtitle {
+  font-weight: normal;
+  font-style: italic;
+  text-transform: none;
+  display: block;
+}
+
+.modal__subevent-info {
+  font-weight: bold;
+}
 @media screen and (min-width: 0px) {
   .modal__subevent-info {
     font-size: 14px;
@@ -2989,7 +2999,7 @@ iframe {
   color: #3ff1dd;
 }
 .layout__campaign-color .modal__subevent-info {
-  color: #3ff1dd;
+  color: black;
 }
 .layout__campaign-color .modal__subevent-description {
   color: black;
@@ -3020,7 +3030,7 @@ iframe {
   color: #3ff1dd;
 }
 .layout__white .modal__subevent-info {
-  color: #3ff1dd;
+  color: white;
 }
 .layout__white .modal__subevent-description {
   color: white;
@@ -3048,7 +3058,7 @@ iframe {
   color: white;
 }
 .layout__black .modal__subevent-info {
-  color: white;
+  color: black;
 }
 .layout__black .modal__subevent-title {
   color: white;
@@ -3108,6 +3118,7 @@ iframe {
 }
 .information__main-description-container:last-child {
   border-bottom: none;
+  padding-bottom: 0;
 }
 
 @media screen and (min-width: 300px) {
@@ -3163,7 +3174,7 @@ iframe {
   transition: color 0.1s ease;
 }
 .information__main-description p + p {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .information__subsection {
@@ -3336,7 +3347,7 @@ iframe {
   margin-top: 2rem;
 }
 .information__subsection-description p + p {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 .information__subsection-description a {
   transition: color 0.1s ease;
@@ -3516,11 +3527,11 @@ iframe {
 }
 .layout__black .information__button-link {
   background-color: #3ff1dd;
-  color: white;
+  color: black;
 }
 .layout__black .information__button-link:hover {
   background-color: white;
-  color: #3ff1dd;
+  color: black;
 }
 
 .footer-buttons {

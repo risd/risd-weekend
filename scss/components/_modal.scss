@@ -200,11 +200,15 @@
 }
 
 .modal__subevent-subtitle {
-
+  font-weight: normal;
+  font-style: italic;
+  text-transform: none;
+  display: block;
 }
 
 .modal__subevent-info {
   @include text-size($regular);
+  font-weight: bold;
 }
 
 .modal__subevent-description {
@@ -253,7 +257,7 @@
     color: $campaign-color;
   }
   .modal__subevent-info {
-    color: $campaign-color;
+    color: $black;
   }
   .modal__subevent-description {
     color: $black;
@@ -286,7 +290,7 @@
     color: $campaign-color;
   }
   .modal__subevent-info {
-    color: $campaign-color;
+    color: $white;
   }
   .modal__subevent-description {
     color: $white;
@@ -315,11 +319,11 @@
       color: $white;
     }
   }
-  .modal__subevent-info {
-    color: $white;
-  }
   .modal__subevent-title {
     color: $white;
+  }
+  .modal__subevent-info {
+    color: $black;
   }
   .modal__subevent-description {
     color: $black;
