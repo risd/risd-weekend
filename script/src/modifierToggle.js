@@ -25,21 +25,21 @@ function ModifierToggle() {
   function switchModifier() {
 
     $('.poster-moment').click(function() {
-      console.log('poster-moment clicked');
+
       modifierLines = modifiers[currentIndex].modifier_lines;
-      console.log(modifierLines);
       $('.poster-moment__item--modifiers').empty();
+
       for (var j = 0; j < modifierLines.length; j++) {
         modifierLine = modifierLines[j];
         $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
       }
-      // $('#poster-moment__modifier--1').text(modifiers[currentIndex].name);
 
       if (currentIndex === modifiers.length - 1) {
         currentIndex = 0;
       } else {
         currentIndex ++;
       }
+      
     });
   }
 }

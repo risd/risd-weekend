@@ -9942,9 +9942,9 @@ var activeNav = require('./activeNav.js')();
 var scheduleToggle = require('./scheduleToggle.js')();
 var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
-var posterMomentLayout = require('./posterMomentLayout.js')();
 var eventModal = require('./eventModal.js')();
 var modifierToggle = require('./modifierToggle.js')();
+var posterMomentLayout = require('./posterMomentLayout.js')();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierToggle.js":7,"./posterMomentLayout.js":8,"./scheduleHover.js":9,"./scheduleToggle.js":10,"./scrollAnchor.js":11,"jquery":1}],5:[function(require,module,exports){
@@ -10097,21 +10097,21 @@ function ModifierToggle() {
   function switchModifier() {
 
     $('.poster-moment').click(function() {
-      console.log('poster-moment clicked');
+
       modifierLines = modifiers[currentIndex].modifier_lines;
-      console.log(modifierLines);
       $('.poster-moment__item--modifiers').empty();
+
       for (var j = 0; j < modifierLines.length; j++) {
         modifierLine = modifierLines[j];
         $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
       }
-      // $('#poster-moment__modifier--1').text(modifiers[currentIndex].name);
 
       if (currentIndex === modifiers.length - 1) {
         currentIndex = 0;
       } else {
         currentIndex ++;
       }
+      
     });
   }
 }
