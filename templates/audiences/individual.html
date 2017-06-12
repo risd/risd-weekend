@@ -14,6 +14,7 @@
 
 {% block content %}
 
+  {% set general_info = cms.generalinformation %}
   {% set events = cms.events %}
   {% for event in events %}
     {% set event.modal_id = "modal-"+loop.index %}
@@ -76,8 +77,14 @@
     {# Address and Time #}
     <section class="section__container" id="">
       <div class="announcement__container">
-        <h2 class="announcement announcement__date">October 7–9, 2016</h2>
-        <h2 class="announcement announcement__location">RISD Campus<br>Providence, RI</h2>
+        <h2 class="announcement announcement__date">{{ general_info.date }}</h2>
+        <h2 class="announcement announcement__location">
+        {% if general_info.location.street1 %}{{ general_info.location.street1 }}{% endif %}
+        {% if general_info.location.street2 %}<br>{{ general_info.location.street2 }}{% endif %}
+        {% if general_info.location.city %}<br>{{ general_info.location.city }}{% endif %}
+        {% if general_info.location.state %}, {{ general_info.location.state }}{% endif %}
+        {% if general_info.location.zip %} – {{ general_info.location.zip }}{% endif %}
+        </h2>
       </div>
     </section>
 
@@ -131,7 +138,7 @@
           {% endif %}
 
           {% for event in day %}
-            {% set event.start_time_order = event.start_time|date('H') %}
+            {% set event.start_time_order = event.start_time|date('Hi') %}
           {% endfor %}
 
           {% for event in day|sort('start_time_order') %}
@@ -145,123 +152,15 @@
                 {% endif %}
                 </h4>
 
-                {# Display time according to editorial style guide #}
-                {# if a start time exists #}
                 {% if event.start_time %}
-
-                  {# if the start time is in the morning #}
-                  {% if event.start_time|date('a') === "am" %}
-                    {# set morning start to true #}
-                    {% set morning_start = true %}
-                  {# else if the start time is in the evening #}
-                  {% elseif event.start_time|date('a') === "pm" %}
-                    {# set morning start to false #}
-                    {% set morning_start = false %}
-                  {% else %}
-                    {# set morning start to undefined #}
-                    {% set morning_start = undefined %}
-                  {% endif %}
-
-                  {# and if end time exists #}
-                  {% if event.end_time %}
-                    {# if the end time is in the morning #}
-                    {% if event.end_time|date('a') === "am" %}
-                      {# set morning end to true #}
-                      {% set morning_end = true %}
-                    {# else if the end time is in the evening #}
-                    {% elseif event.end_time|date('a') === "pm" %}
-                      {# set morning end to false #}
-                      {% set morning_end = false %}
-                    {% else %}
-                      {# set morning end to undefined #}
-                      {% set morning_end = undefined %}
-                    {% endif %}
-                  {% else %}
-                    {# set morning end to undefined #}
-                    {% set morning_end = undefined %}
-                  {% endif %}
-
-                  {# if there is only a start time #}
-                  {% if morning_end === undefined %}
-                    {# if the minutes is 00 #}
-                    {% if event.start_time|date('i') === '00' %}
-                      {# show only the hh am/pm #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g a') }}</time>
-                    {% else %}
-                      {# show hh:mm am/pm #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g:i a') }}</time>
-                    {% endif %}
-
-                  {# if there start time and end time are in the morning #}
-                  {% elseif morning_start === true && morning_end === true %}
-                    {# for the start time, if the minutes is 00 #}
-                    {% if event.start_time|date('i') === '00' %}
-                      {# show only the hh #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g') }}
-                    {% else %}
-                      {# show hh:mm #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g:i') }}
-                    {% endif %}
-                    {% if event.end_time %}
-                      {# for the end time, if the minutes is 00 #}
-                      {% if event.end_time|date('i') === '00' %}
-                        {# show only the - hh am #}
-                        &#8211; {{ event.end_time|date('g a') }}</time>
-                      {% else %}
-                        {# show - hh:mm am #}
-                        &#8211; {{ event.end_time|date('g:i a') }}</time>
-                      {% endif %}
-                    {% endif %}
-
-                  {# if there start time and end time are in the evening #}
-                  {% elseif morning_start === false && morning_end === false %}
-                    {# for the start time, if the minutes is 00 #}
-                    {% if event.start_time|date('i') === '00' %}
-                      {# show only the hh #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g') }}
-                    {% else %}
-                      {# show hh:mm #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g:i') }}
-                    {% endif %}
-                    {% if event.end_time %}
-                      {# for the end time, if the minutes is 00 #}
-                      {% if event.end_time|date('i') === '00' %}
-                        {# show only the - hh pm #}
-                        &#8211; {{ event.end_time|date('g a') }}</time>
-                      {% else %}
-                        {# show - hh:mm pm #}
-                        &#8211; {{ event.end_time|date('g:i a') }}</time>
-                      {% endif %}
-                    {% endif %}
-
-                  {# if there start time is in the morning and end time in the evening #}
-                  {% elseif morning_start === true && morning_end === false %}
-                    {# for the start time, if the minutes is 00 #}
-                    {% if event.start_time|date('i') === '00' %}
-                      {# show only the hh am #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g a') }}
-                    {% else %}
-                      {# show hh:mm am #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g:i a') }}
-                    {% endif %}
-                    {% if event.end_time %}
-                      {# for the end time, if the minutes is 00 #}
-                      {% if event.end_time|date('i') === '00' %}
-                        {# show only the - hh pm #}
-                        &#8211; {{ event.end_time|date('g a') }}</time>
-                      {% else %}
-                        {# show - hh:mm pm #}
-                        &#8211; {{ event.end_time|date('g:i a') }}</time>
-                      {% endif %}
-                    {% endif %}
-                  {% endif %}
-
+                  {% include "templates/partials/time-formatting.html" with {
+                    item: event
+                  } %}
                 {% endif %}
-
 
                 {% if event.location %}
                   {% spaceless %}
-                    <p class="calendar-box__info">|&#8200;{{ event.location.name }}
+                    <p class="calendar-box__info">{% if event.start_time %}|&#8200;{% endif %}{{ event.location.name }}
                       {% if event.location_details %}
                         ,&#8200;{{ event.location_details }}
                       {% endif %}

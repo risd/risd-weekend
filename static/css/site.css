@@ -2824,6 +2824,9 @@ iframe {
 .modal__description p {
   max-width: 40em;
 }
+.modal__description p + p {
+  margin-top: 1rem;
+}
 
 .modal__subevent {
   margin-top: 2rem;

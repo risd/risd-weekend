@@ -10084,7 +10084,6 @@ function ModifierToggle() {
 
   var modifierContainer = $('.poster-moment__container');
   var modifiers = JSON.parse($("#modifiers").html());
-  console.log(modifiers);
   var modifierLines = JSON.parse($("#modifiers").html());
   var modifierLine;
   var modifierLength = modifiers.length;
@@ -10111,7 +10110,7 @@ function ModifierToggle() {
       } else {
         currentIndex ++;
       }
-      
+
     });
   }
 }

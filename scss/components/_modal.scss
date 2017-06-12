@@ -165,6 +165,10 @@
   p {
     max-width: 40em;
   }
+
+  p + p {
+    margin-top: 1rem;
+  }
 }
 
 .modal__subevent {
