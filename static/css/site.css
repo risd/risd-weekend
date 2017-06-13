@@ -1882,6 +1882,9 @@ iframe {
   margin-top: -0.3em;
 }
 
+.section__description {
+  margin-bottom: 2rem;
+}
 @media screen and (min-width: 0px) {
   .section__description {
     font-size: 21px;

@@ -59,6 +59,7 @@
 
 .section__description {
   @include text-size($medium);
+  margin-bottom: 2rem;
 
   p + p {
     margin-top: 1rem;
