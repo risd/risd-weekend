@@ -1,11 +1,4 @@
-var $ = global.jQuery;
-
-module.exports = PosterMomentLayout;
-
-function PosterMomentLayout(opts) {
-  if (!(this instanceof PosterMomentLayout)) {
-    return new PosterMomentLayout(opts);
-  }
+module.exports = function( $ ){
 
   console.log('PosterMomentLayout initialized.');
 
@@ -17,16 +10,7 @@ function PosterMomentLayout(opts) {
   var randomShiftPercentage;
   var randomBoolean;
 
-  // $('.poster-moment__container').click(function() {
-  //   itemShift();
-  // });
-
-  setInterval(function() {
-    $item = $('.poster-moment__item');
-    itemShift();
-  }, 2000);
-
-  function itemShift() {
+  function itemShift($item) {
     containerWidth = $('.poster-moment__container').width();
     $item.each(function() {
       itemWidth = $(this).outerWidth();
@@ -43,5 +27,9 @@ function PosterMomentLayout(opts) {
     });
   }
 
+  //return an object with methods that correspond to above defined functions
+	return {
+		itemShift: itemShift
+	};
 
-}
+};

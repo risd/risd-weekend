@@ -9943,8 +9943,17 @@ var scheduleToggle = require('./scheduleToggle.js')();
 var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
 var eventModal = require('./eventModal.js')();
-var modifierToggle = require('./modifierToggle.js')();
-var posterMomentLayout = require('./posterMomentLayout.js')();
+var posterMomentLayout = require('./posterMomentLayout.js')($);
+var modifierToggle = require('./modifierToggle.js')($);
+
+$('.poster-moment').click(function() {
+  modifierToggle.switchModifier();
+  // posterMomentLayout.itemShift($('.poster-moment__item'));
+});
+
+setInterval(function() {
+  posterMomentLayout.itemShift($('.poster-moment__item'));
+}, 2000);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierToggle.js":7,"./posterMomentLayout.js":8,"./scheduleHover.js":9,"./scheduleToggle.js":10,"./scrollAnchor.js":11,"jquery":1}],5:[function(require,module,exports){
@@ -10069,16 +10078,7 @@ function MobileMenuToggle() {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],7:[function(require,module,exports){
-(function (global){
-var $ = global.jQuery;
-// Modernizr is being used as a global variable
-
-module.exports = ModifierToggle;
-
-function ModifierToggle() {
-  if (!(this instanceof ModifierToggle)) {
-    return new ModifierToggle();
-  }
+module.exports = function( $ ){
 
   console.log('ModifierToggle initialized.');
 
@@ -10091,41 +10091,31 @@ function ModifierToggle() {
   var currentModifier = modifiers[0];
   var nextModifier = modifiers[0];
 
-  switchModifier();
-
   function switchModifier() {
+    modifierLines = modifiers[currentIndex].modifier_lines;
+    $('.poster-moment__item--modifiers').empty();
 
-    $('.poster-moment').click(function() {
+    for (var j = 0; j < modifierLines.length; j++) {
+      modifierLine = modifierLines[j];
+      $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
+    }
 
-      modifierLines = modifiers[currentIndex].modifier_lines;
-      $('.poster-moment__item--modifiers').empty();
-
-      for (var j = 0; j < modifierLines.length; j++) {
-        modifierLine = modifierLines[j];
-        $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
-      }
-
-      if (currentIndex === modifiers.length - 1) {
-        currentIndex = 0;
-      } else {
-        currentIndex ++;
-      }
-
-    });
+    if (currentIndex === modifiers.length - 1) {
+      currentIndex = 0;
+    } else {
+      currentIndex ++;
+    }
   }
-}
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+	//return an object with methods that correspond to above defined functions
+	return {
+		switchModifier: switchModifier
+	};
+
+};
+
 },{}],8:[function(require,module,exports){
-(function (global){
-var $ = global.jQuery;
-
-module.exports = PosterMomentLayout;
-
-function PosterMomentLayout(opts) {
-  if (!(this instanceof PosterMomentLayout)) {
-    return new PosterMomentLayout(opts);
-  }
+module.exports = function( $ ){
 
   console.log('PosterMomentLayout initialized.');
 
@@ -10137,16 +10127,7 @@ function PosterMomentLayout(opts) {
   var randomShiftPercentage;
   var randomBoolean;
 
-  // $('.poster-moment__container').click(function() {
-  //   itemShift();
-  // });
-
-  setInterval(function() {
-    $item = $('.poster-moment__item');
-    itemShift();
-  }, 2000);
-
-  function itemShift() {
+  function itemShift($item) {
     containerWidth = $('.poster-moment__container').width();
     $item.each(function() {
       itemWidth = $(this).outerWidth();
@@ -10163,10 +10144,13 @@ function PosterMomentLayout(opts) {
     });
   }
 
+  //return an object with methods that correspond to above defined functions
+	return {
+		itemShift: itemShift
+	};
 
-}
+};
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],9:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;

@@ -13,14 +13,13 @@
 
 .poster-moment__container {
   display: flex;
-  flex-wrap: wrap;
   height: 100vh;
   margin-top: 3rem;
   justify-content: center;
+  cursor: e-resize;
   align-items: center;
   align-content: center;
   flex-direction: column;
-  // cursor: e-resize;
   @include media($mobile) {
     @include outer-container(90%);
   };

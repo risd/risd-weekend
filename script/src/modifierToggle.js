@@ -1,12 +1,4 @@
-var $ = global.jQuery;
-// Modernizr is being used as a global variable
-
-module.exports = ModifierToggle;
-
-function ModifierToggle() {
-  if (!(this instanceof ModifierToggle)) {
-    return new ModifierToggle();
-  }
+module.exports = function( $ ){
 
   console.log('ModifierToggle initialized.');
 
@@ -19,26 +11,25 @@ function ModifierToggle() {
   var currentModifier = modifiers[0];
   var nextModifier = modifiers[0];
 
-  switchModifier();
-
   function switchModifier() {
+    modifierLines = modifiers[currentIndex].modifier_lines;
+    $('.poster-moment__item--modifiers').empty();
 
-    $('.poster-moment').click(function() {
+    for (var j = 0; j < modifierLines.length; j++) {
+      modifierLine = modifierLines[j];
+      $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
+    }
 
-      modifierLines = modifiers[currentIndex].modifier_lines;
-      $('.poster-moment__item--modifiers').empty();
-
-      for (var j = 0; j < modifierLines.length; j++) {
-        modifierLine = modifierLines[j];
-        $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
-      }
-
-      if (currentIndex === modifiers.length - 1) {
-        currentIndex = 0;
-      } else {
-        currentIndex ++;
-      }
-
-    });
+    if (currentIndex === modifiers.length - 1) {
+      currentIndex = 0;
+    } else {
+      currentIndex ++;
+    }
   }
-}
+
+	//return an object with methods that correspond to above defined functions
+	return {
+		switchModifier: switchModifier
+	};
+
+};

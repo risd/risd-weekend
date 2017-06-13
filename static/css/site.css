@@ -1131,12 +1131,11 @@ iframe {
 .poster-moment__container {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
   height: 100vh;
   margin-top: 3rem;
   -ms-flex-pack: center;
       justify-content: center;
+  cursor: e-resize;
   -ms-flex-align: center;
       align-items: center;
   -ms-flex-line-pack: center;
@@ -3057,11 +3056,11 @@ iframe {
 .layout__black .modal__description::before {
   color: white;
 }
-.layout__black .modal__subevent-info {
-  color: black;
-}
 .layout__black .modal__subevent-title {
   color: white;
+}
+.layout__black .modal__subevent-info {
+  color: black;
 }
 .layout__black .modal__subevent-description {
   color: black;
