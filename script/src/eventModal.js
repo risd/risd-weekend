@@ -42,6 +42,7 @@ function EventModal(opts) {
   $(document).keydown(function(e) {
     if (e.keyCode == 27) {
       if ($('.modal--on').length > 0) {
+        window.history.back();
         closeModal();
       }
     }

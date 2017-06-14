@@ -85,9 +85,7 @@
         <h2 class="announcement announcement__location">
         {% if general_info.location.street1 %}{{ general_info.location.street1 }}{% endif %}
         {% if general_info.location.street2 %}<br>{{ general_info.location.street2 }}{% endif %}
-        {% if general_info.location.city %}<br>{{ general_info.location.city }}{% endif %}
-        {% if general_info.location.state %}, {{ general_info.location.state }}{% endif %}
-        {% if general_info.location.zip %} – {{ general_info.location.zip }}{% endif %}
+        {% if general_info.location.city %}<br>{{ general_info.location.city }}{% endif %}{% if general_info.location.state %}, {{ general_info.location.state }}{% endif %}{% if general_info.location.zip %} – {{ general_info.location.zip }}{% endif %}
         </h2>
       </div>
     </section>

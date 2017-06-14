@@ -9908,6 +9908,7 @@ function EventModal(opts) {
   $(document).keydown(function(e) {
     if (e.keyCode == 27) {
       if ($('.modal--on').length > 0) {
+        window.history.back();
         closeModal();
       }
     }
@@ -9956,18 +9957,26 @@ var livestream = require('./livestream.js')();
 var eventModal = require('./eventModal.js')();
 var posterMomentLayout = require('./posterMomentLayout.js')($);
 var modifierToggle = require('./modifierToggle.js')($);
+var modifierImageSizing = require('./modifierImageSizing.js')($);
+
+modifierToggle.switchModifier();
+modifierImageSizing.resizeModifier();
 
 $('.poster-moment').click(function() {
   modifierToggle.switchModifier();
-  // posterMomentLayout.itemShift($('.poster-moment__item'));
+  modifierImageSizing.resizeModifier();
 });
 
 setInterval(function() {
   posterMomentLayout.itemShift($('.poster-moment__item'));
 }, 2000);
 
+$(window).resize(function() {
+  modifierImageSizing.resizeModifier();
+});
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierToggle.js":7,"./posterMomentLayout.js":8,"./scheduleHover.js":9,"./scheduleToggle.js":10,"./scrollAnchor.js":11,"jquery":1}],5:[function(require,module,exports){
+},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierImageSizing.js":7,"./modifierToggle.js":8,"./posterMomentLayout.js":9,"./scheduleHover.js":10,"./scheduleToggle.js":11,"./scrollAnchor.js":12,"jquery":1}],5:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
@@ -10091,25 +10100,58 @@ function MobileMenuToggle() {
 },{}],7:[function(require,module,exports){
 module.exports = function( $ ){
 
+  console.log('ModifierImageSizing initialized.');
+
+  var modifierImage;
+  var modifierLineHeight;
+  var maxModifierLines = 3;
+  var maxImageHeight;
+
+  function resizeModifier() {
+    modifierImage = $('.poster-moment__image');
+    modifierLineHeight = $('#poster-moment__risd').height();
+    maxImageHeight = modifierLineHeight * maxModifierLines;
+
+    modifierImage.height(maxImageHeight);
+  }
+
+	//return an object with methods that correspond to above defined functions
+	return {
+		resizeModifier: resizeModifier
+	};
+
+};
+
+},{}],8:[function(require,module,exports){
+module.exports = function( $ ){
+
   console.log('ModifierToggle initialized.');
 
   var modifierContainer = $('.poster-moment__container');
   var modifiers = JSON.parse($("#modifiers-json").html());
   var modifierLines;
   var modifierLine;
+  var modifierImage;
   var modifierLength = modifiers.length;
   var currentIndex = 0;
   var currentModifier = modifiers[0];
   var nextModifier = modifiers[0];
 
   function switchModifier() {
-    modifierLines = modifiers[currentIndex].modifier_lines;
-    $('.poster-moment__item--modifiers').empty();
+    if (modifiers[currentIndex].modifier_lines) {
+      modifierLines = modifiers[currentIndex].modifier_lines;
+      $('.poster-moment__item--modifiers').empty();
 
-    for (var j = 0; j < modifierLines.length; j++) {
-      modifierLine = modifierLines[j];
-      $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
+      for (var j = 0; j < modifierLines.length; j++) {
+        modifierLine = modifierLines[j];
+        $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
+      }
+    } else {
+      modifierImage = modifiers[currentIndex].modifier_image.resize_url;
+      $('.poster-moment__item--modifiers').empty();
+      $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier poster-moment__image"><img src="' + modifierImage + '"></div>');
     }
+
 
     if (currentIndex === modifiers.length - 1) {
       currentIndex = 0;
@@ -10125,7 +10167,7 @@ module.exports = function( $ ){
 
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = function( $ ){
 
   console.log('PosterMomentLayout initialized.');
@@ -10162,7 +10204,7 @@ module.exports = function( $ ){
 
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10193,7 +10235,7 @@ function ScheduleHover() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10265,7 +10307,7 @@ function ScheduleToggle() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 

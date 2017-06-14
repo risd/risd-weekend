@@ -90,6 +90,16 @@
   @include transition(all 0.5s ease);
 }
 
+.poster-moment__image {
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 150%;
+    width: initial;
+  }
+}
+
 .poster-moment__item--active {
   // display: inline-block;
 }
