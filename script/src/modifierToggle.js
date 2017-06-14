@@ -3,8 +3,8 @@ module.exports = function( $ ){
   console.log('ModifierToggle initialized.');
 
   var modifierContainer = $('.poster-moment__container');
-  var modifiers = JSON.parse($("#modifiers").html());
-  var modifierLines = JSON.parse($("#modifiers").html());
+  var modifiers = JSON.parse($("#modifiers-json").html());
+  var modifierLines;
   var modifierLine;
   var modifierLength = modifiers.length;
   var currentIndex = 0;

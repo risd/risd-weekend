@@ -31,10 +31,12 @@ function ScrollAnchorTest() {
         // else set the hash to the page url
         sectionHash = window.location.pathname;
       }
+
       // get the height of the section relative to its position on the page
       sectionStart = $(this).offset().top;
       sectionHeight = $(this).outerHeight();
       sectionEnd = sectionStart + sectionHeight;
+      
       if (
         // if the current scroll position is between the top of the section and the bottom of the section
         sectionStart < window.pageYOffset + 10 &&

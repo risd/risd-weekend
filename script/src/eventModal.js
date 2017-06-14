@@ -1,4 +1,3 @@
-
 var $ = global.jQuery;
 
 module.exports = EventModal;
@@ -49,23 +48,25 @@ function EventModal(opts) {
   });
 
   function openModal(activeEvent) {
-    var historyState = '#' + activeEvent.data('modal-source-id');
-    history.pushState({}, '', historyState);
     if (activeEvent.data('modal-source-id')) {
-      modalID = activeEvent.data('modal-source-id');
-    } else {
-      modalID = window.location.hash.replace('#','');
+      var historyState = '#' + activeEvent.data('modal-source-id');
+      history.pushState({}, '', historyState);
+      if (activeEvent.data('modal-source-id')) {
+        modalID = activeEvent.data('modal-source-id');
+      } else {
+        modalID = window.location.hash.replace('#','');
+      }
+
+      modalTarget = $(".modal__item[data-modal-target-id='" + modalID +"']");
+
+      if ($('.modal__container').has(modalTarget).length) {
+        $('.modal__container').addClass('modal--fade_in');
+        modalTarget.addClass('modal--on');
+        $('body').addClass('modal__body--noscroll');
+      }
+
+      lastHash = window.location.hash;
     }
-
-    modalTarget = $(".modal__item[data-modal-target-id='" + modalID +"']");
-
-    if ($('.modal__container').has(modalTarget).length) {
-      $('.modal__container').addClass('modal--fade_in');
-      modalTarget.addClass('modal--on');
-      $('body').addClass('modal__body--noscroll');
-    }
-
-    lastHash = window.location.hash;
   }
 
   function closeModal() {

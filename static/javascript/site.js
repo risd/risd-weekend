@@ -9864,7 +9864,6 @@ function activeNav() {
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],3:[function(require,module,exports){
 (function (global){
-
 var $ = global.jQuery;
 
 module.exports = EventModal;
@@ -9915,23 +9914,25 @@ function EventModal(opts) {
   });
 
   function openModal(activeEvent) {
-    var historyState = '#' + activeEvent.data('modal-source-id');
-    history.pushState({}, '', historyState);
     if (activeEvent.data('modal-source-id')) {
-      modalID = activeEvent.data('modal-source-id');
-    } else {
-      modalID = window.location.hash.replace('#','');
+      var historyState = '#' + activeEvent.data('modal-source-id');
+      history.pushState({}, '', historyState);
+      if (activeEvent.data('modal-source-id')) {
+        modalID = activeEvent.data('modal-source-id');
+      } else {
+        modalID = window.location.hash.replace('#','');
+      }
+
+      modalTarget = $(".modal__item[data-modal-target-id='" + modalID +"']");
+
+      if ($('.modal__container').has(modalTarget).length) {
+        $('.modal__container').addClass('modal--fade_in');
+        modalTarget.addClass('modal--on');
+        $('body').addClass('modal__body--noscroll');
+      }
+
+      lastHash = window.location.hash;
     }
-
-    modalTarget = $(".modal__item[data-modal-target-id='" + modalID +"']");
-
-    if ($('.modal__container').has(modalTarget).length) {
-      $('.modal__container').addClass('modal--fade_in');
-      modalTarget.addClass('modal--on');
-      $('body').addClass('modal__body--noscroll');
-    }
-
-    lastHash = window.location.hash;
   }
 
   function closeModal() {
@@ -10093,8 +10094,8 @@ module.exports = function( $ ){
   console.log('ModifierToggle initialized.');
 
   var modifierContainer = $('.poster-moment__container');
-  var modifiers = JSON.parse($("#modifiers").html());
-  var modifierLines = JSON.parse($("#modifiers").html());
+  var modifiers = JSON.parse($("#modifiers-json").html());
+  var modifierLines;
   var modifierLine;
   var modifierLength = modifiers.length;
   var currentIndex = 0;
@@ -10299,10 +10300,12 @@ function ScrollAnchorTest() {
         // else set the hash to the page url
         sectionHash = window.location.pathname;
       }
+
       // get the height of the section relative to its position on the page
       sectionStart = $(this).offset().top;
       sectionHeight = $(this).outerHeight();
       sectionEnd = sectionStart + sectionHeight;
+      
       if (
         // if the current scroll position is between the top of the section and the bottom of the section
         sectionStart < window.pageYOffset + 10 &&
