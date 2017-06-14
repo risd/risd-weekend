@@ -9885,16 +9885,25 @@ function EventModal(opts) {
 
   openModal($(this));
 
-  $events.click(function() {
+  $events.click(function(e) {
+    e.preventDefault();
     openModal($(this));
   });
 
-  $featuredEvents.click(function() {
+  $featuredEvents.click(function(e) {
+    e.preventDefault();
     openModal($(this));
   });
 
   $modalToggle.click(function(e) {
+    window.history.back();
     closeModal();
+  });
+
+  $(window).on('popstate', function (event) {  //pressed back button
+    if(event.state!==null) {
+      closeModal();
+    }
   });
 
   $(document).keydown(function(e) {
@@ -9906,6 +9915,8 @@ function EventModal(opts) {
   });
 
   function openModal(activeEvent) {
+    var historyState = '#' + activeEvent.data('modal-source-id');
+    history.pushState({}, '', historyState);
     if (activeEvent.data('modal-source-id')) {
       modalID = activeEvent.data('modal-source-id');
     } else {
@@ -9927,7 +9938,6 @@ function EventModal(opts) {
     $('.modal__container').removeClass('modal--fade_in');
     $('.modal__item').removeClass('modal--on');
     $('body').removeClass('modal__body--noscroll');
-    history.replaceState({}, '', lastHash);
   }
 }
 
