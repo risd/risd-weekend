@@ -8,6 +8,7 @@ var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
 var eventModal = require('./eventModal.js')();
 var posterMomentLayout = require('./posterMomentLayout.js')($);
+var preloadImages = require('./preloadImages.js')($);
 var modifierToggle = require('./modifierToggle.js')($);
 var modifierImageSizing = require('./modifierImageSizing.js')($);
 

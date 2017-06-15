@@ -9972,6 +9972,7 @@ var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
 var eventModal = require('./eventModal.js')();
 var posterMomentLayout = require('./posterMomentLayout.js')($);
+var preloadImages = require('./preloadImages.js')($);
 var modifierToggle = require('./modifierToggle.js')($);
 var modifierImageSizing = require('./modifierImageSizing.js')($);
 
@@ -9992,7 +9993,7 @@ $(window).resize(function() {
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierImageSizing.js":7,"./modifierToggle.js":8,"./posterMomentLayout.js":9,"./scheduleHover.js":10,"./scheduleToggle.js":11,"./scrollAnchor.js":12,"jquery":1}],5:[function(require,module,exports){
+},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierImageSizing.js":7,"./modifierToggle.js":8,"./posterMomentLayout.js":9,"./preloadImages.js":10,"./scheduleHover.js":11,"./scheduleToggle.js":12,"./scrollAnchor.js":13,"jquery":1}],5:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
@@ -10221,6 +10222,35 @@ module.exports = function( $ ){
 };
 
 },{}],10:[function(require,module,exports){
+module.exports = function( $ ){
+
+  console.log('PreLoadImages initialized.');
+
+  var modifiers = JSON.parse($("#modifiers-json").html());
+  var modifierImageUrls = [];
+  var imagesToLoad = [];
+
+  getImages();
+  preloadImages(modifierImageUrls);
+
+  function getImages() {
+    for (var i = 0; i < modifiers.length; i++) {
+      if (modifiers[i].modifier_image) {
+        modifierImageUrls.push(modifiers[i].modifier_image.resize_url);
+      }
+    }
+  }
+
+  function preloadImages(imageArray) {
+    for (i = 0; i < imageArray.length; i++) {
+			imagesToLoad[i] = new Image();
+			imagesToLoad[i].src = imageArray[i];
+		}
+  }
+
+};
+
+},{}],11:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10251,7 +10281,7 @@ function ScheduleHover() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10323,7 +10353,7 @@ function ScheduleToggle() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
