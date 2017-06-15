@@ -10,10 +10,10 @@ html {
 
 body {
   font-weight: normal;
-  &::-webkit-scrollbar {
-    width: 10px;
-  	height: 10px;
-  }
+  // &::-webkit-scrollbar {
+  //   width: 10px;
+  // 	height: 10px;
+  // }
 }
 
 
@@ -163,12 +163,12 @@ iframe {
 
 .layout__campaign-color {
   background-color: $campaign-color;
-  &::-webkit-scrollbar-track-piece {
-    background-color: $black;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: $white;
-  }
+  // &::-webkit-scrollbar-track-piece {
+  //   background-color: $black;
+  // }
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: $white;
+  // }
   ::selection {
     background: $black--highlight;
     color: $white--highlight;
@@ -181,12 +181,12 @@ iframe {
 
 .layout__white {
   background-color: $white;
-  &::-webkit-scrollbar-track-piece {
-    background-color: $campaign-color;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: $black;
-  }
+  // &::-webkit-scrollbar-track-piece {
+  //   background-color: $campaign-color;
+  // }
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: $black;
+  // }
   ::selection {
     background: $campaign-color--highlight;
     color: $black--highlight;
@@ -199,12 +199,12 @@ iframe {
 
 .layout__black {
   background-color: $black;
-  &::-webkit-scrollbar-track-piece {
-    background-color: $white;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: $campaign-color;
-  }
+  // &::-webkit-scrollbar-track-piece {
+  //   background-color: $white;
+  // }
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: $campaign-color;
+  // }
   ::selection {
     background: $campaign-color--highlight;
     color: $white--highlight;

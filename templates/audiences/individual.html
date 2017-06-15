@@ -267,6 +267,7 @@
     {% set allEvents = allEvents.concat([event]) %}
   {% endfor %}
   <aside class="modal__container">
+    <div class="modal__background"></div>
     <div class="modal">
     {% for event in allEvents %}
       <div class="modal__item" id="{{ event.event_link }}" data-modal-target-id="{{ event.event_link }}">
