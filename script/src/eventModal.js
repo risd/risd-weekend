@@ -16,21 +16,28 @@ function EventModal(opts) {
   var $activeEvent;
   var modalID;
   var historyState;
+  var onLoadModal = true;
 
   openModal($(this));
 
   $events.click(function(e) {
+    onLoadModal = false;
     e.preventDefault();
     openModal($(this));
   });
 
   $featuredEvents.click(function(e) {
+    onLoadModal = false;
     e.preventDefault();
     openModal($(this));
   });
 
   $modalToggle.click(function(e) {
-    window.history.back();
+    if (onLoadModal === true) {
+      onLoadModal = false;
+    } else {
+      window.history.back();
+    }
     closeModal();
   });
 
@@ -43,7 +50,9 @@ function EventModal(opts) {
   $(document).keydown(function(e) {
     if (e.keyCode == 27) {
       if ($('.modal--on').length > 0) {
-        window.history.back();
+        if (onLoadModal === false) {
+          window.history.back();
+        }
         closeModal();
       }
     }
