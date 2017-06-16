@@ -1104,6 +1104,7 @@ iframe {
       align-content: center;
   -ms-flex-direction: column;
       flex-direction: column;
+  overflow-x: hidden;
 }
 
 .poster-moment__container {
@@ -2517,7 +2518,6 @@ iframe {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   position: relative;
-  padding: 10vh 0;
   margin-right: 0;
 }
 @media screen and (min-width: 300px) {
@@ -2527,6 +2527,7 @@ iframe {
     margin-right: 4.82916%;
     width: 100%;
     display: none;
+    padding: 5vh 5vw;
   }
   .modal__item:last-child {
     margin-right: 0;
@@ -2540,6 +2541,7 @@ iframe {
     width: 74.10533%;
     margin-left: 12.94733%;
     display: none;
+    padding: 10vh 0;
   }
   .modal__item:last-child {
     margin-right: 0;
@@ -2602,7 +2604,7 @@ iframe {
 }
 @media screen and (min-width: 300px) {
   .modal__item-toggle {
-    padding: 1rem 0;
+    padding-bottom: 1rem;
     position: initial;
     width: 100%;
     text-align: right;
