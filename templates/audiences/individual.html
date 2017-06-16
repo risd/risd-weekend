@@ -268,10 +268,10 @@
   {% endfor %}
   <aside class="modal__container">
     <div class="modal__background"></div>
+    <div class="modal__item-toggle">&times;</div>
     <div class="modal">
     {% for event in allEvents %}
       <div class="modal__item" id="{{ event.event_link }}" data-modal-target-id="{{ event.event_link }}">
-        <div class="modal__item-toggle">&times;</div>
         <div class="modal__header">
           <h4 class="modal__title">
           {{ event.name }}
@@ -324,6 +324,7 @@
         {% endif %}
 
         {% if event.sub_events %}
+          <div class="modal__subevent-container">
           {% for subevent in event.sub_events %}
             <div class="modal__subevent">
               <h4 class="modal__subevent-title">
@@ -364,6 +365,7 @@
 
             </div>
           {% endfor %}
+          </div>
         {% endif %}
 
       </div>

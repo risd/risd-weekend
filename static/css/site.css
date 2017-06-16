@@ -2597,6 +2597,13 @@ iframe {
 .modal__item-toggle {
   cursor: pointer;
   transition: color 0.1s ease;
+  padding: 1vh 2.5vw;
+  position: absolute;
+  width: auto;
+  top: 0;
+  right: 0;
+  text-align: right;
+  z-index: 9000;
 }
 @media screen and (min-width: 0px) {
   .modal__item-toggle {
@@ -2622,68 +2629,14 @@ iframe {
     line-height: calc(72 / 64);
   }
 }
-@media screen and (min-width: 300px) {
-  .modal__item-toggle {
-    padding-bottom: 1rem;
-    position: initial;
-    width: 100%;
-    text-align: right;
-  }
-}
 @media screen and (min-width: 768px) {
   .modal__item-toggle {
-    padding: 2rem 0 2rem 2rem;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: auto;
+    padding: 2vh 3vw;
   }
 }
 
-@media screen and (min-width: 300px) {
-  .modal__header {
-    float: left;
-    display: block;
-    margin-right: 4.82916%;
-    width: 100%;
-    margin-right: 0;
-  }
-  .modal__header:last-child {
-    margin-right: 0;
-  }
-}
-@media screen and (min-width: 768px) {
-  .modal__header {
-    float: left;
-    display: block;
-    margin-right: 4.82916%;
-    width: 100%;
-  }
-  .modal__header:last-child {
-    margin-right: 0;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .modal__header {
-    float: left;
-    display: block;
-    margin-right: 3.57866%;
-    width: 48.21067%;
-  }
-  .modal__header:last-child {
-    margin-right: 0;
-  }
-}
-@media screen and (min-width: 1824px) {
-  .modal__header {
-    float: left;
-    display: block;
-    margin-right: 2.84259%;
-    width: 48.57871%;
-  }
-  .modal__header:last-child {
-    margin-right: 0;
-  }
+.modal__header {
+  width: 100%;
 }
 
 .modal__title {
@@ -2858,57 +2811,24 @@ iframe {
   margin-top: 1rem;
 }
 
+.modal__subevent-container {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
 .modal__subevent {
   margin-top: 2rem;
-}
-@media screen and (min-width: 300px) {
-  .modal__subevent {
-    float: left;
-    display: block;
-    margin-right: 4.82916%;
-    width: 100%;
-    margin-right: 0;
-  }
-  .modal__subevent:last-child {
-    margin-right: 0;
-  }
-}
-@media screen and (min-width: 768px) {
-  .modal__subevent {
-    float: left;
-    display: block;
-    margin-right: 4.82916%;
-    width: 100%;
-    margin-right: 0;
-  }
-  .modal__subevent:last-child {
-    margin-right: 0;
-  }
+  width: 100%;
 }
 @media screen and (min-width: 1024px) {
   .modal__subevent {
-    float: left;
-    display: block;
-    margin-right: 3.57866%;
-    width: 48.21067%;
-    margin-left: 51.78933%;
-    margin-right: 0;
+    width: calc(50% - 2rem);
   }
-  .modal__subevent:last-child {
-    margin-right: 0;
-  }
-}
-@media screen and (min-width: 1824px) {
-  .modal__subevent {
-    float: left;
-    display: block;
-    margin-right: 2.84259%;
-    width: 48.57871%;
-    margin-left: 51.42129%;
-    margin-right: 0;
-  }
-  .modal__subevent:last-child {
-    margin-right: 0;
+  .modal__subevent:nth-child(2n) {
+    margin-left: 2rem;
   }
 }
 
