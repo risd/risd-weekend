@@ -35,6 +35,10 @@ module.exports = function( $ ){
     }
   }
 
+  function randomModifier() {
+
+  }
+
 	//return an object with methods that correspond to above defined functions
 	return {
 		switchModifier: switchModifier

@@ -9,24 +9,18 @@ function EventModal(opts) {
 
   console.log('EventModal initialized.');
 
-  var $events = $('.calendar-box__item').has('.calendar-box__item-toggle');
-  var $featuredEvents = $('.featured-events__item');
+  var $events = $('.calendar-box__item-toggle, .featured-events__item');
   var $modalContainer = $('.modal__container');
   var $modalToggle = $('.modal__item-toggle, .modal__background');
   var $activeEvent;
   var modalID;
   var historyState;
   var onLoadModal = true;
+  var modalIsOpen;
 
   openModal($(this));
 
   $events.click(function(e) {
-    onLoadModal = false;
-    e.preventDefault();
-    openModal($(this));
-  });
-
-  $featuredEvents.click(function(e) {
     onLoadModal = false;
     e.preventDefault();
     openModal($(this));
@@ -43,7 +37,11 @@ function EventModal(opts) {
 
   $(window).on('popstate', function (event) {  //pressed back button
     if(event.state!==null) {
-      closeModal();
+      if (modalIsOpen === true) {
+        closeModal();
+      } else {
+        openModal($(this));
+      }
     }
   });
 
@@ -67,7 +65,7 @@ function EventModal(opts) {
     if (activeEvent.data('modal-source-id') !== undefined) {
       modalID = activeEvent.data('modal-source-id');
       historyState = '#' + activeEvent.data('modal-source-id');
-      history.pushState({}, '', historyState);
+      history.pushState({currentState: historyState}, '', historyState);
     } else if(window.location.hash) {
       modalID = window.location.hash.replace('#','');
     } else {
@@ -81,14 +79,15 @@ function EventModal(opts) {
         $('.modal__container').addClass('modal--slide_in');
         modalTarget.addClass('modal--on');
         $('body').addClass('modal__body--noscroll');
+        modalIsOpen = true;
       }
     }
-
   }
 
   function closeModal() {
     $('.modal__container').removeClass('modal--slide_in');
     $('.modal__item').removeClass('modal--on');
     $('body').removeClass('modal__body--noscroll');
+    modalIsOpen = false;
   }
 }
