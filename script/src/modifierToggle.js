@@ -8,9 +8,13 @@ module.exports = function( $ ){
   var modifierLine;
   var modifierImage;
   var modifierLength = modifiers.length;
-  var currentIndex = 0;
+  var currentIndex = Math.floor(Math.random() * (modifierLength - 1));
   var currentModifier = modifiers[0];
   var nextModifier = modifiers[0];
+
+  setTimeout(function () {
+    $('.poster-moment__item--modifiers').addClass('wiggle');
+  }, 2000);
 
   function switchModifier() {
     if (modifiers[currentIndex].modifier_lines) {
@@ -33,10 +37,6 @@ module.exports = function( $ ){
     } else {
       currentIndex ++;
     }
-  }
-
-  function randomModifier() {
-
   }
 
 	//return an object with methods that correspond to above defined functions

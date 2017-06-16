@@ -9975,6 +9975,8 @@ var preloadImages = require('./preloadImages.js')($);
 var modifierToggle = require('./modifierToggle.js')($);
 var modifierImageSizing = require('./modifierImageSizing.js')($);
 
+var intervalCount = 0;
+
 modifierToggle.switchModifier();
 modifierImageSizing.resizeModifier();
 
@@ -9983,13 +9985,59 @@ $('.poster-moment').click(function() {
   modifierImageSizing.resizeModifier();
 });
 
-setInterval(function() {
-  posterMomentLayout.itemShift($('.poster-moment__item'));
-}, 2000);
+setTimeout(function () {  
+  shiftInterval();
+  switchInterval();
+}, 1000);
+
+function shiftInterval() {
+  setTimeout(function () {
+    posterMomentLayout.itemShift($('.poster-moment__item'));
+    shiftInterval();
+  }, 2000);
+}
+
+function switchInterval() {
+  setTimeout(function () {
+    modifierToggle.switchModifier();
+    modifierImageSizing.resizeModifier();
+    switchInterval();
+  }, 4000);
+}
+
+// setInterval(function() {
+//   posterMomentLayout.itemShift($('.poster-moment__item'));
+// }, 2000);
+//
+// setInterval(function() {
+//   modifierToggle.switchModifier();
+//   modifierImageSizing.resizeModifier();
+// }, 4000);
 
 $(window).resize(function() {
   modifierImageSizing.resizeModifier();
 });
+
+// initial pause then loop
+/*
+setTimeout(function () {
+  setInterval(function () {
+    modifierToggle.switchModifier();
+    modifierImageSizing.resizeModifier();
+  }, 2000);
+}, 5000);
+*/
+
+// initial slot machine
+/*
+setInterval(function() {
+  if (intervalCount < 15) {
+    modifierToggle.switchModifier();
+    modifierImageSizing.resizeModifier();
+  }
+  intervalCount ++;
+}, 100);
+*/
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierImageSizing.js":7,"./modifierToggle.js":8,"./posterMomentLayout.js":9,"./preloadImages.js":10,"./scheduleHover.js":11,"./scheduleToggle.js":12,"./scrollAnchor.js":13,"jquery":1}],5:[function(require,module,exports){
@@ -10149,9 +10197,13 @@ module.exports = function( $ ){
   var modifierLine;
   var modifierImage;
   var modifierLength = modifiers.length;
-  var currentIndex = 0;
+  var currentIndex = Math.floor(Math.random() * (modifierLength - 1));
   var currentModifier = modifiers[0];
   var nextModifier = modifiers[0];
+
+  setTimeout(function () {
+    $('.poster-moment__item--modifiers').addClass('wiggle');
+  }, 2000);
 
   function switchModifier() {
     if (modifiers[currentIndex].modifier_lines) {
@@ -10174,10 +10226,6 @@ module.exports = function( $ ){
     } else {
       currentIndex ++;
     }
-  }
-
-  function randomModifier() {
-
   }
 
 	//return an object with methods that correspond to above defined functions

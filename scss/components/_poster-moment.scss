@@ -85,6 +85,30 @@
   width: auto;
   display: flex;
   flex-direction: column;
+  transform: translateY(0);
+  transition: transform 0.2s ease;
+
+  &.wiggle {
+    animation: wiggle 0.8s ease both;
+  }
+}
+
+@keyframes wiggle {
+  10%, 90% {
+    transform: translateX(-0.1em);
+  }
+
+  20%, 80% {
+    transform: translateX(0.1em);
+  }
+
+  30%, 50%, 70% {
+    transform: translateX(-0.2em);
+  }
+
+  40%, 60% {
+    transform: translateX(0.2em);
+  }
 }
 
 .poster-moment__modifier {

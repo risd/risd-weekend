@@ -1202,8 +1202,28 @@ iframe {
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
+  -ms-transform: translateY(0);
+      transform: translateY(0);
+  transition: transform 0.2s ease;
+}
+.poster-moment__item--modifiers.wiggle {
+  animation: wiggle 0.8s ease both;
 }
 
+@keyframes wiggle {
+  10%, 90% {
+    transform: translateX(-0.1em);
+  }
+  20%, 80% {
+    transform: translateX(0.1em);
+  }
+  30%, 50%, 70% {
+    transform: translateX(-0.2em);
+  }
+  40%, 60% {
+    transform: translateX(0.2em);
+  }
+}
 .poster-moment__modifier {
   transition: all 0.5s ease;
 }
