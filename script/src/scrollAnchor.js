@@ -47,12 +47,8 @@ function ScrollAnchorTest() {
       ) {
         // if the current section's hash is not the same as the current hash
         if (sectionHash !== window.location.hash) {
-          console.log(sectionHash);
-          console.log(pushHash);
-          console.log(window.location.hash);
-          console.log('-');
           // push the current section's hash to the url
-          history.pushState({}, '', pushHash);
+          history.replaceState({}, '', pushHash);
           // window.location.hash = pushHash;
         }
 
