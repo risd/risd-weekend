@@ -24,6 +24,7 @@
   {% for event in sub_events %}
     {% set event.modal_id = "modal-"+loop.index %}
     {% set event.event_link = event.name|lower|replace(' ','-','g')|replace('[^a-zA-Z0-9 -]','','g')|replace('-+','-','g') %}
+    {% set event.day = event.events_sub_events.day %}
   {% endfor %}
   {% set infoSnippets = item.information_snippets %}
 
@@ -183,7 +184,7 @@
                 {% endif %}
 
                 {% if event.attendee_limit %}
-                  <p class="calendar-box__info">| limit: {{ event.attendee_limit }} attendees</p>
+                  <p class="calendar-box__info">| {{ event.attendee_limit }}</p>
                 {% endif %}
 
               </div>
@@ -279,7 +280,7 @@
             <span class="modal__subtitle">{{ event.subtitle }}</span>
           {% endif %}
           </h4>
-
+          <p class="modal__info">{{ event.day }}</p>
           {% if event.start_time %}
             {% include "templates/partials/time-formatting.html" with {
               item: event,
@@ -314,7 +315,7 @@
           {% endif %}
 
           {% if event.attendee_limit %}
-            <p class="modal__info">limit: {{ event.attendee_limit }} attendees</p>
+            <p class="modal__info">{{ event.attendee_limit }}</p>
           {% endif %}
 
         </div>
@@ -356,7 +357,7 @@
               {% endif %}
 
               {% if subevent.attendee_limit %}
-                <p class="modal__subevent-info">limit: {{ subevent.attendee_limit }} attendees</p>
+                <p class="modal__subevent-info">{{ subevent.attendee_limit }}</p>
               {% endif %}
 
               {% if subevent.description %}
