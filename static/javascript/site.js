@@ -9875,18 +9875,25 @@ function EventModal(opts) {
 
   console.log('EventModal initialized.');
 
-  var $events = $('.calendar-box__item-toggle, .featured-events__item');
+  var $events = $('.calendar-box__item').has('.calendar-box__item-toggle');
+  var $featuredEvents = $('.featured-events__item');
   var $modalContainer = $('.modal__container');
   var $modalToggle = $('.modal__item-toggle, .modal__background');
   var $activeEvent;
   var modalID;
   var historyState;
   var onLoadModal = true;
-  var modalIsOpen;
+  var modalIsOpen = false;
 
   openModal($(this));
 
   $events.click(function(e) {
+    onLoadModal = false;
+    e.preventDefault();
+    openModal($(this));
+  });
+
+  $featuredEvents.click(function(e) {
     onLoadModal = false;
     e.preventDefault();
     openModal($(this));
@@ -9903,6 +9910,7 @@ function EventModal(opts) {
 
   $(window).on('popstate', function (event) {  //pressed back button
     if(event.state!==null) {
+      console.log('modalIsOpen: ' + modalIsOpen);
       if (modalIsOpen === true) {
         closeModal();
       } else {
@@ -9931,7 +9939,7 @@ function EventModal(opts) {
     if (activeEvent.data('modal-source-id') !== undefined) {
       modalID = activeEvent.data('modal-source-id');
       historyState = '#' + activeEvent.data('modal-source-id');
-      history.pushState({currentState: historyState}, '', historyState);
+      history.pushState({}, '', historyState);
     } else if(window.location.hash) {
       modalID = window.location.hash.replace('#','');
     } else {
@@ -10421,6 +10429,7 @@ function ScrollAnchorTest() {
   var sectionEnd;
   var sectionRange;
   var sectionHash;
+  var pushHash;
 
   scrollAnchorUpdate();
 
@@ -10435,26 +10444,34 @@ function ScrollAnchorTest() {
       if ($(this).attr('id')) {
         // if the section has an ID, set the hash to the ID
         sectionHash = '#' + $(this).attr('id');
+        pushHash = sectionHash;
       } else {
         // else set the hash to the page url
-        sectionHash = window.location.pathname;
+        sectionHash = '';
+        pushHash = window.location.pathname;
       }
 
       // get the height of the section relative to its position on the page
       sectionStart = $(this).offset().top;
       sectionHeight = $(this).outerHeight();
       sectionEnd = sectionStart + sectionHeight;
-      
+
       if (
         // if the current scroll position is between the top of the section and the bottom of the section
         sectionStart < window.pageYOffset + 10 &&
         sectionEnd > window.pageYOffset + 10
       ) {
-        // if the current has is not the same as the current section's hash
-        if (window.location.hash != sectionHash) {
+        // if the current section's hash is not the same as the current hash
+        if (sectionHash !== window.location.hash) {
+          console.log(sectionHash);
+          console.log(pushHash);
+          console.log(window.location.hash);
+          console.log('-');
           // push the current section's hash to the url
-          history.replaceState({}, '', sectionHash);
+          history.pushState({}, '', pushHash);
+          // window.location.hash = pushHash;
         }
+
       }
 
     });
