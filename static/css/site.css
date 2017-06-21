@@ -497,6 +497,10 @@ iframe {
   font-weight: bold;
   letter-spacing: 0.05em;
   border-bottom: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
   transition: color 0.1s ease;
 }
 @media screen and (min-width: 300px) {
@@ -553,6 +557,12 @@ iframe {
     font-size: 18px;
     line-height: calc(24 / 18);
   }
+}
+
+.nav__item span {
+  display: inline-block;
+  -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
 }
 
 .nav__item--activator {

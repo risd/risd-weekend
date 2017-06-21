@@ -61,6 +61,8 @@
   font-weight: bold;
   letter-spacing: 0.05em;
   border-bottom: none;
+  display: flex;
+  align-items: center;
   @include transition(color 0.1s ease);
 
   @include media($mobile) {
@@ -85,6 +87,13 @@
     align-items: stretch;
     border-bottom: none;
   };
+
+  span {
+    // font-family: $font__symbols;
+    // font-weight: normal;
+    display: inline-block;
+    transform: rotate(-45deg);
+  }
 
 }
 
