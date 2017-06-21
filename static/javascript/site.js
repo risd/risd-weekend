@@ -9983,7 +9983,6 @@ var preloadImages = require('./preloadImages.js')($);
 var modifierToggle = require('./modifierToggle.js')($);
 var modifierImageSizing = require('./modifierImageSizing.js')($);
 
-var activateReset = false;
 var switchTimeoutID;
 var shiftTimeoutID;
 
@@ -10014,7 +10013,6 @@ function shiftInterval() {
 }
 
 function switchInterval() {
-  console.log(activateReset);
   switchTimeoutID = setTimeout(function () {
     modifierToggle.switchModifier();
     modifierImageSizing.resizeModifier();
