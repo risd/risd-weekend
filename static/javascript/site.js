@@ -9983,7 +9983,9 @@ var preloadImages = require('./preloadImages.js')($);
 var modifierToggle = require('./modifierToggle.js')($);
 var modifierImageSizing = require('./modifierImageSizing.js')($);
 
-var intervalCount = 0;
+var activateReset = false;
+var switchTimeoutID;
+var shiftTimeoutID;
 
 modifierToggle.switchModifier();
 modifierImageSizing.resizeModifier();
@@ -9991,61 +9993,39 @@ modifierImageSizing.resizeModifier();
 $('.poster-moment').click(function() {
   modifierToggle.switchModifier();
   modifierImageSizing.resizeModifier();
+  activateReset = true;
+  clearInterval(switchTimeoutID);
+  clearInterval(shiftTimeoutID);
+  switchInterval();
+  shiftInterval();
 });
 
-setTimeout(function () {  
+setTimeout(function () {
   shiftInterval();
   switchInterval();
 }, 1000);
 
 function shiftInterval() {
-  setTimeout(function () {
+  shiftTimeoutID = setTimeout(function () {
     posterMomentLayout.itemShift($('.poster-moment__item'));
     shiftInterval();
   }, 2000);
+  return shiftTimeoutID;
 }
 
 function switchInterval() {
-  setTimeout(function () {
+  console.log(activateReset);
+  switchTimeoutID = setTimeout(function () {
     modifierToggle.switchModifier();
     modifierImageSizing.resizeModifier();
     switchInterval();
   }, 4000);
+  return switchTimeoutID;
 }
-
-// setInterval(function() {
-//   posterMomentLayout.itemShift($('.poster-moment__item'));
-// }, 2000);
-//
-// setInterval(function() {
-//   modifierToggle.switchModifier();
-//   modifierImageSizing.resizeModifier();
-// }, 4000);
 
 $(window).resize(function() {
   modifierImageSizing.resizeModifier();
 });
-
-// initial pause then loop
-/*
-setTimeout(function () {
-  setInterval(function () {
-    modifierToggle.switchModifier();
-    modifierImageSizing.resizeModifier();
-  }, 2000);
-}, 5000);
-*/
-
-// initial slot machine
-/*
-setInterval(function() {
-  if (intervalCount < 15) {
-    modifierToggle.switchModifier();
-    modifierImageSizing.resizeModifier();
-  }
-  intervalCount ++;
-}, 100);
-*/
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierImageSizing.js":7,"./modifierToggle.js":8,"./posterMomentLayout.js":9,"./preloadImages.js":10,"./scheduleHover.js":11,"./scheduleToggle.js":12,"./scrollAnchor.js":13,"jquery":1}],5:[function(require,module,exports){

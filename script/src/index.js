@@ -12,7 +12,9 @@ var preloadImages = require('./preloadImages.js')($);
 var modifierToggle = require('./modifierToggle.js')($);
 var modifierImageSizing = require('./modifierImageSizing.js')($);
 
-var intervalCount = 0;
+var activateReset = false;
+var switchTimeoutID;
+var shiftTimeoutID;
 
 modifierToggle.switchModifier();
 modifierImageSizing.resizeModifier();
@@ -20,58 +22,36 @@ modifierImageSizing.resizeModifier();
 $('.poster-moment').click(function() {
   modifierToggle.switchModifier();
   modifierImageSizing.resizeModifier();
+  activateReset = true;
+  clearInterval(switchTimeoutID);
+  clearInterval(shiftTimeoutID);
+  switchInterval();
+  shiftInterval();
 });
 
-setTimeout(function () {  
+setTimeout(function () {
   shiftInterval();
   switchInterval();
 }, 1000);
 
 function shiftInterval() {
-  setTimeout(function () {
+  shiftTimeoutID = setTimeout(function () {
     posterMomentLayout.itemShift($('.poster-moment__item'));
     shiftInterval();
   }, 2000);
+  return shiftTimeoutID;
 }
 
 function switchInterval() {
-  setTimeout(function () {
+  console.log(activateReset);
+  switchTimeoutID = setTimeout(function () {
     modifierToggle.switchModifier();
     modifierImageSizing.resizeModifier();
     switchInterval();
   }, 4000);
+  return switchTimeoutID;
 }
-
-// setInterval(function() {
-//   posterMomentLayout.itemShift($('.poster-moment__item'));
-// }, 2000);
-//
-// setInterval(function() {
-//   modifierToggle.switchModifier();
-//   modifierImageSizing.resizeModifier();
-// }, 4000);
 
 $(window).resize(function() {
   modifierImageSizing.resizeModifier();
 });
-
-// initial pause then loop
-/*
-setTimeout(function () {
-  setInterval(function () {
-    modifierToggle.switchModifier();
-    modifierImageSizing.resizeModifier();
-  }, 2000);
-}, 5000);
-*/
-
-// initial slot machine
-/*
-setInterval(function() {
-  if (intervalCount < 15) {
-    modifierToggle.switchModifier();
-    modifierImageSizing.resizeModifier();
-  }
-  intervalCount ++;
-}, 100);
-*/
