@@ -10340,19 +10340,6 @@ function ScheduleToggle() {
   var $filteredItems;
   var $filteredColumn;
 
-/*
-  dayToggle('friday');
-  dayToggle('saturday');
-  dayToggle('sunday');
-
-  function dayToggle(day) {
-    console.log(day + " dayToggle intiated.");
-    $('#calendar-box__button--' + day).click(function() {
-      $(this).addClass('calendar-box__button--active').siblings().removeClass('calendar-box__button--active');
-      $('#calendar-box__column--' + day).removeClass('calendar-box__column--hidden').siblings().not('calendar-box__toggle').addClass('calendar-box__column--hidden');
-    });
-  }
-*/
 
   $('.calendar-box__button').click(function() {
     setAudienceFilter($(this));

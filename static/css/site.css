@@ -1289,6 +1289,38 @@ iframe {
   }
 }
 
+.poster-moment__button-text {
+  display: block;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
+@media screen and (min-width: 0px) {
+  .poster-moment__button-text {
+    font-size: 35px;
+    line-height: calc(40 / 35);
+  }
+}
+@media screen and (min-width: 300px) {
+  .poster-moment__button-text {
+    font-size: 36px;
+    line-height: calc(42 / 36);
+  }
+}
+@media screen and (min-width: 768px) {
+  .poster-moment__button-text {
+    font-size: 53px;
+    line-height: calc(60 / 53);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .poster-moment__button-text {
+    font-size: 64px;
+    line-height: calc(72 / 64);
+  }
+}
+
 .poster-moment__transition {
   width: auto;
   -ms-flex-positive: 0;
@@ -1332,6 +1364,10 @@ iframe {
   background-color: white;
   color: black;
 }
+.layout__white .poster-moment__button-text {
+  background-color: #3ff1dd;
+  color: black;
+}
 
 .layout__black .poster-moment {
   background-color: #3ff1dd;
@@ -1350,6 +1386,10 @@ iframe {
   background-color: black;
   color: #3ff1dd;
 }
+.layout__black .poster-moment__button-text {
+  background-color: white;
+  color: #3ff1dd;
+}
 
 .layout__transition .poster-moment--transition {
   background-color: black;
@@ -1366,6 +1406,10 @@ iframe {
 }
 .layout__transition .poster-moment__button-link:hover {
   background-color: #3ff1dd;
+  color: black;
+}
+.layout__transition .poster-moment__button-text {
+  background-color: white;
   color: black;
 }
 
@@ -2186,7 +2230,7 @@ iframe {
   }
 }
 
-.calendar-box__column {
+.calendar-box__column, .calendar-box__column--print {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-positive: 1;
@@ -4040,7 +4084,7 @@ iframe {
   }
 
   .calendar-box__container {
-    padding-top: 3rem !important;
+    padding-top: 1rem !important;
   }
 
   .section__title {
@@ -4051,6 +4095,10 @@ iframe {
     font-size: 20pt;
     -moz-column-span: all;
          column-span: all;
+    padding-top: 0;
+    margin-top: 2rem;
+    position: relative;
+    top: 0;
   }
   .calendar-box__section-title:first-child {
     margin-top: 0;
@@ -4060,12 +4108,12 @@ iframe {
     display: block;
   }
 
-  .calendar-box__column {
+  .calendar-box__column--print {
     display: block;
     page-break-before: always;
-    padding-top: 3rem;
+    padding-top: 0;
   }
-  .calendar-box__column:first-child {
+  .calendar-box__column--print:first-child {
     page-break-before: auto;
     padding-top: 0;
   }
@@ -4094,12 +4142,18 @@ iframe {
 
   .calendar-box__title {
     font-size: 12pt;
+    page-break-inside: avoid;
+  }
+
+  .calendar-box__subtitle {
+    page-break-inside: avoid;
   }
 
   .calendar-box__info {
     font-weight: normal;
     width: 100%;
     font-size: 9pt;
+    page-break-inside: avoid;
   }
 
   .layout__white .section__title::after {

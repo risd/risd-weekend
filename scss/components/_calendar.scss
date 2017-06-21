@@ -58,7 +58,7 @@
   }
 }
 
-.calendar-box__column {
+.calendar-box__column, .calendar-box__column--print {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
