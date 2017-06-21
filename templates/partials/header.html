@@ -11,7 +11,9 @@
         <a class="nav__item nav__item--pages" href="#{{ information.name|lower|replace(' ', '-', 'g') }}">{{ information.name }}</a>
       {% endif %}
     {% endfor %}
-    <a class="nav__item nav__item--pages" href="http://attend.com/RISDWeekend16" target="_blank">Register<span>➞</span></a>
+    {% if item.register_button === true && item.show_placeholder_text === false %}
+      <a class="nav__item nav__item--pages" href="http://attend.com/RISDWeekend16" target="_blank">Register<span>➞</span></a>
+    {% endif %}
   </nav>
 
 </header>
