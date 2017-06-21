@@ -160,6 +160,15 @@
   @include transition(background-color 0.1s ease);
 }
 
+.poster-moment__button-text {
+  display: block;
+  border: none;
+  @include text-size($large);
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
+
 
 #poster-moment__risd {
   // @include span-columns(5 of 8);
@@ -314,6 +323,10 @@
       color: $black;
     }
   }
+  .poster-moment__button-text {
+    background-color: $campaign-color;
+    color: $black;
+  }
 }
 
 .layout__black {
@@ -334,6 +347,10 @@
       color: $campaign-color;
     }
   }
+  .poster-moment__button-text {
+    background-color: $white;
+    color: $campaign-color;
+  }
 }
 
 .layout__transition {
@@ -353,5 +370,9 @@
       background-color: $campaign-color;
       color: $black;
     }
+  }
+  .poster-moment__button-text {
+    background-color: $white;
+    color: $black;
   }
 }

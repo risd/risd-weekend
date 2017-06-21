@@ -73,7 +73,11 @@
       </div>
       {% if item.register_button === true %}
         <div class="poster-moment__button">
-        <a href="{{ item.register_button_url }}" target="_blank" class="poster-moment__button-link">{{ item.register_button_text }}</a>
+        {% if item.show_placeholder_text === false %}
+          <a href="{{ item.register_button_url }}" target="_blank" class="poster-moment__button-link">{{ item.register_button_text }}</a>
+        {% else %}
+          <p class="poster-moment__button-text">{{ item.register_button_placeholder_text }}</p>
+        {% endif %}
         </div>
       {% endif %}
     </div>
