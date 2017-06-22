@@ -1,4 +1,8 @@
-{% extends "templates/partials/base-alternate-header.html" %}
+{% extends "templates/partials/base.html" %}
+
+{% block header %}
+  {% include "templates/partials/header-alternate.html" %}
+{% endblock %}
 
 {% block title %}{% parent %} - Test{% endblock %}
 

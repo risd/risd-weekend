@@ -19,7 +19,9 @@ module.exports = function(grunt) {
       browserify: {
         files: ['script/src/**/*.js'],
         tasks: ['jshint',
-          'browserify:client',
+          'browserify:campaign',
+          'browserify:transition',
+          'browserify:home',
           'build-static'
         ]
       },
@@ -103,9 +105,17 @@ module.exports = function(grunt) {
 
     // Build process for Javascript
     browserify: {
-      client: {
+      campaign: {
         src: ['script/src/index.js'],
         dest: 'static/javascript/site.js'
+      },
+      home: {
+        src: ['script/src/home.js'],
+        dest: 'static/javascript/home.js'
+      },
+      transition: {
+        src: ['script/src/transition.js'],
+        dest: 'static/javascript/transition.js'
       }
     },
 

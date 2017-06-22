@@ -10,10 +10,10 @@ module.exports = function( $ ){
   var randomShiftPercentage;
   var randomBoolean;
 
-  function itemShift($item) {
-    containerWidth = $('.poster-moment__container').width();
+  function itemShift($item, $container) {
+    containerWidth = $container.width();
     $item.each(function() {
-      itemWidth = $(this).outerWidth();
+      itemWidth = $(this).width();
       maxShift = itemWidth / 2;
       randomShift = Math.floor(Math.random() * maxShift);
       randomShiftPercentage = (randomShift / containerWidth) * 100;

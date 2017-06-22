@@ -11,7 +11,11 @@
 
 .main-nav__container {
   display: flex;
-  flex-wrap: wrap;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
   @include media($mobile) {
     @include outer-container(90%);
   };
@@ -20,16 +24,16 @@
 .main-nav__item {
   color: $campaign-color;
   position: relative;
-  flex-basis: 100%;
-  flex-grow: 1;
   display: inline-block;
+  width: auto;
   font-weight: bold;
   line-height: 0.844;
   animation-duration: 2s;
   animation-name: fadeIn;
   font-size: 13vmin;
   text-transform: uppercase;
-  @include transition(color 0.2s ease);
+  left: 0;
+  @include transition(all 0.5s ease);
 }
 
 @keyframes fadeIn {
@@ -108,113 +112,6 @@
   -moz-font-feature-settings: "sups";
   -webkit-font-feature-settings: "sups";
   font-feature-settings: "sups";
-}
-
-
-#main-nav__risd {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(2)
-  };
-  @include media($tablet) {
-    @include shift(2);
-  };
-  @include media($laptop) {
-    @include shift(2);
-  };
-  @include media($desktop) {
-    @include shift(2);
-  };
-}
-#main-nav__week {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(1)
-  };
-  @include media($tablet) {
-    @include shift(0);
-  };
-  @include media($laptop) {
-    @include shift(1);
-  };
-  @include media($desktop) {
-    @include shift(3);
-  };
-}
-#main-nav__end {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(2)
-  };
-  @include media($tablet) {
-    @include shift(1);
-  };
-  @include media($laptop) {
-    @include shift(2);
-  };
-  @include media($desktop) {
-    @include shift(4);
-  };
-}
-#main-nav__modifier--1 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(1)
-  };
-  @include media($tablet) {
-    @include shift(1);
-  };
-  @include media($laptop) {
-    @include shift(1);
-  };
-  @include media($desktop) {
-    @include shift(3);
-  };
-}
-#main-nav__modifier--2 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(0)
-  };
-  @include media($tablet) {
-    @include shift(0);
-  };
-  @include media($laptop) {
-    @include shift(2);
-  };
-  @include media($desktop) {
-    @include shift(1);
-  };
-}
-#main-nav__modifier--3 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(2)
-  };
-  @include media($tablet) {
-    @include shift(1);
-  };
-  @include media($laptop) {
-    @include shift(0);
-  };
-  @include media($desktop) {
-    @include shift(2);
-  };
-}
-#main-nav__modifier--4 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(1)
-  };
-  @include media($tablet) {
-    @include shift(2);
-  };
-  @include media($laptop) {
-    @include shift(1);
-  };
-  @include media($desktop) {
-    @include shift(1);
-  };
 }
 
 

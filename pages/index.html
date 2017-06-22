@@ -1,4 +1,8 @@
-{% extends "templates/partials/base-without-header.html" %}
+{% extends "templates/partials/base.html" %}
+
+{% block header %}
+
+{% endblock %}
 
 {% block title %}{% parent %}{% endblock %}
 
@@ -86,4 +90,13 @@
 
   </main>
 
+{% endblock %}
+
+
+{% block base_script %}
+  {% if transition.transition_page_active === true %}
+    <script src="/static/javascript/transition.js"></script>
+  {% else %}
+    <script src="/static/javascript/home.js"></script>
+  {% endif %}
 {% endblock %}

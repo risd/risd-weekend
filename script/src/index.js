@@ -9,23 +9,18 @@ var livestream = require('./livestream.js')();
 var eventModal = require('./eventModal.js')();
 var posterMomentLayout = require('./posterMomentLayout.js')($);
 var modifierImageSizing = require('./modifierImageSizing.js')($);
+var preloadImages = require('./preloadImages.js')($);
+var modifierToggle = require('./modifierToggle.js')($);
 
 var switchTimeoutID;
 var shiftTimeoutID;
 
-if ($("#modifiers-json").length > 0) {
-  var preloadImages = require('./preloadImages.js')($);
-  var modifierToggle = require('./modifierToggle.js')($);
-  modifierToggle.switchModifier();
-}
+modifierToggle.switchModifier();
 modifierImageSizing.resizeModifier();
 
 $('.poster-moment').click(function() {
-  if ($("#modifiers-json").length > 0) {
-    modifierToggle.switchModifier();
-  }
+  modifierToggle.switchModifier();
   modifierImageSizing.resizeModifier();
-  activateReset = true;
   clearInterval(switchTimeoutID);
   clearInterval(shiftTimeoutID);
   switchInterval();
@@ -39,7 +34,8 @@ setTimeout(function () {
 
 function shiftInterval() {
   shiftTimeoutID = setTimeout(function () {
-    posterMomentLayout.itemShift($('.poster-moment__item'));
+    posterMomentLayout.itemShift($('.poster-moment__item'), $('.poster-moment__container'));
+    posterMomentLayout.itemShift($('.main-nav__item'), $('.main-nav__container'));
     shiftInterval();
   }, 2000);
   return shiftTimeoutID;
@@ -47,9 +43,7 @@ function shiftInterval() {
 
 function switchInterval() {
   switchTimeoutID = setTimeout(function () {
-    if ($("#modifiers-json").length > 0) {
-      modifierToggle.switchModifier();
-    }
+    // modifierToggle.switchModifier();
     modifierImageSizing.resizeModifier();
     switchInterval();
   }, 4000);
