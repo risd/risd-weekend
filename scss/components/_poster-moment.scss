@@ -24,7 +24,11 @@
   @include media($mobile) {
     @include outer-container(90%);
   };
+  .poster-moment--transition & {
+    margin-top: 0;
+  }
 }
+
 
 .poster-moment--transition {
   background-color: $campaign-color;
@@ -38,17 +42,6 @@
   align-items: center;
   // margin-top: 0;
   align-content: stretch;
-}
-
-.poster-moment__container--transition {
-  display: flex;
-  flex-wrap: wrap;
-  // flex-direction: column;
-  margin: 4rem auto 0 auto;
-  // cursor: e-resize;
-  @include media($mobile) {
-    @include outer-container(90%);
-  };
 }
 
 .poster-moment__item {

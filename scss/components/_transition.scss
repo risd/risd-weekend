@@ -12,19 +12,20 @@
   };
   @include media($tablet) {
     @include span-columns(6 of 8);
-    @include shift(1);
-    @include omega;
+    margin: auto;
   };
   @include media($laptop) {
     @include span-columns(6 of 10);
-    @include shift(2);
-    @include omega;
+    margin: auto;
   };
   @include media($desktop) {
     @include span-columns(6 of 14);
-    @include shift(4);
-    @include omega;
+    margin: auto;
   };
+
+  &:last-child {
+    margin: auto;
+  }
 }
 .transition-section__title {
   @include text-size($large);

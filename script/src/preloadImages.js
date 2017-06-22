@@ -6,8 +6,10 @@ module.exports = function( $ ){
   var modifierImageUrls = [];
   var imagesToLoad = [];
 
-  getImages();
-  preloadImages(modifierImageUrls);
+  if (modifiers) {
+    getImages();
+    preloadImages(modifierImageUrls);
+  }
 
   function getImages() {
     for (var i = 0; i < modifiers.length; i++) {

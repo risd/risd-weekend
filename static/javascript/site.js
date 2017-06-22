@@ -9979,18 +9979,22 @@ var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
 var eventModal = require('./eventModal.js')();
 var posterMomentLayout = require('./posterMomentLayout.js')($);
-var preloadImages = require('./preloadImages.js')($);
-var modifierToggle = require('./modifierToggle.js')($);
 var modifierImageSizing = require('./modifierImageSizing.js')($);
 
 var switchTimeoutID;
 var shiftTimeoutID;
 
-modifierToggle.switchModifier();
+if ($("#modifiers-json").length > 0) {
+  var preloadImages = require('./preloadImages.js')($);
+  var modifierToggle = require('./modifierToggle.js')($);
+  modifierToggle.switchModifier();
+}
 modifierImageSizing.resizeModifier();
 
 $('.poster-moment').click(function() {
-  modifierToggle.switchModifier();
+  if ($("#modifiers-json").length > 0) {
+    modifierToggle.switchModifier();
+  }
   modifierImageSizing.resizeModifier();
   activateReset = true;
   clearInterval(switchTimeoutID);
@@ -10014,7 +10018,9 @@ function shiftInterval() {
 
 function switchInterval() {
   switchTimeoutID = setTimeout(function () {
-    modifierToggle.switchModifier();
+    if ($("#modifiers-json").length > 0) {
+      modifierToggle.switchModifier();
+    }
     modifierImageSizing.resizeModifier();
     switchInterval();
   }, 4000);
@@ -10267,8 +10273,10 @@ module.exports = function( $ ){
   var modifierImageUrls = [];
   var imagesToLoad = [];
 
-  getImages();
-  preloadImages(modifierImageUrls);
+  if (modifiers) {
+    getImages();
+    preloadImages(modifierImageUrls);
+  }
 
   function getImages() {
     for (var i = 0; i < modifiers.length; i++) {
