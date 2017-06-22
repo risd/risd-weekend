@@ -43,7 +43,7 @@ function shiftInterval() {
 
 function switchInterval() {
   switchTimeoutID = setTimeout(function () {
-    // modifierToggle.switchModifier();
+    modifierToggle.switchModifier();
     modifierImageSizing.resizeModifier();
     switchInterval();
   }, 4000);
