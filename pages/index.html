@@ -1,4 +1,8 @@
-{% extends "templates/partials/base-without-header.html" %}
+{% extends "templates/partials/base.html" %}
+
+{% block header %}
+
+{% endblock %}
 
 {% block title %}{% parent %}{% endblock %}
 
@@ -19,15 +23,16 @@
 
       <div class="poster-moment--transition">
         <a class="nav__anchor nav__anchor--home" id=""></a>
-        <div class="poster-moment__container--transition">
-          <div class="poster-moment__item" id="poster-moment__modifier--2">RISD</div>
-          <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--3">Save</div>
-          <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--4">the</div>
-          <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--2">date</div>
-          <div class="poster-moment__item" id="poster-moment__modifier--3">WEEK—</div>
-          <div class="poster-moment__item" id="poster-moment__modifier--4">END<span class="poster-moment__item--superscript">&#xB9;&#8311;</span></div>
+        <div class="poster-moment__container">
+          <div class="poster-moment__item" id="poster-moment__risd">RISD</div>
+          <div class="poster-moment__item--active poster-moment__item--modifiers">
+            <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">Save</div>
+            <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">the</div>
+            <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">date</div>
+          </div>
+          <div class="poster-moment__item" id="poster-moment__week">WEEK—</div>
+          <div class="poster-moment__item" id="poster-moment__end">END<span class="poster-moment__item--superscript">&#xB9;&#8311;</span></div>
         </div>
-      </div>
 
       <section class="transition-section__container transition-intro__container">
         <article class="transition-intro">
@@ -51,9 +56,6 @@
           {% endif %}
             {% if information.subsections %}
               {% for subsection in information.subsections %}
-                <script>
-                  console.log({{subsection|json|safe}});
-                </script>
                 <div class="transition-information__subsection">
                 {% if subsection.title %}
                   <h2 class="transition-information__subsection-title">{{ subsection.title }}</h2>
@@ -80,7 +82,7 @@
           <div class="main-nav__item" id="main-nav__modifier--{{ loop.index }}"><a class="main-nav__link" href="{{url(audience)}}">{{audience.name}}</a></div>
         {% endfor %}
         <div class="main-nav__item" id="main-nav__week">WEEK—</div>
-        <div class="main-nav__item" id="main-nav__end">END<span class="main-nav__item--superscript">&#xB9;&#x2076;</span></div>
+        <div class="main-nav__item" id="main-nav__end">END<span class="main-nav__item--superscript">&#xB9;&#8311;</span></div>
       </div>
     </div>
 
@@ -88,4 +90,13 @@
 
   </main>
 
+{% endblock %}
+
+
+{% block base_script %}
+  {% if transition.transition_page_active === true %}
+    <script src="/static/javascript/transition.js"></script>
+  {% else %}
+    <script src="/static/javascript/home.js"></script>
+  {% endif %}
 {% endblock %}

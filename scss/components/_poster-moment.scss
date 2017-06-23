@@ -4,21 +4,32 @@
   height: 100vh;
   font-family: $font__primary;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-top: 0;
-  align-content: stretch;
+  align-content: center;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
 .poster-moment__container {
   display: flex;
-  flex-wrap: wrap;
-  // cursor: e-resize;
+  height: 100vh;
+  margin-top: 3rem;
+  justify-content: center;
+  cursor: e-resize;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
   @include media($mobile) {
     @include outer-container(90%);
   };
+  .poster-moment--transition & {
+    margin-top: 0;
+    cursor: default;
+  }
 }
+
 
 .poster-moment--transition {
   background-color: $campaign-color;
@@ -34,21 +45,11 @@
   align-content: stretch;
 }
 
-.poster-moment__container--transition {
-  display: flex;
-  flex-wrap: wrap;
-  // flex-direction: column;
-  margin: 4rem auto 0 auto;
-  // cursor: e-resize;
-  @include media($mobile) {
-    @include outer-container(90%);
-  };
-}
-
 .poster-moment__item {
   position: relative;
-  flex-basis: 100%;
-  flex-grow: 1;
+  // flex-basis: 100%;
+  // flex-grow: 1;
+  width: auto;
   display: inline-block;
   font-weight: bold;
   line-height: 0.844;
@@ -56,7 +57,8 @@
   animation-name: fadeIn;
   text-transform: uppercase;
   font-size: 13vmin;
-  @include transition(color 0.2s ease);
+  left: 0;
+  @include transition(all 0.5s ease);
 }
 
 @keyframes fadeIn {
@@ -73,12 +75,52 @@
   }
 }
 
+.poster-moment__item--modifiers {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  transition: transform 0.2s ease;
+
+  &.wiggle {
+    animation: wiggle 0.8s ease both;
+  }
+}
+
+@keyframes wiggle {
+  10%, 90% {
+    transform: translateX(-0.1em);
+  }
+
+  20%, 80% {
+    transform: translateX(0.1em);
+  }
+
+  30%, 50%, 70% {
+    transform: translateX(-0.2em);
+  }
+
+  40%, 60% {
+    transform: translateX(0.2em);
+  }
+}
+
 .poster-moment__modifier {
-  @include transition(margin 0.2s ease);
+  @include transition(all 0.5s ease);
+}
+
+.poster-moment__image {
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 150%;
+    width: initial;
+  }
 }
 
 .poster-moment__item--active {
-  display: inline-block;
+  // display: inline-block;
 }
 
 .poster-moment__item--inactive {
@@ -86,7 +128,7 @@
 }
 
 .poster-moment__item--superscript {
-  position: absolute;
+  position: relative;
   top: 0.11em;
   // Currently using superscript characters in the templates instead of CSS. The CSS doesn't seem to be working.
     // font-variant-position: super;
@@ -97,10 +139,12 @@
 
 .poster-moment__button {
   text-align: center;
-  margin-top: 7rem;
+  align-self: flex-end;
 }
 
 .poster-moment__button-link {
+  display: block;
+  border: none;
   @include text-size($large);
   text-transform: uppercase;
   font-weight: bold;
@@ -110,111 +154,120 @@
   @include transition(background-color 0.1s ease);
 }
 
+.poster-moment__button-text {
+  display: block;
+  border: none;
+  @include text-size($large);
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
+
 
 #poster-moment__risd {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(2)
-  };
-  @include media($tablet) {
-    @include shift(2);
-  };
-  @include media($laptop) {
-    @include shift(2);
-  };
-  @include media($desktop) {
-    @include shift(2);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(2)
+  // };
+  // @include media($tablet) {
+  //   @include shift(2);
+  // };
+  // @include media($laptop) {
+  //   @include shift(2);
+  // };
+  // @include media($desktop) {
+  //   @include shift(2);
+  // };
 }
 #poster-moment__week {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(1)
-  };
-  @include media($tablet) {
-    @include shift(0);
-  };
-  @include media($laptop) {
-    @include shift(1);
-  };
-  @include media($desktop) {
-    @include shift(3);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(1)
+  // };
+  // @include media($tablet) {
+  //   @include shift(0);
+  // };
+  // @include media($laptop) {
+  //   @include shift(1);
+  // };
+  // @include media($desktop) {
+  //   @include shift(3);
+  // };
 }
 #poster-moment__end {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(2)
-  };
-  @include media($tablet) {
-    @include shift(1);
-  };
-  @include media($laptop) {
-    @include shift(2);
-  };
-  @include media($desktop) {
-    @include shift(4);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(2)
+  // };
+  // @include media($tablet) {
+  //   @include shift(1);
+  // };
+  // @include media($laptop) {
+  //   @include shift(2);
+  // };
+  // @include media($desktop) {
+  //   @include shift(4);
+  // };
 }
 #poster-moment__modifier--1 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(1)
-  };
-  @include media($tablet) {
-    @include shift(1);
-  };
-  @include media($laptop) {
-    @include shift(0);
-  };
-  @include media($desktop) {
-    @include shift(3);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(1)
+  // };
+  // @include media($tablet) {
+  //   @include shift(1);
+  // };
+  // @include media($laptop) {
+  //   @include shift(0);
+  // };
+  // @include media($desktop) {
+  //   @include shift(3);
+  // };
 }
 #poster-moment__modifier--2 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(0)
-  };
-  @include media($tablet) {
-    @include shift(0);
-  };
-  @include media($laptop) {
-    @include shift(1);
-  };
-  @include media($desktop) {
-    @include shift(4);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(0)
+  // };
+  // @include media($tablet) {
+  //   @include shift(0);
+  // };
+  // @include media($laptop) {
+  //   @include shift(1);
+  // };
+  // @include media($desktop) {
+  //   @include shift(4);
+  // };
 }
 #poster-moment__modifier--3 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(2)
-  };
-  @include media($tablet) {
-    @include shift(1);
-  };
-  @include media($laptop) {
-    @include shift(2);
-  };
-  @include media($desktop) {
-    @include shift(3);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(2)
+  // };
+  // @include media($tablet) {
+  //   @include shift(1);
+  // };
+  // @include media($laptop) {
+  //   @include shift(2);
+  // };
+  // @include media($desktop) {
+  //   @include shift(3);
+  // };
 }
 #poster-moment__modifier--4 {
-  @include span-columns(5 of 8);
-  @include media($mobile) {
-    @include shift(1)
-  };
-  @include media($tablet) {
-    @include shift(2);
-  };
-  @include media($laptop) {
-    @include shift(1);
-  };
-  @include media($desktop) {
-    @include shift(5);
-  };
+  // @include span-columns(5 of 8);
+  // @include media($mobile) {
+  //   @include shift(1)
+  // };
+  // @include media($tablet) {
+  //   @include shift(2);
+  // };
+  // @include media($laptop) {
+  //   @include shift(1);
+  // };
+  // @include media($desktop) {
+  //   @include shift(5);
+  // };
 }
 .poster-moment__transition {
   width: auto;
@@ -228,6 +281,26 @@
 
 .layout__campaign-color {
   .poster-moment {
+    background-color: $white;
+  }
+  .poster-moment__item {
+    color: $campaign-color;
+  }
+  .poster-moment__modifier {
+    color: $black;
+  }
+  .poster-moment__button-link {
+    background-color: $black;
+    color: $white;
+    &:hover {
+      background-color: $campaign-color;
+      color: $white;
+    }
+  }
+}
+
+.layout__white {
+  .poster-moment {
     background-color: $black;
   }
   .poster-moment__item {
@@ -237,16 +310,20 @@
     color: $white;
   }
   .poster-moment__button-link {
-    background-color: $white;
+    background-color: $campaign-color;
     color: $black;
     &:hover {
-      background-color: $campaign-color;
+      background-color: $white;
       color: $black;
     }
   }
+  .poster-moment__button-text {
+    background-color: $campaign-color;
+    color: $black;
+  }
 }
 
-.layout__white {
+.layout__black {
   .poster-moment {
     background-color: $campaign-color;
   }
@@ -264,25 +341,9 @@
       color: $campaign-color;
     }
   }
-}
-
-.layout__black {
-  .poster-moment {
+  .poster-moment__button-text {
     background-color: $white;
-  }
-  .poster-moment__item {
-    color: $black;
-  }
-  .poster-moment__modifier {
     color: $campaign-color;
-  }
-  .poster-moment__button-link {
-    background-color: $campaign-color;
-    color: $white;
-    &:hover {
-      background-color: $black;
-      color: $white;
-    }
   }
 }
 
@@ -303,5 +364,9 @@
       background-color: $campaign-color;
       color: $black;
     }
+  }
+  .poster-moment__button-text {
+    background-color: $white;
+    color: $black;
   }
 }

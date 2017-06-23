@@ -61,6 +61,18 @@
   border-bottom: none;
   @include transition(all 0.2s ease);
   word-break: break-word;
+  @include media($mobile) {
+    line-height: 1;
+  };
+  @include media($tablet) {
+    line-height: 1;
+  };
+  @include media($laptop) {
+    line-height: 1;
+  };
+  @include media($desktop) {
+    line-height: 1;
+  };
 }
 
 

@@ -52,13 +52,13 @@
     text-align: center;
     margin-bottom: none;
   };
+
+  &.active {
+
+  }
 }
 
-.calendar-box__button--active {
-
-}
-
-.calendar-box__column {
+.calendar-box__column, .calendar-box__column--print {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -163,6 +163,7 @@
 .calendar-box__subtitle {
   font-weight: normal;
   font-style: italic;
+  display: block;
 }
 
 .calendar-box__info {
@@ -194,6 +195,37 @@
   display: none;
 }
 
+.calendar-box__link-button {
+  width: auto;
+  display: inline-block;
+  margin-top: 2rem;
+  a {
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    padding: $space--xxsmall;
+    @include text-size($medium);
+    @include transition(all 0.2s ease);
+
+    @include media($mobile) {
+      text-align: center;
+      flex-basis: 100%;
+      margin-bottom: 0.2rem;
+      margin-right: 0;
+    };
+    @include media($tablet) {
+      margin-right: 1rem;
+      flex-basis: auto;
+      padding: 0.25rem 0.5rem;
+      text-align: center;
+      margin-bottom: none;
+    };
+  }
+}
+
 
 
 // Theme colors --------------------------------------------- //
@@ -206,10 +238,10 @@
       color: $white;
       background-color: $black;
     }
-  }
-  .calendar-box__button--active {
-    color: $white;
-    background-color: $black;
+    &.active {
+      color: $white;
+      background-color: $black;
+    }
   }
   .calendar-box__item {
     border-color: $white;
@@ -234,6 +266,16 @@
   .calendar-box__section-title {
     color: $black;
   }
+  .calendar-box__link-button {
+    a {
+      color: $campaign-color;
+      background-color: $white;
+      &:hover {
+        color: $campaign-color;
+        background-color: $black;
+      }
+    }
+  }
 }
 
 .layout__white {
@@ -244,10 +286,10 @@
       color: $white;
       background-color: $campaign-color;
     }
-  }
-  .calendar-box__button--active {
-    color: $white;
-    background-color: $campaign-color;
+    &.active {
+      color: $white;
+      background-color: $campaign-color;
+    }
   }
   .calendar-box__item {
     border-color: $black;
@@ -272,6 +314,16 @@
   .calendar-box__section-title {
     color: $campaign-color;
   }
+  .calendar-box__link-button {
+    a {
+      color: $white;
+      background-color: $campaign-color;
+      &:hover {
+        color: $white;
+        background-color: $black;
+      }
+    }
+  }
 }
 
 .layout__black {
@@ -282,10 +334,10 @@
       color: $campaign-color;
       background-color: $white;
     }
-  }
-  .calendar-box__button--active {
-    color: $campaign-color;
-    background-color: $white;
+    &.active {
+      color: $campaign-color;
+      background-color: $white;
+    }
   }
   .calendar-box__item {
     border-color: $campaign-color;
@@ -309,5 +361,15 @@
   }
   .calendar-box__section-title {
     color: $white;
+  }
+  .calendar-box__link-button {
+    a {
+      color: $black;
+      background-color: $campaign-color;
+      &:hover {
+        color: $black;
+        background-color: $white;
+      }
+    }
   }
 }

@@ -34,6 +34,7 @@
 
   &:last-child {
     border-bottom: none;
+    padding-bottom: 0;
   }
 }
 
@@ -62,7 +63,7 @@
   }
 
   p + p {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 }
 
@@ -136,7 +137,7 @@
   }
 
   p + p {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   a {
@@ -184,11 +185,11 @@
     border-color: $black;
   }
   .information__main-description {
-    color: $white;
+    color: $black;
     a {
-      border-color: $black;
+      border-color: $white;
       &:hover {
-        color: $black;
+        color: $white;
       }
     }
   }
@@ -196,14 +197,14 @@
     border-color: $black;
   }
   .information__subsection-title {
-    color: $black;
+    color: $white;
   }
   .information__subsection-description {
-    color: $white;
+    color: $black;
     a {
-      border-color: $black;
+      border-color: $white;
       &:hover {
-        color: $black;
+        color: $white;
       }
     }
   }
@@ -285,10 +286,10 @@
   }
   .information__button-link {
     background-color: $campaign-color;
-    color: $white;
+    color: $black;
     &:hover {
       background-color: $white;
-      color: $campaign-color;
+      color: $black;
     }
   }
 }

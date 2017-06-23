@@ -13,6 +13,7 @@ function ScrollAnchorTest() {
   var sectionEnd;
   var sectionRange;
   var sectionHash;
+  var pushHash;
 
   scrollAnchorUpdate();
 
@@ -27,24 +28,30 @@ function ScrollAnchorTest() {
       if ($(this).attr('id')) {
         // if the section has an ID, set the hash to the ID
         sectionHash = '#' + $(this).attr('id');
+        pushHash = sectionHash;
       } else {
         // else set the hash to the page url
-        sectionHash = window.location.pathname;
+        sectionHash = '';
+        pushHash = window.location.pathname;
       }
+
       // get the height of the section relative to its position on the page
       sectionStart = $(this).offset().top;
       sectionHeight = $(this).outerHeight();
       sectionEnd = sectionStart + sectionHeight;
+
       if (
         // if the current scroll position is between the top of the section and the bottom of the section
         sectionStart < window.pageYOffset + 10 &&
         sectionEnd > window.pageYOffset + 10
       ) {
-        // if the current has is not the same as the current section's hash
-        if (window.location.hash != sectionHash) {
+        // if the current section's hash is not the same as the current hash
+        if (sectionHash !== window.location.hash) {
           // push the current section's hash to the url
-          history.replaceState({}, '', sectionHash);
+          history.replaceState({}, '', pushHash);
+          // window.location.hash = pushHash;
         }
+
       }
 
     });

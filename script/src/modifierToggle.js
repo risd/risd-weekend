@@ -1,52 +1,47 @@
-var $ = global.jQuery;
-// Modernizr is being used as a global variable
+module.exports = function( $ ){
 
-module.exports = ModifierToggle;
+  console.log('ModifierToggle initialized.');
 
-function ModifierToggle() {
-    if (!(this instanceof ModifierToggle)) {
-        return new ModifierToggle();
+  var modifierContainer = $('.poster-moment__container');
+  var modifiers = JSON.parse($("#modifiers-json").html());
+  var modifierLines;
+  var modifierLine;
+  var modifierImage;
+  var modifierLength = modifiers.length;
+  var currentIndex = Math.floor(Math.random() * (modifierLength - 1));
+  var currentModifier = modifiers[0];
+  var nextModifier = modifiers[0];
+
+  setTimeout(function () {
+    $('.poster-moment__item--modifiers').addClass('wiggle');
+  }, 2000);
+
+  function switchModifier() {
+    if (modifiers[currentIndex].modifier_lines) {
+      modifierLines = modifiers[currentIndex].modifier_lines;
+      $('.poster-moment__item--modifiers').empty();
+
+      for (var j = 0; j < modifierLines.length; j++) {
+        modifierLine = modifierLines[j];
+        $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
+      }
+    } else {
+      modifierImage = modifiers[currentIndex].modifier_image.resize_url;
+      $('.poster-moment__item--modifiers').empty();
+      $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier poster-moment__image"><img src="' + modifierImage + '"></div>');
     }
 
-    console.log('ModifierToggle initialized.');
 
-    switchModifier();
-
-    var modifierContainer = $('.poster-moment__container');
-    var modifiers = $('.poster-moment__item--modifiers');
-    var modifierLength = modifiers.length;
-    var currentModifier;
-    var nextModifier;
-
-    function switchModifier() {
-
-      $('.poster-moment').click(function() {
-        console.log('poster-moment clicked');
-
-        modifiers.each(function(index, el) {
-          currentModifier = $(this);
-          nextModifier = currentModifier.next();
-          firstModifier = modifiers.first();
-          if ($(this).hasClass('poster-moment__item--active') && index === modifierLength - 1) {
-
-            console.log('active item and last item');
-            console.log(currentModifier.text() + ', ' + nextModifier.text());
-            // firstModifier.addClass('poster-moment__item--active').removeClass('poster-moment__item--inactive').siblings().not(firstModifier).addClass('poster-moment__item--inactive').removeClass('poster-moment__item--active');
-
-          } else if ($(this).hasClass('poster-moment__item--active') && index !== modifierLength - 1) {
-            console.log('active item and not last item');
-            console.log(currentModifier.text() + ', ' + nextModifier.text());
-            // nextModifier.removeClass('poster-moment__item--inactive').addClass('poster-moment__item--active').siblings().not(nextModifier).addClass('poster-moment__item--inactive').removeClass('poster-moment__item--active');
-          }
-
-          console.log(currentModifier.text() + ', ' + nextModifier.text());
-
-          // $(this).removeClass('poster-moment__item--active').addClass('poster-moment__item--inactive');
-          // nextModifier.removeClass('poster-moment__item--inactive').addClass('poster-moment__item--active').siblings().not(currentModifier).addClass('poster-moment__item--inactive').removeClass('poster-moment__item--active');
-
-        });
-
-
-      });
+    if (currentIndex === modifiers.length - 1) {
+      currentIndex = 0;
+    } else {
+      currentIndex ++;
     }
-}
+  }
+
+	//return an object with methods that correspond to above defined functions
+	return {
+		switchModifier: switchModifier
+	};
+
+};

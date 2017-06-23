@@ -1,15 +1,5 @@
-{# ------------------------------------------------------- #}
-{# INDIVIDUAL VIEW FOR EACH audiences #}
-{# This page can use any data from http:localhost:2000/cms/#/form/audiences/ #}
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-{# ------------------------------------------------------- #}
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
-{# This sets our page <title>. It will append this audiences's name to the site title defined in base.html #}
+
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 
 {% block body_attributes %}
@@ -24,11 +14,17 @@
 
 {% block content %}
 
+  {% set general_info = cms.generalinformation %}
   {% set events = cms.events %}
   {% for event in events %}
     {% set event.modal_id = "modal-"+loop.index %}
-    {# event_link = '#', lowercase, ' ' replaced with '-', non-alphanumeric characters except for ' ' and '-' replaced with '', multiple consecutive '-' replaced with '-' #}
     {% set event.event_link = event.name|lower|replace(' ','-','g')|replace('[^a-zA-Z0-9 -]','','g')|replace('-+','-','g') %}
+  {% endfor %}
+  {% set sub_events = cms.subevents %}
+  {% for event in sub_events %}
+    {% set event.modal_id = "modal-"+loop.index %}
+    {% set event.event_link = event.name|lower|replace(' ','-','g')|replace('[^a-zA-Z0-9 -]','','g')|replace('-+','-','g') %}
+    {% set event.day = event.events_sub_events.day %}
   {% endfor %}
   {% set infoSnippets = item.information_snippets %}
 
@@ -41,9 +37,6 @@
     {% set item.page_background = 'layout__white' %}
   {% endif %}
 
-  {# <script>
-    console.log({{item|json|safe}});
-  </script> #}
 
   <main class="page">
 
@@ -51,8 +44,8 @@
 
     {% if livestream.show_livestream === true %}
       <div class="video-module">
-        {% if livestream.link %}
-          <div class="video-module__container"><iframe id="ls_embed_1475874412" src="//livestream.com/accounts/2814969/events/6424084/player?width=640&height=360&enableInfoAndActivity=true&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1475874412" src="//livestream.com/assets/plugins/referrer_tracking.js"></script></div>
+        {% if livestream.embed_code %}
+          <div class="video-module__container">{{ livestream.embed_code }}</div>
           {% if livestream.title %}
             <div class="video-module__title-container">
               <h2 class="video-module__title">{{ livestream.title }}</h2>
@@ -75,29 +68,30 @@
         <div class="poster-moment__item--active poster-moment__item--modifiers">
           <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">{{ item.name }}</div>
         </div>
-        {% for modifier in item.wordmark_modifiers %}
-            <div class="poster-moment__item--inactive poster-moment__item--modifiers">
-            {% for modifier_line in modifier.modifier_lines %}
-              <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--{{loop.index}}">{{ modifier_line.line }}</div>
-            {% endfor %}
-            </div>
-        {% endfor %}
         <div class="poster-moment__item" id="poster-moment__week">WEEK—</div>
         <div class="poster-moment__item" id="poster-moment__end">END<span class="poster-moment__item--superscript">&#xB9;&#8311;</span></div>
-        {% if item.name|lower === "families" || item.name|lower === "alumni" %}
-          <div class="poster-moment__button">
-            <a href="http://attend.com/RISDWeekend16" target="_blank" class="poster-moment__button-link">Register now</a>
-          </div>
-        {% endif %}
       </div>
+      {% if item.register_button === true %}
+        <div class="poster-moment__button">
+        {% if item.show_placeholder_text === false %}
+          <a href="{{ item.register_button_url }}" target="_blank" class="poster-moment__button-link">{{ item.register_button_text }}</a>
+        {% else %}
+          <p class="poster-moment__button-text">{{ item.register_button_placeholder_text }}</p>
+        {% endif %}
+        </div>
+      {% endif %}
     </div>
 
 
     {# Address and Time #}
     <section class="section__container" id="">
       <div class="announcement__container">
-        <h2 class="announcement announcement__date">October 7–9, 2016</h2>
-        <h2 class="announcement announcement__location">RISD Campus<br>Providence, RI</h2>
+        <h2 class="announcement announcement__date">{{ general_info.date }}</h2>
+        <h2 class="announcement announcement__location">
+        {% if general_info.location.street1 %}{{ general_info.location.street1 }}{% endif %}
+        {% if general_info.location.street2 %}<br>{{ general_info.location.street2 }}{% endif %}
+        {% if general_info.location.city %}<br>{{ general_info.location.city }}{% endif %}{% if general_info.location.state %}, {{ general_info.location.state }}{% endif %}{% if general_info.location.zip %} – {{ general_info.location.zip }}{% endif %}
+        </h2>
       </div>
     </section>
 
@@ -109,7 +103,15 @@
       {% endif %}
         <section class="section__container featured-events__container" id="{{ eventGroup.special_events_section_name|lower|replace(' ','-','g') }}">
           <h1 class="section__title">{{ eventGroup.special_events_section_name }}</h1>
+          <div class="section__description">{{ eventGroup.special_events_description|safe }}</div>
+          {% set featuredEvents = [] %}
           {% for event in eventGroup.events %}
+            {% set featuredEvents = featuredEvents.concat([event]) %}
+          {% endfor %}
+          {% for event in eventGroup.sub_events %}
+            {% set featuredEvents = featuredEvents.concat([event]) %}
+          {% endfor %}
+          {% for event in featuredEvents %}
             {% if loop.first %}
               <div class="featured-events">
             {% endif %}
@@ -132,9 +134,9 @@
 
       <div class="calendar-box">
         <div class="calendar-box__toggle">
-          <h4 class="calendar-box__button calendar-box__button--active" id="calendar-box__button--friday">Friday</h4>
-          <h4 class="calendar-box__button" id="calendar-box__button--saturday">Saturday</h4>
-          <h4 class="calendar-box__button" id="calendar-box__button--sunday">Sunday</h4>
+          <h4 class="calendar-box__button active" id="calendar-box__button--friday" data-filter="friday">Friday</h4>
+          <h4 class="calendar-box__button" id="calendar-box__button--saturday" data-filter="saturday">Saturday</h4>
+          <h4 class="calendar-box__button" id="calendar-box__button--sunday" data-filter="sunday">Sunday</h4>
         </div>
         {% for day in events | sort('day') | groupBy('day') %}
 
@@ -151,7 +153,7 @@
           {% endif %}
 
           {% for event in day %}
-            {% set event.start_time_order = event.start_time|date('H') %}
+            {% set event.start_time_order = event.start_time|date('Hi') %}
           {% endfor %}
 
           {% for event in day|sort('start_time_order') %}
@@ -165,123 +167,16 @@
                 {% endif %}
                 </h4>
 
-                {# Display time according to editorial style guide #}
-                {# if a start time exists #}
                 {% if event.start_time %}
-
-                  {# if the start time is in the morning #}
-                  {% if event.start_time|date('a') === "am" %}
-                    {# set morning start to true #}
-                    {% set morning_start = true %}
-                  {# else if the start time is in the evening #}
-                  {% elseif event.start_time|date('a') === "pm" %}
-                    {# set morning start to false #}
-                    {% set morning_start = false %}
-                  {% else %}
-                    {# set morning start to undefined #}
-                    {% set morning_start = undefined %}
-                  {% endif %}
-
-                  {# and if end time exists #}
-                  {% if event.end_time %}
-                    {# if the end time is in the morning #}
-                    {% if event.end_time|date('a') === "am" %}
-                      {# set morning end to true #}
-                      {% set morning_end = true %}
-                    {# else if the end time is in the evening #}
-                    {% elseif event.end_time|date('a') === "pm" %}
-                      {# set morning end to false #}
-                      {% set morning_end = false %}
-                    {% else %}
-                      {# set morning end to undefined #}
-                      {% set morning_end = undefined %}
-                    {% endif %}
-                  {% else %}
-                    {# set morning end to undefined #}
-                    {% set morning_end = undefined %}
-                  {% endif %}
-
-                  {# if there is only a start time #}
-                  {% if morning_end === undefined %}
-                    {# if the minutes is 00 #}
-                    {% if event.start_time|date('i') === '00' %}
-                      {# show only the hh am/pm #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g a') }}</time>
-                    {% else %}
-                      {# show hh:mm am/pm #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g:i a') }}</time>
-                    {% endif %}
-
-                  {# if there start time and end time are in the morning #}
-                  {% elseif morning_start === true && morning_end === true %}
-                    {# for the start time, if the minutes is 00 #}
-                    {% if event.start_time|date('i') === '00' %}
-                      {# show only the hh #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g') }}
-                    {% else %}
-                      {# show hh:mm #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g:i') }}
-                    {% endif %}
-                    {% if event.end_time %}
-                      {# for the end time, if the minutes is 00 #}
-                      {% if event.end_time|date('i') === '00' %}
-                        {# show only the - hh am #}
-                        &#8211; {{ event.end_time|date('g a') }}</time>
-                      {% else %}
-                        {# show - hh:mm am #}
-                        &#8211; {{ event.end_time|date('g:i a') }}</time>
-                      {% endif %}
-                    {% endif %}
-
-                  {# if there start time and end time are in the evening #}
-                  {% elseif morning_start === false && morning_end === false %}
-                    {# for the start time, if the minutes is 00 #}
-                    {% if event.start_time|date('i') === '00' %}
-                      {# show only the hh #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g') }}
-                    {% else %}
-                      {# show hh:mm #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g:i') }}
-                    {% endif %}
-                    {% if event.end_time %}
-                      {# for the end time, if the minutes is 00 #}
-                      {% if event.end_time|date('i') === '00' %}
-                        {# show only the - hh pm #}
-                        &#8211; {{ event.end_time|date('g a') }}</time>
-                      {% else %}
-                        {# show - hh:mm pm #}
-                        &#8211; {{ event.end_time|date('g:i a') }}</time>
-                      {% endif %}
-                    {% endif %}
-
-                  {# if there start time is in the morning and end time in the evening #}
-                  {% elseif morning_start === true && morning_end === false %}
-                    {# for the start time, if the minutes is 00 #}
-                    {% if event.start_time|date('i') === '00' %}
-                      {# show only the hh am #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g a') }}
-                    {% else %}
-                      {# show hh:mm am #}
-                      <time class="calendar-box__info">{{ event.start_time|date('g:i a') }}
-                    {% endif %}
-                    {% if event.end_time %}
-                      {# for the end time, if the minutes is 00 #}
-                      {% if event.end_time|date('i') === '00' %}
-                        {# show only the - hh pm #}
-                        &#8211; {{ event.end_time|date('g a') }}</time>
-                      {% else %}
-                        {# show - hh:mm pm #}
-                        &#8211; {{ event.end_time|date('g:i a') }}</time>
-                      {% endif %}
-                    {% endif %}
-                  {% endif %}
-
+                  {% include "templates/partials/time-formatting.html" with {
+                    item: event,
+                    itemClass: 'calendar-box__info'
+                  } %}
                 {% endif %}
-
 
                 {% if event.location %}
                   {% spaceless %}
-                    <p class="calendar-box__info">|&#8200;{{ event.location.name }}
+                    <p class="calendar-box__info">{% if event.start_time %}|&#8200;{% endif %}{{ event.location.name }}
                       {% if event.location_details %}
                         ,&#8200;{{ event.location_details }}
                       {% endif %}
@@ -293,7 +188,7 @@
                 {% endif %}
 
                 {% if event.attendee_limit %}
-                  <p class="calendar-box__info">| limit: {{ event.attendee_limit }} attendees</p>
+                  <p class="calendar-box__info">| {{ event.attendee_limit }}</p>
                 {% endif %}
 
               </div>
@@ -306,6 +201,7 @@
           {% endfor %}
         </div>
           {% if loop.last %}
+            <div class="calendar-box__link-button"><a href="/events">Print the schedule</a></div>
             </div>
           {% endif %}
         {% endfor %}
@@ -315,36 +211,36 @@
 
     {# Information Sections #}
     {% for information in infoSnippets %}
-    <section class="section__container information__container" id="{{ information.name|lower|replace(' ', '-', 'g') }}">
-    {% if information.show_in_nav === true %}
-      {# <a class="nav__anchor" id="{{ information.name|lower|replace(' ', '-', 'g') }}"></a> #}
-    {% endif %}
-      <h1 class="section__title">{{ information.name }}</h1>
-      <article class="information__section">
-      {% if information.main_description %}
-        <div class="information__main-description-container">
-          <div class="information__main-description">{{ information.main_description|safe }}</div>
-        </div>
+      <section class="section__container information__container" id="{{ information.name|lower|replace(' ', '-', 'g') }}">
+      {% if information.show_in_nav === true %}
+        {# <a class="nav__anchor" id="{{ information.name|lower|replace(' ', '-', 'g') }}"></a> #}
       {% endif %}
-        {% if information.subsections %}
-          {% for subsection in information.subsections %}
-            <div class="information__subsection">
-            {% if subsection.title %}
-              <h2 class="information__subsection-title">{{ subsection.title }}</h2>
-            {% else %}
-              <h2 class="information__subsection-title">&#160;</h2>
-            {% endif %}
-              <div class="information__subsection-description">{{ subsection.description|safe }}</div>
-            </div>
-          {% endfor %}
+        <h1 class="section__title">{{ information.name }}</h1>
+        <article class="information__section">
+        {% if information.main_description %}
+          <div class="information__main-description-container">
+            <div class="information__main-description">{{ information.main_description|safe }}</div>
+          </div>
         {% endif %}
-      </article>
-      {% if information.button_text %}
-        <div class="information__button">
-          <a href="{{ information.button_link }}" target="_blank" class="information__button-link">{{ information.button_text }}</a>
-        </div>
-      {% endif %}
-    </section>
+          {% if information.subsections %}
+            {% for subsection in information.subsections %}
+              <div class="information__subsection">
+              {% if subsection.title %}
+                <h2 class="information__subsection-title">{{ subsection.title }}</h2>
+              {% else %}
+                <h2 class="information__subsection-title">&#160;</h2>
+              {% endif %}
+                <div class="information__subsection-description">{{ subsection.description|safe }}</div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </article>
+        {% if information.button_text %}
+          <div class="information__button">
+            <a href="{{ information.button_link }}" target="_blank" class="information__button-link">{{ information.button_text }}</a>
+          </div>
+        {% endif %}
+      </section>
     {% endfor %}
 
 
@@ -362,14 +258,26 @@
 
   </main>
 
+  <script type="application/json" id="modifiers-json">
+    {{ item.wordmark_modifiers|json|safe }}
+  </script>
+
 {% endblock %}
 
 {% block modal_content %}
+  {% set allEvents = [] %}
+  {% for event in events %}
+    {% set allEvents = allEvents.concat([event]) %}
+  {% endfor %}
+  {% for event in sub_events %}
+    {% set allEvents = allEvents.concat([event]) %}
+  {% endfor %}
   <aside class="modal__container">
+    <div class="modal__background"></div>
+    <div class="modal__item-toggle">&times;</div>
     <div class="modal">
-    {% for event in events %}
+    {% for event in allEvents %}
       <div class="modal__item" id="{{ event.event_link }}" data-modal-target-id="{{ event.event_link }}">
-        <div class="modal__item-toggle">&times;</div>
         <div class="modal__header">
           <h4 class="modal__title">
           {{ event.name }}
@@ -377,126 +285,18 @@
             <span class="modal__subtitle">{{ event.subtitle }}</span>
           {% endif %}
           </h4>
-
-          {# Display time according to editorial style guide #}
-          {# if a start time exists #}
+          <p class="modal__info">{{ event.day }}</p>
           {% if event.start_time %}
-
-            <time class="modal__info">{{ event.start_time|date('l, F j') }}</time><br>
-
-            {# if the start time is in the morning #}
-            {% if event.start_time|date('a') === "am" %}
-              {# set morning start to true #}
-              {% set morning_start = true %}
-            {# else if the start time is in the evening #}
-            {% elseif event.start_time|date('a') === "pm" %}
-              {# set morning start to false #}
-              {% set morning_start = false %}
-            {% else %}
-              {# set morning start to undefined #}
-              {% set morning_start = undefined %}
-            {% endif %}
-
-            {# and if end time exists #}
-            {% if event.end_time %}
-              {# if the end time is in the morning #}
-              {% if event.end_time|date('a') === "am" %}
-                {# set morning end to true #}
-                {% set morning_end = true %}
-              {# else if the end time is in the evening #}
-              {% elseif event.end_time|date('a') === "pm" %}
-                {# set morning end to false #}
-                {% set morning_end = false %}
-              {% else %}
-                {# set morning end to undefined #}
-                {% set morning_end = undefined %}
-              {% endif %}
-            {% else %}
-              {# set morning end to undefined #}
-              {% set morning_end = undefined %}
-            {% endif %}
-
-            {# if there is only a start time #}
-            {% if morning_end === undefined %}
-              {# if the minutes is 00 #}
-              {% if event.start_time|date('i') === '00' %}
-                {# show only the hh am/pm #}
-                <time class="modal__info">{{ event.start_time|date('g a') }}</time>
-              {% else %}
-                {# show hh:mm am/pm #}
-                <time class="modal__info">{{ event.start_time|date('g:i a') }}</time>
-              {% endif %}
-
-            {# if there start time and end time are in the morning #}
-            {% elseif morning_start === true && morning_end === true %}
-              {# for the start time, if the minutes is 00 #}
-              {% if event.start_time|date('i') === '00' %}
-                {# show only the hh #}
-                <time class="modal__info">{{ event.start_time|date('g') }}
-              {% else %}
-                {# show hh:mm #}
-                <time class="modal__info">{{ event.start_time|date('g:i') }}
-              {% endif %}
-              {% if event.end_time %}
-                {# for the end time, if the minutes is 00 #}
-                {% if event.end_time|date('i') === '00' %}
-                  {# show only the - hh am #}
-                  &#8211; {{ event.end_time|date('g a') }}</time>
-                {% else %}
-                  {# show - hh:mm am #}
-                  &#8211; {{ event.end_time|date('g:i a') }}</time>
-                {% endif %}
-              {% endif %}
-
-            {# if there start time and end time are in the evening #}
-            {% elseif morning_start === false && morning_end === false %}
-              {# for the start time, if the minutes is 00 #}
-              {% if event.start_time|date('i') === '00' %}
-                {# show only the hh #}
-                <time class="modal__info">{{ event.start_time|date('g') }}
-              {% else %}
-                {# show hh:mm #}
-                <time class="modal__info">{{ event.start_time|date('g:i') }}
-              {% endif %}
-              {% if event.end_time %}
-                {# for the end time, if the minutes is 00 #}
-                {% if event.end_time|date('i') === '00' %}
-                  {# show only the - hh pm #}
-                  &#8211; {{ event.end_time|date('g a') }}</time>
-                {% else %}
-                  {# show - hh:mm pm #}
-                  &#8211; {{ event.end_time|date('g:i a') }}</time>
-                {% endif %}
-              {% endif %}
-
-            {# if there start time is in the morning and end time in the evening #}
-            {% elseif morning_start === true && morning_end === false %}
-              {# for the start time, if the minutes is 00 #}
-              {% if event.start_time|date('i') === '00' %}
-                {# show only the hh am #}
-                <time class="modal__info">{{ event.start_time|date('g a') }}
-              {% else %}
-                {# show hh:mm am #}
-                <time class="modal__info">{{ event.start_time|date('g:i a') }}
-              {% endif %}
-              {% if event.end_time %}
-                {# for the end time, if the minutes is 00 #}
-                {% if event.end_time|date('i') === '00' %}
-                  {# show only the - hh pm #}
-                  &#8211; {{ event.end_time|date('g a') }}</time>
-                {% else %}
-                  {# show - hh:mm pm #}
-                  &#8211; {{ event.end_time|date('g:i a') }}</time>
-                {% endif %}
-              {% endif %}
-            {% endif %}
-
+            {% include "templates/partials/time-formatting.html" with {
+              item: event,
+              itemClass: 'modal__info'
+            } %}
           {% endif %}
-
 
           {% if event.location %}
             {% spaceless %}
               <p class="modal__info">
+              {% if event.location.google_map_link %}
                 <a href="{{ event.location.google_map_link }}" target="_blank">{{ event.location.name }}
                   {% if event.location_details %}
                     ,&#8200;{{ event.location_details }}
@@ -505,12 +305,22 @@
                     ,&#8200;{{ event.location.address }}
                   {% endif %}
                 </a>
+              {% else %}
+                {{ event.location.name }}
+                {% if event.location_details %}
+                  ,&#8200;{{ event.location_details }}
+                {% endif %}
+                {% if event.location.address %}
+                  ,&#8200;{{ event.location.address }}
+                {% endif %}
+              {% endif %}
+
               </p>
             {% endspaceless %}
           {% endif %}
 
           {% if event.attendee_limit %}
-            <p class="modal__info">limit: {{ event.attendee_limit }} attendees</p>
+            <p class="modal__info">{{ event.attendee_limit }}</p>
           {% endif %}
 
         </div>
@@ -520,126 +330,21 @@
         {% endif %}
 
         {% if event.sub_events %}
+          <div class="modal__subevent-container">
           {% for subevent in event.sub_events %}
             <div class="modal__subevent">
               <h4 class="modal__subevent-title">
-              {{ subevent.name }}
+                {{ subevent.name }}
               {% if subevent.subtitle %}
                 <span class="modal__subevent-subtitle">{{ subevent.subtitle }}</span>
               {% endif %}
               </h4>
 
-              {# Display time according to editorial style guide #}
-              {# if a start time exists #}
               {% if subevent.start_time %}
-
-                {# if the start time is in the morning #}
-                {% if subevent.start_time|date('a') === "am" %}
-                  {# set morning start to true #}
-                  {% set morning_start = true %}
-                {# else if the start time is in the evening #}
-                {% elseif subevent.start_time|date('a') === "pm" %}
-                  {# set morning start to false #}
-                  {% set morning_start = false %}
-                {% else %}
-                  {# set morning start to undefined #}
-                  {% set morning_start = undefined %}
-                {% endif %}
-
-                {# and if end time exists #}
-                {% if subevent.end_time %}
-                  {# if the end time is in the morning #}
-                  {% if subevent.end_time|date('a') === "am" %}
-                    {# set morning end to true #}
-                    {% set morning_end = true %}
-                  {# else if the end time is in the evening #}
-                  {% elseif subevent.end_time|date('a') === "pm" %}
-                    {# set morning end to false #}
-                    {% set morning_end = false %}
-                  {% else %}
-                    {# set morning end to undefined #}
-                    {% set morning_end = undefined %}
-                  {% endif %}
-                {% else %}
-                  {# set morning end to undefined #}
-                  {% set morning_end = undefined %}
-                {% endif %}
-
-                {# if there is only a start time #}
-                {% if morning_end === undefined %}
-                  {# if the minutes is 00 #}
-                  {% if subevent.start_time|date('i') === '00' %}
-                    {# show only the hh am/pm #}
-                    <time class="modal__subevent-info">{{ subevent.start_time|date('g a') }}</time>
-                  {% else %}
-                    {# show hh:mm am/pm #}
-                    <time class="modal__subevent-info">{{ subevent.start_time|date('g:i a') }}</time>
-                  {% endif %}
-
-                {# if there start time and end time are in the morning #}
-                {% elseif morning_start === true && morning_end === true %}
-                  {# for the start time, if the minutes is 00 #}
-                  {% if subevent.start_time|date('i') === '00' %}
-                    {# show only the hh #}
-                    <time class="modal__subevent-info">{{ subevent.start_time|date('g') }}
-                  {% else %}
-                    {# show hh:mm #}
-                    <time class="modal__subevent-info">{{ subevent.start_time|date('g:i') }}
-                  {% endif %}
-                  {% if subevent.end_time %}
-                    {# for the end time, if the minutes is 00 #}
-                    {% if subevent.end_time|date('i') === '00' %}
-                      {# show only the - hh am #}
-                      &#8211; {{ subevent.end_time|date('g a') }}</time>
-                    {% else %}
-                      {# show - hh:mm am #}
-                      &#8211; {{ subevent.end_time|date('g:i a') }}</time>
-                    {% endif %}
-                  {% endif %}
-
-                {# if there start time and end time are in the evening #}
-                {% elseif morning_start === false && morning_end === false %}
-                  {# for the start time, if the minutes is 00 #}
-                  {% if subevent.start_time|date('i') === '00' %}
-                    {# show only the hh #}
-                    <time class="modal__subevent-info">{{ subevent.start_time|date('g') }}
-                  {% else %}
-                    {# show hh:mm #}
-                    <time class="modal__subevent-info">{{ subevent.start_time|date('g:i') }}
-                  {% endif %}
-                  {% if subevent.end_time %}
-                    {# for the end time, if the minutes is 00 #}
-                    {% if subevent.end_time|date('i') === '00' %}
-                      {# show only the - hh pm #}
-                      &#8211; {{ subevent.end_time|date('g a') }}</time>
-                    {% else %}
-                      {# show - hh:mm pm #}
-                      &#8211; {{ subevent.end_time|date('g:i a') }}</time>
-                    {% endif %}
-                  {% endif %}
-
-                {# if there start time is in the morning and end time in the evening #}
-                {% elseif morning_start === true && morning_end === false %}
-                  {# for the start time, if the minutes is 00 #}
-                  {% if subevent.start_time|date('i') === '00' %}
-                    {# show only the hh am #}
-                    <time class="modal__subevent-info">{{ subevent.start_time|date('g a') }}
-                  {% else %}
-                    {# show hh:mm am #}
-                    <time class="modal__subevent-info">{{ subevent.start_time|date('g:i a') }}
-                  {% endif %}
-                  {% if subevent.end_time %}
-                    {# for the end time, if the minutes is 00 #}
-                    {% if subevent.end_time|date('i') === '00' %}
-                      {# show only the - hh pm #}
-                      &#8211; {{ subevent.end_time|date('g a') }}</time>
-                    {% else %}
-                      {# show - hh:mm pm #}
-                      &#8211; {{ subevent.end_time|date('g:i a') }}</time>
-                    {% endif %}
-                  {% endif %}
-                {% endif %}
-
+                {% include "templates/partials/time-formatting.html" with {
+                  item: subevent,
+                  itemClass: 'modal__subevent-info'
+                } %}
               {% endif %}
 
 
@@ -657,7 +362,7 @@
               {% endif %}
 
               {% if subevent.attendee_limit %}
-                <p class="modal__subevent-info">limit: {{ subevent.attendee_limit }} attendees</p>
+                <p class="modal__subevent-info">{{ subevent.attendee_limit }}</p>
               {% endif %}
 
               {% if subevent.description %}
@@ -666,10 +371,12 @@
 
             </div>
           {% endfor %}
+          </div>
         {% endif %}
 
       </div>
     {% endfor %}
     </div>
   </aside>
+
 {% endblock %}

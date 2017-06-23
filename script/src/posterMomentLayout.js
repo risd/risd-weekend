@@ -1,42 +1,35 @@
-var $ = global.jQuery;
-
-module.exports = PosterMomentLayout;
-
-function PosterMomentLayout(opts) {
-  if (!(this instanceof PosterMomentLayout)) {
-    return new PosterMomentLayout(opts);
-  }
+module.exports = function( $ ){
 
   console.log('PosterMomentLayout initialized.');
 
-  var containerWidth = $('.poster-moment__container').width();
+  var containerWidth;
+  var $item;
   var itemWidth;
-  var maxMargin;
-  var randomMargin;
-  var randomMarginPercentage;
-  console.log("containerWidth: " + containerWidth);
+  var maxShift;
+  var randomShift;
+  var randomShiftPercentage;
+  var randomBoolean;
 
-  setRandomMargin();
-
-  function setRandomMargin() {
-    $('.poster-moment__transition').each(function(index, el) {
+  function itemShift($item, $container) {
+    containerWidth = $container.width();
+    $item.each(function() {
       itemWidth = $(this).width();
-      maxMargin = containerWidth - itemWidth;
-      randomMarginLeft = getRandomInteger(0, maxMargin);
-      randomMarginLeftPercentage = randomMarginLeft / containerWidth * 100 + "%";
-      randomMarginRight = containerWidth - itemWidth - randomMarginLeft;
-      randomMarginRightPercentage = randomMarginRight / containerWidth * 100 + "%";
+      maxShift = itemWidth / 2;
+      randomShift = Math.floor(Math.random() * maxShift);
+      randomShiftPercentage = (randomShift / containerWidth) * 100;
+      randomBoolean = Math.random() >= 0.5;
 
-      console.log(itemWidth + ", " + maxMargin + ", " + randomMarginLeftPercentage);
-
-      $(this).css({
-        marginLeft: randomMarginLeftPercentage
-      });
+      if (randomBoolean === true) {
+        $(this).css('left', ('calc(' + randomShiftPercentage + '% - 1em)'));
+      } else {
+        $(this).css('left', ('calc(-' + randomShiftPercentage + '% + 1em)'));
+      }
     });
-
-    function getRandomInteger(min, max) {
-      return Math.random() * (max - min) + min;
-    }
   }
 
-}
+  //return an object with methods that correspond to above defined functions
+	return {
+		itemShift: itemShift
+	};
+
+};

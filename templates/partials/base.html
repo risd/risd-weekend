@@ -106,9 +106,10 @@
 
     {% endblock %}
 
-
+    {% block base_script %}
+      <script src="/static/javascript/site.js"></script>
+    {% endblock %}
 <!-- build:js /static/javascript/minified.js -->
-    <script src="/static/javascript/site.js"></script>
 <!-- endbuild -->
 
     {% block scripts_extra %}{% endblock %}

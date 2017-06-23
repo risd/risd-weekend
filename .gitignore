@@ -14,12 +14,11 @@ results
 
 npm-debug.log
 node_modules
+json_backups
+.sass-cache
+*.map
 
-/.build
-/.firebase.conf
-/.risdmedia.conf
+.build
+.firebase.conf
 
-.sass-cache/
-.db/
-
-.build-order/default
+.push.zip

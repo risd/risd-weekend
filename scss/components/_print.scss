@@ -19,7 +19,7 @@
   }
 
   .calendar-box__container {
-    padding-top: 3rem !important;
+    padding-top: 1rem !important;
   }
 
   .section__title {
@@ -29,6 +29,10 @@
   .calendar-box__section-title {
     font-size: 20pt;
     column-span: all;
+    padding-top: 0;
+    margin-top: 2rem;
+    position: relative;
+    top: 0;
 
     &:first-child {
       margin-top: 0;
@@ -39,10 +43,10 @@
     display: block;
   }
 
-  .calendar-box__column {
+  .calendar-box__column--print {
     display: block;
     page-break-before: always;
-    padding-top: 3rem;
+    padding-top: 0;
     // columns: 2;
     // column-gap: 3rem;
     // -webkit-columns: 2;
@@ -76,16 +80,18 @@
 
   .calendar-box__title {
     font-size: 12pt;
+    page-break-inside: avoid;
   }
 
   .calendar-box__subtitle {
-
+    page-break-inside: avoid;
   }
 
   .calendar-box__info {
     font-weight: normal;
     width: 100%;
     font-size: 9pt;
+    page-break-inside: avoid;
   }
 
 

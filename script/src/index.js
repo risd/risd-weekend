@@ -6,14 +6,50 @@ var activeNav = require('./activeNav.js')();
 var scheduleToggle = require('./scheduleToggle.js')();
 var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
-// var posterMomentLayout = require('./posterMomentLayout.js')();
-var eventModal = require('./eventModal.js')({
-  $events: $('.calendar-box__item').has('.calendar-box__item-toggle'),
-  $featuredEvents: $('.featured-events__item'),
-  $modalContainer: $('.modal__container'),
-  $modalToggle: $('.modal__item-toggle')
+var eventModal = require('./eventModal.js')();
+var posterMomentLayout = require('./posterMomentLayout.js')($);
+var modifierImageSizing = require('./modifierImageSizing.js')($);
+var preloadImages = require('./preloadImages.js')($);
+var modifierToggle = require('./modifierToggle.js')($);
+
+var switchTimeoutID;
+var shiftTimeoutID;
+
+modifierToggle.switchModifier();
+modifierImageSizing.resizeModifier();
+
+$('.poster-moment').click(function() {
+  modifierToggle.switchModifier();
+  modifierImageSizing.resizeModifier();
+  clearInterval(switchTimeoutID);
+  clearInterval(shiftTimeoutID);
+  switchInterval();
+  shiftInterval();
 });
 
-// var modifierToggle = require('./modifierToggle.js')();
+setTimeout(function () {
+  shiftInterval();
+  switchInterval();
+}, 1000);
 
-eventModal.openModal();
+function shiftInterval() {
+  shiftTimeoutID = setTimeout(function () {
+    posterMomentLayout.itemShift($('.poster-moment__item'), $('.poster-moment__container'));
+    posterMomentLayout.itemShift($('.main-nav__item'), $('.main-nav__container'));
+    shiftInterval();
+  }, 2000);
+  return shiftTimeoutID;
+}
+
+function switchInterval() {
+  switchTimeoutID = setTimeout(function () {
+    modifierToggle.switchModifier();
+    modifierImageSizing.resizeModifier();
+    switchInterval();
+  }, 4000);
+  return switchTimeoutID;
+}
+
+$(window).resize(function() {
+  modifierImageSizing.resizeModifier();
+});

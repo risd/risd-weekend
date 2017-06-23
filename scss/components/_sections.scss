@@ -57,6 +57,15 @@
 
 }
 
+.section__description {
+  @include text-size($medium);
+  margin-bottom: 2rem;
+
+  p + p {
+    margin-top: 1rem;
+  }
+}
+
 
 
 // Theme colors --------------------------------------------- //
@@ -68,6 +77,9 @@
       color: $black;
     }
   }
+  .section__description {
+    color: $black;
+  }
 }
 
 .layout__white {
@@ -77,6 +89,9 @@
       color: $campaign-color;
     }
   }
+  .section__description {
+    color: $black;
+  }
 }
 
 .layout__black {
@@ -85,5 +100,8 @@
     &::after {
       color: $white;
     }
+  }
+  .section__description {
+    color: $white;
   }
 }

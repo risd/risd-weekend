@@ -9873,45 +9873,98 @@ function EventModal(opts) {
     return new EventModal(opts);
   }
 
-    console.log('EventModal initialized.');
+  console.log('EventModal initialized.');
 
-    this.$events = opts.$events;
-    this.$featuredEvents = opts.$featuredEvents;
-    this.$modalContainer = opts.$modalContainer;
-    this.$modalToggle = opts.$modalToggle;
+  var $events = $('.calendar-box__item').has('.calendar-box__item-toggle');
+  var $featuredEvents = $('.featured-events__item');
+  var $modalContainer = $('.modal__container');
+  var $modalToggle = $('.modal__item-toggle, .modal__background');
+  var $activeEvent;
+  var modalID;
+  var historyState;
+  var onLoadModal = true;
+  var modalIsOpen = false;
 
-    this.$events.on('click', this.openModal);
-    this.$featuredEvents.on('click', this.openModal);
-    this.$modalToggle.on('click', this.closeModal);
-    this.$modalContainer.on('click', this.closeModal);
+  openModal($(this));
 
-}
+  $events.click(function(e) {
+    onLoadModal = false;
+    e.preventDefault();
+    openModal($(this));
+  });
 
-EventModal.prototype.openModal = function () {
+  $featuredEvents.click(function(e) {
+    onLoadModal = false;
+    e.preventDefault();
+    openModal($(this));
+  });
 
-  if ($(this).data('modal-source-id')) {
-    modalID = $(this).data('modal-source-id');
-  } else {
-    modalID = window.location.hash.replace('#','');
+  $modalToggle.click(function(e) {
+    if (onLoadModal === true) {
+      onLoadModal = false;
+    } else {
+      window.history.back();
+    }
+    closeModal();
+  });
+
+  $(window).on('popstate', function (event) {  //pressed back button
+    if(event.state!==null) {
+      console.log('modalIsOpen: ' + modalIsOpen);
+      if (modalIsOpen === true) {
+        closeModal();
+      } else {
+        openModal($(this));
+      }
+    }
+  });
+
+  $(document).keydown(function(e) {
+    if (e.keyCode == 27) {
+      if ($('.modal--on').length > 0) {
+        if (onLoadModal === false) {
+          window.history.back();
+        }
+        closeModal();
+      }
+    }
+  });
+
+  function openModal(activeEvent) {
+    /*
+      Case 1: Clicked element has a modal source ID
+      Case 2: On load, page has a hash value
+      Case 3: 1 and 2 are false.
+    */
+    if (activeEvent.data('modal-source-id') !== undefined) {
+      modalID = activeEvent.data('modal-source-id');
+      historyState = '#' + activeEvent.data('modal-source-id');
+      history.pushState({}, '', historyState);
+    } else if(window.location.hash) {
+      modalID = window.location.hash.replace('#','');
+    } else {
+      modalID = false;
+    }
+
+    if (modalID !== false) {
+      modalTarget = $(".modal__item[data-modal-target-id='" + modalID +"']");
+
+      if ($('.modal__container').has(modalTarget).length) {
+        $('.modal__container').addClass('modal--slide_in');
+        modalTarget.addClass('modal--on');
+        $('body').addClass('modal__body--noscroll');
+        modalIsOpen = true;
+      }
+    }
   }
 
-  modalTarget = $(".modal__item[data-modal-target-id='" + modalID +"']");
-
-  if ($('.modal__container').has(modalTarget).length) {
-    $('.modal__container').addClass('modal--fade_in');
-    modalTarget.addClass('modal--on');
-    $('body').addClass('modal__body--noscroll');
-  }
-
-};
-
-EventModal.prototype.closeModal = function (e) {
-  if (e.target === this) {
-    $('.modal__container').removeClass('modal--fade_in');
+  function closeModal() {
+    $('.modal__container').removeClass('modal--slide_in');
     $('.modal__item').removeClass('modal--on');
     $('body').removeClass('modal__body--noscroll');
+    modalIsOpen = false;
   }
-};
+}
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],4:[function(require,module,exports){
@@ -9924,20 +9977,56 @@ var activeNav = require('./activeNav.js')();
 var scheduleToggle = require('./scheduleToggle.js')();
 var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
-// var posterMomentLayout = require('./posterMomentLayout.js')();
-var eventModal = require('./eventModal.js')({
-  $events: $('.calendar-box__item').has('.calendar-box__item-toggle'),
-  $featuredEvents: $('.featured-events__item'),
-  $modalContainer: $('.modal__container'),
-  $modalToggle: $('.modal__item-toggle')
+var eventModal = require('./eventModal.js')();
+var posterMomentLayout = require('./posterMomentLayout.js')($);
+var modifierImageSizing = require('./modifierImageSizing.js')($);
+var preloadImages = require('./preloadImages.js')($);
+var modifierToggle = require('./modifierToggle.js')($);
+
+var switchTimeoutID;
+var shiftTimeoutID;
+
+modifierToggle.switchModifier();
+modifierImageSizing.resizeModifier();
+
+$('.poster-moment').click(function() {
+  modifierToggle.switchModifier();
+  modifierImageSizing.resizeModifier();
+  clearInterval(switchTimeoutID);
+  clearInterval(shiftTimeoutID);
+  switchInterval();
+  shiftInterval();
 });
 
-// var modifierToggle = require('./modifierToggle.js')();
+setTimeout(function () {
+  shiftInterval();
+  switchInterval();
+}, 1000);
 
-eventModal.openModal();
+function shiftInterval() {
+  shiftTimeoutID = setTimeout(function () {
+    posterMomentLayout.itemShift($('.poster-moment__item'), $('.poster-moment__container'));
+    posterMomentLayout.itemShift($('.main-nav__item'), $('.main-nav__container'));
+    shiftInterval();
+  }, 2000);
+  return shiftTimeoutID;
+}
+
+function switchInterval() {
+  switchTimeoutID = setTimeout(function () {
+    modifierToggle.switchModifier();
+    modifierImageSizing.resizeModifier();
+    switchInterval();
+  }, 4000);
+  return switchTimeoutID;
+}
+
+$(window).resize(function() {
+  modifierImageSizing.resizeModifier();
+});
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./scheduleHover.js":7,"./scheduleToggle.js":8,"./scrollAnchor.js":9,"jquery":1}],5:[function(require,module,exports){
+},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierImageSizing.js":7,"./modifierToggle.js":8,"./posterMomentLayout.js":9,"./preloadImages.js":10,"./scheduleHover.js":11,"./scheduleToggle.js":12,"./scrollAnchor.js":13,"jquery":1}],5:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
@@ -10059,6 +10148,163 @@ function MobileMenuToggle() {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],7:[function(require,module,exports){
+module.exports = function( $ ){
+
+  console.log('ModifierImageSizing initialized.');
+
+  var modifierImageContainer;
+  var modifierImage
+  var modifierImageHeight;
+  var modifierImageWidth;
+  var modifierImageRatio;
+  var modifierLineHeight;
+  var maxModifierLines = 3;
+  var maxImageHeight;
+  var imageWidth;
+
+  function resizeModifier() {
+    modifierImageContainer = $('.poster-moment__image');
+    modifierImage = $('.poster-moment__image > img');
+    if (modifierImage.length > 0) {
+      modifierImageHeight = modifierImage[0].naturalHeight;
+      modifierImageWidth = modifierImage[0].naturalWidth;
+      modifierImageRatio = modifierImageWidth / modifierImageHeight;
+      modifierLineHeight = $('#poster-moment__risd').height();
+      maxImageHeight = modifierLineHeight * maxModifierLines;
+      imageWidth = maxImageHeight * modifierImageRatio;
+
+      modifierImageContainer.height(maxImageHeight);
+      modifierImageContainer.width(imageWidth);
+    } else {
+      return;
+    }
+  }
+
+	//return an object with methods that correspond to above defined functions
+	return {
+		resizeModifier: resizeModifier
+	};
+
+};
+
+},{}],8:[function(require,module,exports){
+module.exports = function( $ ){
+
+  console.log('ModifierToggle initialized.');
+
+  var modifierContainer = $('.poster-moment__container');
+  var modifiers = JSON.parse($("#modifiers-json").html());
+  var modifierLines;
+  var modifierLine;
+  var modifierImage;
+  var modifierLength = modifiers.length;
+  var currentIndex = Math.floor(Math.random() * (modifierLength - 1));
+  var currentModifier = modifiers[0];
+  var nextModifier = modifiers[0];
+
+  setTimeout(function () {
+    $('.poster-moment__item--modifiers').addClass('wiggle');
+  }, 2000);
+
+  function switchModifier() {
+    if (modifiers[currentIndex].modifier_lines) {
+      modifierLines = modifiers[currentIndex].modifier_lines;
+      $('.poster-moment__item--modifiers').empty();
+
+      for (var j = 0; j < modifierLines.length; j++) {
+        modifierLine = modifierLines[j];
+        $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
+      }
+    } else {
+      modifierImage = modifiers[currentIndex].modifier_image.resize_url;
+      $('.poster-moment__item--modifiers').empty();
+      $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier poster-moment__image"><img src="' + modifierImage + '"></div>');
+    }
+
+
+    if (currentIndex === modifiers.length - 1) {
+      currentIndex = 0;
+    } else {
+      currentIndex ++;
+    }
+  }
+
+	//return an object with methods that correspond to above defined functions
+	return {
+		switchModifier: switchModifier
+	};
+
+};
+
+},{}],9:[function(require,module,exports){
+module.exports = function( $ ){
+
+  console.log('PosterMomentLayout initialized.');
+
+  var containerWidth;
+  var $item;
+  var itemWidth;
+  var maxShift;
+  var randomShift;
+  var randomShiftPercentage;
+  var randomBoolean;
+
+  function itemShift($item, $container) {
+    containerWidth = $container.width();
+    $item.each(function() {
+      itemWidth = $(this).width();
+      maxShift = itemWidth / 2;
+      randomShift = Math.floor(Math.random() * maxShift);
+      randomShiftPercentage = (randomShift / containerWidth) * 100;
+      randomBoolean = Math.random() >= 0.5;
+
+      if (randomBoolean === true) {
+        $(this).css('left', ('calc(' + randomShiftPercentage + '% - 1em)'));
+      } else {
+        $(this).css('left', ('calc(-' + randomShiftPercentage + '% + 1em)'));
+      }
+    });
+  }
+
+  //return an object with methods that correspond to above defined functions
+	return {
+		itemShift: itemShift
+	};
+
+};
+
+},{}],10:[function(require,module,exports){
+module.exports = function( $ ){
+
+  console.log('PreLoadImages initialized.');
+
+  var modifiers = JSON.parse($("#modifiers-json").html());
+  var modifierImageUrls = [];
+  var imagesToLoad = [];
+
+  if (modifiers) {
+    getImages();
+    preloadImages(modifierImageUrls);
+  }
+
+  function getImages() {
+    for (var i = 0; i < modifiers.length; i++) {
+      if (modifiers[i].modifier_image) {
+        modifierImageUrls.push(modifiers[i].modifier_image.resize_url);
+      }
+    }
+  }
+
+  function preloadImages(imageArray) {
+    for (i = 0; i < imageArray.length; i++) {
+			imagesToLoad[i] = new Image();
+			imagesToLoad[i].src = imageArray[i];
+		}
+  }
+
+};
+
+},{}],11:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10089,7 +10335,7 @@ function ScheduleHover() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],8:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10097,28 +10343,58 @@ var $ = global.jQuery;
 module.exports = ScheduleToggle;
 
 function ScheduleToggle() {
-    if (!(this instanceof ScheduleToggle)) {
-        return new ScheduleToggle();
-    }
+  if (!(this instanceof ScheduleToggle)) {
+      return new ScheduleToggle();
+  }
 
-    console.log('ScheduleToggle initialized.');
+  console.log('ScheduleToggle initialized.');
 
-    dayToggle('friday');
-    dayToggle('saturday');
-    dayToggle('sunday');
+  var selectedFilter;
+  var currentFilter;
+  var lastFilter = window.localStorage.getItem('lastFilter');
+  var filterHash;
+  var $filterButton;
+  var $filteredItems;
+  var $filteredColumn;
 
-    function dayToggle(day) {
-      console.log(day + " dayToggle intiated.");
-      $('#calendar-box__button--' + day).click(function() {
-        $(this).addClass('calendar-box__button--active').siblings().removeClass('calendar-box__button--active');
-        $('#calendar-box__column--' + day).removeClass('calendar-box__column--hidden').siblings().not('calendar-box__toggle').addClass('calendar-box__column--hidden');
-      });
-    }
+
+  $('.calendar-box__button').click(function() {
+    setAudienceFilter($(this));
+    filterAudiences(currentFilter);
+  });
+
+
+  if (lastFilter) {
+    filterAudiences(lastFilter);
+  }
+
+  function setAudienceFilter(element) {
+
+    $(element).addClass('active').siblings().removeClass('active');
+
+    selectedFilter = $(element).data('filter');
+    selectedFilter = selectedFilter.replace('\#','');
+
+    window.localStorage.setItem('lastFilter', selectedFilter);
+    currentFilter = window.localStorage.getItem('lastFilter');
+
+  }
+
+  function filterAudiences(filter) {
+
+    $filterButton = $('#calendar-box__button--' + filter);
+    $filteredColumn = $('#calendar-box__column--' + filter);
+
+    $($filterButton).addClass('active').siblings().removeClass('active');
+    $('.calendar__audience').removeClass('initial');
+    $('.calendar-box__column').addClass('calendar-box__column--hidden');
+    $filteredColumn.removeClass('calendar-box__column--hidden');
+  }
 
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],9:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
@@ -10135,6 +10411,7 @@ function ScrollAnchorTest() {
   var sectionEnd;
   var sectionRange;
   var sectionHash;
+  var pushHash;
 
   scrollAnchorUpdate();
 
@@ -10149,24 +10426,30 @@ function ScrollAnchorTest() {
       if ($(this).attr('id')) {
         // if the section has an ID, set the hash to the ID
         sectionHash = '#' + $(this).attr('id');
+        pushHash = sectionHash;
       } else {
         // else set the hash to the page url
-        sectionHash = window.location.pathname;
+        sectionHash = '';
+        pushHash = window.location.pathname;
       }
+
       // get the height of the section relative to its position on the page
       sectionStart = $(this).offset().top;
       sectionHeight = $(this).outerHeight();
       sectionEnd = sectionStart + sectionHeight;
+
       if (
         // if the current scroll position is between the top of the section and the bottom of the section
         sectionStart < window.pageYOffset + 10 &&
         sectionEnd > window.pageYOffset + 10
       ) {
-        // if the current has is not the same as the current section's hash
-        if (window.location.hash != sectionHash) {
+        // if the current section's hash is not the same as the current hash
+        if (sectionHash !== window.location.hash) {
           // push the current section's hash to the url
-          history.replaceState({}, '', sectionHash);
+          history.replaceState({}, '', pushHash);
+          // window.location.hash = pushHash;
         }
+
       }
 
     });

@@ -29,8 +29,9 @@
         {{ cms.livestream.last_updated|date('F d Y') }}
       </li>
       <li>
-        <strong>Link: </strong>
-        {# Embed.ly content usually comes with more data. Info here: #}{# http://www.webhook.com/docs/widget-template-reference/#embedly #}{{ cms.livestream.link.html|safe  }}      </li>
+        <strong>Embed Code: </strong>
+        {{ cms.livestream.embed_code }}
+      </li>
       <li>
         <strong>Title: </strong>
         {{ cms.livestream.title }}

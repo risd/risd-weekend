@@ -8,9 +8,13 @@
 {# ------------------------------------------------------- #}
 {# Confused what extends and blocks do? Watch a primer: #}
 {# http://www.webhook.com/docs/template-inheritance-blocks/ #}
-{% extends "templates/partials/base-without-header.html" %}
+{% extends "templates/partials/base.html" %}
 {# This sets our page <title>. It will append this contact's name to the site title defined in base.html #}
 {% block title %}{% parent %} - Test{% endblock %}
+
+{% block header %}
+
+{% endblock %}
 
 {% block body_attributes %}
   class="layout__black"
