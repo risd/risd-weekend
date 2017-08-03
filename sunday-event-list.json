@@ -1,0 +1,24 @@
+[
+  {
+    "_sort_create_date": 1497278040,
+    "_sort_last_updated": 1500557820,
+    "_sort_publish_date": 1497278040,
+    "_sort_start_time": 1507302000,
+    "create_date": "2017-06-12T10:34:00-04:00",
+    "day": "Sunday",
+    "description": "$35 per person | registration required | Shuttle available from Chace Center, 20 North Main Street\n\n\nStart the day with a beautiful and educational coastal walk led by Nature Lab Biological Programs Designer Jennifer Bissonnette and sustainable fisheries expert Kate Masury. The nature program will be followed by lunch at 12:30. Shuttle departs the Chace Center on North Main Street at 10:15 am.",
+    "isDraft": false,
+    "last_updated": "2017-07-20T09:37:00-04:00",
+    "location": "eventslocations -KSc1AWQOK7r2Wwn07cj",
+    "location_details": "",
+    "name": "Eating with the Ecosystem ",
+    "preview_url": "47ecb244-e19f-0429-0eec-5a355976ed35",
+    "publish_date": "2017-06-12T10:34:00-04:00",
+    "registration_required": true,
+    "start_time": "11:00 am",
+    "subtitle": "Lunch at Tillinghast",
+    "locationName": "Tillinghast Farm",
+    "locationAddress": "231 Nayatt Road, Barrington",
+    "end_time": "17:02 pm"
+  }
+]
