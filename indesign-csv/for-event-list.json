@@ -370,15 +370,15 @@
       },
       "-KmRUJizTbPfS4vxj4hw": {
         "_sort_create_date": 1497274020,
-        "_sort_end_time": 1497303000,
-        "_sort_last_updated": 1497297120,
+        "_sort_end_time": 1501704000,
+        "_sort_last_updated": 1501680780,
         "_sort_publish_date": 1497274020,
         "_sort_start_time": 1497268800,
         "create_date": "2017-06-12T09:27:00-04:00",
         "day": "Saturday",
-        "end_time": "2017-06-12T17:30:00-04:00",
+        "end_time": "2017-08-02T16:00:00-04:00",
         "isDraft": false,
-        "last_updated": "2017-06-12T15:52:00-04:00",
+        "last_updated": "2017-08-02T09:33:00-04:00",
         "location": "eventslocations -KHzrSysjtwJuN5v6YNf",
         "name": "check-in",
         "preview_url": "47b403a2-7e96-d198-119a-0baf6ad29ffd",
@@ -662,14 +662,14 @@
       },
       "-KmRgceF8rwEr7yrV9YE": {
         "_sort_create_date": 1497277560,
-        "_sort_last_updated": 1497296460,
+        "_sort_last_updated": 1501680720,
         "_sort_publish_date": 1497277560,
         "_sort_start_time": 1497290400,
         "create_date": "2017-06-12T10:26:00-04:00",
         "day": "Saturday",
-        "description": "<p>Spend some quality time with the little ones. RISD alumni read from their recently published children’s books and stick around to sign copies. Books available for purchase on site.\n</p>",
+        "description": "<p>Spend some quality time with the little ones. RISD alumni <strong>Stephanie Laberis </strong>04 IL (<em>The Little Grumpy Cat That Wouldn't</em>), <strong>Phyllis Limbacher Tildes </strong><strong>67 IL</strong> (<em>Animals in Camouflage, Baby Animals Take a Nap</em>) and <strong>Stephen Shaskan</strong><span> 97 IL (<em>Toad in the Road</em>, <em>Max Speed</em>) </span>read from their recently published children’s books and stick around to sign copies. Books available for purchase on site.\n</p>",
         "isDraft": false,
-        "last_updated": "2017-06-12T15:41:00-04:00",
+        "last_updated": "2017-08-02T09:32:00-04:00",
         "location": "eventslocations -KI-Ke5p_oTPvx6MYWWH",
         "location_details": "rain location: College Building lobby off Benefit Street",
         "name": "RISD READS",
@@ -791,6 +791,25 @@
         "publish_date": "2017-07-31T10:59:00-04:00",
         "registration_required": false,
         "start_time": "2017-07-31T10:00:00-04:00"
+      },
+      "-KqYDDx7ysfkqlwm1DhA": {
+        "_sort_create_date": 1501681980,
+        "_sort_end_time": 1501709400,
+        "_sort_last_updated": 1501681980,
+        "_sort_publish_date": 1501681980,
+        "_sort_start_time": 1501700400,
+        "create_date": "2017-08-02T09:53:00-04:00",
+        "day": "Saturday",
+        "description": "<p>Watch America’s favorite college club basketball team challenge its distinguished alumni players.\n</p>",
+        "end_time": "2017-08-02T17:30:00-04:00",
+        "last_updated": "2017-08-02T09:53:00-04:00",
+        "location": "eventslocations -KqY9VGdd2zDx1PH-dkL",
+        "location_details": "216 Hope Street",
+        "name": "RISD Balls vs. Balls Alumni Basketball Game",
+        "preview_url": "8350968e-3ff9-8ef6-9f2f-de1cbda63268",
+        "publish_date": "2017-08-02T09:53:00-04:00",
+        "registration_required": false,
+        "start_time": "2017-08-02T15:00:00-04:00"
       }
     },
     "events2016": {
@@ -2599,6 +2618,12 @@
           "subevents -KmWxeUwlODO-_P4rph8",
           "subevents -KmWx6LNQzkwDhv_KvfJ"
         ]
+      },
+      "-KqY9VGdd2zDx1PH-dkL": {
+        "events_location": [
+          "events -KqYDDx7ysfkqlwm1DhA"
+        ],
+        "name": "Wheeler School Gymnasium"
       }
     },
     "files": {

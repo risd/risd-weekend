@@ -18,9 +18,14 @@
     "build-page": "grunt build-page",
     "build-pages": "grunt build-pages",
     "build-template": "grunt build-template",
-    "create-friday-events": "node transforms/index.js for-event-list.json friday-event-list friday-event-list.json && json2csv -b -i friday-event-list.json -o friday-event-list.csv && iconv -f utf-8 -t utf-16 < friday-event-list.csv > friday-event-list-encoded.csv && rm friday-event-list.csv friday-event-list.json",
-    "create-saturday-events": "node transforms/index.js for-event-list.json saturday-event-list saturday-event-list.json && json2csv -b utf8 -i saturday-event-list.json -o saturday-event-list.csv && iconv -f utf-8 -t utf-16 < saturday-event-list.csv > saturday-event-list-encoded.csv && rm saturday-event-list.csv saturday-event-list.json",
-    "create-sunday-events": "node transforms/index.js for-event-list.json sunday-event-list sunday-event-list.json && json2csv -b -i sunday-event-list.json -o sunday-event-list.csv && iconv -f utf-8 -t utf-16 < sunday-event-list.csv > sunday-event-list-encoded.csv && rm sunday-event-list.csv sunday-event-list.json"
+    "backup": "rm-wh backup site-data.json",
+    "create-events:backup": "npm run backup && mv site-data.json indesign-csv/for-event-list.json",
+    "create-events:friday": "node transforms/index.js indesign-csv/for-event-list.json friday-event-list friday-event-list.json && json2csv -b -i friday-event-list.json -o indesign-csv/friday-event-list.csv && iconv -f utf-8 -t utf-16 < indesign-csv/friday-event-list.csv > indesign-csv/friday-event-list-utf16.csv",
+    "create-events:saturday": "node transforms/index.js indesign-csv/for-event-list.json saturday-event-list saturday-event-list.json && json2csv -b -i saturday-event-list.json -o indesign-csv/saturday-event-list.csv && iconv -f utf-8 -t utf-16 < indesign-csv/saturday-event-list.csv > indesign-csv/saturday-event-list-utf16.csv",
+    "create-events:sunday": "node transforms/index.js indesign-csv/for-event-list.json sunday-event-list sunday-event-list.json && json2csv -b -i sunday-event-list.json -o indesign-csv/sunday-event-list.csv && iconv -f utf-8 -t utf-16 < indesign-csv/sunday-event-list.csv > indesign-csv/sunday-event-list-utf16.csv",
+    "create-events:all-days": "npm run create-events:friday && npm run create-events:saturday && npm run create-events:sunday",
+    "create-events:clean": "rm {friday,saturday,sunday}-event-list.json && rm indesign-csv/{friday,saturday,sunday}-event-list.csv",
+    "create-events-csv": "mkdir -p indesign-csv && npm run create-events:backup && npm run create-events:all-days && npm run create-events:clean"
   },
   "homepage": "https://github.com/risd/webhook-generate",
   "dependencies": {
