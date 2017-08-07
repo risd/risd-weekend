@@ -61,9 +61,9 @@ module.exports = function sampleTransform ( siteData, callback ) {
         if (endTimeString) {
           // check if end time has minutes
           if (endTimeString.format('mm') === '00') {
-            endTimeFormatted = '–' + endTimeString.format('h a')
+            endTimeFormatted = ' – ' + endTimeString.format('h a')
           } else {
-            endTimeFormatted = '–' + endTimeString.format('h:mm a');
+            endTimeFormatted = ' – ' + endTimeString.format('h:mm a');
           }
         }
       // if it starts and ends in the evening
@@ -78,9 +78,9 @@ module.exports = function sampleTransform ( siteData, callback ) {
         if (endTimeString) {
           // check if end time has minutes
           if (endTimeString.format('mm') === '00') {
-            endTimeFormatted = '–' + endTimeString.format('h a')
+            endTimeFormatted = ' – ' + endTimeString.format('h a')
           } else {
-            endTimeFormatted = '–' + endTimeString.format('h:mm a')
+            endTimeFormatted = ' – ' + endTimeString.format('h:mm a')
           }
         }
       // if it starts in the morning and ends in the evening
@@ -95,9 +95,9 @@ module.exports = function sampleTransform ( siteData, callback ) {
         if (endTimeString) {
           // check if end time has minutes
           if (endTimeString.format('mm') === '00') {
-            endTimeFormatted = '–' + endTimeString.format('h a')
+            endTimeFormatted = ' – ' + endTimeString.format('h a')
           } else {
-            endTimeFormatted = '–' + endTimeString.format('h:mm a')
+            endTimeFormatted = ' – ' + endTimeString.format('h:mm a')
           }
         }
       }

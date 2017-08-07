@@ -27,8 +27,6 @@ module.exports = function sampleTransform ( siteData, callback ) {
 
     var filteredEvents = events.filter(function (event) {
       return event.day === "Friday";
-      // return event.day === "Saturday";
-      // return event.day === "Sunday";
     });
 
     // We encountered no errors, so `null` is passed
