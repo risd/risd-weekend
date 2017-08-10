@@ -108,7 +108,7 @@ module.exports = function sampleTransform ( siteData, callback ) {
     // set description italic tags up for indesign find-replace query
     // convert html to text
     if (event.description) {
-      event.description = event.description.replace(/<em>/g, '=').replace(/<\/em>/g, '=');
+      event.description = event.description.replace(/<em>/g, '_').replace(/<\/em>/g, '_').replace(/<\/strong>/g, '*').replace(/<strong>/g, '*');
     }
     event.description = htmlToText.fromString(event.description, {
       wordwrap: false
