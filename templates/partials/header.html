@@ -11,9 +11,6 @@
         <a class="nav__item nav__item--pages" href="#{{ information.name|lower|replace(' ', '-', 'g') }}">{{ information.name }}</a>
       {% endif %}
     {% endfor %}
-    {% if item.register_button === true && item.show_placeholder_text === false %}
-      <a class="nav__item nav__item--pages" href="http://www.cvent.com/d/05qv7f" target="_blank">Register<span>➞</span></a>
-    {% endif %}
   </nav>
 
 </header>
