@@ -4,7 +4,8 @@
   padding-top: 5rem;
 
   &:first-of-type {
-    padding-top: 6rem;
+    padding-top: 12rem;
+    padding-bottom: 6rem;
   }
 
   @include media($mobile) {

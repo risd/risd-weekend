@@ -45,7 +45,7 @@
     {% if livestream.show_livestream === true %}
       <div class="video-module">
         {% if livestream.embed_code %}
-          <div class="video-module__container">{{ livestream.embed_code }}</div>
+          <div class="video-module__container">{{ livestream.embed_code|safe }}</div>
           {% if livestream.title %}
             <div class="video-module__title-container">
               <h2 class="video-module__title">{{ livestream.title }}</h2>
@@ -158,7 +158,12 @@
 
           {% for event in day|sort('start_time_order') %}
 
-            <a href="#{{ event.event_link }}" class="calendar-box__item" data-modal-source-id="{{ event.event_link }}">
+            {% if event.description %}
+              <a href="#{{ event.event_link }}" class="calendar-box__item" data-modal-source-id="{{ event.event_link }}">
+            {% else %}
+              <div class="calendar-box__item">
+            {% endif %}
+
               <div class="calendar-box__header">
                 <h4 class="calendar-box__title">
                 {{ event.name }}
@@ -193,18 +198,18 @@
 
               </div>
 
-              {% if event.description %}
-                <div class="calendar-box__item-toggle"></div>
-              {% endif %}
-
+            {% if event.description %}
+              <div class="calendar-box__item-toggle"></div>
             </a>
+            {% else %}
+            </div>
+            {% endif %}
+
+
           {% endfor %}
         </div>
           {% if loop.last %}
             {% set schedule_pdf = getItem('files', '-Kpay06Iw39hVxeaNK_9') %}
-            <script>
-              console.log({{schedule_pdf|json|safe}});
-            </script>
             <div class="calendar-box__link-button"><a href="{{ schedule_pdf.pdf.url }}" target="_blank">Download the schedule</a></div>
             </div>
           {% endif %}

@@ -9910,7 +9910,6 @@ function EventModal(opts) {
 
   $(window).on('popstate', function (event) {  //pressed back button
     if(event.state!==null) {
-      console.log('modalIsOpen: ' + modalIsOpen);
       if (modalIsOpen === true) {
         closeModal();
       } else {
