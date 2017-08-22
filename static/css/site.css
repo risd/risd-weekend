@@ -1589,9 +1589,12 @@ iframe {
 
 .section__container {
   padding-bottom: 10rem;
+  margin-top: -5rem;
+  padding-top: 5rem;
 }
 .section__container:first-of-type {
-  padding-top: 6rem;
+  padding-top: 12rem;
+  padding-bottom: 6rem;
 }
 @media screen and (min-width: 300px) {
   .section__container {
@@ -2075,6 +2078,7 @@ iframe {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  cursor: default;
   transition: all 0.2s ease;
 }
 @media screen and (min-width: 768px) {
@@ -3552,33 +3556,33 @@ iframe {
 }
 
 .layout__campaign-color .video-module__title-container {
-  background-color: white;
+  background-color: black;
 }
 .layout__campaign-color .video-module__title {
-  color: black;
+  color: white;
 }
 .layout__campaign-color .video-module__subtitle {
-  color: black;
+  color: white;
 }
 
 .layout__white .video-module__title-container {
-  background-color: white;
+  background-color: #3ff1dd;
 }
 .layout__white .video-module__title {
-  color: #3ff1dd;
+  color: black;
 }
 .layout__white .video-module__subtitle {
-  color: #3ff1dd;
+  color: black;
 }
 
 .layout__black .video-module__title-container {
-  background-color: #3ff1dd;
+  background-color: white;
 }
 .layout__black .video-module__title {
-  color: black;
+  color: #3ff1dd;
 }
 .layout__black .video-module__subtitle {
-  color: black;
+  color: #3ff1dd;
 }
 
 /* Sections ----------------------------------------------- */

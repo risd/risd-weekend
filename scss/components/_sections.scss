@@ -1,8 +1,11 @@
 .section__container {
   padding-bottom: 10rem;
+  margin-top: -5rem;
+  padding-top: 5rem;
 
   &:first-of-type {
-    padding-top: 6rem;
+    padding-top: 12rem;
+    padding-bottom: 6rem;
   }
 
   @include media($mobile) {
