@@ -9822,15 +9822,17 @@ var posterMomentLayout = require('./posterMomentLayout.js')($);
 
 var shiftTimeoutID;
 
-shiftInterval();
+posterMomentLayout.itemShift($('.main-nav__item'), $('.main-nav__container'));
 
-function shiftInterval() {
-  shiftTimeoutID = setTimeout(function () {
-    posterMomentLayout.itemShift($('.main-nav__item'), $('.main-nav__container'));
-    shiftInterval();
-  }, 2000);
-  return shiftTimeoutID;
-}
+// shiftInterval();
+//
+// function shiftInterval() {
+//   shiftTimeoutID = setTimeout(function () {
+//     posterMomentLayout.itemShift($('.main-nav__item'), $('.main-nav__container'));
+//     shiftInterval();
+//   }, 2000);
+//   return shiftTimeoutID;
+// }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./posterMomentLayout.js":3,"jquery":1}],3:[function(require,module,exports){
