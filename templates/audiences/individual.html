@@ -42,7 +42,7 @@
 
     {# Livestream #}
 
-    {% if livestream.show_livestream === false %}
+    {% if livestream.show_livestream === true %}
       <div class="video-module">
         {% if livestream.embed_code %}
           <div class="video-module__container">{{ livestream.embed_code|safe }}</div>
