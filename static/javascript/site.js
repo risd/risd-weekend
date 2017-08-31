@@ -10073,11 +10073,11 @@ function MobileMenuToggle() {
 
     console.log('MobileMenuToggle initialized.');
 
-    var modernizrState = Modernizr.mq('(min-width: 768px)');
+    var modernizrState = Modernizr.mq('(min-width: 1024px)');
     console.log("modernizr = " + modernizrState);
 
     $(window).resize(function() {
-      modernizrState = Modernizr.mq('(min-width: 768px)');
+      modernizrState = Modernizr.mq('(min-width: 1024px)');
       console.log("modernizr = " + modernizrState);
     });
 
@@ -10133,7 +10133,7 @@ function MobileMenuToggle() {
         $(window).resize(function() {
             $('.nav').removeClass('nav--toggled');
             $('body').removeClass('body--no-scroll');
-            if (Modernizr.mq('(min-width: 768px)')) {
+            if (Modernizr.mq('(min-width: 1024px)')) {
                 $('.nav__item--activator, .nav__item--deactivator').addClass('nav__item--hide').removeClass('nav__item--show');
                 $('.nav__item--pages').addClass('nav__item--show').removeClass('nav__item--hide');
             } else {
