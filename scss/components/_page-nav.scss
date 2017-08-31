@@ -30,8 +30,6 @@
   @include media($tablet) {
     @include span-columns(8 of 8);
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
   };
 
   @include media($laptop) {
@@ -77,7 +75,7 @@
     }
   };
 
-  @include media($tablet) {
+  @include media($laptop) {
     @include text-size($regular);
     display: flex;
     width: auto;
@@ -106,7 +104,7 @@
   };
 
   @include media($tablet) {
-    display: none;
+    display: flex;
   };
 
   @include media($laptop) {
