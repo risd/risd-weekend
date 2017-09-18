@@ -6,7 +6,7 @@ function activeNav() {
   if (!(this instanceof activeNav)) {
     return new activeNav();
   }
-  console.log('activeNav initialized.');
+  // console.log('activeNav initialized.');
 
   var navHash;
   var currentHash;

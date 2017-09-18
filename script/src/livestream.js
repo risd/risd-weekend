@@ -7,7 +7,7 @@ function Livestream(opts) {
     return new Livestream(opts);
   }
 
-  console.log('Livestream initialized.');
+  // console.log('Livestream initialized.');
 
   var windowHeight;
   var navHeight = $('.nav').outerHeight();

@@ -34,7 +34,8 @@
         "information_snippets": [
           "informationsnippets -KMu__0g-I3c8iV6Pk7T",
           "informationsnippets -KNDzsQMOcLYZRLIkvh_",
-          "informationsnippets -KMuZsrYYtt4km5THm40"
+          "informationsnippets -KMuZsrYYtt4km5THm40",
+          "informationsnippets -KrChONKlqIBDQ40nt10"
         ],
         "isDraft": false,
         "last_updated": "2017-07-24T11:55:00-04:00",
@@ -101,7 +102,8 @@
         "information_snippets": [
           "informationsnippets -KMu__0g-I3c8iV6Pk7T",
           "informationsnippets -KNDzsQMOcLYZRLIkvh_",
-          "informationsnippets -KMuZsrYYtt4km5THm40"
+          "informationsnippets -KMuZsrYYtt4km5THm40",
+          "informationsnippets -KrChONKlqIBDQ40nt10"
         ],
         "isDraft": false,
         "last_updated": "2017-07-24T11:55:00-04:00",
@@ -130,7 +132,7 @@
       },
       "-KMtbMSe_E40bZc0IPjR": {
         "_sort_create_date": 1468771680,
-        "_sort_last_updated": 1498246800,
+        "_sort_last_updated": 1502996940,
         "_sort_publish_date": 1468771680,
         "audience_specific_events": [
           {
@@ -159,15 +161,18 @@
           }
         ],
         "information_snippets": [
-          "informationsnippets -KMuZsrYYtt4km5THm40"
+          "informationsnippets -KMuZsrYYtt4km5THm40",
+          "informationsnippets -KrChONKlqIBDQ40nt10"
         ],
         "isDraft": false,
-        "last_updated": "2017-06-23T15:40:00-04:00",
+        "last_updated": "2017-08-17T15:09:00-04:00",
         "name": "Students",
         "page_color_scheme": "campaign-color",
         "preview_url": "2bfd1786-6db5-6c05-b744-8e70a1cc4504",
         "publish_date": "2016-07-17T12:08:00-04:00",
-        "register_button": false,
+        "register_button": true,
+        "register_button_text": "Register Now",
+        "register_button_url": "http://www.cvent.com/d/05qv7f",
         "show_placeholder_text": false,
         "wordmark_modifiers": [
           "wordmarkmodifiers -KmcLbDhIcI0vkKuEOg4",
@@ -222,7 +227,8 @@
         "information_snippets": [
           "informationsnippets -KMu__0g-I3c8iV6Pk7T",
           "informationsnippets -KNDzsQMOcLYZRLIkvh_",
-          "informationsnippets -KMuZsrYYtt4km5THm40"
+          "informationsnippets -KMuZsrYYtt4km5THm40",
+          "informationsnippets -KrChONKlqIBDQ40nt10"
         ],
         "isDraft": false,
         "last_updated": "2017-07-24T11:55:00-04:00",
@@ -285,16 +291,16 @@
       },
       "-KmRRP55JxIfHKpEmU53": {
         "_sort_create_date": 1497273300,
-        "_sort_end_time": 1497297600,
-        "_sort_last_updated": 1497297420,
+        "_sort_end_time": 1503601200,
+        "_sort_last_updated": 1503580140,
         "_sort_publish_date": 1497273300,
         "_sort_start_time": 1497283200,
         "create_date": "2017-06-12T09:15:00-04:00",
         "day": "Friday",
         "description": "<p>Get an insider’s look at RISD, from the latest academic concentrations available to students to the typical studio critique. Faculty and staff lead a series of informative sessions (<em>see below</em>). Class sizes are limited and available on a first come, first served basis.\n</p>",
-        "end_time": "2017-06-12T16:00:00-04:00",
+        "end_time": "2017-08-24T15:00:00-04:00",
         "isDraft": false,
-        "last_updated": "2017-06-12T15:57:00-04:00",
+        "last_updated": "2017-08-24T09:09:00-04:00",
         "location": "eventslocations -KmROkt792XYpRswrDx1",
         "name": "RISD Revealed",
         "preview_url": "0dfdb736-3bfd-1045-d6e4-3c6eca6d51a4",
@@ -306,6 +312,7 @@
           "subevents -KmWx6LNQzkwDhv_KvfJ",
           "subevents -KmWxLwy1OAOn_DNUdPS",
           "subevents -KmWxeUwlODO-_P4rph8",
+          "subevents -KrCSNWIGzAYguWhUzZj",
           "subevents -KmWxynnOH5yzWtjYk5J",
           "subevents -KmWyDfnciQt6oDhFPXh",
           "subevents -KmWyWIVgpF3oB0fSBZf",
@@ -335,14 +342,14 @@
       },
       "-KmRTG2MiM804kEC9jnf": {
         "_sort_create_date": 1497273780,
-        "_sort_last_updated": 1497297180,
+        "_sort_last_updated": 1502198640,
         "_sort_publish_date": 1497273780,
         "_sort_start_time": 1497304800,
         "create_date": "2017-06-12T09:23:00-04:00",
         "day": "Friday",
-        "description": "<p>Environmental performance has become a fundamental principle of urban design. But how do we know how well green designs and practices perform over time? Research shows that in many cases there is a gap between intended and actual performance. Architect and educator Liat Margolis 96 ID shares new empirical research developed at the University of Toronto’s Green Roof Innovation Testing Laboratory (GRIT Lab) that bridges this gap.\n</p>\n<p>Liat Margolis is associate professor and program director of the Masters of Landscape Architecture program at the University of Toronto and John H. Daniels Associate Professor of Architecture, Landscape and Design. She also directs the University of Toronto’s GRIT Lab, an interdisciplinary research facility dedicated to evaluating and optimizing the environmental performance of green building technologies. Her 2014 book <em>Out of Water: Design Solutions for Arid Regions</em> discusses strategies for sustainable and resilient urban water management.\n</p>",
+        "description": "<p>Environmental performance has become a fundamental principle of urban design. But how do we know how well green designs and practices perform over time? Research shows that in many cases there is a gap between intended and actual performance. Architect and educator Liat Margolis 96 ID shares new empirical research developed at the University of Toronto’s Green Roof Innovation Testing Laboratory (GRIT Lab) that bridges this gap.\n</p>\n<p>Liat Margolis is associate professor and director of the Masters of Landscape Architecture program at the University of Toronto and associate dean of research at the Daniels Faculty of Architecture, Landscape and Design. She also directs the University of Toronto’s GRIT Lab, an interdisciplinary research facility dedicated to evaluating and optimizing the environmental performance of green building technologies. Her 2014 book <em>Out of Water: Design Solutions for Arid Regions</em> discusses strategies for sustainable and resilient urban water management.\n</p>",
         "isDraft": false,
-        "last_updated": "2017-06-12T15:53:00-04:00",
+        "last_updated": "2017-08-08T09:24:00-04:00",
         "location": "eventslocations -KHzrWe7_2RFZxYCUmcO",
         "name": "Alumni Keynote | Liat Margolis 96 ID",
         "preview_url": "28e0fa14-c9c9-bd8a-81b3-cf65ca336c99",
@@ -371,16 +378,16 @@
       "-KmRUJizTbPfS4vxj4hw": {
         "_sort_create_date": 1497274020,
         "_sort_end_time": 1501704000,
-        "_sort_last_updated": 1501680780,
+        "_sort_last_updated": 1504022160,
         "_sort_publish_date": 1497274020,
         "_sort_start_time": 1497268800,
         "create_date": "2017-06-12T09:27:00-04:00",
         "day": "Saturday",
         "end_time": "2017-08-02T16:00:00-04:00",
         "isDraft": false,
-        "last_updated": "2017-08-02T09:33:00-04:00",
+        "last_updated": "2017-08-29T11:56:00-04:00",
         "location": "eventslocations -KHzrSysjtwJuN5v6YNf",
-        "name": "check-in",
+        "name": "Saturday check-in",
         "preview_url": "47b403a2-7e96-d198-119a-0baf6ad29ffd",
         "publish_date": "2017-06-12T09:27:00-04:00",
         "registration_required": false,
@@ -564,15 +571,15 @@
       "-KmRfByGK2ClkLDP62TQ": {
         "_sort_create_date": 1497277140,
         "_sort_end_time": 1497290400,
-        "_sort_last_updated": 1500404040,
+        "_sort_last_updated": 1504185000,
         "_sort_publish_date": 1497277140,
         "_sort_start_time": 1497283200,
         "create_date": "2017-06-12T10:19:00-04:00",
         "day": "Saturday",
-        "description": "<p>Recent alumni including Chloe Bulpin 15 IL, Emily Poole 16 IL and Insil Choi 14 IL discuss how their passion for art and science propels their work.\n</p>",
+        "description": "<p>Recent alumni Chloe Bulpin 15 IL, Emily Schnall 16 IL, Rae Whiteley 17 IL and Sarah Sun 16 FAV discuss how their passion for art and science propels their work.\n</p>",
         "end_time": "2017-06-12T14:00:00-04:00",
         "isDraft": false,
-        "last_updated": "2017-07-18T14:54:00-04:00",
+        "last_updated": "2017-08-31T09:10:00-04:00",
         "location": "eventslocations -KI-Ky9FMnGPCIsezRtZ",
         "location_details": "Gallery",
         "name": "Young Alumni Panel",
@@ -584,16 +591,16 @@
       },
       "-KmRfPAPI1_4UtEAYmox": {
         "_sort_create_date": 1497277200,
-        "_sort_end_time": 1497294000,
-        "_sort_last_updated": 1497296700,
+        "_sort_end_time": 1497297600,
+        "_sort_last_updated": 1504723920,
         "_sort_publish_date": 1497277200,
         "_sort_start_time": 1497283200,
         "create_date": "2017-06-12T10:20:00-04:00",
         "day": "Saturday",
         "description": "<p>An opportunity for alumni to visit their former departments and for parents to discover the allure of various studio majors. Students will greet you outside and guide you through the studio spaces, answer questions and talk about their departments. More information about specific departmental exhibitions, hands-on demonstrations and lectures will be available at registration.\n</p>",
-        "end_time": "2017-06-12T15:00:00-04:00",
+        "end_time": "2017-06-12T16:00:00-04:00",
         "isDraft": false,
-        "last_updated": "2017-06-12T15:45:00-04:00",
+        "last_updated": "2017-09-06T14:52:00-04:00",
         "location": "eventslocations -KmROkt792XYpRswrDx1",
         "name": "Open Studios",
         "preview_url": "46fdc153-ebd3-9232-06e3-dcfea265613c",
@@ -644,7 +651,7 @@
       "-KmRgMQzjJSzjSQY-gxd": {
         "_sort_create_date": 1497277440,
         "_sort_end_time": 1497295800,
-        "_sort_last_updated": 1497978300,
+        "_sort_last_updated": 1503580260,
         "_sort_publish_date": 1497277440,
         "_sort_start_time": 1497290400,
         "create_date": "2017-06-12T10:24:00-04:00",
@@ -652,8 +659,9 @@
         "description": "<p>The Nature Lab isn’t the only big milestone to celebrate this fall. Reminisce with longtime Literary Arts + Studies Professor Mike Fink, who began teaching at RISD 60 years ago and has great stories to tell of how things have evolved over the decades.\n</p>",
         "end_time": "2017-06-12T15:30:00-04:00",
         "isDraft": false,
-        "last_updated": "2017-06-20T13:05:00-04:00",
+        "last_updated": "2017-08-24T09:11:00-04:00",
         "location": "eventslocations -KTMVYsPIP29_u7Qg10x",
+        "location_details": "Faculty Lounge",
         "name": "Coffee with Mike",
         "preview_url": "b055362a-5576-1433-990b-97095d522b0d",
         "publish_date": "2017-06-12T10:24:00-04:00",
@@ -662,14 +670,14 @@
       },
       "-KmRgceF8rwEr7yrV9YE": {
         "_sort_create_date": 1497277560,
-        "_sort_last_updated": 1501680720,
+        "_sort_last_updated": 1503580320,
         "_sort_publish_date": 1497277560,
         "_sort_start_time": 1497290400,
         "create_date": "2017-06-12T10:26:00-04:00",
         "day": "Saturday",
-        "description": "<p>Spend some quality time with the little ones. RISD alumni <strong>Stephanie Laberis </strong>04 IL (<em>The Little Grumpy Cat That Wouldn't</em>), <strong>Phyllis Limbacher Tildes </strong><strong>67 IL</strong> (<em>Animals in Camouflage, Baby Animals Take a Nap</em>) and <strong>Stephen Shaskan</strong><span> 97 IL (<em>Toad in the Road</em>, <em>Max Speed</em>) </span>read from their recently published children’s books and stick around to sign copies. Books available for purchase on site.\n</p>",
+        "description": "<p>Spend some quality time with the little ones. RISD alumni <strong>Stephanie Laberis </strong>04 IL (<em>The Little Grumpy Cat That Wouldn't</em>), <strong>Phyllis Limbacher Tildes </strong><strong>67 IL</strong> (<em>Animals in Camouflage, Baby Animals Take a Nap</em>), <strong>Jacqueline Rogers 81 IL</strong> (<i>Our Great Big Backyard)</i> and <strong>Stephen Shaskan</strong> 97 IL (<em>Toad in the Road</em>, <em>Max Speed</em>) read from their recently published children’s books and stick around to sign copies. Books available for purchase on site.\n</p>",
         "isDraft": false,
-        "last_updated": "2017-08-02T09:32:00-04:00",
+        "last_updated": "2017-08-24T09:12:00-04:00",
         "location": "eventslocations -KI-Ke5p_oTPvx6MYWWH",
         "location_details": "rain location: College Building lobby off Benefit Street",
         "name": "RISD READS",
@@ -795,21 +803,41 @@
       "-KqYDDx7ysfkqlwm1DhA": {
         "_sort_create_date": 1501681980,
         "_sort_end_time": 1501709400,
-        "_sort_last_updated": 1501681980,
+        "_sort_last_updated": 1502892600,
         "_sort_publish_date": 1501681980,
         "_sort_start_time": 1501700400,
         "create_date": "2017-08-02T09:53:00-04:00",
         "day": "Saturday",
-        "description": "<p>Watch America’s favorite college club basketball team challenge its distinguished alumni players.\n</p>",
+        "description": "<p>Watch America's favorite college club basketball team challenge its distinguished alumni players at the RISD Balls vs. Balls Alumni Game! Tip-off is at <span class=\"aBn\"><span class=\"aQJ\">3:30 pm</span></span>. Balls alumni players can sign up to participate by contacting Vaughan Carman 18 AP at <a href=\"mailto:vcarman@risd.edu\" target=\"_blank\" wotsearchprocessed=\"true\">vcarman@risd.edu</a>.\n</p>",
         "end_time": "2017-08-02T17:30:00-04:00",
-        "last_updated": "2017-08-02T09:53:00-04:00",
-        "location": "eventslocations -KqY9VGdd2zDx1PH-dkL",
+        "isDraft": false,
+        "last_updated": "2017-08-16T10:10:00-04:00",
+        "location": "eventslocations -KSx0aV2fi7h9qS-ArDJ",
         "location_details": "216 Hope Street",
         "name": "RISD Balls vs. Balls Alumni Basketball Game",
         "preview_url": "8350968e-3ff9-8ef6-9f2f-de1cbda63268",
         "publish_date": "2017-08-02T09:53:00-04:00",
         "registration_required": false,
         "start_time": "2017-08-02T15:00:00-04:00"
+      },
+      "-KtRSVo2LditqJabr1FN": {
+        "_sort_create_date": 1504789740,
+        "_sort_end_time": 1504814400,
+        "_sort_last_updated": 1504789740,
+        "_sort_publish_date": 1504789740,
+        "_sort_start_time": 1504807200,
+        "create_date": "2017-09-07T09:09:00-04:00",
+        "day": "Saturday",
+        "description": "<p>          Malcolm Grear led the team that created RISD’s Graphic Design department in 1960 and provided many years of invaluable contributions to graphic design education before retiring in 1998. Whether or not you’re among the hundreds of alumni who benefited from his teaching and curriculum development, we invite you to share your thoughts and memories of Malcolm and visit an exhibition of his work as a designer and educator.\n</p>",
+        "end_time": "2017-09-07T16:00:00-04:00",
+        "last_updated": "2017-09-07T09:09:00-04:00",
+        "location": "eventslocations -KTM4XTXsfGKE08oCbky",
+        "location_details": "Graphic Design Commons, first floor",
+        "name": "A Tribute to Malcolm Grear ",
+        "preview_url": "f1b46ae9-6ed0-f062-bd92-028e6ac5be2c",
+        "publish_date": "2017-09-07T09:09:00-04:00",
+        "registration_required": false,
+        "start_time": "2017-09-07T14:00:00-04:00"
       }
     },
     "events2016": {
@@ -2121,7 +2149,10 @@
         "last_updated": "2017-06-09T15:44:00-04:00",
         "name": "Metcalf Auditorium",
         "preview_url": "94c547b5-543a-f963-4e15-cfb927e3faaf",
-        "publish_date": "2016-05-17T13:58:00-04:00"
+        "publish_date": "2016-05-17T13:58:00-04:00",
+        "sub_events_location": [
+          "subevents -KmWxeUwlODO-_P4rph8"
+        ]
       },
       "-KI-Ke5p_oTPvx6MYWWH": {
         "_sort_create_date": 1463515740,
@@ -2354,7 +2385,10 @@
         "last_updated": "2017-06-09T15:43:00-04:00",
         "name": "Prov-Wash Building",
         "preview_url": "f0ca1428-0ae6-b45d-55d7-a7218c902fb4",
-        "publish_date": "2016-09-14T15:15:00-04:00"
+        "publish_date": "2016-09-14T15:15:00-04:00",
+        "sub_events_location": [
+          "subevents -KrCSNWIGzAYguWhUzZj"
+        ]
       },
       "-KSId7RpI-bgfJHCu1BD": {
         "_sort_create_date": 1474578540,
@@ -2430,6 +2464,9 @@
         "_sort_publish_date": 1475271300,
         "address": "216 Hope St",
         "create_date": "2016-09-30T17:35:00-04:00",
+        "events_location": [
+          "events -KqYDDx7ysfkqlwm1DhA"
+        ],
         "google_map_link": "https://goo.gl/maps/U6R8VE7CP9t",
         "isDraft": false,
         "last_updated": "2017-06-09T15:42:00-04:00",
@@ -2482,6 +2519,9 @@
         "_sort_publish_date": 1475708580,
         "address": "30 North Main Street",
         "create_date": "2016-10-05T19:03:00-04:00",
+        "events_location": [
+          "events -KtRSVo2LditqJabr1FN"
+        ],
         "google_map_link": "https://www.google.com/maps/place/Rhode+Island+School+of+Design+Store/@41.8251252,-71.4083167,17.85z/data=!4m13!1m7!3m6!1s0x89e44517ada44d07:0x85c816ea3a43f073!2s30+N+Main+St,+Providence,+RI+02903!3b1!8m2!3d41.8263327!4d-71.4086006!3m4!1s0x89e44517c1760b29:0xa1fe9916e6c7cbf5!8m2!3d41.8263327!4d-71.4086006",
         "isDraft": false,
         "last_updated": "2017-06-09T15:42:00-04:00",
@@ -2615,30 +2655,26 @@
         "name": "location tbd",
         "sub_events_location": [
           "subevents -KmWyoZDA588pmVhreqV",
-          "subevents -KmWxeUwlODO-_P4rph8",
           "subevents -KmWx6LNQzkwDhv_KvfJ"
         ]
       },
       "-KqY9VGdd2zDx1PH-dkL": {
-        "events_location": [
-          "events -KqYDDx7ysfkqlwm1DhA"
-        ],
         "name": "Wheeler School Gymnasium"
       }
     },
     "files": {
       "-Kpay06Iw39hVxeaNK_9": {
         "_sort_create_date": 1500671100,
-        "_sort_last_updated": 1500911280,
+        "_sort_last_updated": 1504027560,
         "_sort_publish_date": 1500671100,
         "create_date": "2017-07-21T17:05:00-04:00",
         "isDraft": false,
-        "last_updated": "2017-07-24T11:48:00-04:00",
+        "last_updated": "2017-08-29T13:26:00-04:00",
         "name": "Print Schedule",
         "pdf": {
-          "size": 33846,
+          "size": 1310769,
           "type": "application/pdf",
-          "url": "//cdn.risd.systems/webhook-uploads/1500911324788_RISD%20Weekend%20Print%20Schedule%202017-07-24-A%20MM.pdf"
+          "url": "//cdn.risd.systems/webhook-uploads/1504027496977_RISD%20Weekend%20Print%20Schedule%202017-08-29-B%20JS.pdf"
         },
         "preview_url": "0fb89127-ba8b-670e-398c-a61768d41220",
         "publish_date": "2017-07-21T17:05:00-04:00"
@@ -2646,10 +2682,10 @@
     },
     "generalinformation": {
       "_sort_create_date": 1497281640,
-      "_sort_last_updated": 1497300960,
+      "_sort_last_updated": 1503584220,
       "create_date": "2017-06-12T11:34:00-04:00",
       "date": "October 6–8, 2017",
-      "last_updated": "2017-06-12T16:56:00-04:00",
+      "last_updated": "2017-08-24T10:17:00-04:00",
       "location": {
         "city": "Providence",
         "state": "RI",
@@ -2661,7 +2697,7 @@
     "informationsnippets": {
       "-KMuZsrYYtt4km5THm40": {
         "_sort_create_date": 1468787820,
-        "_sort_last_updated": 1497621420,
+        "_sort_last_updated": 1503584460,
         "_sort_publish_date": 1468787820,
         "audiences_information_snippets": [
           "audiences -KNE0g0icH2-Fl8R5stn",
@@ -2671,7 +2707,7 @@
         ],
         "create_date": "2016-07-17T16:37:00-04:00",
         "isDraft": false,
-        "last_updated": "2017-06-16T09:57:00-04:00",
+        "last_updated": "2017-08-24T10:21:00-04:00",
         "main_description": "<p>Questions? Contact the<strong> Office of Alumni Relations</strong> at <a href=\"mailto:mailto:alumni@risd.edu\">alumni@risd.edu</a> or 401-709-8585.\n</p>",
         "name": "Contact",
         "preview_url": "96e6145d-1a2e-060b-1d42-6ad48f18ff09",
@@ -2799,14 +2835,35 @@
         "preview_url": "eb89a1d9-c1b4-20b1-f561-474173f082f3",
         "publish_date": "2016-07-21T16:19:00-04:00",
         "show_in_nav": false
+      },
+      "-KrChONKlqIBDQ40nt10": {
+        "_sort_create_date": 1502394780,
+        "_sort_last_updated": 1502477160,
+        "_sort_publish_date": 1502394780,
+        "audiences_information_snippets": [
+          "audiences -KMtbFuwJ-1IfywTb5_p",
+          "audiences -KMtbMSe_E40bZc0IPjR",
+          "audiences -KMtbJDMygYTtQaCz1Mu",
+          "audiences -KNE0g0icH2-Fl8R5stn"
+        ],
+        "button_link": "http://www.cvent.com/d/05qv7f",
+        "button_text": "Register now",
+        "create_date": "2017-08-10T15:53:00-04:00",
+        "isDraft": false,
+        "last_updated": "2017-08-11T14:46:00-04:00",
+        "main_description": "<p>Your registration fee for RISD Weekend covers entry to all hands-on workshops, keynote lectures and community receptions, plus admission to the RISD Museum. Your payment helps offset some of the costs associated with presenting these events.\n</p>\n<p><strong>RISD Alumni, Parents, Friends/Relatives: </strong>$25\n</p>\n<p><strong>Children (16 and younger): </strong>$10\n</p>\n<p><strong>Young Alumni (Class of 2007+):</strong> 0\n</p>\n<p><strong>RISD Faculty/Staff: </strong>Contact us to register\n</p>\n<p>Additional (optional) lunch and dinner fees are based on registration dates—register early and save with our discounted rates.\n</p>\n<p><strong>Half-Century Celebration: Classes of ’72, ’67 &amp; all earlier years: </strong>$30\n</p>\n<p><strong>Reunion Dinners: Classes of ’67, ’72, ’77, ’82, ’87, ’92, ’97, ’02, ’07</strong><strong><br> <strong></strong></strong>$55 if purchased by Sept. 1<br>      $65 if purchased by Sept. 22<br>      $85 if purchased by Oct. 1<br>      $100 at the door<br> Please note that the dinner fee for children ages 6–12 is $30, under 6 is free; contact Alumni Relations at 401 709-8585 to register children under 12.<i></i>\n</p>\n<p><strong>Eating with the Ecosystem: Lunch at Tillinghast Farm</strong><strong>: </strong>$35\n</p>",
+        "name": "Registration Fees",
+        "preview_url": "3670cacb-8e8b-43c9-4fdb-1824a7618b45",
+        "publish_date": "2017-08-10T15:53:00-04:00",
+        "show_in_nav": true
       }
     },
     "livestream": {
       "_sort_create_date": 1473963540,
-      "_sort_last_updated": 1497033000,
+      "_sort_last_updated": 1504723740,
       "create_date": "2016-09-15T14:19:00-04:00",
-      "embed_code": "<iframe id=\"ls_embed_1497033029\" src=\"https://livestream.com/accounts/2814969/events/6424084/player?width=1920&height=1080&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false\" width=\"1920\" height=\"1080\" frameborder=\"0\" scrolling=\"no\" allowfullscreen> </iframe><script type=\"text/javascript\" data-embed_id=\"ls_embed_1497033029\" src=\"https://livestream.com/assets/plugins/referrer_tracking.js\"></script>",
-      "last_updated": "2017-06-09T14:30:00-04:00",
+      "embed_code": "<iframe id=\"ls_embed_1503429693\" src=\"https://livestream.com/accounts/2814969/events/7669949/player?width=1920&height=1080&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false\" width=\"1920\" height=\"1080\" frameborder=\"0\" scrolling=\"no\" allowfullscreen> </iframe><script type=\"text/javascript\" data-embed_id=\"ls_embed_1503429693\" src=\"https://livestream.com/assets/plugins/referrer_tracking.js\"></script>",
+      "last_updated": "2017-09-06T14:49:00-04:00",
       "name": "Livestream",
       "preview_url": "f8da7b24-e775-3982-54ef-c02937be1228",
       "show_livestream": false,
@@ -2877,7 +2934,7 @@
       "-KmWxeUwlODO-_P4rph8": {
         "_sort_create_date": 1497365880,
         "_sort_end_time": 1497375900,
-        "_sort_last_updated": 1497976440,
+        "_sort_last_updated": 1503580200,
         "_sort_publish_date": 1497365880,
         "_sort_start_time": 1497373200,
         "attendee_limit": "limited space; first come, first served",
@@ -2886,8 +2943,8 @@
         "end_time": "2017-06-13T13:45:00-04:00",
         "events_sub_events": "events -KmRRP55JxIfHKpEmU53",
         "isDraft": false,
-        "last_updated": "2017-06-20T12:34:00-04:00",
-        "location": "eventslocations -Kn5LfuVN8iRJ3xeBlmn",
+        "last_updated": "2017-08-24T09:10:00-04:00",
+        "location": "eventslocations -KHzrWe7_2RFZxYCUmcO",
         "location_details": "",
         "name": "New in Experimental Studies",
         "preview_url": "60a452d9-3ff4-457e-9d73-9f6a8927b199",
@@ -3031,6 +3088,25 @@
         "preview_url": "ac4f704b-4dc2-9ef3-fe81-95498bfa2029",
         "publish_date": "2017-06-13T11:07:00-04:00",
         "start_time": "2017-06-13T14:00:00-04:00"
+      },
+      "-KrCSNWIGzAYguWhUzZj": {
+        "_sort_create_date": 1502390580,
+        "_sort_end_time": 1502388000,
+        "_sort_last_updated": 1502390580,
+        "_sort_publish_date": 1502390580,
+        "_sort_start_time": 1502384400,
+        "attendee_limit": "",
+        "create_date": "2017-08-10T14:43:00-04:00",
+        "description": "<p>In this interactive session with <strong>Lane Myer</strong>, a senior critic in the Sculpture department, participants will gain a deeper understanding of the agility of the mind and how it can both help and hinder creativity and understanding.\n</p>",
+        "end_time": "2017-08-10T14:00:00-04:00",
+        "events_sub_events": "events -KmRRP55JxIfHKpEmU53",
+        "last_updated": "2017-08-10T14:43:00-04:00",
+        "location": "eventslocations -KRe703Hqy8RggtmSiTj",
+        "location_details": "Room 302",
+        "name": "Mind Games with Lane Meyer",
+        "preview_url": "007f1c29-0ecc-a194-09c8-0afa031a40bf",
+        "publish_date": "2017-08-10T14:43:00-04:00",
+        "start_time": "2017-08-10T13:00:00-04:00"
       }
     },
     "transitionpage": {

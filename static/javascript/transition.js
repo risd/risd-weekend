@@ -9817,7 +9817,7 @@ return jQuery;
 },{}],2:[function(require,module,exports){
 module.exports = function( $ ){
 
-  console.log('PosterMomentLayout initialized.');
+  // console.log('PosterMomentLayout initialized.');
 
   var containerWidth;
   var $item;

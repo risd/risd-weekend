@@ -1,6 +1,6 @@
 module.exports = function( $ ){
 
-  console.log('PosterMomentLayout initialized.');
+  // console.log('PosterMomentLayout initialized.');
 
   var containerWidth;
   var $item;
