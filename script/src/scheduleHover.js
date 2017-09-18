@@ -8,7 +8,7 @@ function ScheduleHover() {
         return new ScheduleHover();
     }
 
-    console.log('ScheduleHover initialized.');
+    // console.log('ScheduleHover initialized.');
 
     scheduleHover();
 

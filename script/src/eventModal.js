@@ -7,7 +7,7 @@ function EventModal(opts) {
     return new EventModal(opts);
   }
 
-  console.log('EventModal initialized.');
+  // console.log('EventModal initialized.');
 
   var $events = $('.calendar-box__item').has('.calendar-box__item-toggle');
   var $featuredEvents = $('.featured-events__item');

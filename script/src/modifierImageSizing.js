@@ -1,6 +1,6 @@
 module.exports = function( $ ){
 
-  console.log('ModifierImageSizing initialized.');
+  // console.log('ModifierImageSizing initialized.');
 
   var modifierImageContainer;
   var modifierImage

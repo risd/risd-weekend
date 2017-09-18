@@ -6,7 +6,7 @@ function ScrollAnchorTest() {
   if (!(this instanceof ScrollAnchorTest)) {
     return new ScrollAnchorTest();
   }
-  console.log('ScrollAnchorTest initialized.');
+  // console.log('ScrollAnchorTest initialized.');
 
 
   var sectionStart;

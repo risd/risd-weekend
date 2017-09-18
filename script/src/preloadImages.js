@@ -1,6 +1,6 @@
 module.exports = function( $ ){
 
-  console.log('PreLoadImages initialized.');
+  // console.log('PreLoadImages initialized.');
 
   var modifiers = JSON.parse($("#modifiers-json").html());
   var modifierImageUrls = [];

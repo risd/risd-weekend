@@ -9824,7 +9824,7 @@ function activeNav() {
   if (!(this instanceof activeNav)) {
     return new activeNav();
   }
-  console.log('activeNav initialized.');
+  // console.log('activeNav initialized.');
 
   var navHash;
   var currentHash;
@@ -9866,6 +9866,42 @@ function activeNav() {
 (function (global){
 var $ = global.jQuery;
 
+module.exports = ConsoleInformation;
+
+function ConsoleInformation(opts) {
+  if (!(this instanceof ConsoleInformation)) {
+    return new ConsoleInformation(opts);
+  }
+
+  var fontFamily = 'font-family: Gotham, "Gotham SSm A", "Gotham SSm B", "Helvetica Neue", "Helvetica", "Arial", sans-serif';
+
+  console.log('%c                               ', 'font-size: 3rem; border-top: 2px solid black;');
+  console.log('%cWe are now hiring a front-end developer', 'font-weight:bold; color: rgb(0, 0, 0); font-size: 2rem; ' + fontFamily);
+  console.log('%chttps://careers.risd.edu/postings/1562',  'color: rgb(0, 0, 0); font-size: 2rem; border-bottom: 2px solid rgb(63, 241, 221); text-decoration: none; ' + fontFamily);
+  console.log('%c                               ', 'color: rgb(0, 0, 0); font-size: 3rem;');
+
+  console.log('%c                               ', 'font-size: 3rem; border-top: 2px solid black;');
+  console.log('%cRhode Island School of Design', 'font-size: 3rem; font-weight: bold; color: rgb(63, 241, 221); ' + fontFamily);
+  console.log('');
+  console.log('%cwww.risd.edu', 'color: rgb(0, 0, 0); font-size: 2rem; border-bottom: 2px solid rgb(63, 241, 221); text-decoration: none; ' + fontFamily);
+  console.log('');
+
+  console.log('%cTwo College Street', 'color: rgb(0, 0, 0); font-size: 2rem; ' + fontFamily);
+  console.log('%cProvidence, RI 02903-2784', 'color: rgb(0, 0, 0); font-size: 2rem; ' + fontFamily);
+  console.log('%cUSA', 'color: rgb(0, 0, 0); font-size: 2rem; ' + fontFamily);
+  console.log('');
+
+  console.log('%c401 454-6100', 'color: rgb(0, 0, 0); font-size: 2rem; ' + fontFamily);
+  console.log('%c1 800 364-RISD', 'color: rgb(0, 0, 0); font-size: 2rem; ' + fontFamily);
+  console.log('%c                               ', 'color: rgb(0, 0, 0); font-size: 3rem; border-bottom: 2px solid black;');
+
+}
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],4:[function(require,module,exports){
+(function (global){
+var $ = global.jQuery;
+
 module.exports = EventModal;
 
 function EventModal(opts) {
@@ -9873,7 +9909,7 @@ function EventModal(opts) {
     return new EventModal(opts);
   }
 
-  console.log('EventModal initialized.');
+  // console.log('EventModal initialized.');
 
   var $events = $('.calendar-box__item').has('.calendar-box__item-toggle');
   var $featuredEvents = $('.featured-events__item');
@@ -9966,10 +10002,11 @@ function EventModal(opts) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 (function (global){
 global.jQuery = global.$ = require('jquery');
 
+var consoleInformation = require('./consoleInformation.js')();
 var mobileMenuToggle = require('./mobileMenuToggle.js')();
 var scrollAnchor = require('./scrollAnchor.js')();
 var activeNav = require('./activeNav.js')();
@@ -10025,7 +10062,7 @@ $(window).resize(function() {
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierImageSizing.js":7,"./modifierToggle.js":8,"./posterMomentLayout.js":9,"./preloadImages.js":10,"./scheduleHover.js":11,"./scheduleToggle.js":12,"./scrollAnchor.js":13,"jquery":1}],5:[function(require,module,exports){
+},{"./activeNav.js":2,"./consoleInformation.js":3,"./eventModal.js":4,"./livestream.js":6,"./mobileMenuToggle.js":7,"./modifierImageSizing.js":8,"./modifierToggle.js":9,"./posterMomentLayout.js":10,"./preloadImages.js":11,"./scheduleHover.js":12,"./scheduleToggle.js":13,"./scrollAnchor.js":14,"jquery":1}],6:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
@@ -10036,7 +10073,7 @@ function Livestream(opts) {
     return new Livestream(opts);
   }
 
-  console.log('Livestream initialized.');
+  // console.log('Livestream initialized.');
 
   var windowHeight;
   var navHeight = $('.nav').outerHeight();
@@ -10059,7 +10096,7 @@ function Livestream(opts) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10071,25 +10108,25 @@ function MobileMenuToggle() {
         return new MobileMenuToggle();
     }
 
-    console.log('MobileMenuToggle initialized.');
+    // console.log('MobileMenuToggle initialized.');
 
     var modernizrState = Modernizr.mq('(min-width: 1024px)');
-    console.log("modernizr = " + modernizrState);
+    // console.log("modernizr = " + modernizrState);
 
     $(window).resize(function() {
       modernizrState = Modernizr.mq('(min-width: 1024px)');
-      console.log("modernizr = " + modernizrState);
+      // console.log("modernizr = " + modernizrState);
     });
 
     navToggle();
     resizeCheck();
 
     function navToggle() {
-    console.log("nav toggled");
+    // console.log("nav toggled");
     // Clicking on the Menu button:
     $('.nav__item--activator').click(function(){
       if (modernizrState === false) {
-        console.log("activator clicked");
+        // console.log("activator clicked");
         // shows page nav items, the x
         $('.nav__item--pages, .nav__item--deactivator').addClass('nav__item--show').removeClass('nav__item--hide');
         // hides itself
@@ -10103,7 +10140,7 @@ function MobileMenuToggle() {
     // Clicking on the x button:
     $('.nav__item--deactivator').click(function(){
       if (modernizrState === false) {
-        console.log("deactivator clicked");
+        // console.log("deactivator clicked");
         // hides page nav items, the x
         $('.nav__item--pages, .nav__item--deactivator').addClass('nav__item--hide').removeClass('nav__item--show');
         // shows the menu button
@@ -10116,7 +10153,7 @@ function MobileMenuToggle() {
     });
     $('.nav__item').not('.nav__item--activator').click(function() {
       if (modernizrState === false) {
-        console.log("nav item (not activator) clicked");
+        // console.log("nav item (not activator) clicked");
         // removes 100% height on the nav
         $('.nav').removeClass('nav--toggled');
         // hides page nav items, the x
@@ -10146,10 +10183,10 @@ function MobileMenuToggle() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 module.exports = function( $ ){
 
-  console.log('ModifierImageSizing initialized.');
+  // console.log('ModifierImageSizing initialized.');
 
   var modifierImageContainer;
   var modifierImage
@@ -10186,10 +10223,10 @@ module.exports = function( $ ){
 
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = function( $ ){
 
-  console.log('ModifierToggle initialized.');
+  // console.log('ModifierToggle initialized.');
 
   var modifierContainer = $('.poster-moment__container');
   var modifiers = JSON.parse($("#modifiers-json").html());
@@ -10235,10 +10272,10 @@ module.exports = function( $ ){
 
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = function( $ ){
 
-  console.log('PosterMomentLayout initialized.');
+  // console.log('PosterMomentLayout initialized.');
 
   var containerWidth;
   var $item;
@@ -10272,10 +10309,10 @@ module.exports = function( $ ){
 
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = function( $ ){
 
-  console.log('PreLoadImages initialized.');
+  // console.log('PreLoadImages initialized.');
 
   var modifiers = JSON.parse($("#modifiers-json").html());
   var modifierImageUrls = [];
@@ -10303,7 +10340,7 @@ module.exports = function( $ ){
 
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10315,7 +10352,7 @@ function ScheduleHover() {
         return new ScheduleHover();
     }
 
-    console.log('ScheduleHover initialized.');
+    // console.log('ScheduleHover initialized.');
 
     scheduleHover();
 
@@ -10334,7 +10371,7 @@ function ScheduleHover() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10346,7 +10383,7 @@ function ScheduleToggle() {
       return new ScheduleToggle();
   }
 
-  console.log('ScheduleToggle initialized.');
+  // console.log('ScheduleToggle initialized.');
 
   var selectedFilter;
   var currentFilter;
@@ -10393,7 +10430,7 @@ function ScheduleToggle() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
@@ -10403,7 +10440,7 @@ function ScrollAnchorTest() {
   if (!(this instanceof ScrollAnchorTest)) {
     return new ScrollAnchorTest();
   }
-  console.log('ScrollAnchorTest initialized.');
+  // console.log('ScrollAnchorTest initialized.');
 
 
   var sectionStart;
@@ -10458,4 +10495,4 @@ function ScrollAnchorTest() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[4]);
+},{}]},{},[5]);
