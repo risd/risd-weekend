@@ -357,17 +357,19 @@
               {% endif %}
 
 
-              {% if subevent.location %}
-                {% spaceless %}
-                  <p class="modal__subevent-info">{{ subevent.location.name }}
-                    {% if subevent.location_details %}
-                      ,&#8200;{{ subevent.location_details }}
-                    {% endif %}
-                    {% if subevent.location.address %}
-                      ,&#8200;{{ subevent.location.address }}
-                    {% endif %}
+              {% if subevent.locations %}
+                {% for location in subevent.locations %}
+                  {% spaceless %}
+                  <p class="modal__subevent-info">{{ location.location.name }}
+                  {% if location.location_details %}
+                    ,&#8200;{{ location.location_details }}
+                  {% endif %}
+                  {% if location.location.address %}
+                    ,&#8200;{{ location.location.address }}
+                  {% endif %}
                   </p>
-                {% endspaceless %}
+                  {% endspaceless %}
+                {% endfor %}
               {% endif %}
 
               {% if subevent.attendee_limit %}

@@ -1337,6 +1337,10 @@ iframe {
   background-color: #3ff1dd;
   color: white;
 }
+.layout__campaign-color .poster-moment__button-text {
+  background-color: black;
+  color: white;
+}
 
 .layout__white .poster-moment {
   background-color: black;
