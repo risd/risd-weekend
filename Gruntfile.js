@@ -63,7 +63,7 @@ module.exports = function(grunt) {
     // Add CSS prefixes once the Sass is compiled
     autoprefixer: {
       options: {
-        browsers: ['last 2 versions', 'ie 9'],
+        browsers: ['last 2 versions', 'ie 9', 'iOS 7'],
         map: true
       },
       dist: {
