@@ -39,29 +39,17 @@
 
 .layout__campaign-color {
   .video-module__title-container {
-    background-color: $white;
+    background-color: $black;
   }
   .video-module__title {
-    color: $black;
+    color: $white;
   }
   .video-module__subtitle {
-    color: $black;
+    color: $white;
   }
 }
 
 .layout__white {
-  .video-module__title-container {
-    background-color: $white;
-  }
-  .video-module__title {
-    color: $campaign-color;
-  }
-  .video-module__subtitle {
-    color: $campaign-color;
-  }
-}
-
-.layout__black {
   .video-module__title-container {
     background-color: $campaign-color;
   }
@@ -70,5 +58,17 @@
   }
   .video-module__subtitle {
     color: $black;
+  }
+}
+
+.layout__black {
+  .video-module__title-container {
+    background-color: $white;
+  }
+  .video-module__title {
+    color: $campaign-color;
+  }
+  .video-module__subtitle {
+    color: $campaign-color;
   }
 }

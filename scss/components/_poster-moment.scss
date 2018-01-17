@@ -14,7 +14,7 @@
 
 .poster-moment__container {
   display: flex;
-  height: 100vh;
+  height: 90vh;
   margin-top: 3rem;
   justify-content: center;
   cursor: e-resize;
@@ -59,6 +59,7 @@
   font-size: 13vmin;
   left: 0;
   @include transition(all 0.5s ease);
+  color: $campaign-color;
 }
 
 @keyframes fadeIn {
@@ -85,6 +86,7 @@
   &.wiggle {
     animation: wiggle 0.8s ease both;
   }
+
 }
 
 @keyframes wiggle {
@@ -297,6 +299,10 @@
       color: $white;
     }
   }
+  .poster-moment__button-text {
+    background-color: $black;
+    color: $white;
+  }
 }
 
 .layout__white {
@@ -349,24 +355,40 @@
 
 .layout__transition {
   .poster-moment--transition {
-    background-color: $black;
+    background-color: $campaign-color;
   }
   .poster-moment__item {
-    color: $white;
+    color: $black;
   }
   .poster-moment__modifier {
-    color: $campaign-color;
+    color: $white;
+
+    @supports (-webkit-text-stroke-color: $black) {
+      -moz-text-fill-color: $campaign-color;
+      -webkit-text-fill-color: $campaign-color;
+      text-fill-color: $campaign-color;
+      -moz-text-stroke-color: $black;
+      -webkit-text-stroke-color: $black;
+      text-stroke-color: $black;
+      -moz-text-stroke-width: 0.015em;
+      -webkit-text-stroke-width: 0.015em;
+      text-stroke-width: 0.015em;
+    }
+
+    @supports not (-webkit-text-stroke-color: $black) {
+      color: $white;
+    }
   }
   .poster-moment__button-link {
     background-color: $white;
-    color: $black;
+    color: $campaign-color;
     &:hover {
-      background-color: $campaign-color;
-      color: $black;
+      background-color: $black;
+      color: $campaign-color;
     }
   }
   .poster-moment__button-text {
-    background-color: $white;
-    color: $black;
+    background-color: $black;
+    color: $campaign-color;
   }
 }

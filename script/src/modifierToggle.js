@@ -1,6 +1,6 @@
 module.exports = function( $ ){
 
-  console.log('ModifierToggle initialized.');
+  // console.log('ModifierToggle initialized.');
 
   var modifierContainer = $('.poster-moment__container');
   var modifiers = JSON.parse($("#modifiers-json").html());

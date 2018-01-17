@@ -8,25 +8,25 @@ function MobileMenuToggle() {
         return new MobileMenuToggle();
     }
 
-    console.log('MobileMenuToggle initialized.');
+    // console.log('MobileMenuToggle initialized.');
 
-    var modernizrState = Modernizr.mq('(min-width: 768px)');
-    console.log("modernizr = " + modernizrState);
+    var modernizrState = Modernizr.mq('(min-width: 1024px)');
+    // console.log("modernizr = " + modernizrState);
 
     $(window).resize(function() {
-      modernizrState = Modernizr.mq('(min-width: 768px)');
-      console.log("modernizr = " + modernizrState);
+      modernizrState = Modernizr.mq('(min-width: 1024px)');
+      // console.log("modernizr = " + modernizrState);
     });
 
     navToggle();
     resizeCheck();
 
     function navToggle() {
-    console.log("nav toggled");
+    // console.log("nav toggled");
     // Clicking on the Menu button:
     $('.nav__item--activator').click(function(){
       if (modernizrState === false) {
-        console.log("activator clicked");
+        // console.log("activator clicked");
         // shows page nav items, the x
         $('.nav__item--pages, .nav__item--deactivator').addClass('nav__item--show').removeClass('nav__item--hide');
         // hides itself
@@ -40,7 +40,7 @@ function MobileMenuToggle() {
     // Clicking on the x button:
     $('.nav__item--deactivator').click(function(){
       if (modernizrState === false) {
-        console.log("deactivator clicked");
+        // console.log("deactivator clicked");
         // hides page nav items, the x
         $('.nav__item--pages, .nav__item--deactivator').addClass('nav__item--hide').removeClass('nav__item--show');
         // shows the menu button
@@ -53,7 +53,7 @@ function MobileMenuToggle() {
     });
     $('.nav__item').not('.nav__item--activator').click(function() {
       if (modernizrState === false) {
-        console.log("nav item (not activator) clicked");
+        // console.log("nav item (not activator) clicked");
         // removes 100% height on the nav
         $('.nav').removeClass('nav--toggled');
         // hides page nav items, the x
@@ -70,7 +70,7 @@ function MobileMenuToggle() {
         $(window).resize(function() {
             $('.nav').removeClass('nav--toggled');
             $('body').removeClass('body--no-scroll');
-            if (Modernizr.mq('(min-width: 768px)')) {
+            if (Modernizr.mq('(min-width: 1024px)')) {
                 $('.nav__item--activator, .nav__item--deactivator').addClass('nav__item--hide').removeClass('nav__item--show');
                 $('.nav__item--pages').addClass('nav__item--show').removeClass('nav__item--hide');
             } else {

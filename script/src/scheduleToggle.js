@@ -8,7 +8,7 @@ function ScheduleToggle() {
       return new ScheduleToggle();
   }
 
-  console.log('ScheduleToggle initialized.');
+  // console.log('ScheduleToggle initialized.');
 
   var selectedFilter;
   var currentFilter;
