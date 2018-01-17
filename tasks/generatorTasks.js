@@ -92,23 +92,59 @@ module.exports = function(grunt) {
   // Build individual page
   grunt.registerTask('build-page', 'Build a single template file.', function (){
     var done = this.async();
+
+    var production = grunt.option('production');
+
+    if(production === true) {
+      generator.enableProduction();
+    }
+    
     var options = {
       inFile:  grunt.option('inFile'),
       outFile: grunt.option('outFile') || undefined,
       data: grunt.option('data') || undefined,
+      settings: grunt.option('settings') || undefined,
       emitter: grunt.option('emitter') || undefined,
     }
 
     generator.renderPage(options, done);
   });
 
+  grunt.registerTask('build-page-cms', 'Build just the CMS page.', function () {
+    var done = this.async();
+
+    var production = grunt.option('production');
+
+    if(production === true) {
+      generator.enableProduction();
+    }
+
+    var options = {
+      inFile:  'pages/cms.html',
+      outFile: '.build/cms/index.html',
+      data: grunt.option('data') || undefined,
+      settings: grunt.option('settings') || undefined,
+      emitter: grunt.option('emitter') || undefined,
+    }
+
+    generator.renderPage(options, done);
+  })
+
   // Build individual template
   grunt.registerTask('build-template', 'Build a single template file.', function () {
     var done = this.async();
+
+    var production = grunt.option('production');
+
+    if(production === true) {
+      generator.enableProduction();
+    }
+
     var options = {
       file: grunt.option('inFile'),
       emitter: grunt.option('emitter') || false,
       data: grunt.option('data') || undefined,
+      settings: grunt.option('settings') || undefined,
       itemKey: grunt.option('itemKey') || undefined,
     }
 
@@ -128,6 +164,7 @@ module.exports = function(grunt) {
       concurrency: concurrencyOption( grunt.option('concurrency') ),
       emitter: grunt.option('emitter') || false,
       data: grunt.option('data') || undefined,
+      settings: grunt.option('settings') || undefined,
       pages: grunt.option('pages') || undefined,
     };
 
@@ -147,6 +184,7 @@ module.exports = function(grunt) {
       concurrency: concurrencyOption( grunt.option('concurrency') ),
       emitter: grunt.option('emitter') || false,
       data: grunt.option('data') || undefined,
+      settings: grunt.option('settings') || undefined,
       templates: grunt.option('templates') || undefined,
     };
 
@@ -198,6 +236,7 @@ module.exports = function(grunt) {
       emitter: grunt.option('emitter') || false,
       data: grunt.option('data') || undefined,
       pages: grunt.option('pages') || undefined,
+      settings: grunt.option('settings') || undefined,
       templates: grunt.option('templates') || undefined,
     };
 
@@ -250,7 +289,11 @@ module.exports = function(grunt) {
   grunt.registerTask('default',  'Clean, Build, Start Local Server, and Watch', function() {
     grunt.task.run('configureProxies:wh-server')
     grunt.task.run('connect:wh-server');
-    grunt.task.run('build');
+    if ( grunt.option( 'skipBuild' ) ) {
+      grunt.task.run('build-page-cms')
+    } else {
+      grunt.task.run('build');  
+    }
     grunt.task.run('concurrent:wh-concurrent');
   });
 

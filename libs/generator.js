@@ -25,10 +25,8 @@ var exec = require('child_process').exec;
 require('colors');
 
 // Template requires
-// TODO: Abstract these later to make it simpler to change
 var swig = require('swig');
 swig.setDefaults({ loader: swig.loaders.fs(__dirname + '/..') });
-
 var swigFunctions = require('./swig_functions').swigFunctions();
 var swigFilters = require('./swig_filters');
 var swigTags = require('./swig_tags');
@@ -77,7 +75,7 @@ Function = wrap;
 
 var cmsSocketPort = 6557;
 var BUILD_DIRECTORY = '.build';
-var DATA_CACHE_PATH = [ BUILD_DIRECTORY, 'data.json' ].join('/');
+var DATA_CACHE_PATH = path.join( BUILD_DIRECTORY, 'data.json' )
 
 /**
  * Generator that handles various commands
@@ -99,6 +97,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
 
   this.versionString = null;
   this.cachedData = null;
+  this._settings = {};
 
   if(liveReloadPort === true)
   {
@@ -114,6 +113,23 @@ module.exports.generator = function (config, options, logger, fileParser) {
   } else {
     this.root = null;
   }
+
+  var userSwigConfig = config.get('swig');
+  if ( userSwigConfig ) {
+    // functions
+    if ( userSwigConfig.functions ) {
+      swigFunctions.userFunctions( userSwigConfig.functions )
+    }
+    // filters
+    if ( userSwigConfig.filters ) {
+      swigFilters.userFilters( userSwigConfig.filters )
+    }
+    // tags
+    if ( userSwigConfig.tags ) {
+      swigTags.userTags( userSwigConfig.tags )
+    }
+  }
+  
 
   /**
    * Used to get the bucket were using (combinaton of config and environment)
@@ -144,6 +160,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
 
     if(self.cachedData)
     {
+      Object.assign(self.cachedData.settings.general, self._settings)
       if (self.cachedData.hasOwnProperty('contentType'))
         self.cachedData.typeInfo = self.cachedData.contentType
       swigFunctions.setData(self.cachedData.data);
@@ -152,6 +169,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
       swigFilters.setSiteDns(self.cachedData.siteDns);
       swigFilters.setFirebaseConf(config.get('webhook'));
       swigFilters.setTypeInfo(self.cachedData.typeInfo);
+      if (self._settings.site_url) swigFilters.setSiteDns(self._settings.site_url);
 
       callback(self.cachedData.data, self.cachedData.typeInfo);
       return;
@@ -179,6 +197,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
       } else {
         settings = data.settings;
       }
+      Object.assign(settings.general, self._settings)
 
       // Get the data portion of bucket, other things are not needed for templates
       if(!data || !data.data) {
@@ -203,6 +222,10 @@ module.exports.generator = function (config, options, logger, fileParser) {
         var siteDns = snap.val() || config.get('webhook').siteName + '.webhook.org';
         self.cachedData.siteDns = siteDns;
         swigFilters.setSiteDns(siteDns);
+        if (self._settings.site_url) {
+          self.cachedData.siteDns = self._settings.site_url;
+          swigFilters.setSiteDns(self._settings.site_url);
+        }
         swigFilters.setFirebaseConf(config.get('webhook'));
 
         callback(data, typeInfo);
@@ -335,7 +358,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
   };
 
   function defaultBuildOrder ( callback ) {
-    var includeExtensions = filterExtensions([ '.html', '.xml', '.swig' ])
+    var excludeExtensions = filterExtensions([ '' ])
 
     var opts = { files: [] };
     
@@ -356,7 +379,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
           if ( Array.isArray( templateFiles ) ) {
             var includeTemplateFiles = templateFiles
               .filter(removePartials)
-              .filter(includeExtensions)
+              .filter(excludeExtensions)
               .sort()
               .map(prefixFile('templates'))
 
@@ -374,7 +397,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
 
           if ( Array.isArray( pageFiles ) ) {
             var includePageFiles = pageFiles
-              .filter(includeExtensions)
+              .filter(excludeExtensions)
               .sort()
               .map(prefixFile('pages'))
 
@@ -397,7 +420,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
     }
     function filterExtensions ( extensions ) {
       return function filterer ( file ) {
-        return extensions.filter( function ( extension ) { return file.endsWith( extension ) } ).length === 1;
+        return extensions.filter( function ( extension ) { return path.extname( file ) === extension } ).length === 0;
       }
     }
     function prefixFile ( prefix ) {
@@ -502,6 +525,13 @@ module.exports.generator = function (config, options, logger, fileParser) {
     if ( options.emitter ) console.log( 'build:document-written:' + options.file )
   }
 
+  var doNoPublishPageTemplate = swig.renderFile( './libs/do-not-publish-page.html' ).trim()
+  var doNotPublishPage = function ( template ) {
+    return ( template.indexOf( doNoPublishPageTemplate ) !== -1 )
+      ? true
+      : false;
+  }
+
   /**
    * Writes an instance of a template to the build directory
    * 
@@ -551,6 +581,8 @@ module.exports.generator = function (config, options, logger, fileParser) {
         }
       }
     }
+
+    if ( doNotPublishPage( output ) ) return;
 
     mkdirp.sync(path.dirname(outFile));
     // fs.writeFileSync(outFile, output);
@@ -939,7 +971,8 @@ module.exports.generator = function (config, options, logger, fileParser) {
    * Render a single template file.
    * @param  {object}   opts
    * @param  {string}   opts.file      The template file to build
-   * @param  {string}   opts.data?     Data object to use. If not supplied, `getData` is run.
+   * @param  {string|object}  opts.data?      The data to use
+   * @param  {string|object}  opts.settings?  The settings to use
    * @param  {boolean}  opts.emitter?  Boolean to determine if the build process should emit events of progress to process.stdin
    *                                   If true, other processes can operate on the partially built site.
    * @param  {Function} done           callback
@@ -950,6 +983,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
       ? opts.file
       : path.join( 'templates', opts.file );
 
+    setSettingsFrom( opts.settings )
     setDataFrom( opts.data )
     getData( function ( data, typeInfo ) {
       if ( opts.emitter ) console.log( 'build-template:start:' + opts.file )
@@ -975,7 +1009,11 @@ module.exports.generator = function (config, options, logger, fileParser) {
 
         items = _.map(items, function(value, key) { value._id = key; value._type = objectName; return value });
 
-        if ( opts.itemKey ) items = items.filter( function ( item ) { return item._id === opts.itemKey } )
+        var build_preview = false;
+        if ( opts.itemKey ) {
+          build_preview = true;
+          items = items.filter( function ( item ) { return item._id === opts.itemKey } )
+        }
 
         var publishedItems = _.filter(items, function(item) {
           if(!item.publish_date) {
@@ -1083,6 +1121,9 @@ module.exports.generator = function (config, options, logger, fileParser) {
             }
           }
 
+          // early return if we are not building preview pages
+          if ( build_preview === false ) return;
+
           for(var key in items)
           {
             var val = items[key];
@@ -1100,6 +1141,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
               writeTemplate(file, newPath, { item: val, emitter: opts.emitter });
             }
           }
+
         } else if(filePath.indexOf('templates/' + objectName + '/layouts') !== 0) { // Handle sub pages in here
           baseNewPath = newPath;
 
@@ -1154,7 +1196,8 @@ module.exports.generator = function (config, options, logger, fileParser) {
    * Renders all templates in the /templates directory to the build directory
    * @param  {object}     opts?
    * @param  {number}     opts?.concurrency?  Number of CPUs to use when building templats.
-   * @param  {string}     opts?.data?         The data object to use 
+   * @param  {string|object}  opts.data?      The data to use
+   * @param  {string|object}  opts.settings?  The settings to use
    * @param  {string}     opts?.templates?    The template filtering string to pass into renderTemplates
    * @param  {boolean}    opts?.emitter?      Boolean to determine if the build process should emit events of progress to process.stdin
    *                                          If true, other processes can operate on the partially built site.
@@ -1172,6 +1215,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
 
     var concurrency = opts.concurrency || 1;
 
+    if ( opts.settings ) setSettingsFrom( opts.settings )
     if ( opts.data ) setDataFrom( opts.data )
 
     getData(function(data, typeInfo) {
@@ -1441,12 +1485,22 @@ module.exports.generator = function (config, options, logger, fileParser) {
     else return false;
   }
 
+  function setSettingsFrom ( optionalSettings ) {
+    var settings = readData( optionalSettings )
+    if ( ( typeof settings == 'object' ) ) {
+      self._settings = settings;
+      return true;
+    }
+    else return false;
+  }
+
   /**
    * Render a single page
    * @param  {object}   opts
    * @param  {string}   opts.inFile
    * @param  {string}   opts.outFile?
-   * @param  {object}   opts.data?
+   * @param  {string|object}  opts.data?
+   * @param  {string|object}  opts.settings?
    * @param  {boolean}  opts.emitter?
    * @param  {Function} done    callback when done
    */
@@ -1458,10 +1512,22 @@ module.exports.generator = function (config, options, logger, fileParser) {
     if ( ! opts.outFile ) opts.outFile = opts.inFile.replace('pages/', './.build/')
 
     if ( opts.data ) setDataFrom( opts.data )
+    if ( opts.settings ) setSettingsFrom( opts.settings )
 
     getData(function ( data ) {
       if ( opts.emitter ) console.log( 'build-page:start:' + opts.inFile )
-      writeTemplate( opts.inFile, opts.outFile, { emitter: opts.emitter } );
+      var extension = path.extname( opts.inFile );
+      if( extension === '.html' || extension === '.xml' || extension === '.rss' || extension === '.xhtml' || extension === '.atom' || extension === '.txt' ) {
+        writeTemplate( opts.inFile, opts.outFile, { emitter: opts.emitter } );  
+      } else {
+        mkdirp.sync( path.dirname( opts.outFile ) );
+        writeDocument( {
+          file: opts.outFile,
+          content: fs.readFileSync( opts.inFile ),
+          emitter: opts.emitter,
+        } );
+      }
+      
       if ( opts.emitter ) console.log( 'build-page:end:' + opts.inFile )
       done();
     })
@@ -1486,7 +1552,8 @@ module.exports.generator = function (config, options, logger, fileParser) {
    * Builds templates from both /pages and /templates to the build directory
    * @param  {object}     opts
    * @param  {number}     opts.concurrency  Number of CPUs to use for build tasks
-   * @param  {object}     opts.data?        Webhook CMS data for the site
+   * @param  {string|object}  opts.data?
+   * @param  {string|object}  opts.settings?
    * @param  {string}     opts.templates?   The template filtering string to pass into renderTemplates
    * @param  {string}     opts.pages?       The page filtering string to pass into renderTemplates
    * @param  {boolean}    opts.emitter?     Boolean to determine if the build process should emit events of progress to process.stdin
@@ -1500,6 +1567,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
     self.cleanFiles(null, function() {
       self.openSearchEntryStream(function() {
         setDataFrom( opts.data )
+        setSettingsFrom( opts.settings )
         getData(function ( data ) {
 
           if ( buildInParallel( opts.concurrency ) )
