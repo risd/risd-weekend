@@ -361,6 +361,7 @@
     color: $black;
   }
   .poster-moment__modifier {
+    color: $white;
 
     @supports (-webkit-text-stroke-color: $black) {
       -moz-text-fill-color: $campaign-color;

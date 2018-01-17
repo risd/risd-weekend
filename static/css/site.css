@@ -1393,6 +1393,9 @@ iframe {
 .layout__transition .poster-moment__item {
   color: black;
 }
+.layout__transition .poster-moment__modifier {
+  color: white;
+}
 @supports (-webkit-text-stroke-color: black) {
   .layout__transition .poster-moment__modifier {
     -moz-text-fill-color: #ffba1f;
