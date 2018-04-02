@@ -51,6 +51,12 @@ module.exports = function(grunt) {
         }, {
           expand: 'true',
           cwd: 'scss',
+          src: ['print.scss'],
+          dest: 'static/css',
+          ext: '.css'
+        }, {
+          expand: 'true',
+          cwd: 'scss',
           src: ['components/cms-custom.scss'],
           dest: 'static/css',
           ext: '.css',
@@ -67,8 +73,7 @@ module.exports = function(grunt) {
         map: true
       },
       dist: {
-        src: 'static/css/site.css',
-        dest: 'static/css/site.css'
+        src: 'static/css/*.css'
       }
     },
 
@@ -133,7 +138,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-browserify');
 
