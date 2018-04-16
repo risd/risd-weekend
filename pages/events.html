@@ -67,7 +67,7 @@
                           <h4 class="calendar-box__title">
                             {{ event.name }}
                             {% if event.subtitle %}
-                              <span class="calendar-box__subtitle">{{ event.subtitle }}</span>
+                              <br><span class="calendar-box__subtitle">{{ event.subtitle }}</span>
                             {% endif %}
                           </h4>
 
@@ -103,7 +103,7 @@
                                 <strong>{{ subevent.name }}</strong>
                                 {% for location in subevent.locations %}
                                   {% spaceless %}
-                                    &#8200;|&#8200;{{ location.location.name }}
+                                    <br>{{ location.location.name }}
                                     {% if location.location_details %}
                                       ,&#8200;{{ location.location_details }}
                                     {% endif %}
