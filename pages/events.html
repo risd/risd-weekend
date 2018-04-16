@@ -8,7 +8,8 @@
   {% include "templates/partials/header-alternate.html" %}
 {% endblock %}
 
-{% block title %}{% parent %} - Test{% endblock %}
+{% block title %}{% parent %}
+  - Test{% endblock %}
 
 {% block body_attributes %}
   class="layout__white"
@@ -36,301 +37,221 @@
 
       <div class="calendar-box">
         {% for day in events | sort('day') | groupBy('day') %}
-          <div class="calendar-box__column-container">
-            <div class="calendar-box__first-item">
-              {% if loop.index === 1 %}
+          {% if loop.first %}
+            <div class="calendar-box__column-container">
+            {% endif %}
+
+            {% if loop.index === 1 %}
+              <div class="calendar-box__column--print" id="calendar-box__column--friday">
                 <h2 class="calendar-box__section-title">Friday</h2>
               {% elseif loop.index === 2 %}
-                <h2 class="calendar-box__section-title">Saturday</h2>
-              {% elseif loop.index === 3 %}
-                <h2 class="calendar-box__section-title">Sunday</h2>
-              {% endif %}
+                <div class="calendar-box__column--print" id="calendar-box__column--saturday">
+                  <h2 class="calendar-box__section-title">Saturday</h2>
+                {% elseif loop.index === 3 %}
+                  <div class="calendar-box__column--print" id="calendar-box__column--sunday">
+                    <h2 class="calendar-box__section-title">Sunday</h2>
+                  {% endif %}
 
-              {% for event in day %}
-                {% set event.start_time_order = event.start_time|date('H') %}
-              {% endfor %}
+                  {% for event in day %}
+                    {% set event.start_time_order = event.start_time | date('H') %}
+                  {% endfor %}
 
-              {% for event in day|sort('start_time_order') %}
-                <div class="calendar-box__item" data-modal-source-id="{{ event.event_link }}">
-                  <div class="calendar-box__header">
-                    <h4 class="calendar-box__title">
-                    {{ event.name }}
-                    {% if event.subtitle %}
-                      <span class="calendar-box__subtitle">{{ event.subtitle }}</span>
-                    {% endif %}
-                    </h4>
+                  {% for event in day | sort('start_time_order') %}
 
-                    {# Display time according to editorial style guide #}
-                    {# if a start time exists #}
-                    {% if event.start_time %}
-
-                      {# if the start time is in the morning #}
-                      {% if event.start_time|date('a') === "am" %}
-                        {# set morning start to true #}
-                        {% set morning_start = true %}
-                      {# else if the start time is in the evening #}
-                      {% elseif event.start_time|date('a') === "pm" %}
-                        {# set morning start to false #}
-                        {% set morning_start = false %}
-                      {% else %}
-                        {# set morning start to undefined #}
-                        {% set morning_start = undefined %}
+                    {% if loop.first %}
+                      <div class="calendar-box__item-container">
                       {% endif %}
 
-                      {# and if end time exists #}
-                      {% if event.end_time %}
-                        {# if the end time is in the morning #}
-                        {% if event.end_time|date('a') === "am" %}
-                          {# set morning end to true #}
-                          {% set morning_end = true %}
-                        {# else if the end time is in the evening #}
-                        {% elseif event.end_time|date('a') === "pm" %}
-                          {# set morning end to false #}
-                          {% set morning_end = false %}
-                        {% else %}
-                          {# set morning end to undefined #}
-                          {% set morning_end = undefined %}
-                        {% endif %}
-                      {% else %}
-                        {# set morning end to undefined #}
-                        {% set morning_end = undefined %}
-                      {% endif %}
+                      <div class="calendar-box__item" data-modal-source-id="{{ event.event_link }}">
+                        <div class="calendar-box__header">
+                          <h4 class="calendar-box__title">
+                            {{ event.name }}
+                            {% if event.subtitle %}
+                              <span class="calendar-box__subtitle">{{ event.subtitle }}</span>
+                            {% endif %}
+                          </h4>
 
-                      {# if there is only a start time #}
-                      {% if morning_end === undefined %}
-                        {# if the minutes is 00 #}
-                        {% if event.start_time|date('i') === '00' %}
-                          {# show only the hh am/pm #}
-                          <span class="calendar-box__info">{{ event.start_time|date('g a') }}</span>
-                        {% else %}
-                          {# show hh:mm am/pm #}
-                          <span class="calendar-box__info">{{ event.start_time|date('g:i a') }}</span>
-                        {% endif %}
-
-                      {# if there start time and end time are in the morning #}
-                      {% elseif morning_start === true && morning_end === true %}
-                        {# for the start time, if the minutes is 00 #}
-                        {% if event.start_time|date('i') === '00' %}
-                          {# show only the hh #}
-                          <span class="calendar-box__info">{{ event.start_time|date('g') }}
-                        {% else %}
-                          {# show hh:mm #}
-                          <span class="calendar-box__info">{{ event.start_time|date('g:i') }}
-                        {% endif %}
-                        {% if event.end_time %}
-                          {# for the end time, if the minutes is 00 #}
-                          {% if event.end_time|date('i') === '00' %}
-                            {# show only the - hh am #}
-                            &#8211; {{ event.end_time|date('g a') }}</span>
-                          {% else %}
-                            {# show - hh:mm am #}
-                            &#8211; {{ event.end_time|date('g:i a') }}</span>
+                          {% if event.start_time %}
+                            {% include "templates/partials/time-formatting.html" with {
+                              item: event,
+                              itemClass: 'calendar-box__info'
+                            } %}
                           {% endif %}
-                        {% endif %}
 
-                      {# if there start time and end time are in the evening #}
-                      {% elseif morning_start === false && morning_end === false %}
-                        {# for the start time, if the minutes is 00 #}
-                        {% if event.start_time|date('i') === '00' %}
-                          {# show only the hh #}
-                          <span class="calendar-box__info">{{ event.start_time|date('g') }}
-                        {% else %}
-                          {# show hh:mm #}
-                          <span class="calendar-box__info">{{ event.start_time|date('g:i') }}
-                        {% endif %}
-                        {% if event.end_time %}
-                          {# for the end time, if the minutes is 00 #}
-                          {% if event.end_time|date('i') === '00' %}
-                            {# show only the - hh pm #}
-                            &#8211; {{ event.end_time|date('g a') }}</span>
-                          {% else %}
-                            {# show - hh:mm pm #}
-                            &#8211; {{ event.end_time|date('g:i a') }}</span>
+                          {% if event.location %}
+                            {% spaceless %}
+                              <p class="calendar-box__info">|&#8200;{{ event.location.name }}
+                                {% if event.location_details %}
+                                  ,&#8200;{{ event.location_details }}
+                                {% endif %}
+                                {% if event.location.address %}
+                                  ,&#8200;{{ event.location.address }}
+                                {% endif %}
+                              </p>
+                            {% endspaceless %}
                           {% endif %}
+
+                        </div>
+
+                        {% if event.description %}
+                          <div class="calendar-box__item-toggle"></div>
+                        {% endif %}
+                        {% if event.sub_events %}
+                          {% spaceless %}
+                            {% for subevent in event.sub_events %}
+                              <p class="calendar-box__info">
+                                <strong>{{ subevent.name }}</strong>
+                                {% for location in subevent.locations %}
+                                  {% spaceless %}
+                                    &#8200;|&#8200;{{ location.location.name }}
+                                    {% if location.location_details %}
+                                      ,&#8200;{{ location.location_details }}
+                                    {% endif %}
+                                    {% if location.location.address %}
+                                      ,&#8200;{{ location.location.address }}
+                                    {% endif %}
+                                  {% endspaceless %}
+                                {% endfor %}
+                              </p>
+                            {% endfor %}
+                          {% endspaceless %}
                         {% endif %}
 
-                      {# if there start time is in the morning and end time in the evening #}
-                      {% elseif morning_start === true && morning_end === false %}
-                        {# for the start time, if the minutes is 00 #}
-                        {% if event.start_time|date('i') === '00' %}
-                          {# show only the hh am #}
-                          <span class="calendar-box__info">{{ event.start_time|date('g a') }}
-                        {% else %}
-                          {# show hh:mm am #}
-                          <span class="calendar-box__info">{{ event.start_time|date('g:i a') }}
-                        {% endif %}
-                        {% if event.end_time %}
-                          {# for the end time, if the minutes is 00 #}
-                          {% if event.end_time|date('i') === '00' %}
-                            {# show only the - hh pm #}
-                            &#8211; {{ event.end_time|date('g a') }}</span>
-                          {% else %}
-                            {# show - hh:mm pm #}
-                            &#8211; {{ event.end_time|date('g:i a') }}</span>
-                          {% endif %}
-                        {% endif %}
-                      {% endif %}
+                      </div>
 
-                    {% endif %}
+                    </div>
 
+                    {% if loop.first %}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
 
-                    {% if event.location %}
-                      {% spaceless %}
-                        <span class="calendar-box__info">|&#8200;{{ event.location.name }}
+        </div>
+
+      </main>
+    {% endblock %}
+
+    {% block modal_content %}
+      {% set allEvents = [] %}
+      {% for event in events %}
+        {% set allEvents = allEvents.concat([event]) %}
+      {% endfor %}
+      {% for event in sub_events %}
+        {% set allEvents = allEvents.concat([event]) %}
+      {% endfor %}
+      <aside class="modal__container">
+        <div class="modal__background"></div>
+        <div class="modal__item-toggle">&times;</div>
+        <div class="modal">
+          {% for event in allEvents %}
+            <div class="modal__item" id="{{ event.event_link }}" data-modal-target-id="{{ event.event_link }}">
+              <div class="modal__header">
+                <h4 class="modal__title">
+                  {{ event.name }}
+                  {% if event.subtitle %}
+                    <span class="modal__subtitle">{{ event.subtitle }}</span>
+                  {% endif %}
+                </h4>
+                <p class="modal__info">{{ event.day }}</p>
+                {% if event.start_time %}
+                  {% include "templates/partials/time-formatting.html" with {
+              item: event,
+              itemClass: 'modal__info'
+            } %}
+                {% endif %}
+
+                {% if event.location %}
+                  {% spaceless %}
+                    <p class="modal__info">
+                      {% if event.location.google_map_link %}
+                        <a href="{{ event.location.google_map_link }}" target="_blank">{{ event.location.name }}
                           {% if event.location_details %}
                             ,&#8200;{{ event.location_details }}
                           {% endif %}
                           {% if event.location.address %}
                             ,&#8200;{{ event.location.address }}
                           {% endif %}
-                        </span>
-                      {% endspaceless %}
-                    {% endif %}
+                        </a>
+                      {% else %}
+                        {{ event.location.name }}
+                        {% if event.location_details %}
+                          ,&#8200;{{ event.location_details }}
+                        {% endif %}
+                        {% if event.location.address %}
+                          ,&#8200;{{ event.location.address }}
+                        {% endif %}
+                      {% endif %}
 
-                    {% if event.attendee_limit %}
-                      <span class="calendar-box__info">| limit: {{ event.attendee_limit }} attendees</span>
-                    {% endif %}
-
-                  </div>
-
-                  {% if event.description %}
-                    <div class="calendar-box__item-toggle"></div>
-                  {% endif %}
-
-                </div>
-
-                {% if loop.first %}
-                  </div>
+                    </p>
+                  {% endspaceless %}
                 {% endif %}
-              {% endfor %}
-          </div>
-        {% endfor %}
-      </div>
 
-    </div>
-
-  </main>
-{% endblock %}
-
-{% block modal_content %}
-  {% set allEvents = [] %}
-  {% for event in events %}
-    {% set allEvents = allEvents.concat([event]) %}
-  {% endfor %}
-  {% for event in sub_events %}
-    {% set allEvents = allEvents.concat([event]) %}
-  {% endfor %}
-  <aside class="modal__container">
-    <div class="modal__background"></div>
-    <div class="modal__item-toggle">&times;</div>
-    <div class="modal">
-    {% for event in allEvents %}
-      <div class="modal__item" id="{{ event.event_link }}" data-modal-target-id="{{ event.event_link }}">
-        <div class="modal__header">
-          <h4 class="modal__title">
-          {{ event.name }}
-          {% if event.subtitle %}
-            <span class="modal__subtitle">{{ event.subtitle }}</span>
-          {% endif %}
-          </h4>
-          <p class="modal__info">{{ event.day }}</p>
-          {% if event.start_time %}
-            {% include "templates/partials/time-formatting.html" with {
-              item: event,
-              itemClass: 'modal__info'
-            } %}
-          {% endif %}
-
-          {% if event.location %}
-            {% spaceless %}
-              <p class="modal__info">
-              {% if event.location.google_map_link %}
-                <a href="{{ event.location.google_map_link }}" target="_blank">{{ event.location.name }}
-                  {% if event.location_details %}
-                    ,&#8200;{{ event.location_details }}
-                  {% endif %}
-                  {% if event.location.address %}
-                    ,&#8200;{{ event.location.address }}
-                  {% endif %}
-                </a>
-              {% else %}
-                {{ event.location.name }}
-                {% if event.location_details %}
-                  ,&#8200;{{ event.location_details }}
+                {% if event.attendee_limit %}
+                  <p class="modal__info">{{ event.attendee_limit }}</p>
                 {% endif %}
-                {% if event.location.address %}
-                  ,&#8200;{{ event.location.address }}
-                {% endif %}
+
+              </div>
+
+              {% if event.description %}
+                <div class="modal__description">{{ event.description|safe }}</div>
               {% endif %}
 
-              </p>
-            {% endspaceless %}
-          {% endif %}
+              {% if event.sub_events %}
+                <div class="modal__subevent-container">
+                  {% for subevent in event.sub_events %}
+                    <div class="modal__subevent">
+                      <h4 class="modal__subevent-title">
+                        {{ subevent.name }}
+                        {% if subevent.subtitle %}
+                          <span class="modal__subevent-subtitle">{{ subevent.subtitle }}</span>
+                        {% endif %}
+                      </h4>
 
-          {% if event.attendee_limit %}
-            <p class="modal__info">{{ event.attendee_limit }}</p>
-          {% endif %}
-
-        </div>
-
-        {% if event.description %}
-          <div class="modal__description">{{ event.description|safe }}</div>
-        {% endif %}
-
-        {% if event.sub_events %}
-          <div class="modal__subevent-container">
-          {% for subevent in event.sub_events %}
-            <div class="modal__subevent">
-              <h4 class="modal__subevent-title">
-                {{ subevent.name }}
-              {% if subevent.subtitle %}
-                <span class="modal__subevent-subtitle">{{ subevent.subtitle }}</span>
-              {% endif %}
-              </h4>
-
-              {% if subevent.start_time %}
-                {% include "templates/partials/time-formatting.html" with {
+                      {% if subevent.start_time %}
+                        {% include "templates/partials/time-formatting.html" with {
                   item: subevent,
                   itemClass: 'modal__subevent-info'
                 } %}
-              {% endif %}
+                      {% endif %}
 
+                      {% if subevent.location %}
+                        {% spaceless %}
+                          <p class="modal__subevent-info">{{ subevent.location.name }}
+                            {% if subevent.location_details %}
+                              ,&#8200;{{ subevent.location_details }}
+                            {% endif %}
+                            {% if subevent.location.address %}
+                              ,&#8200;{{ subevent.location.address }}
+                            {% endif %}
+                          </p>
+                        {% endspaceless %}
+                      {% endif %}
 
-              {% if subevent.location %}
-                {% spaceless %}
-                  <p class="modal__subevent-info">{{ subevent.location.name }}
-                    {% if subevent.location_details %}
-                      ,&#8200;{{ subevent.location_details }}
-                    {% endif %}
-                    {% if subevent.location.address %}
-                      ,&#8200;{{ subevent.location.address }}
-                    {% endif %}
-                  </p>
-                {% endspaceless %}
-              {% endif %}
+                      {% if subevent.attendee_limit %}
+                        <p class="modal__subevent-info">{{ subevent.attendee_limit }}</p>
+                      {% endif %}
 
-              {% if subevent.attendee_limit %}
-                <p class="modal__subevent-info">{{ subevent.attendee_limit }}</p>
-              {% endif %}
+                      {% if subevent.description %}
+                        <div class="modal__subevent-description">{{ subevent.description|safe }}</div>
+                      {% endif %}
 
-              {% if subevent.description %}
-                <div class="modal__subevent-description">{{ subevent.description|safe }}</div>
+                    </div>
+                  {% endfor %}
+                </div>
               {% endif %}
 
             </div>
           {% endfor %}
-          </div>
-        {% endif %}
+        </div>
+      </aside>
 
-      </div>
-    {% endfor %}
-    </div>
-  </aside>
+    {% endblock %}
 
-{% endblock %}
-
-{% block scripts_extra %}
-  <script type="text/javascript">
-    window.print();
-  </script>
-{% endblock %}
+    {% block scripts_extra %}
+      <script type="text/javascript">
+        window.print();
+      </script>
+    {% endblock %}
