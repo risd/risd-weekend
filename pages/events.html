@@ -67,20 +67,20 @@
                           <h4 class="calendar-box__title">
                             {{ event.name }}
                             {% if event.subtitle %}
-                              <br><span class="calendar-box__subtitle">{{ event.subtitle }}</span>
+                              <span class="calendar-box__subtitle">| <em>{{ event.subtitle }}</em></span>
                             {% endif %}
                           </h4>
 
-                          {% if event.start_time %}
-                            {% include "templates/partials/time-formatting.html" with {
-                              item: event,
-                              itemClass: 'calendar-box__info'
-                            } %}
-                          {% endif %}
-
                           {% if event.location %}
                             {% spaceless %}
-                              <p class="calendar-box__info">|&#8200;{{ event.location.name }}
+                              <p class="calendar-box__info">
+                                {% if event.start_time %}
+                                  {% include "templates/partials/time-formatting.html" with {
+                                    item: event,
+                                    itemClass: 'calendar-box__time'
+                                  } %}
+                                {% endif %}
+                                |&#8200;{{ event.location.name }}
                                 {% if event.location_details %}
                                   ,&#8200;{{ event.location_details }}
                                 {% endif %}

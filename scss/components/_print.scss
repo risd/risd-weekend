@@ -1,11 +1,10 @@
 @page {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+  margin: 4rem 1.5in;
 }
 
 @media only screen {
   body {
-    margin: 4rem 1rem;
+    margin: 4rem 4rem;
   }
 }
 
@@ -60,10 +59,18 @@
 }
 
 .calendar-box__subtitle {
+  font-weight: normal;
+  em {
+    font-style: italic;
+  }
 }
 
 .calendar-box__info {
   font-weight: normal;
   width: 100%;
   font-size: 9pt;
+}
+
+.calendar-box__time {
+  display: inline;
 }
