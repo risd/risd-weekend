@@ -51,15 +51,16 @@
   margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid currentColor;
-  page-break-inside: avoid;
 }
 
 .calendar-box__title {
   font-size: 12pt;
+  page-break-inside: avoid;
 }
 
 .calendar-box__subtitle {
   font-weight: normal;
+  page-break-inside: avoid;
   em {
     font-style: italic;
   }
@@ -69,6 +70,7 @@
   font-weight: normal;
   width: 100%;
   font-size: 9pt;
+  page-break-inside: avoid;
 }
 
 .calendar-box__time {
