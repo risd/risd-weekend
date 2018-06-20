@@ -19,59 +19,9 @@
 
   <main class="home">
 
-    {% if transition.transition_page_active === true %}
+    {% if transition.transition_page_active === false %}
 
-      <div class="poster-moment--transition">
-        <a class="nav__anchor nav__anchor--home" id=""></a>
-        <div class="poster-moment__container">
-          <div class="poster-moment__item" id="poster-moment__risd">RISD</div>
-          <div class="poster-moment__item--active poster-moment__item--modifiers">
-            <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">Save</div>
-            <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">the</div>
-            <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">date</div>
-          </div>
-          <div class="poster-moment__item" id="poster-moment__week">WEEK—</div>
-          <div class="poster-moment__item" id="poster-moment__end">END<span class="poster-moment__item--superscript">¹⁸</span></div>
-        </div>
-
-      <section class="transition-section__container transition-intro__container">
-        <article class="transition-intro">
-          <div class="transition-intro__title">{{ transition.location|safe }}</div>
-          <div class="transition-intro__description">
-            {{ transition.description|safe }}
-            <a href="{{ transition.past_year_schedule_link }}">{{ transition.past_year_schedule_title }}</a>
-          </div>
-        </article>
-      </section>
-
-      {# Information Sections #}
-      {% for information in infoSnippets %}
-        <section class="transition-section__container transition-information__container" id="{{ information.name|lower|replace(' ', '-', 'g') }}">
-          <h1 class="transition-section__title">{{ information.name }}</h1>
-          <article class="transition-information__section">
-          {% if information.main_description %}
-            <div class="transition-information__main-description-container">
-              <div class="transition-information__main-description">{{ information.main_description|safe }}</div>
-            </div>
-          {% endif %}
-            {% if information.subsections %}
-              {% for subsection in information.subsections %}
-                <div class="transition-information__subsection">
-                {% if subsection.title %}
-                  <h2 class="transition-information__subsection-title">{{ subsection.title }}</h2>
-                {% endif %}
-                  <div class="transition-information__subsection-description">{{ subsection.description|safe }}</div>
-                </div>
-              {% endfor %}
-            {% endif %}
-          </article>
-          {% if information.button_text %}
-            <div class="transition-information__button">
-              <a href="{{ information.button_link }}" target="_blank" class="transition-information__button-link">{{ information.button_text }}</a>
-            </div>
-          {% endif %}
-        </section>
-      {% endfor %}
+      {% include "templates/partials/transition-content.html" %}
 
     {% else %}
 
@@ -94,7 +44,7 @@
 
 
 {% block base_script %}
-  {% if transition.transition_page_active === true %}
+  {% if transition.transition_page_active === false %}
     <script src="/static/javascript/transition.js"></script>
   {% else %}
     <script src="/static/javascript/home.js"></script>
