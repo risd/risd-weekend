@@ -20,20 +20,22 @@
   <main class="home">
 
     {% if transition.transition_page_active === false %}
-
       {% include "templates/partials/transition-content.html" %}
-
     {% else %}
 
-    <div class="main-nav">
-      <div class="main-nav__container">
-        <div class="main-nav__item" id="main-nav__risd">RISD</div>
-        {% for audience in audiences %}
-          <div class="main-nav__item" id="main-nav__modifier--{{ loop.index }}"><a class="main-nav__link" href="{{url(audience)}}">{{audience.name}}</a></div>
-        {% endfor %}
-        <div class="main-nav__item" id="main-nav__week">WEEK—</div>
-        <div class="main-nav__item" id="main-nav__end">END<span class="main-nav__item--superscript">&#xB9;&#8311;</span></div>
-      </div>
+    <div class="home__options">
+      <a href="/alumni" class="home__option home__option--left">
+        <div class="option__item" id="option__risd">RISD</div>
+        <div class="option__item option__item--modified">ALUMNI</div>
+        <div class="option__item" id="option__week">WEEK—</div>
+        <div class="option__item" id="option__end">END<span class="option__item--superscript">¹⁸</span></div>
+      </a>
+      <a href="/families" class="home__option home__option--right">
+        <div class="option__item" id="option__risd">RISD</div>
+        <div class="option__item option__item--modified">FAMILIES</div>
+        <div class="option__item" id="option__week">WEEK—</div>
+        <div class="option__item" id="option__end">END<span class="option__item--superscript">¹⁸</span></div>
+      </a>
     </div>
 
     {% endif %}

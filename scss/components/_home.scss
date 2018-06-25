@@ -1,0 +1,193 @@
+.home {
+
+}
+
+.home__options {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @include media($tablet) {
+    flex-direction: row;
+  };
+}
+
+.home__option {
+  flex-basis: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.home__option--left {
+  background-color: $black;
+
+  .option__item {
+    color: $campaign-color;
+    @supports (-webkit-text-stroke-color: $campaign-color) {
+      -moz-text-stroke-color: $campaign-color;
+      -webkit-text-stroke-color: $campaign-color;
+      text-stroke-color: $campaign-color;
+      -moz-text-stroke-width: 0.015em;
+      -webkit-text-stroke-width: 0.015em;
+      text-stroke-width: 0.015em;
+    }
+
+    @supports not (-webkit-text-stroke-color: $campaign-color) {
+      color: $campaign-color;
+    }
+  }
+
+  .option__item--modified {
+    color: $black;
+    @supports (-webkit-text-stroke-color: $campaign-color) {
+      -moz-text-stroke-color: $campaign-color;
+      -webkit-text-stroke-color: $campaign-color;
+      text-stroke-color: $campaign-color;
+      -moz-text-stroke-width: 0.015em;
+      -webkit-text-stroke-width: 0.015em;
+      text-stroke-width: 0.015em;
+    }
+
+    @supports not (-webkit-text-stroke-color: $campaign-color) {
+      color: $white;
+    }
+  }
+
+  &:hover {
+    .option__item {
+      color: $black;
+      @supports (-webkit-text-stroke-color: $campaign-color) {
+        -moz-text-stroke-color: $campaign-color;
+        -webkit-text-stroke-color: $campaign-color;
+        text-stroke-color: $campaign-color;
+        -moz-text-stroke-width: 0.015em;
+        -webkit-text-stroke-width: 0.015em;
+        text-stroke-width: 0.015em;
+      }
+
+      @supports not (-webkit-text-stroke-color: $campaign-color) {
+        color: $white;
+      }
+    }
+
+    .option__item--modified {
+      color: $campaign-color;
+      @supports (-webkit-text-stroke-color: $campaign-color) {
+        -moz-text-stroke-color: $campaign-color;
+        -webkit-text-stroke-color: $campaign-color;
+        text-stroke-color: $campaign-color;
+        -moz-text-stroke-width: 0.015em;
+        -webkit-text-stroke-width: 0.015em;
+        text-stroke-width: 0.015em;
+      }
+
+      @supports not (-webkit-text-stroke-color: $campaign-color) {
+        color: $campaign-color;
+      }
+    }
+  }
+}
+
+.home__option--right {
+  background-color: $campaign-color;
+
+  .option__item {
+    color: $black;
+    @supports (-webkit-text-stroke-color: $black) {
+      -moz-text-stroke-color: $black;
+      -webkit-text-stroke-color: $black;
+      text-stroke-color: $black;
+      -moz-text-stroke-width: 0.015em;
+      -webkit-text-stroke-width: 0.015em;
+      text-stroke-width: 0.015em;
+    }
+
+    @supports not (-webkit-text-stroke-color: $black) {
+      color: $white;
+    }
+  }
+
+  .option__item--modified {
+    color: $campaign-color;
+    @supports (-webkit-text-stroke-color: $black) {
+      -moz-text-stroke-color: $black;
+      -webkit-text-stroke-color: $black;
+      text-stroke-color: $black;
+      -moz-text-stroke-width: 0.015em;
+      -webkit-text-stroke-width: 0.015em;
+      text-stroke-width: 0.015em;
+    }
+
+    @supports not (-webkit-text-stroke-color: $black) {
+      color: $white;
+    }
+  }
+
+  &:hover {
+    .option__item {
+      color: $campaign-color;
+      @supports (-webkit-text-stroke-color: $black) {
+        -moz-text-stroke-color: $black;
+        -webkit-text-stroke-color: $black;
+        text-stroke-color: $black;
+        -moz-text-stroke-width: 0.015em;
+        -webkit-text-stroke-width: 0.015em;
+        text-stroke-width: 0.015em;
+      }
+
+      @supports not (-webkit-text-stroke-color: $black) {
+        color: $white;
+      }
+    }
+
+    .option__item--modified {
+      color: $black;
+      @supports (-webkit-text-stroke-color: $black) {
+        -moz-text-stroke-color: $black;
+        -webkit-text-stroke-color: $black;
+        text-stroke-color: $black;
+        -moz-text-stroke-width: 0.015em;
+        -webkit-text-stroke-width: 0.015em;
+        text-stroke-width: 0.015em;
+      }
+
+      @supports not (-webkit-text-stroke-color: $black) {
+        color: $white;
+      }
+    }
+  }
+}
+
+.option__item {
+  @include transition(all 0.2s ease);
+  font-family: $font__primary;
+  font-size: 9vmax;
+  font-weight: bold;
+  line-height: 0.844;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.option__item--superscript {
+  position: relative;
+  top: 0.11em;
+  font-variant-position: super;
+  -moz-font-feature-settings: "sups";
+  -webkit-font-feature-settings: "sups";
+  font-feature-settings: "sups";
+}
+
+#option__week, #option__end {
+  text-align: right;
+}
