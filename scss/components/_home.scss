@@ -66,6 +66,7 @@
 
   &:hover {
     .option__item {
+      font-size: 9.2vmax;
       color: $black;
       @supports (-webkit-text-stroke-color: $campaign-color) {
         -moz-text-stroke-color: $campaign-color;
@@ -136,6 +137,7 @@
 
   &:hover {
     .option__item {
+      font-size: 9.2vmax;
       color: $campaign-color;
       @supports (-webkit-text-stroke-color: $black) {
         -moz-text-stroke-color: $black;
