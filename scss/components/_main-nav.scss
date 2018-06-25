@@ -2,7 +2,7 @@
   background-color: $black;
   width: 100%;
   height: 100vh;
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@
   align-items: center;
   align-content: center;
   flex-direction: column;
-  @include media($mobile) {
+  @include respond-above(small) {
     @include outer-container(90%);
   };
 }
@@ -90,16 +90,16 @@
     background-image: linear-gradient($white 50%, $white 50%);
     bottom: 2.1vw;
 
-    @include media($mobile) {
+    @include respond-above(small) {
       bottom: 2.6vmin;
     };
-    @include media($tablet) {
+    @include respond-above(medium) {
       bottom: 2.4vmin;
     };
-    @include media($laptop) {
+    @include respond-above(large) {
       bottom: 2.4vmin;
     };
-    @include media($desktop) {
+    @include respond-above(huge) {
       bottom: 2.4vmin;
     };
   }

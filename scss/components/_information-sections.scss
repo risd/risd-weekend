@@ -19,16 +19,16 @@
   padding-bottom: 2rem;
   border-bottom: 2px solid;
 
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(6 of 6);
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(8 of 8);
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(10 of 10);
   };
 
@@ -39,17 +39,17 @@
 }
 
 .information__main-description {
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(6 of 6);
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(5 of 8);
     @include shift(3);
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(6 of 10);
     @include shift(4);
   };
@@ -76,54 +76,54 @@
     border-bottom: none;
   }
 
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(6 of 6);
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(8 of 8);
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(8 of 8);
   };
 }
 
 .information__subsection-title {
-  @include text-size($medium);
+  @include text-size($m);
   text-transform: uppercase;
 
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
     @include omega;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(6 of 6);
     @include omega;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(3 of 8);
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(4 of 10);
   };
 }
 
 .information__subsection-description {
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
     @include omega;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(6 of 6);
     @include omega;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(5 of 8);
     @include omega;
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(6 of 10);
     @include omega;
   };
@@ -148,24 +148,24 @@
 .information__button {
   display: inline-block;
 
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(6 of 6);
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(5 of 8);
     @include shift(3);
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(6 of 10);
     @include shift(4);
   };
 }
 
 .information__button-link {
-  @include text-size($medium);
+  @include text-size($m);
   font-weight: bold;
   letter-spacing: 0.05em;
   text-transform: uppercase;

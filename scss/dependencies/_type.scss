@@ -4,23 +4,16 @@
   src: url("../fonts/modernpictogramspro_234.woff");
 }
 
-$font__primary: "Gotham Narrow A", "Gotham Narrow B", "Helvetica", sans-serif;
-$font__symbols: 'Modern Pictograms Pro', 'Helvetica', sans-serif;
+$ff-sans: "Gotham Narrow A", "Gotham Narrow B", "Helvetica", sans-serif;
+$ff-pictographic: 'Modern Pictograms Pro', 'Helvetica', sans-serif;
 
-$lineHeight--tight: 0.844;
-$lineHeight--normal: 1.2;
-$lineHeight--loose: 1.15;
+@mixin font-family($ff) {
+  font-family: $ff;
+}
 
-$modular-scale-ratio: $major-third;
-$modular-scale-base: 1rem;
-
-$breakpoints: (
-  base: 0px,
-  small: 300px,
-  medium: 768px,
-  large: 1024px,
-  huge: 1824px
-) !default;
+$lh-tight: 0.844;
+$lh-normal: 1.2;
+$lh-loose: 1.15;
 
 /* --------------------------------------------------------
 
@@ -42,63 +35,26 @@ Remove the unit of a length
 
 Variable Map Lists for the text-size mixin
 
-A specific text-size in this mixin is defined with a font-size and a leading.
-
-For example,
-  small: (64px, 72px)
-  where small is the media query width defined in the $breakpoints map-list in _responsive.scss,
-  64px is the font-size
-  72px is the line-height (which will be converted to a unitless value for the browser in the mixin)
-
-
-The definition of each font-size/leading pair can be different for each media query width.
-This is an example of a font size with different definitions for each media query width:
-  $medium: (
-    base: (12px, 18px),
-    small: (14px, 20px),
-    medium: (16px, 24px),
-    large: (18px, 28px),
-    huge: (20px, 32px)
-  ) !default;
-This is generally an unusual situation because it would involve a pretty complicated typography system.
-
-
-A more common example would be something like this:
-  $huge: (
-    base: (52px, 60px),
-    small: (64px, 72px),
-    medium: (64px, 72px),
-    large: (72px, 80px),
-    huge: (72px, 80px)
-  ) !default;
-
-This definition includes redundant repitition of values, so it can be defined more simply like this:
-  $huge: (
-    base: (52px, 60px),
-    small: (64px, 72px),
-    large: (72px, 80px)
-  ) !default;
-
 -------------------------------------------------------- */
 
-$regular: (
+$s: (
   base: (14px, 20px),
   medium: (18px, 24px),
 ) !default;
 
-$medium: (
+$m: (
   base: (21px, 28px),
   medium: (24px, 30px)
 ) !default;
 
-$large: (
+$l: (
   base: (35px, 40px),
   small: (36px, 42px),
   medium: (53px, 60px),
   large: (64px, 72px)
 ) !default;
 
-$huge: (
+$xl: (
   base: (59.241706161px, 50px),
   medium: (99.526px, 84px),
   large: (113.744075829px, 96px),
@@ -107,16 +63,13 @@ $huge: (
 
 
 /* --------------------------------------------------------
+
 Mixin for font-size and line-height definition
-  Usage Example: @include text-size($large);
+  Usage Example: @include text-size($l);
 
-Font size can take on the following values:
-  small, regular, medium, huge
-
-If the mixin is called and values are not entered, it will default to regular font-size
 -------------------------------------------------------- */
 
-@mixin text-size($fs-map: $regular, $fs-breakpoints: $breakpoints) {
+@mixin text-size($fs-map: $regular, $fs-breakpoints: $breakpoints, $lineheight: "") {
   @each $fs-breakpoint, $keyNumber in $fs-map {
 
     @if map-has-key($fs-breakpoints, $fs-breakpoint) {
@@ -124,7 +77,6 @@ If the mixin is called and values are not entered, it will default to regular fo
       @warn "Breakpoints have not been defined correctly";
     }
 
-    // @debug $fs-map;
     // @debug $fs-breakpoint;
     // @debug $keyNumber;
 
@@ -132,13 +84,18 @@ If the mixin is called and values are not entered, it will default to regular fo
     $leading: nth($keyNumber, 2);
     $leading-unitless: calc(#{strip-unit($leading)} / #{strip-unit($fontSize)});
 
+    // @debug $lineheight;
+    @if $lineheight != "" {
+      $leading-unitless: $lineheight;
+    }
+
     // @debug $fontSize;
     // @debug $leading;
     // @debug $leading-unitless;
 
-    // @debug map-get($breakpoints, $fs-breakpoint);
+    // @debug "------";
 
-    @include media(min-width map-get($breakpoints, $fs-breakpoint)) {
+    @include respond-above($fs-breakpoint) {
       font-size: $fontSize;
       line-height: $leading-unitless;
     };

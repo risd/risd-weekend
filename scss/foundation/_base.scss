@@ -2,9 +2,9 @@
 
 
 html {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: normal;
-  @include text-size($regular);
+  @include text-size($s);
 
 }
 
@@ -27,67 +27,67 @@ section {
 }
 
 h1 {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  line-height: $lineHeight--tight;
-  @include media($mobile) {
+  line-height: $lh-tight;
+  @include respond-above(small) {
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
   };
 }
 
 h2 {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  @include media($mobile) {
+  @include respond-above(small) {
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
   };
 }
 
 h3 {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  @include media($mobile) {
+  @include respond-above(small) {
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
   };
 }
 
 h4 {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  @include media($mobile) {
+  @include respond-above(small) {
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
   };
 }
 
 h5 {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  @include media($mobile) {
+  @include respond-above(small) {
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
   };
 }
 
 h6 {
-  font-family: $font--primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  @include media($mobile) {
+  @include respond-above(small) {
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
   };
 }
 
 p {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: normal;
 
-  @include media($mobile) {
+  @include respond-above(small) {
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
   };
 }
 
@@ -115,7 +115,7 @@ u {
 }
 
 blockquote {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: normal;
   margin-left: $space--xxlarge;
 }
@@ -123,7 +123,7 @@ blockquote {
 cite {
   display: block;
   text-align: right;
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-style: italic;
   &:before {
     content: "— ";

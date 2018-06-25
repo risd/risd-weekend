@@ -26,11 +26,11 @@
 .modal {
   cursor: auto;
   overflow-y: scroll;
-  @include media($mobile) {
+  @include respond-above(small) {
     height: calc(100vh - 1rem);
     width: calc(100vw - 1rem);
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     height: calc(100vh - 2rem);
     width: calc(100vw - 2rem);
   };
@@ -41,23 +41,23 @@
   flex-wrap: wrap;
   position: relative;
   @include omega;
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
     display: none;
     padding: 5vh 5vw;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(6 of 8);
     @include shift(1);
     display: none;
     padding: 10vh 0;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(8 of 10);
     @include shift(1);
     display: none;
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(10 of 12);
     @include shift(1);
     display: none;
@@ -65,7 +65,7 @@
 }
 
 .modal__item-toggle {
-  @include text-size($large);
+  @include text-size($l);
   cursor: pointer;
   @include transition(color 0.1s ease);
   padding: 1vh 2.5vw;
@@ -75,7 +75,7 @@
   right: 0;
   text-align: right;
   z-index: 9000;
-  @include media($tablet) {
+  @include respond-above(medium) {
     padding: 2vh 3vw;
   };
 }
@@ -85,7 +85,7 @@
 }
 
 .modal__title {
-  @include text-size($large);
+  @include text-size($l);
   font-weight: bold;
   text-transform: uppercase;
   word-break: break-word;
@@ -99,41 +99,41 @@
 }
 
 .modal__info {
-  @include text-size($medium);
+  @include text-size($m);
   font-weight: bold;
 }
 
 .modal__description {
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
     @include omega;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(6 of 6);
     @include omega;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(4 of 8);
     @include omega;
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(5 of 10);
     @include omega;
   };
 
-  @include text-size($regular);
+  @include text-size($s);
   font-weight: bold;
 
   &::before {
-    @include text-size($huge);
+    @include text-size($xl);
     content: "—";
 
-    @include media($mobile) {
+    @include respond-above(small) {
       margin-top: -1rem;
       display: none;
     };
 
-    @include media($laptop) {
+    @include respond-above(large) {
       margin-top: -0.1rem;
       margin-left: -0.05em;
       display: block;
@@ -142,11 +142,11 @@
   }
 
   p:first-child {
-    @include media($mobile) {
+    @include respond-above(small) {
       margin-top: 1rem;
     };
 
-    @include media($laptop) {
+    @include respond-above(large) {
       margin-top: -0.5rem;
     };
   }
@@ -169,7 +169,7 @@
 .modal__subevent {
   margin-top: 2rem;
   width: 100%;
-  @include media($laptop) {
+  @include respond-above(large) {
     width: calc(50% - 2rem);
     &:nth-child(2n) {
       margin-left: 2rem;
@@ -178,7 +178,7 @@
 }
 
 .modal__subevent-title {
-  @include text-size($regular);
+  @include text-size($s);
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -191,12 +191,12 @@
 }
 
 .modal__subevent-info {
-  @include text-size($regular);
+  @include text-size($s);
   font-weight: bold;
 }
 
 .modal__subevent-description {
-  @include text-size($regular);
+  @include text-size($s);
 }
 
 .modal--on {

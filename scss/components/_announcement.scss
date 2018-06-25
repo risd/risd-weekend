@@ -8,17 +8,17 @@
   flex-basis: 51%;
   flex-grow: 1;
   width: auto;
-  @include text-size($large);
-  @include media($mobile) {
+  @include text-size($l);
+  @include respond-above(small) {
     line-height: 1;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     line-height: 1;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     line-height: 1;
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     line-height: 1;
   };
 }
@@ -28,10 +28,10 @@
 }
 
 .announcement__location {
-  @include media($tablet) {
+  @include respond-above(medium) {
     margin-left: 4.1em;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     margin-left: 6.3em;
   };
 }

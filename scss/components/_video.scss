@@ -25,12 +25,12 @@
 }
 
 .video-module__title {
-  @include text-size($large);
+  @include text-size($l);
   text-transform: uppercase;
 }
 
 .video-module__subtitle {
-  @include text-size($medium);
+  @include text-size($m);
 }
 
 

@@ -6,19 +6,19 @@
 .calendar-box {
   flex-wrap: wrap;
 
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
     display: flex;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(6 of 6);
     display: flex;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(8 of 8);
     display: flex;
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(10 of 10);
     display: flex;
   };
@@ -36,16 +36,16 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: $space--xxsmall;
-  @include text-size($medium);
+  @include text-size($m);
   @include transition(all 0.2s ease);
 
-  @include media($mobile) {
+  @include respond-above(small) {
     text-align: center;
     flex-basis: 100%;
     margin-bottom: 0.2rem;
     margin-right: 0;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     margin-right: 1rem;
     flex-basis: auto;
     padding: 0.25rem 0.5rem;
@@ -70,7 +70,7 @@
 }
 
 .calendar-box__section-title {
-  @include text-size($large);
+  @include text-size($l);
   font-weight: bold;
   text-transform: uppercase;
   word-break: break-word;
@@ -88,7 +88,7 @@
 
   @include transition(all 0.2s ease);
 
-  @include media($tablet) {
+  @include respond-above(medium) {
     padding: $space--medium 0;
   }
 
@@ -99,7 +99,7 @@
 
 .calendar-box__item--hover {
   padding: $space--small;
-  @include media($tablet) {
+  @include respond-above(medium) {
     padding: $space--medium;
   }
 }
@@ -114,7 +114,7 @@
   margin-top: $space--small;
   line-height: 0;
 
-  @include media($tablet) {
+  @include respond-above(medium) {
     margin-top: 0;
     text-align: left;
     flex-basis: auto;
@@ -125,7 +125,7 @@
   &:after {
     font-family: $font--symbols;
     font-weight: bold;
-    @include text-size($medium);
+    @include text-size($m);
     content: "ﬂ";
     display: inline-block;
     transform: rotate(45deg);
@@ -150,14 +150,14 @@
   margin-right: $space--small;
   order: 1;
 
-  @include media($tablet) {
+  @include respond-above(medium) {
     flex-basis: 90%;
   };
 }
 
 .calendar-box__title {
   display: block;
-  @include text-size($medium);
+  @include text-size($m);
   @include transition(all 0.2s ease);
 }
 
@@ -178,7 +178,7 @@
   margin-top: $space--small;
   order: 2;
 
-  @include media($tablet) {
+  @include respond-above(medium) {
     order: 3;
   };
 }
@@ -208,16 +208,16 @@
     letter-spacing: 0.05em;
     display: inline-block;
     padding: $space--xxsmall;
-    @include text-size($medium);
+    @include text-size($m);
     @include transition(all 0.2s ease);
 
-    @include media($mobile) {
+    @include respond-above(small) {
       text-align: center;
       flex-basis: 100%;
       margin-bottom: 0.2rem;
       margin-right: 0;
     };
-    @include media($tablet) {
+    @include respond-above(medium) {
       margin-right: 1rem;
       flex-basis: auto;
       padding: 0.25rem 0.5rem;

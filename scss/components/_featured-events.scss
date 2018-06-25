@@ -13,11 +13,11 @@
   flex-wrap: wrap;
   margin-bottom: 1rem;
 
-  @include media($mobile) {
+  @include respond-above(small) {
     min-height: auto;
     flex-basis: 100%;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     min-height: 150px;
     flex-basis: calc(50% - 0.5rem);
     margin-right: 1rem;
@@ -25,7 +25,7 @@
       margin-right: 0;
     }
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     flex-basis: calc((100%/3) - (1rem*2/3));
     margin-right: 1rem;
     &:nth-child(2n) {
@@ -35,7 +35,7 @@
       margin-right: 0;
     }
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     flex-basis: calc(25% - 0.75rem);
     margin-right: 1rem;
     &:nth-child(2n) {
@@ -53,7 +53,7 @@
 .featured-events__item-link {
   cursor: pointer;
   flex-grow: 1;
-  @include text-size($medium);
+  @include text-size($m);
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
@@ -61,16 +61,16 @@
   border-bottom: none;
   @include transition(all 0.2s ease);
   word-break: break-word;
-  @include media($mobile) {
+  @include respond-above(small) {
     line-height: 1;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     line-height: 1;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     line-height: 1;
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     line-height: 1;
   };
 }

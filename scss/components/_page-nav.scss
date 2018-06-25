@@ -2,11 +2,11 @@
   text-align: center;
   z-index: 2000;
 
-  @include media($mobile) {
+  @include respond-above(small) {
     @include outer-container(90vw);
   };
 
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include outer-container(100vw);
   };
 }
@@ -20,24 +20,24 @@
   list-style: none;
   margin-bottom: 0;
 
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
   };
 
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(8 of 8);
     display: flex;
   };
 
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(10 of 10);
     display: flex;
   };
 
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(12 of 12);
     display: flex;
   };
@@ -63,8 +63,8 @@
   align-items: center;
   @include transition(color 0.1s ease);
 
-  @include media($mobile) {
-    @include text-size($medium);
+  @include respond-above(small) {
+    @include text-size($m);
     width: 100%;
     display: none;
     flex-grow: 0;
@@ -75,8 +75,8 @@
     }
   };
 
-  @include media($laptop) {
-    @include text-size($regular);
+  @include respond-above(large) {
+    @include text-size($s);
     display: flex;
     width: auto;
     justify-content: center;
@@ -87,7 +87,7 @@
   };
 
   span {
-    // font-family: $font__symbols;
+    // @include font-family($ff-pictographic);
     // font-weight: normal;
     display: inline-block;
     transform: rotate(-45deg);
@@ -98,20 +98,20 @@
 .nav__item--activator {
   cursor: pointer;
   border-bottom: none;
-  @include text-size($medium);
-  @include media($mobile) {
+  @include text-size($m);
+  @include respond-above(small) {
     display: flex;
   };
 
-  @include media($tablet) {
+  @include respond-above(medium) {
     display: flex;
   };
 
-  @include media($laptop) {
+  @include respond-above(large) {
     display: none;
   };
 
-  @include media($desktop) {
+  @include respond-above(huge) {
     display: none;
   };
 }
@@ -119,28 +119,28 @@
 .nav__item--deactivator {
   cursor: pointer;
   font-weight: normal;
-  @include text-size($large);
+  @include text-size($l);
 
-  @include media($mobile) {
+  @include respond-above(small) {
     display: none;
   };
 
-  @include media($tablet) {
+  @include respond-above(medium) {
     display: none;
   };
 
-  @include media($laptop) {
+  @include respond-above(large) {
     display: none;
   };
 
-  @include media($desktop) {
+  @include respond-above(huge) {
     display: none;
   };
 }
 
 .nav__item--active {
 
-  @include media($tablet) {
+  @include respond-above(medium) {
 
     & + .nav__item {
     }

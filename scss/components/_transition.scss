@@ -7,18 +7,18 @@
     padding-top: 1rem;
   }
 
-  @include media($mobile) {
+  @include respond-above(small) {
     @include outer-container(80vw);
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(6 of 8);
     margin: auto;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(6 of 10);
     margin: auto;
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(6 of 14);
     margin: auto;
   };
@@ -28,7 +28,7 @@
   }
 }
 .transition-section__title {
-  @include text-size($large);
+  @include text-size($l);
   // font-size: 13vmin;
   text-transform: uppercase;
   word-break: break-word;
@@ -51,19 +51,19 @@
 }
 
 .transition-intro__title {
-  @include text-size($medium);
+  @include text-size($m);
   text-align: left;
 
   h2 {
     margin-bottom: 0.5rem;
-    @include media($laptop) {
+    @include respond-above(large) {
       margin-bottom: 0.5rem;
     };
   }
 }
 
 .transition-intro__description {
-  @include text-size($medium);
+  @include text-size($m);
 
   p {
     max-width: 40em;
@@ -126,7 +126,7 @@
 }
 
 .transition-information__subsection-title {
-  @include text-size($medium);
+  @include text-size($m);
   text-transform: uppercase;
 
 }

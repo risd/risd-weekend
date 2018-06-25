@@ -32,12 +32,12 @@
     color: $black;
   }
 
-  @include media($mobile) {
-    @include text-size($large);
+  @include respond-above(small) {
+    @include text-size($l);
     line-height: 0.844 !important;
   };
-  @include media($tablet) {
-    @include text-size($huge);
+  @include respond-above(medium) {
+    @include text-size($xl);
   };
 
 }

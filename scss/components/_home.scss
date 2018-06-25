@@ -11,7 +11,7 @@
   align-items: center;
   flex-direction: column;
 
-  @include media($tablet) {
+  @include respond-above(medium) {
     flex-direction: row;
   };
 }
@@ -173,7 +173,7 @@
 
 .option__item {
   @include transition(all 0.2s ease);
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-size: 9vmax;
   font-weight: bold;
   line-height: 0.844;
