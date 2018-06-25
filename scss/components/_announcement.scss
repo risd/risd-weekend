@@ -8,19 +8,7 @@
   flex-basis: 51%;
   flex-grow: 1;
   width: auto;
-  @include text-size($l);
-  @include respond-above(small) {
-    line-height: 1;
-  };
-  @include respond-above(medium) {
-    line-height: 1;
-  };
-  @include respond-above(large) {
-    line-height: 1;
-  };
-  @include respond-above(huge) {
-    line-height: 1;
-  };
+  @include text-size($l, $lineheight: 1);
 }
 
 .announcement__date {

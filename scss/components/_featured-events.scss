@@ -12,11 +12,8 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1rem;
-
-  @include respond-above(small) {
-    min-height: auto;
-    flex-basis: 100%;
-  };
+  min-height: auto;
+  flex-basis: 100%;
   @include respond-above(medium) {
     min-height: 150px;
     flex-basis: calc(50% - 0.5rem);
@@ -53,26 +50,14 @@
 .featured-events__item-link {
   cursor: pointer;
   flex-grow: 1;
-  @include text-size($m);
+  @include text-size($m, $lineheight: 1);
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
   padding: 1rem;
   border-bottom: none;
-  @include transition(all 0.2s ease);
+  transition: all 0.2s ease;
   word-break: break-word;
-  @include respond-above(small) {
-    line-height: 1;
-  };
-  @include respond-above(medium) {
-    line-height: 1;
-  };
-  @include respond-above(large) {
-    line-height: 1;
-  };
-  @include respond-above(huge) {
-    line-height: 1;
-  };
 }
 
 

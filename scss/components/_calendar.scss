@@ -5,23 +5,7 @@
 
 .calendar-box {
   flex-wrap: wrap;
-
-  @include respond-above(small) {
-    @include span-columns(6 of 6);
-    display: flex;
-  };
-  @include respond-above(medium) {
-    @include span-columns(6 of 6);
-    display: flex;
-  };
-  @include respond-above(large) {
-    @include span-columns(8 of 8);
-    display: flex;
-  };
-  @include respond-above(huge) {
-    @include span-columns(10 of 10);
-    display: flex;
-  };
+  width: 100%;
 }
 
 .calendar-box__toggle {
@@ -37,14 +21,14 @@
   letter-spacing: 0.05em;
   padding: $space--xxsmall;
   @include text-size($m);
-  @include transition(all 0.2s ease);
+  transition: all 0.2s ease;
+  text-align: center;
+  flex-basis: 100%;
+  margin-bottom: 0.5rem;
+  margin-right: 0;
+  border: 2px solid $white;
+  box-sizing: border-box;
 
-  @include respond-above(small) {
-    text-align: center;
-    flex-basis: 100%;
-    margin-bottom: 0.2rem;
-    margin-right: 0;
-  };
   @include respond-above(medium) {
     margin-right: 1rem;
     flex-basis: auto;
@@ -86,7 +70,7 @@
   flex-wrap: wrap;
   cursor: default;
 
-  @include transition(all 0.2s ease);
+  transition: all 0.2s ease;
 
   @include respond-above(medium) {
     padding: $space--medium 0;
@@ -123,7 +107,7 @@
   };
 
   &:after {
-    font-family: $font--symbols;
+    @include font-family($ff-pictographic);
     font-weight: bold;
     @include text-size($m);
     content: "ﬂ";
@@ -158,7 +142,7 @@
 .calendar-box__title {
   display: block;
   @include text-size($m);
-  @include transition(all 0.2s ease);
+  transition: all 0.2s ease;
 }
 
 .calendar-box__subtitle {
@@ -209,14 +193,12 @@
     display: inline-block;
     padding: $space--xxsmall;
     @include text-size($m);
-    @include transition(all 0.2s ease);
+    transition: all 0.2s ease;
+    text-align: center;
+    flex-basis: 100%;
+    margin-bottom: 0.5rem;
+    margin-right: 0;
 
-    @include respond-above(small) {
-      text-align: center;
-      flex-basis: 100%;
-      margin-bottom: 0.2rem;
-      margin-right: 0;
-    };
     @include respond-above(medium) {
       margin-right: 1rem;
       flex-basis: auto;

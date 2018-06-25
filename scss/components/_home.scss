@@ -172,7 +172,7 @@
 }
 
 .option__item {
-  @include transition(all 0.2s ease);
+  transition: all 0.2s ease;
   @include font-family($ff-sans);
   font-size: 9vmax;
   font-weight: bold;

@@ -30,65 +30,36 @@ h1 {
   @include font-family($ff-sans);
   font-weight: bold;
   line-height: $lh-tight;
-  @include respond-above(small) {
-  };
-  @include respond-above(medium) {
-  };
 }
 
 h2 {
   @include font-family($ff-sans);
   font-weight: bold;
-  @include respond-above(small) {
-  };
-  @include respond-above(medium) {
-  };
 }
 
 h3 {
   @include font-family($ff-sans);
   font-weight: bold;
-  @include respond-above(small) {
-  };
-  @include respond-above(medium) {
-  };
 }
 
 h4 {
   @include font-family($ff-sans);
   font-weight: bold;
-  @include respond-above(small) {
-  };
-  @include respond-above(medium) {
-  };
 }
 
 h5 {
   @include font-family($ff-sans);
   font-weight: bold;
-  @include respond-above(small) {
-  };
-  @include respond-above(medium) {
-  };
 }
 
 h6 {
   @include font-family($ff-sans);
   font-weight: bold;
-  @include respond-above(small) {
-  };
-  @include respond-above(medium) {
-  };
 }
 
 p {
   @include font-family($ff-sans);
   font-weight: normal;
-
-  @include respond-above(small) {
-  };
-  @include respond-above(medium) {
-  };
 }
 
 a {

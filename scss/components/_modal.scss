@@ -26,10 +26,9 @@
 .modal {
   cursor: auto;
   overflow-y: scroll;
-  @include respond-above(small) {
-    height: calc(100vh - 1rem);
-    width: calc(100vw - 1rem);
-  };
+  height: calc(100vh - 1rem);
+  width: calc(100vw - 1rem);
+
   @include respond-above(medium) {
     height: calc(100vh - 2rem);
     width: calc(100vw - 2rem);
@@ -40,34 +39,27 @@
   display: none;
   flex-wrap: wrap;
   position: relative;
-  @include omega;
-  @include respond-above(small) {
-    @include span-columns(6 of 6);
-    display: none;
-    padding: 5vh 5vw;
-  };
+  width: 100%;
+  padding: 5vh 5vw;
   @include respond-above(medium) {
-    @include span-columns(6 of 8);
-    @include shift(1);
-    display: none;
+    width: 75%;
+    margin-left: 25%;
     padding: 10vh 0;
   };
   @include respond-above(large) {
-    @include span-columns(8 of 10);
-    @include shift(1);
-    display: none;
+    width: 80%;
+    margin-left: 20%;
   };
   @include respond-above(huge) {
-    @include span-columns(10 of 12);
-    @include shift(1);
-    display: none;
+    width: 85%;
+    margin-left: 15%;
   };
 }
 
 .modal__item-toggle {
   @include text-size($l);
   cursor: pointer;
-  @include transition(color 0.1s ease);
+  transition: color 0.1s ease;
   padding: 1vh 2.5vw;
   position: absolute;
   width: auto;
@@ -104,21 +96,9 @@
 }
 
 .modal__description {
-  @include respond-above(small) {
-    @include span-columns(6 of 6);
-    @include omega;
-  };
-  @include respond-above(medium) {
-    @include span-columns(6 of 6);
-    @include omega;
-  };
+  width: 100%;
   @include respond-above(large) {
-    @include span-columns(4 of 8);
-    @include omega;
-  };
-  @include respond-above(huge) {
-    @include span-columns(5 of 10);
-    @include omega;
+    width: 50%;
   };
 
   @include text-size($s);
@@ -127,11 +107,8 @@
   &::before {
     @include text-size($xl);
     content: "—";
-
-    @include respond-above(small) {
-      margin-top: -1rem;
-      display: none;
-    };
+    margin-top: -1rem;
+    display: none;
 
     @include respond-above(large) {
       margin-top: -0.1rem;
@@ -142,9 +119,7 @@
   }
 
   p:first-child {
-    @include respond-above(small) {
-      margin-top: 1rem;
-    };
+    margin-top: 1rem;
 
     @include respond-above(large) {
       margin-top: -0.5rem;

@@ -11,26 +11,14 @@
 }
 
 .information__section {
-
+  width: 100%;
 }
 
 .information__main-description-container {
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 2px solid;
-
-  @include respond-above(small) {
-    @include span-columns(6 of 6);
-  };
-  @include respond-above(medium) {
-    @include span-columns(6 of 6);
-  };
-  @include respond-above(large) {
-    @include span-columns(8 of 8);
-  };
-  @include respond-above(huge) {
-    @include span-columns(10 of 10);
-  };
+  width: 100%;
 
   &:last-child {
     border-bottom: none;
@@ -39,19 +27,10 @@
 }
 
 .information__main-description {
-  @include respond-above(small) {
-    @include span-columns(6 of 6);
-  };
-  @include respond-above(medium) {
-    @include span-columns(6 of 6);
-  };
+  width: 100%;
   @include respond-above(large) {
-    @include span-columns(5 of 8);
-    @include shift(3);
-  };
-  @include respond-above(huge) {
-    @include span-columns(6 of 10);
-    @include shift(4);
+    width: 60%;
+    margin-left: 40%;
   };
 
   p {
@@ -59,7 +38,7 @@
   }
 
   a {
-    @include transition(color 0.1s ease);
+    transition: color 0.1s ease;
   }
 
   p + p {
@@ -71,61 +50,28 @@
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 2px solid;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 
   &:last-child {
     border-bottom: none;
   }
-
-  @include respond-above(small) {
-    @include span-columns(6 of 6);
-  };
-  @include respond-above(medium) {
-    @include span-columns(6 of 6);
-  };
-  @include respond-above(large) {
-    @include span-columns(8 of 8);
-  };
-  @include respond-above(huge) {
-    @include span-columns(8 of 8);
-  };
 }
 
 .information__subsection-title {
+  width: 100%;
   @include text-size($m);
   text-transform: uppercase;
-
-  @include respond-above(small) {
-    @include span-columns(6 of 6);
-    @include omega;
-  };
-  @include respond-above(medium) {
-    @include span-columns(6 of 6);
-    @include omega;
-  };
   @include respond-above(large) {
-    @include span-columns(3 of 8);
-  };
-  @include respond-above(huge) {
-    @include span-columns(4 of 10);
+    width: 40%;
   };
 }
 
 .information__subsection-description {
-  @include respond-above(small) {
-    @include span-columns(6 of 6);
-    @include omega;
-  };
-  @include respond-above(medium) {
-    @include span-columns(6 of 6);
-    @include omega;
-  };
+  width: 100%;
   @include respond-above(large) {
-    @include span-columns(5 of 8);
-    @include omega;
-  };
-  @include respond-above(huge) {
-    @include span-columns(6 of 10);
-    @include omega;
+    width: 60%;
   };
 
   p {
@@ -141,26 +87,15 @@
   }
 
   a {
-    @include transition(color 0.1s ease);
+    transition: color 0.1s ease;
   }
 }
 
 .information__button {
   display: inline-block;
-
-  @include respond-above(small) {
-    @include span-columns(6 of 6);
-  };
-  @include respond-above(medium) {
-    @include span-columns(6 of 6);
-  };
+  width: 100%;
   @include respond-above(large) {
-    @include span-columns(5 of 8);
-    @include shift(3);
-  };
-  @include respond-above(huge) {
-    @include span-columns(6 of 10);
-    @include shift(4);
+    width: 60%;
   };
 }
 
@@ -173,7 +108,7 @@
   padding: $space--xxsmall;
   background-color: $black;
   color: $white;
-  @include transition(all 0.1s ease);
+  transition: all 0.1s ease;
 }
 
 

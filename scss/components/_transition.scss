@@ -2,25 +2,21 @@
 
 .transition-section__container {
   padding-bottom: 4rem;
+  margin: auto;
+  width: 80vw;
 
   &:first-of-type {
     padding-top: 1rem;
   }
 
-  @include respond-above(small) {
-    @include outer-container(80vw);
-  };
   @include respond-above(medium) {
-    @include span-columns(6 of 8);
-    margin: auto;
+    width: 75%;
   };
   @include respond-above(large) {
-    @include span-columns(6 of 10);
-    margin: auto;
+    width: 60%;
   };
   @include respond-above(huge) {
-    @include span-columns(6 of 14);
-    margin: auto;
+    width: 45%;
   };
 
   &:last-child {
@@ -83,7 +79,7 @@
   }
 
   a {
-    @include transition(color 0.1s ease);
+    transition: color 0.1s ease;
   }
 }
 
@@ -107,7 +103,7 @@
   }
 
   a {
-    @include transition(color 0.1s ease);
+    transition: color 0.1s ease;
   }
 
   p + p {
@@ -146,7 +142,7 @@
   }
 
   a {
-    @include transition(color 0.1s ease);
+    transition: color 0.1s ease;
   }
 
   p + strong {

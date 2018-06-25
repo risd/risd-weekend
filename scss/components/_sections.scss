@@ -1,46 +1,27 @@
 .section__container {
   padding-bottom: 10rem;
-  margin-top: -5rem;
+  margin: -5rem auto 0 auto;
   padding-top: 5rem;
+  width: 80vw;
 
   &:first-of-type {
     padding-top: 12rem;
     padding-bottom: 6rem;
   }
-
-  @include respond-above(small) {
-    @include outer-container(80vw);
-  };
+  
   @include respond-above(medium) {
-    @include span-columns(6 of 8);
-    @include shift(1);
-    @include omega;
-  };
-  @include respond-above(large) {
-    @include span-columns(8 of 10);
-    @include shift(1);
-    @include omega;
+    width: 80%;
   };
   @include respond-above(huge) {
-    @include span-columns(8 of 12);
-    @include shift(2);
-    @include omega;
+    width: 70%;
+  };
+  @include respond-above(massive) {
+    width: 65%;
   };
 }
 
 .section__container--wide {
-  @include respond-above(small) {
-    @include span-columns(6 of 6);
-  };
-  @include respond-above(medium) {
-    @include span-columns(8 of 8);
-  };
-  @include respond-above(large) {
-    @include span-columns(10 of 10);
-  };
-  @include respond-above(huge) {
-    @include span-columns(12 of 12);
-  };
+  width: 100%;
 }
 
 .section__title {

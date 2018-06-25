@@ -16,8 +16,9 @@
   align-items: center;
   align-content: center;
   flex-direction: column;
+  margin: auto;
   @include respond-above(small) {
-    @include outer-container(90%);
+    width: 90%;
   };
 }
 
@@ -33,7 +34,7 @@
   font-size: 13vmin;
   text-transform: uppercase;
   left: 0;
-  @include transition(all 0.5s ease);
+  transition: all 0.5s ease;
 }
 
 @keyframes fadeIn {
@@ -52,7 +53,7 @@
 
 .main-nav__item--modifier {
   color: $white;
-  @include transition(margin 0.2s ease);
+  transition: margin 0.2s ease;
 }
 
 .main-nav__item--active {
@@ -69,8 +70,8 @@
   color: $white;
   position: relative;
   padding-bottom: 2px;
-  @include transition(color 0.1s ease);
-  @include transition(margin 0.2s ease);
+  transition: color 0.1s ease;
+  transition: margin 0.2s ease;
 
   &:hover {
     color: $campaign-color;
