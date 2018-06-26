@@ -2,9 +2,9 @@
 
 
 html {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: normal;
-  @include text-size($regular);
+  @include text-size($s);
 
 }
 
@@ -27,68 +27,39 @@ section {
 }
 
 h1 {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  line-height: $lineHeight--tight;
-  @include media($mobile) {
-  };
-  @include media($tablet) {
-  };
+  line-height: $lh-tight;
 }
 
 h2 {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  @include media($mobile) {
-  };
-  @include media($tablet) {
-  };
 }
 
 h3 {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  @include media($mobile) {
-  };
-  @include media($tablet) {
-  };
 }
 
 h4 {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  @include media($mobile) {
-  };
-  @include media($tablet) {
-  };
 }
 
 h5 {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  @include media($mobile) {
-  };
-  @include media($tablet) {
-  };
 }
 
 h6 {
-  font-family: $font--primary;
+  @include font-family($ff-sans);
   font-weight: bold;
-  @include media($mobile) {
-  };
-  @include media($tablet) {
-  };
 }
 
 p {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: normal;
-
-  @include media($mobile) {
-  };
-  @include media($tablet) {
-  };
 }
 
 a {
@@ -115,7 +86,7 @@ u {
 }
 
 blockquote {
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-weight: normal;
   margin-left: $space--xxlarge;
 }
@@ -123,7 +94,7 @@ blockquote {
 cite {
   display: block;
   text-align: right;
-  font-family: $font__primary;
+  @include font-family($ff-sans);
   font-style: italic;
   &:before {
     content: "— ";

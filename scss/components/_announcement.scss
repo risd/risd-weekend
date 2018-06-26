@@ -8,19 +8,7 @@
   flex-basis: 51%;
   flex-grow: 1;
   width: auto;
-  @include text-size($large);
-  @include media($mobile) {
-    line-height: 1;
-  };
-  @include media($tablet) {
-    line-height: 1;
-  };
-  @include media($laptop) {
-    line-height: 1;
-  };
-  @include media($desktop) {
-    line-height: 1;
-  };
+  @include text-size($l, $lineheight: 1);
 }
 
 .announcement__date {
@@ -28,10 +16,10 @@
 }
 
 .announcement__location {
-  @include media($tablet) {
+  @include respond-above(medium) {
     margin-left: 4.1em;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     margin-left: 6.3em;
   };
 }

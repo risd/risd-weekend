@@ -14,19 +14,19 @@
   padding-bottom: 4vmin;
 
 
-  @include media($mobile) {
+  @include respond-above(small) {
     margin-top: $space--xxlarge;
     margin-bottom: $space--large;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     margin-top: $space--xxlarge;
     margin-bottom: $space--xlarge;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     margin-top: $space--xxlarge;
     margin-bottom: $space--xxlarge;
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     margin-top: $space--xxlarge;
     margin-bottom: $space--xxlarge;
   };
@@ -39,16 +39,16 @@
   line-height: 0.9;
   letter-spacing: 0.05em;
 
-  @include media($mobile) {
+  @include respond-above(small) {
     font-size: 12vmin;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     font-size: 12vmin;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     font-size: 12vmin;
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     font-size: 12vmin;
   };
 }
@@ -56,52 +56,52 @@
 .text-block__container {
   display: flex;
   flex-wrap: wrap;
-  @include media($mobile) {
+  @include respond-above(small) {
     padding: 0;
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     padding: $space--large 0;
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     padding: $space--xxlarge 0;
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     padding: $space--xxxlarge 0;
   };
 }
 
 .text-block {
   padding-bottom: $space--large;
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(4 of 6);
     @include shift(1);
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(5 of 9);
     @include shift(1);
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(6 of 12);
     @include shift(2);
   };
 }
 
 .text-block--large {
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(4 of 6);
     @include shift(1);
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(7 of 9);
     @include shift(1);
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(8 of 12);
     @include shift(2);
   };
@@ -124,21 +124,21 @@
 }
 
 .text-block__two-column {
-  @include media($mobile) {
+  @include respond-above(small) {
     @include span-columns(6 of 6);
   };
-  @include media($tablet) {
+  @include respond-above(medium) {
     @include span-columns(4 of 4);
     margin-bottom: 0
   };
-  @include media($laptop) {
+  @include respond-above(large) {
     @include span-columns(3 of 7);
     margin-bottom: $space--large;
     &:nth-child(2n) {
       @include shift(1);
     }
   };
-  @include media($desktop) {
+  @include respond-above(huge) {
     @include span-columns(4 of 8);
     &:nth-child(2n) {
       @include shift(0);

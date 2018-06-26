@@ -1,6 +1,6 @@
 global.jQuery = global.$ = require('jquery');
 
-var consoleInformation = require('./consoleInformation.js')();
+// var consoleInformation = require('./consoleInformation.js')();
 var mobileMenuToggle = require('./mobileMenuToggle.js')();
 var scrollAnchor = require('./scrollAnchor.js')();
 var activeNav = require('./activeNav.js')();

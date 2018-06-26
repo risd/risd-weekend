@@ -1,50 +1,31 @@
 .section__container {
   padding-bottom: 10rem;
-  margin-top: -5rem;
+  margin: -5rem auto 0 auto;
   padding-top: 5rem;
+  width: 80vw;
 
   &:first-of-type {
     padding-top: 12rem;
     padding-bottom: 6rem;
   }
-
-  @include media($mobile) {
-    @include outer-container(80vw);
+  
+  @include respond-above(medium) {
+    width: 80%;
   };
-  @include media($tablet) {
-    @include span-columns(6 of 8);
-    @include shift(1);
-    @include omega;
+  @include respond-above(huge) {
+    width: 70%;
   };
-  @include media($laptop) {
-    @include span-columns(8 of 10);
-    @include shift(1);
-    @include omega;
-  };
-  @include media($desktop) {
-    @include span-columns(8 of 12);
-    @include shift(2);
-    @include omega;
+  @include respond-above(massive) {
+    width: 65%;
   };
 }
 
 .section__container--wide {
-  @include media($mobile) {
-    @include span-columns(6 of 6);
-  };
-  @include media($tablet) {
-    @include span-columns(8 of 8);
-  };
-  @include media($laptop) {
-    @include span-columns(10 of 10);
-  };
-  @include media($desktop) {
-    @include span-columns(12 of 12);
-  };
+  width: 100%;
 }
 
 .section__title {
-  @include text-size($huge);
+  @include text-size($xl);
   // font-size: 13vmin;
   text-transform: uppercase;
   word-break: break-word;
@@ -61,7 +42,7 @@
 }
 
 .section__description {
-  @include text-size($medium);
+  @include text-size($m);
   margin-bottom: 2rem;
 
   p + p {
