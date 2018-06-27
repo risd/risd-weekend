@@ -82,6 +82,7 @@
   flex-direction: column;
   transform: translateY(0);
   transition: transform 0.2s ease;
+  mix-blend-mode: multiply;
 
   &.wiggle {
     animation: wiggle 0.8s ease both;
@@ -114,9 +115,10 @@
 .poster-moment__image {
   display: flex;
   align-items: center;
+  margin: -2rem;
 
   img {
-    height: 150%;
+    height: 120%;
     width: initial;
   }
 }

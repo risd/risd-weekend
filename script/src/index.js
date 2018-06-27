@@ -8,9 +8,9 @@ var scheduleToggle = require('./scheduleToggle.js')();
 var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
 var eventModal = require('./eventModal.js')();
+var preloadImages = require('./preloadImages.js')($);
 var posterMomentLayout = require('./posterMomentLayout.js')($);
 var modifierImageSizing = require('./modifierImageSizing.js')($);
-var preloadImages = require('./preloadImages.js')($);
 var modifierToggle = require('./modifierToggle.js')($);
 
 var switchTimeoutID;
