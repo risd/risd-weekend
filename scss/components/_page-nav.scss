@@ -1,46 +1,25 @@
 .header {
   text-align: center;
   z-index: 2000;
+  margin: auto;
+  width: 90vw;
 
-  @include media($mobile) {
-    @include outer-container(90vw);
-  };
-
-  @include media($tablet) {
-    @include outer-container(100vw);
+  @include respond-above(small) {
+    width: 100vw;
   };
 }
 
 .nav {
-  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 5000;
   list-style: none;
   margin-bottom: 0;
-
-  @include media($mobile) {
-    @include span-columns(6 of 6);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  };
-
-  @include media($tablet) {
-    @include span-columns(8 of 8);
-    display: flex;
-  };
-
-  @include media($laptop) {
-    @include span-columns(10 of 10);
-    display: flex;
-  };
-
-  @include media($desktop) {
-    @include span-columns(12 of 12);
-    display: flex;
-  };
+  width: 100%;
 }
 
 .nav--up {
@@ -53,41 +32,34 @@
 
 
 .nav__item {
-  justify-content: center;
   padding: $space--small 0;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 0.05em;
-  border-bottom: none;
-  display: flex;
+  display: none;
+  justify-content: center;
   align-items: center;
-  @include transition(color 0.1s ease);
+  flex-grow: 0;
+  transition: color 0.1s ease;
+  @include text-size($m);
+  width: 100%;
+  border-bottom: 2px solid;
+  &:last-child {
+    border-bottom: none;
+  }
 
-  @include media($mobile) {
-    @include text-size($medium);
-    width: 100%;
-    display: none;
-    flex-grow: 0;
-    align-items: center;
-    border-bottom: 2px solid;
-    &:last-child {
-      border-bottom: none;
-    }
-  };
-
-  @include media($laptop) {
-    @include text-size($regular);
+  @include respond-above(large) {
+    @include text-size($s);
     display: flex;
     width: auto;
     justify-content: center;
     flex-grow: 1;
-    height: 60px;
     align-items: stretch;
     border-bottom: none;
   };
 
   span {
-    // font-family: $font__symbols;
+    // @include font-family($ff-pictographic);
     // font-weight: normal;
     display: inline-block;
     transform: rotate(-45deg);
@@ -98,20 +70,14 @@
 .nav__item--activator {
   cursor: pointer;
   border-bottom: none;
-  @include text-size($medium);
-  @include media($mobile) {
-    display: flex;
-  };
+  @include text-size($m);
+  display: flex;
 
-  @include media($tablet) {
-    display: flex;
-  };
-
-  @include media($laptop) {
+  @include respond-above(large) {
     display: none;
   };
 
-  @include media($desktop) {
+  @include respond-above(huge) {
     display: none;
   };
 }
@@ -119,30 +85,16 @@
 .nav__item--deactivator {
   cursor: pointer;
   font-weight: normal;
-  @include text-size($large);
-
-  @include media($mobile) {
-    display: none;
-  };
-
-  @include media($tablet) {
-    display: none;
-  };
-
-  @include media($laptop) {
-    display: none;
-  };
-
-  @include media($desktop) {
-    display: none;
-  };
+  @include text-size($l);
+  display: none;
 }
 
 .nav__item--active {
 
-  @include media($tablet) {
+  @include respond-above(medium) {
 
     & + .nav__item {
+
     }
 
   };

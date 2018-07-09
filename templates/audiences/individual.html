@@ -69,7 +69,7 @@
           <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">{{ item.name }}</div>
         </div>
         <div class="poster-moment__item" id="poster-moment__week">WEEK—</div>
-        <div class="poster-moment__item" id="poster-moment__end">END<span class="poster-moment__item--superscript">&#xB9;&#8311;</span></div>
+        <div class="poster-moment__item" id="poster-moment__end">END<span class="poster-moment__item--superscript">¹⁸</span></div>
       </div>
       {% if item.register_button === true %}
         <div class="poster-moment__button">
@@ -210,7 +210,7 @@
         </div>
           {% if loop.last %}
             {% set schedule_pdf = getItem('files', '-Kpay06Iw39hVxeaNK_9') %}
-            <div class="calendar-box__link-button"><a href="{{ schedule_pdf.pdf.url }}" target="_blank">Download the schedule</a></div>
+            <div class="calendar-box__link-button"><a href="/events" target="_blank">Download the schedule</a></div>
             </div>
           {% endif %}
         {% endfor %}

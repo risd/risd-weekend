@@ -79,8 +79,9 @@
                                     item: event,
                                     itemClass: 'calendar-box__time'
                                   } %}
+                                  |&#8200;
                                 {% endif %}
-                                |&#8200;{{ event.location.name }}
+                                {{ event.location.name }}
                                 {% if event.location_details %}
                                   ,&#8200;{{ event.location_details }}
                                 {% endif %}
