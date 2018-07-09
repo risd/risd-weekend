@@ -210,7 +210,7 @@
         </div>
           {% if loop.last %}
             {% set schedule_pdf = getItem('files', '-Kpay06Iw39hVxeaNK_9') %}
-            <div class="calendar-box__link-button"><a href="{{ schedule_pdf.pdf.url }}" target="_blank">Download the schedule</a></div>
+            <div class="calendar-box__link-button"><a href="/events" target="_blank">Download the schedule</a></div>
             </div>
           {% endif %}
         {% endfor %}
