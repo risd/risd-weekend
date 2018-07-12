@@ -1,6 +1,6 @@
 {
   "name": "risd-weekend",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "Grunt site generator for risd/webhook",
   "repository": {
     "type": "git",
