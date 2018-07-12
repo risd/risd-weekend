@@ -53,7 +53,7 @@
                   {% endif %}
 
                   {% for event in day %}
-                    {% set event.start_time_order = event.start_time | date('H') %}
+                    {% set event.start_time_order = event.start_time | date('Hi') %}
                   {% endfor %}
 
                   {% for event in day | sort('start_time_order') %}
