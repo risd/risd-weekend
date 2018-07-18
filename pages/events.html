@@ -88,6 +88,12 @@
                                 {% if event.location.address %}
                                   ,&#8200;{{ event.location.address }}
                                 {% endif %}
+                                {% if event.attendee_limit %}
+                                  &#8200;|&#8200;{{ event.attendee_limit }}
+                                {% endif %}
+                                {% if event.registration_required === true %}
+                                  &#8200;|&#8200;registration required
+                                {% endif %}
                               </p>
                             {% endspaceless %}
                           {% endif %}
