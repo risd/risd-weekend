@@ -1,6 +1,10 @@
 <header class="header {% block header_attributes %}{% endblock %}">
   {% set infoSnippets = item.information_snippets %}
 
+  <script>
+    console.log({{item.register_button|json|safe}});
+  </script>
+
   <nav class="nav">
     <a class="nav__item nav__item--activator">Menu</a>
     <a class="nav__item nav__item--deactivator">×</a>
@@ -11,7 +15,9 @@
         <a class="nav__item nav__item--pages" href="#{{ information.name|lower|replace(' ', '-', 'g') }}">{{ information.name }}</a>
       {% endif %}
     {% endfor %}
-    {# <a class="nav__item nav__item--pages" href="https://engage.risd.edu/risdweekend-2018" target="_blank">Registration<span>➞</span></a> #}
+    {% if item.show_placeholder_text === false %}
+      <a class="nav__item nav__item--pages" href="https://engage.risd.edu/risdweekend-2018" target="_blank">Registration<span>➞</span></a>
+    {% endif %}
     {# <a class="nav__item nav__item--pages" href="" target="_blank">Who's coming?<span>➞</span></a> #}
   </nav>
 
