@@ -162,7 +162,6 @@
   display: block;
   border: none;
   @include text-size($l);
-  text-transform: uppercase;
   font-weight: bold;
   padding: 0.5rem 1rem;
 }
