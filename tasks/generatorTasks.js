@@ -93,6 +93,12 @@ module.exports = function(grunt) {
   grunt.registerTask('build-page', 'Build a single template file.', function (){
     var done = this.async();
 
+    var strict = grunt.option('strict');
+
+    if(strict === true) {
+      generator.enableStrictMode();
+    }
+
     var production = grunt.option('production');
 
     if(production === true) {
@@ -112,6 +118,12 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build-page-cms', 'Build just the CMS page.', function () {
     var done = this.async();
+
+    var strict = grunt.option('strict');
+
+    if(strict === true) {
+      generator.enableStrictMode();
+    }
 
     var production = grunt.option('production');
 
@@ -134,6 +146,12 @@ module.exports = function(grunt) {
   grunt.registerTask('build-template', 'Build a single template file.', function () {
     var done = this.async();
 
+    var strict = grunt.option('strict');
+
+    if(strict === true) {
+      generator.enableStrictMode();
+    }
+
     var production = grunt.option('production');
 
     if(production === true) {
@@ -154,6 +172,12 @@ module.exports = function(grunt) {
   grunt.registerTask('build-pages', 'Generate static files from pages directory', function() {
     var done = this.async();
 
+    var strict = grunt.option('strict');
+
+    if(strict === true) {
+      generator.enableStrictMode();
+    }
+
     var production = grunt.option('production');
 
     if(production === true) {
@@ -173,6 +197,12 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build-templates', 'Generate static files from templates directory', function() {
     var done = this.async();
+
+    var strict = grunt.option('strict');
+
+    if(strict === true) {
+      generator.enableStrictMode();
+    }
 
     var production = grunt.option('production');
 
@@ -272,17 +302,21 @@ module.exports = function(grunt) {
   grunt.registerTask('init', 'Initialize the firebase configuration file (installer should do this as well)', function() {
     var done = this.async();
 
-    var sitename = grunt.option('sitename');
-    var secretkey = grunt.option('secretkey');
-    var server = grunt.option('server');
-    var embedly = grunt.option('embedly');
-    var copyCms = grunt.option('copycms');
-    var firebase = grunt.option('firebase');
-    var imgix_host = grunt.option('imgix_host');
-    var imgix_secret = grunt.option('imgix_secret');
-    var generator_url = grunt.option('generator_url');
+    var firebaseConfOptions = {
+      siteName: grunt.option('siteName'),
+      siteKey: grunt.option('siteKey'),
+      firebase: grunt.option('firebaseName'),
+      firebaseAPIKey: grunt.option('firebaseAPIKey'),
+      embedlyKey: grunt.option('embedly'),
+      serverAddr: grunt.option('server'),
+      imgix_host: grunt.option('imgix_host'),
+      imgix_secret: grunt.option('imgix_secret'),
+      generator_url: grunt.option('generate'),
+    }
 
-    generator.init(sitename, secretkey, copyCms, firebase, server, embedly, imgix_host, imgix_secret, generator_url, done);
+    var copyCms = grunt.option('copycms');
+
+    generator.init(firebaseConfOptions, copyCms, done);
   });
 
   // Check if initialized properly before running all these tasks

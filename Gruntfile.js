@@ -57,7 +57,7 @@ module.exports = function(grunt) {
         }, {
           expand: 'true',
           cwd: 'scss',
-          src: ['components/cms-custom.scss'],
+          src: ['cms.scss'],
           dest: 'static/css',
           ext: '.css',
           flatten: true
