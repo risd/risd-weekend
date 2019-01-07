@@ -1,3 +1,6 @@
+{% set siteTitle = cms.generalinformation.name %}
+{% set siteShortYear = siteTitle|replace("RISD Weekend 20", "") %}
+
 <div class="poster-moment--transition">
   <a class="nav__anchor nav__anchor--home" id=""></a>
   <div class="poster-moment__container">
@@ -8,7 +11,7 @@
       <div class="poster-moment__item poster-moment__modifier" id="poster-moment__modifier--1">date</div>
     </div>
     <div class="poster-moment__item" id="poster-moment__week">WEEK—</div>
-    <div class="poster-moment__item" id="poster-moment__end">END<span class="poster-moment__item--superscript">¹⁸</span></div>
+    <div class="poster-moment__item" id="poster-moment__end">END<span class="poster-moment__item--superscript">{{ siteShortYear }}</span></div>
   </div>
 
 <section class="transition-section__container transition-intro__container">

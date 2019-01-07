@@ -133,12 +133,8 @@
 
 .poster-moment__item--superscript {
   position: relative;
-  top: 0.11em;
-  // Currently using superscript characters in the templates instead of CSS. The CSS doesn't seem to be working.
-    // font-variant-position: super;
-    // -moz-font-feature-settings: "sups";
-    // -webkit-font-feature-settings: "sups";
-    // font-feature-settings: "sups";
+  top: -0.66667em;
+  font-size: 0.5em;
 }
 
 .poster-moment__button {

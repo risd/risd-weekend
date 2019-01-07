@@ -1,5 +1,4 @@
 .home {
-
 }
 
 .home__options {
@@ -13,7 +12,7 @@
 
   @include respond-above(medium) {
     flex-direction: row;
-  };
+  }
 }
 
 .home__option {
@@ -183,13 +182,11 @@
 
 .option__item--superscript {
   position: relative;
-  top: 0.11em;
-  font-variant-position: super;
-  -moz-font-feature-settings: "sups";
-  -webkit-font-feature-settings: "sups";
-  font-feature-settings: "sups";
+  top: -0.66667em;
+  font-size: 0.5em;
 }
 
-#option__week, #option__end {
+#option__week,
+#option__end {
   text-align: right;
 }
