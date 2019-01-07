@@ -10,6 +10,8 @@
   class="layout__transition"
 {% endblock %}
 
+{% set siteTitle = cms.generalinformation.name %}
+{% set siteShortYear = siteTitle|replace("RISD Weekend 20", "") %}
 {% set home = cms.home %}
 {% set audiences = cms.audiences %}
 {% set transition = cms.transitionpage %}
@@ -28,13 +30,13 @@
         <div class="option__item" id="option__risd">RISD</div>
         <div class="option__item option__item--modified">REUNION</div>
         <div class="option__item" id="option__week">WEEK—</div>
-        <div class="option__item" id="option__end">END<span class="option__item--superscript">¹⁸</span></div>
+        <div class="option__item" id="option__end">END<span class="option__item--superscript">{{ siteShortYear }}</span></div>
       </a>
       <a href="/families" class="home__option home__option--right">
         <div class="option__item" id="option__risd">RISD</div>
         <div class="option__item option__item--modified">FAMILIES</div>
         <div class="option__item" id="option__week">WEEK—</div>
-        <div class="option__item" id="option__end">END<span class="option__item--superscript">¹⁸</span></div>
+        <div class="option__item" id="option__end">END<span class="option__item--superscript">{{ siteShortYear }}</span></div>
       </a>
     </div>
 
