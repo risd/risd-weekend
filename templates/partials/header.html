@@ -19,9 +19,11 @@
         <a class="nav__item nav__item--pages" href="#{{ information.name|lower|replace(' ', '-', 'g') }}">{{ information.name }}</a>
       {% endif %}
     {% endfor %}
-    {% if item.show_placeholder_text === false %}
+
+    {% if item.show_placeholder_text === false && cms.generalinformation.show_registration %}
       <a class="nav__item nav__item--pages" href="https://engage.risd.edu/risdweekend-2018" target="_blank">Registration<span>➞</span></a>
     {% endif %}
+
     {# <a class="nav__item nav__item--pages" href="" target="_blank">Who's coming?<span>➞</span></a> #}
   </nav>
 
