@@ -9,7 +9,11 @@
     <a class="nav__item nav__item--activator">Menu</a>
     <a class="nav__item nav__item--deactivator">×</a>
     <a class="nav__item nav__item--pages" href="/">RISD Weekend</a>
+
+    {% if cms.generalinformation.show_events %}
     <a class="nav__item nav__item--pages" href="#events">Events</a>
+    {% endif %}
+
     {% for information in infoSnippets %}
       {% if information.show_in_nav === true %}
         <a class="nav__item nav__item--pages" href="#{{ information.name|lower|replace(' ', '-', 'g') }}">{{ information.name }}</a>
