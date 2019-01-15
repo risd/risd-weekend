@@ -1,6 +1,5 @@
 global.jQuery = global.$ = require('jquery');
 
-var consoleInformation = require('./consoleInformation.js')($);
 var posterMomentLayout = require('./posterMomentLayout.js')($);
 
 var shiftTimeoutID;

@@ -1,7 +1,15 @@
 {% extends "templates/partials/base.html" %}
 
-{% block header %}
+{% set siteTitle = cms.generalinformation.name %}
+{% set siteShortYear = siteTitle|replace("RISD Weekend 20", "") %}
+{% set audiences = cms.audiences %}
+{% set transition = cms.transitionpage %}
+{% set infoSnippets = transition.information_sections %}
 
+{% block header %}
+  {% if transition.transition_page_active === true %}
+    {% include "templates/partials/header-alternate.html" %}
+  {% endif %}
 {% endblock %}
 
 {% block title %}{% parent %}{% endblock %}
@@ -10,18 +18,11 @@
   class="layout__transition"
 {% endblock %}
 
-{% set siteTitle = cms.generalinformation.name %}
-{% set siteShortYear = siteTitle|replace("RISD Weekend 20", "") %}
-{% set home = cms.home %}
-{% set audiences = cms.audiences %}
-{% set transition = cms.transitionpage %}
-{% set infoSnippets = transition.information_sections %}
-
 {% block content %}
 
   <main class="home">
 
-    {% if transition.transition_page_active === false %}
+    {% if transition.transition_page_active === true %}
       {% include "templates/partials/transition-content.html" %}
     {% else %}
 
