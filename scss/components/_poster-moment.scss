@@ -277,9 +277,9 @@
     color: $white;
 
     @supports (-webkit-text-stroke-color: $black) {
-      -moz-text-fill-color: $campaign-color;
-      -webkit-text-fill-color: $campaign-color;
-      text-fill-color: $campaign-color;
+      -moz-text-fill-color: transparent;
+      -webkit-text-fill-color: transparent;
+      text-fill-color: transparent;
       -moz-text-stroke-color: $black;
       -webkit-text-stroke-color: $black;
       text-stroke-color: $black;

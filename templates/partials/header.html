@@ -1,10 +1,6 @@
 <header class="header {% block header_attributes %}{% endblock %}">
   {% set infoSnippets = item.information_snippets %}
 
-  <script>
-    console.log({{item.register_button|json|safe}});
-  </script>
-
   <nav class="nav">
     <a class="nav__item nav__item--activator">Menu</a>
     <a class="nav__item nav__item--deactivator">×</a>

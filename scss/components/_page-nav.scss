@@ -189,3 +189,22 @@
     }
   }
 }
+
+.layout__transition {
+  .nav {
+    background-color: $black;
+  }
+  .nav__item {
+    color: $white;
+    border-color: $campaign-color;
+    &:hover {
+      color: $campaign-color;
+    }
+  }
+  .nav__item--active {
+    color: $campaign-color;
+    &:hover {
+      color: $campaign-color;
+    }
+  }
+}
