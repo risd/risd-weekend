@@ -43,6 +43,23 @@
   align-items: center;
   // margin-top: 0;
   align-content: stretch;
+
+  .poster-moment__container {
+    height: 70vh;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin: 3rem auto -4rem auto;
+    width: 80vw;
+    @include respond-above(medium) {
+      width: 75%;
+    };
+    @include respond-above(large) {
+      width: 60%;
+    };
+    @include respond-above(huge) {
+      width: 45%;
+    };
+  }
 }
 
 .poster-moment__item {
