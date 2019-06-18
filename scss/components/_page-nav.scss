@@ -20,6 +20,7 @@
   list-style: none;
   margin-bottom: 0;
   width: 100%;
+  background-color: $white;
 }
 
 .nav--up {
@@ -44,6 +45,11 @@
   @include text-size($m);
   width: 100%;
   border-bottom: 2px solid;
+  color: $campaign-color;
+  border-color: $black;
+  &:hover {
+    color: $black;
+  }
   &:last-child {
     border-bottom: none;
   }
@@ -90,15 +96,10 @@
 }
 
 .nav__item--active {
-
-  @include respond-above(medium) {
-
-    & + .nav__item {
-
-    }
-
-  };
-
+  color: $black;
+  &:hover {
+    color: $black;
+  }
 }
 
 .nav__item--show {
@@ -127,84 +128,4 @@
 .nav__anchor--home {
   position: absolute;
   top: 0;
-}
-
-
-
-// Theme colors --------------------------------------------- //
-
-.layout__campaign-color {
-  .nav {
-    background-color: $black;
-  }
-  .nav__item {
-    color: $white;
-    border-color: $campaign-color;
-    &:hover {
-      color: $campaign-color;
-    }
-  }
-  .nav__item--active {
-    color: $campaign-color;
-    &:hover {
-      color: $campaign-color;
-    }
-  }
-}
-
-.layout__white {
-  .nav {
-    background-color: $campaign-color;
-  }
-  .nav__item {
-    color: $black;
-    border-color: $white;
-    &:hover {
-      color: $white;
-    }
-  }
-  .nav__item--active {
-    color: $white;
-    &:hover {
-      color: $white;
-    }
-  }
-}
-
-.layout__black {
-  .nav {
-    background-color: $white;
-  }
-  .nav__item {
-    color: $campaign-color;
-    border-color: $black;
-    &:hover {
-      color: $black;
-    }
-  }
-  .nav__item--active {
-    color: $black;
-    &:hover {
-      color: $black;
-    }
-  }
-}
-
-.layout__transition {
-  .nav {
-    background-color: $black;
-  }
-  .nav__item {
-    color: $white;
-    border-color: $campaign-color;
-    &:hover {
-      color: $campaign-color;
-    }
-  }
-  .nav__item--active {
-    color: $campaign-color;
-    &:hover {
-      color: $campaign-color;
-    }
-  }
 }

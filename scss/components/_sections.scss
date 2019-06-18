@@ -8,7 +8,7 @@
     padding-top: 12rem;
     padding-bottom: 6rem;
   }
-  
+
   @include respond-above(medium) {
     width: 80%;
   };
@@ -29,8 +29,8 @@
   // font-size: 13vmin;
   text-transform: uppercase;
   word-break: break-word;
-
   padding-bottom: 1rem;
+  color: $black;
 
   &::after {
     content: "—";
@@ -44,48 +44,9 @@
 .section__description {
   @include text-size($m);
   margin-bottom: 2rem;
+  color: $black;
 
   p + p {
     margin-top: 1rem;
-  }
-}
-
-
-
-// Theme colors --------------------------------------------- //
-
-.layout__campaign-color {
-  .section__title {
-    color: $white;
-    &::after {
-      color: $black;
-    }
-  }
-  .section__description {
-    color: $black;
-  }
-}
-
-.layout__white {
-  .section__title {
-    color: $black;
-    &::after {
-      color: $campaign-color;
-    }
-  }
-  .section__description {
-    color: $black;
-  }
-}
-
-.layout__black {
-  .section__title {
-    color: $campaign-color;
-    &::after {
-      color: $white;
-    }
-  }
-  .section__description {
-    color: $white;
   }
 }

@@ -43,8 +43,8 @@ function ScheduleToggle() {
 
   function filterAudiences(filter) {
 
-    $filterButton = $('#calendar-box__button--' + filter);
-    $filteredColumn = $('#calendar-box__column--' + filter);
+    $filterButton = $('.calendar-box__button--' + filter);
+    $filteredColumn = $('.calendar-box__column--' + filter);
 
     $($filterButton).addClass('active').siblings().removeClass('active');
     $('.calendar__audience').removeClass('initial');

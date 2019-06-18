@@ -20,55 +20,17 @@
 .video-module__title-container {
   // height: 8rem;
   padding: 1rem 2rem;
-  background-color: $campaign-color;
-  color: rgb(255, 255, 255);
+  background-color: $black;
+  color: $white;
 }
 
 .video-module__title {
   @include text-size($l);
   text-transform: uppercase;
+  color: $white;
 }
 
 .video-module__subtitle {
   @include text-size($m);
-}
-
-
-
-// Theme colors --------------------------------------------- //
-
-.layout__campaign-color {
-  .video-module__title-container {
-    background-color: $black;
-  }
-  .video-module__title {
-    color: $white;
-  }
-  .video-module__subtitle {
-    color: $white;
-  }
-}
-
-.layout__white {
-  .video-module__title-container {
-    background-color: $campaign-color;
-  }
-  .video-module__title {
-    color: $black;
-  }
-  .video-module__subtitle {
-    color: $black;
-  }
-}
-
-.layout__black {
-  .video-module__title-container {
-    background-color: $white;
-  }
-  .video-module__title {
-    color: $campaign-color;
-  }
-  .video-module__subtitle {
-    color: $campaign-color;
-  }
+  color: $white;
 }

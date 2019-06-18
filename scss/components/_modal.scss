@@ -28,6 +28,7 @@
   overflow-y: auto;
   height: calc(100vh - 1rem);
   width: calc(100vw - 1rem);
+  background-color: $white;
 
   @include respond-above(medium) {
     height: calc(100vh - 2rem);
@@ -67,6 +68,10 @@
   right: 0;
   text-align: right;
   z-index: 9000;
+  color: $campaign-color;
+  &:hover {
+    color: $black;
+  }
   @include respond-above(medium) {
     padding: 2vh 3vw;
   };
@@ -82,6 +87,7 @@
   text-transform: uppercase;
   word-break: break-word;
   margin-bottom: 0.3rem;
+  color: $campaign-color;
 }
 
 .modal__subtitle {
@@ -93,9 +99,12 @@
 .modal__info {
   @include text-size($m);
   font-weight: bold;
-
+  color: $black;
   a {
     transition: all 0.2s ease;
+    &:hover {
+      color: $campaign-color;
+    }
   }
 }
 
@@ -108,10 +117,21 @@
   display: inline-block;
   text-transform: uppercase;
   border: 2px solid;
+  color: $black;
+  border-color: $black;
+  background-color: $white;
+  &:hover {
+    color: $white;
+    background-color: $black;
+  }
 }
 
 .modal__description {
   width: 100%;
+  color: $black;
+  &::before {
+    color: $campaign-color;
+  }
   @include respond-above(large) {
     width: 50%;
   };
@@ -153,6 +173,7 @@
   @include text-size($s);
   font-weight: bold;
   text-transform: uppercase;
+  color: $campaign-color;
 }
 
 .modal__subevent-subtitle {
@@ -165,10 +186,12 @@
 .modal__subevent-info {
   @include text-size($s);
   font-weight: bold;
+  color: $black;
 }
 
 .modal__subevent-description {
   @include text-size($s);
+  color: $black;
 }
 
 .modal--on {
@@ -186,148 +209,4 @@
 
 .modal__body--noscroll {
   overflow: hidden;
-}
-
-
-// Theme colors --------------------------------------------- //
-
-.layout__campaign-color {
-  .modal {
-    background-color: $white;
-  }
-  .modal__item-toggle {
-    color: $campaign-color;
-    &:hover {
-      color: $black;
-    }
-  }
-  .modal__title {
-    color: $campaign-color;
-  }
-  .modal__info {
-    color: $black;
-    a {
-      &:hover {
-        color: $campaign-color;
-      }
-    }
-  }
-  .modal__button {
-    color: $black;
-    border-color: $black;
-    background-color: $white;
-    &:hover {
-      color: $white;
-      background-color: $black;
-    }
-  }
-  .modal__description {
-    color: $black;
-    &::before {
-      color: $campaign-color;
-    }
-  }
-  .modal__subevent-title {
-    color: $campaign-color;
-  }
-  .modal__subevent-info {
-    color: $black;
-  }
-  .modal__subevent-description {
-    color: $black;
-  }
-}
-
-.layout__white {
-  .modal {
-    background-color: $black;
-  }
-  .modal__item-toggle {
-    color: $campaign-color;
-    &:hover {
-      color: $white;
-    }
-  }
-  .modal__title {
-    color: $campaign-color;
-  }
-  .modal__info {
-    color: $white;
-    a {
-      &:hover {
-        color: $campaign-color;
-      }
-    }
-  }
-  .modal__button {
-    color: $white;
-    border-color: $white;
-    background-color: $black;
-    &:hover {
-      color: $black;
-      background-color: $white;
-    }
-  }
-  .modal__description {
-    color: $white;
-    &::before {
-      color: $campaign-color;
-    }
-  }
-  .modal__subevent-title {
-    color: $campaign-color;
-  }
-  .modal__subevent-info {
-    color: $white;
-  }
-  .modal__subevent-description {
-    color: $white;
-  }
-}
-
-.layout__black {
-  .modal {
-    background-color: $campaign-color;
-  }
-  .modal__item-toggle {
-    color: $white;
-    &:hover {
-      color: $black;
-    }
-  }
-  .modal__title {
-    color: $white;
-  }
-  .modal__info {
-    color: $black;
-    a {
-      &:hover {
-        color: $white;
-      }
-    }
-  }
-  .modal__button {
-    color: $black;
-    border-color: $black;
-    background-color: $campaign-color;
-    &:hover {
-      color: $campaign-color;
-      background-color: $black;
-    }
-  }
-  .modal__description {
-    color: $black;
-    &::before {
-      color: $white;
-    }
-  }
-  .modal__subevent-title {
-    color: $white;
-  }
-  .modal__subevent-info {
-    color: $black;
-  }
-  .modal__subevent-description {
-    color: $black;
-  }
 }

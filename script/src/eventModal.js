@@ -19,6 +19,8 @@ function EventModal(opts) {
   var onLoadModal = true;
   var modalIsOpen = false;
 
+  $('.modal__item').removeClass('modal--on');
+
   openModal($(this));
 
   $events.click(function(e) {

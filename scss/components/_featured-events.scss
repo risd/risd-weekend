@@ -58,41 +58,10 @@
   border-bottom: none;
   transition: all 0.2s ease;
   word-break: break-word;
-}
-
-
-
-// Theme colors --------------------------------------------- //
-
-.layout__campaign-color {
-  .featured-events__item-link {
-    color: $white;
-    background-color: $black;
-    &:hover {
-      color: $black;
-      background-color: $white;
-    }
-  }
-}
-
-.layout__white {
-  .featured-events__item-link {
-    color: $white;
-    background-color: $campaign-color;
-    &:hover {
-      color: $white;
-      background-color: $black;
-    }
-  }
-}
-
-.layout__black {
-  .featured-events__item-link {
-    color: $campaign-color;
+  color: $white;
+  background-color: $black;
+  &:hover {
+    color: $black;
     background-color: $white;
-    &:hover {
-      color: $white;
-      background-color: $campaign-color;
-    }
   }
 }

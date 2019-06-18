@@ -10435,6 +10435,8 @@ function EventModal(opts) {
   var onLoadModal = true;
   var modalIsOpen = false;
 
+  $('.modal__item').removeClass('modal--on');
+
   openModal($(this));
 
   $events.click(function(e) {
@@ -10520,7 +10522,6 @@ function EventModal(opts) {
 (function (global){
 global.jQuery = global.$ = require('jquery');
 
-// var consoleInformation = require('./consoleInformation.js')();
 var mobileMenuToggle = require('./mobileMenuToggle.js')();
 var scrollAnchor = require('./scrollAnchor.js')();
 var activeNav = require('./activeNav.js')();
@@ -10529,54 +10530,9 @@ var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
 var eventModal = require('./eventModal.js')();
 var preloadImages = require('./preloadImages.js')($);
-var posterMomentLayout = require('./posterMomentLayout.js')($);
-var modifierImageSizing = require('./modifierImageSizing.js')($);
-var modifierToggle = require('./modifierToggle.js')($);
-
-var switchTimeoutID;
-var shiftTimeoutID;
-
-modifierToggle.switchModifier();
-modifierImageSizing.resizeModifier();
-
-$('.poster-moment').click(function() {
-  modifierToggle.switchModifier();
-  modifierImageSizing.resizeModifier();
-  clearInterval(switchTimeoutID);
-  clearInterval(shiftTimeoutID);
-  switchInterval();
-  shiftInterval();
-});
-
-setTimeout(function () {
-  shiftInterval();
-  switchInterval();
-}, 1000);
-
-function shiftInterval() {
-  shiftTimeoutID = setTimeout(function () {
-    posterMomentLayout.itemShift($('.poster-moment__item'), $('.poster-moment__container'));
-    posterMomentLayout.itemShift($('.main-nav__item'), $('.main-nav__container'));
-    shiftInterval();
-  }, 2000);
-  return shiftTimeoutID;
-}
-
-function switchInterval() {
-  switchTimeoutID = setTimeout(function () {
-    modifierToggle.switchModifier();
-    modifierImageSizing.resizeModifier();
-    switchInterval();
-  }, 4000);
-  return switchTimeoutID;
-}
-
-$(window).resize(function() {
-  modifierImageSizing.resizeModifier();
-});
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./modifierImageSizing.js":7,"./modifierToggle.js":8,"./posterMomentLayout.js":9,"./preloadImages.js":10,"./scheduleHover.js":11,"./scheduleToggle.js":12,"./scrollAnchor.js":13,"jquery":1}],5:[function(require,module,exports){
+},{"./activeNav.js":2,"./eventModal.js":3,"./livestream.js":5,"./mobileMenuToggle.js":6,"./preloadImages.js":7,"./scheduleHover.js":8,"./scheduleToggle.js":9,"./scrollAnchor.js":10,"jquery":1}],5:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
@@ -10700,129 +10656,6 @@ function MobileMenuToggle() {
 },{}],7:[function(require,module,exports){
 module.exports = function( $ ){
 
-  // console.log('ModifierImageSizing initialized.');
-
-  var modifierImageContainer;
-  var modifierImage;
-  var modifierImageHeight;
-  var modifierImageWidth;
-  var modifierImageRatio;
-  var modifierLineHeight;
-  var maxModifierLines = 3;
-  var maxImageHeight;
-  var imageWidth;
-
-  function resizeModifier() {
-    modifierImageContainer = $('.poster-moment__image');
-    modifierImage = $('.poster-moment__image > img');
-
-    modifierImageHeight = modifierImage[0].height;
-    modifierImageWidth = modifierImage[0].width;
-    modifierImageRatio = modifierImageWidth / modifierImageHeight;
-    modifierLineHeight = $('#poster-moment__risd').height();
-    maxImageHeight = modifierLineHeight * maxModifierLines;
-    imageWidth = maxImageHeight * modifierImageRatio;
-
-    modifierImageContainer.height(maxImageHeight);
-    modifierImageContainer.width(imageWidth);
-  }
-
-	//return an object with methods that correspond to above defined functions
-	return {
-		resizeModifier: resizeModifier
-	};
-
-};
-
-},{}],8:[function(require,module,exports){
-module.exports = function( $ ){
-
-  // console.log('ModifierToggle initialized.');
-
-  var modifierContainer = $('.poster-moment__container');
-  var modifiers = JSON.parse($("#modifiers-json").html());
-  var modifierLines;
-  var modifierLine;
-  var modifierImage;
-  var modifierLength = modifiers.length;
-  var currentIndex = Math.floor(Math.random() * (modifierLength - 1));
-  var currentModifier = modifiers[0];
-  var nextModifier = modifiers[0];
-
-  setTimeout(function () {
-    $('.poster-moment__item--modifiers').addClass('wiggle');
-  }, 2000);
-
-  function switchModifier() {
-    if (modifiers[currentIndex].modifier_lines) {
-      modifierLines = modifiers[currentIndex].modifier_lines;
-      $('.poster-moment__item--modifiers').empty();
-
-      for (var j = 0; j < modifierLines.length; j++) {
-        modifierLine = modifierLines[j];
-        $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier">' + modifierLine.line + '</div>');
-      }
-    } else {
-      modifierImage = modifiers[currentIndex].modifier_image.resize_url;
-      $('.poster-moment__item--modifiers').empty();
-      $('.poster-moment__item--modifiers').append('<div class="poster-moment__item poster-moment__modifier poster-moment__image"><img src="' + modifierImage + '"></div>');
-    }
-
-
-    if (currentIndex === modifiers.length - 1) {
-      currentIndex = 0;
-    } else {
-      currentIndex ++;
-    }
-  }
-
-	//return an object with methods that correspond to above defined functions
-	return {
-		switchModifier: switchModifier
-	};
-
-};
-
-},{}],9:[function(require,module,exports){
-module.exports = function( $ ){
-
-  // console.log('PosterMomentLayout initialized.');
-
-  var containerWidth;
-  var $item;
-  var itemWidth;
-  var maxShift;
-  var randomShift;
-  var randomShiftPercentage;
-  var randomBoolean;
-
-  function itemShift($item, $container) {
-    containerWidth = $container.width();
-    $item.each(function() {
-      itemWidth = $(this).width();
-      maxShift = itemWidth / 2;
-      randomShift = Math.floor(Math.random() * maxShift);
-      randomShiftPercentage = (randomShift / containerWidth) * 100;
-      randomBoolean = Math.random() >= 0.5;
-
-      if (randomBoolean === true) {
-        $(this).css('left', ('calc(' + randomShiftPercentage + '% - 1em)'));
-      } else {
-        $(this).css('left', ('calc(-' + randomShiftPercentage + '% + 1em)'));
-      }
-    });
-  }
-
-  //return an object with methods that correspond to above defined functions
-	return {
-		itemShift: itemShift
-	};
-
-};
-
-},{}],10:[function(require,module,exports){
-module.exports = function( $ ){
-
   // console.log('PreLoadImages initialized.');
 
   var modifiers = JSON.parse($("#modifiers-json").html());
@@ -10851,7 +10684,7 @@ module.exports = function( $ ){
 
 };
 
-},{}],11:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10882,7 +10715,7 @@ function ScheduleHover() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],12:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 // Modernizr is being used as a global variable
@@ -10929,8 +10762,8 @@ function ScheduleToggle() {
 
   function filterAudiences(filter) {
 
-    $filterButton = $('#calendar-box__button--' + filter);
-    $filteredColumn = $('#calendar-box__column--' + filter);
+    $filterButton = $('.calendar-box__button--' + filter);
+    $filteredColumn = $('.calendar-box__column--' + filter);
 
     $($filterButton).addClass('active').siblings().removeClass('active');
     $('.calendar__audience').removeClass('initial');
@@ -10941,7 +10774,7 @@ function ScheduleToggle() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],13:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (global){
 var $ = global.jQuery;
 
