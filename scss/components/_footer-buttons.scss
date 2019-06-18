@@ -3,10 +3,10 @@
 }
 
 .footer-buttons {
-  border-bottom: 2px solid;
+  border-bottom: 2px solid $black;
 
   &:first-child {
-    border-top: 2px solid;
+    border-top: 2px solid $black;
   }
 
 }
@@ -15,8 +15,7 @@
   display: block;
   padding: 4rem 2rem;
   border-bottom: none;
-
-  color: $campaign-color;
+  color: $white;
 
   // font-size: 13vmin;
   @include text-size($l, $lineheight: 0.844);
@@ -36,52 +35,4 @@
     @include text-size($xl);
   };
 
-}
-
-
-// Theme colors --------------------------------------------- //
-
-.layout__campaign-color {
-  .footer-buttons {
-    border-color: $black;
-    &:first-child {
-      border-color: $black;
-    }
-  }
-  .footer-buttons__link {
-    color: $black;
-    &:hover {
-      color: $white;
-    }
-  }
-}
-
-.layout__white {
-  .footer-buttons {
-    border-color: $campaign-color;
-    &:first-child {
-      border-color: $campaign-color;
-    }
-  }
-  .footer-buttons__link {
-    color: $campaign-color;
-    &:hover {
-      color: $black;
-    }
-  }
-}
-
-.layout__black {
-  .footer-buttons {
-    border-color: $white;
-    &:first-child {
-      border-color: $white;
-    }
-  }
-  .footer-buttons__link {
-    color: $white;
-    &:hover {
-      color: $campaign-color;
-    }
-  }
 }

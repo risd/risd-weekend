@@ -1,5 +1,9 @@
 <header class="header {% block header_attributes %}{% endblock %}">
-  {% set infoSnippets = item.information_snippets %}
+  {% if transition.transition_page_active === true %}
+    {% set infoSnippets = transition.information_sections %}
+  {% else %}
+    {% set infoSnippets = home.information_sections %}
+  {% endif %}
 
   <nav class="nav">
     <a class="nav__item nav__item--activator">Menu</a>

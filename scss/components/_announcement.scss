@@ -9,6 +9,7 @@
   flex-grow: 1;
   width: auto;
   @include text-size($l, $lineheight: 1);
+  color: $black;
 }
 
 .announcement__date {
@@ -22,26 +23,4 @@
   @include respond-above(large) {
     margin-left: 6.3em;
   };
-}
-
-
-
-// Theme colors --------------------------------------------- //
-
-.layout__campaign-color {
-  .announcement {
-    color: $black;
-  }
-}
-
-.layout__white {
-  .announcement {
-    color: $campaign-color;
-  }
-}
-
-.layout__black {
-  .announcement {
-    color: $white;
-  }
 }
