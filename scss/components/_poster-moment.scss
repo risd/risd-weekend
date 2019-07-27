@@ -20,9 +20,10 @@
   align-items: center;
   align-content: center;
   flex-direction: column;
-  @include respond-above(small) {
-    width: 90%;
-  };
+
+  background-position: center;
+  background-size: cover;
+
   .poster-moment--transition & {
     margin-top: 0;
     cursor: default;
