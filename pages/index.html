@@ -65,11 +65,51 @@
     {% set siteTitle = general_info.name %}
     {% set siteShortYear = siteTitle|replace("RISD Weekend 20", "") %}
 
+    {# Poster Moment Gallery Specification --- Start #}
+
+    {% set gallery_spec = [] %}
+    {% for row in home.hero_images %}
+      {% set background_class_name = 'poster-moment__background--' + loop.index0 %}
+      {% if row.text_color === false %}
+        {% set color_class = 'poster-moment__item--black' %}
+        {% set color_class_value = 'color: black;' %}
+      {% else %}
+        {% set color_class = 'poster-moment__item--white' %}
+        {% set color_class_value = 'color: white;' %}
+      {% endif %}
+
+      {% set gallery_spec = gallery_spec.concat([{
+          background_image: {
+            querySelector: '.poster-moment__container',
+            class: background_class_name,
+            image: row.image,
+          },
+          color: {
+            querySelector: '.poster-moment__item',
+            class: color_class,
+            classValue: color_class_value,
+          },
+        }]) %}
+    {% endfor %}
+
+    {% include 'templates/partials/gallery-styles.html' with { galleryStylesFromGallerySpec: gallery_spec } only %}
+
+    {% if gallery_spec|size > 0 %}
+      {% set first_gallery_spec = gallery_spec[0] %}
+      {% set poster_moment_container_class = first_gallery_spec.background_image.class %}
+      {% set poster_moment_item_class = first_gallery_spec.color.class %}
+    {% else %}
+      {% set poster_moment_container_class = '' %}
+      {% set poster_moment_item_class = '' %}
+    {% endif %}
+
+    {# Poster Moment Gallery Specification --- End #}
+
     <div class="poster-moment">
       <a class="nav__anchor nav__anchor--home" id=""></a>
-      <div class="poster-moment__container">
-        <div class="poster-moment__item" id="poster-moment__risd">RISD</div>
-        <div class="poster-moment__item" id="poster-moment__week">WEEKEND<span class="poster-moment__item--superscript">{{ siteShortYear }}</span></div>
+      <div class="poster-moment__container {{ poster_moment_container_class }}" data-gallery-spec='{{ gallery_spec|json }}'>
+        <div class="poster-moment__item {{ poster_moment_item_class }}" id="poster-moment__risd">RISD</div>
+        <div class="poster-moment__item {{ poster_moment_item_class }}" id="poster-moment__week">WEEKEND<span class="poster-moment__item--superscript">{{ siteShortYear }}</span></div>
       </div>
       {% if home.register_banner === true %}
         <div class="poster-moment__button">
