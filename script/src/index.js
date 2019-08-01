@@ -7,4 +7,7 @@ var scheduleToggle = require('./scheduleToggle.js')();
 var scheduleHover = require('./scheduleHover.js')();
 var livestream = require('./livestream.js')();
 var eventModal = require('./eventModal.js')();
-var preloadImages = require('./preloadImages.js')($);
+var galleries = require('./galleries')({
+  selector: '[data-gallery-spec]',
+  attribute: 'data-gallery-spec',
+})
