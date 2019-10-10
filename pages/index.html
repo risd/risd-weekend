@@ -236,6 +236,12 @@
                         {% endif %}
                       </p>
                     {% endspaceless %}
+                  {% else %}
+                    {% if event.location_details %}
+                      {% spaceless %}
+                        <p class="calendar-box__info">{% if event.start_time %}|&#8200;{% endif %}{{ event.location_details }}</p>
+                      {% endspaceless %}
+                    {% endif %}
                   {% endif %}
 
                   {% if event.attendee_limit %}

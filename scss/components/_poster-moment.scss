@@ -22,7 +22,7 @@
   flex-direction: column;
 
   background-position: center;
-  background-size: cover;
+  background-size: contain;
 
   .poster-moment--transition & {
     margin-top: 0;
