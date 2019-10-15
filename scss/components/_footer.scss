@@ -1,0 +1,32 @@
+.FooterEndnotes {
+  box-sizing: border-box;
+  padding: 2rem;
+  @include text-size($m);
+  text-align: center;
+  background-color: $black;
+  color: $campaign-color;
+}
+
+.FooterEndnotes nav {
+  margin: 2rem 0;
+}
+
+.FooterEndnotes a {
+  border-bottom: none;
+}
+
+.FooterEndnotes .links a {
+  border-bottom: 2px solid;
+}
+
+.FooterEndnotes nav a {
+  display: inline-block;
+  margin: 0 0.5rem;
+  border-bottom: none;
+}
+
+@include respond-above(small) {
+  .FooterEndnotes nav li {
+    display: inline-block;
+  }
+}
