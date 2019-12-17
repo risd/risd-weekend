@@ -2,6 +2,16 @@ $white: rgb(255, 255, 255);
 $white--highlight: rgba(255, 255, 255, 0.99);
 $black: rgb(0, 0, 0);
 $black--highlight: rgba(0, 0, 0, 0.99);
-$campaign-color: rgb(151, 222, 77);
+$campaign-color: #f8981d;
 $campaign-color--highlight: rgba(151, 222, 77, 0.99);
 $campaign-color--print: rgb(0, 0, 0);
+
+:root {
+  --white: #{ $white };
+  --white--highlight: #{ $white--highlight };
+  --black: #{ $black };
+  --black--highlight: #{ $black--highlight };
+  --campaign-color: #{ $campaign-color };
+  --campaign-color--highlight: #{ $campaign-color--highlight };
+  --campaign-color--print: #{ $campaign-color--print };
+}
