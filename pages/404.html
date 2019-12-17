@@ -18,7 +18,7 @@
 {% set item = cms.audiences[0] %}
 
 {% block body_attributes %}
-  class="layout__{{ item.page_color_scheme|lower }}"
+  class="layout__white"
 {% endblock %}
 
 {% block content %}
@@ -30,15 +30,6 @@
     {% set event.event_link = event.name|lower|replace(' ','-','g')|replace('[^a-zA-Z0-9 -]','','g')|replace('-+','-','g') %}
   {% endfor %}
   {% set infoSnippets = item.information_snippets %}
-
-
-  {# Set color scheme #}
-
-  {% if item.page_color_scheme %}
-    {% set item.page_background = item.page_color_scheme|replace('.html', '', 'g') %}
-  {% else %}
-    {% set item.page_background = 'layout__white' %}
-  {% endif %}
 
   {# <script>
     console.log({{item|json|safe}});

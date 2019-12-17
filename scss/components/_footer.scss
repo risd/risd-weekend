@@ -1,0 +1,51 @@
+.FooterEndnotes {
+  box-sizing: border-box;
+  padding: 2rem;
+  @include text-size($m);
+  text-align: center;
+  background-color: var(--black);
+  color: var(--campaign-color);
+}
+
+.FooterEndnotes nav {
+  margin: 2rem 0;
+}
+
+.FooterEndnotes a {
+  border-bottom: none;
+}
+
+.FooterEndnotes .links a {
+  border-bottom: 2px solid;
+}
+
+.FooterEndnotes nav a {
+  display: inline-block;
+  margin: 0 0.5rem;
+  border-bottom: none;
+}
+
+.FooterEndnotes .risd-seal {
+  width: 72px;
+  height: 72px;
+}
+
+.FooterEndnotes .icon-social {
+  width: 36px;
+  height: 36px;
+}
+
+.FooterEndnotes .risd-seal path,
+.FooterEndnotes .icon-social path {
+  fill: var(--campaign-color);
+}
+
+.FooterEndnotes .icon-social--instagram circle {
+  fill: var(--campaign-color);
+}
+
+@include respond-above(small) {
+  .FooterEndnotes nav li {
+    display: inline-block;
+  }
+}

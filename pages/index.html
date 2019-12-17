@@ -8,7 +8,6 @@
 {% set transition = cms.transitionpage %}
 {% set home = cms.home %}
 {% set infoSnippets %}
-{% set general_info = cms.generalinformation %}
 {% set livestream = cms.livestream %}
 {% set events = cms.events %}
 {% set sub_events = cms.subevents %}
@@ -62,7 +61,7 @@
 
     {# Poster Moment #}
 
-    {% set siteTitle = general_info.name %}
+    {% set siteTitle = home.name %}
     {% set siteShortYear = siteTitle|replace("RISD Weekend 20", "") %}
 
     {# Poster Moment Gallery Specification --- Start #}
@@ -126,16 +125,16 @@
     {# Address and Time #}
     <section class="section__container" id="">
       <div class="announcement__container">
-        <h2 class="announcement announcement__date">{{ general_info.date }}</h2>
+        <h2 class="announcement announcement__date">{{ home.date }}</h2>
         <h2 class="announcement announcement__location">
-        {% if general_info.location.street1 %}{{ general_info.location.street1 }}{% endif %}
-        {% if general_info.location.street2 %}<br>{{ general_info.location.street2 }}{% endif %}
-        {% if general_info.location.city %}<br>{{ general_info.location.city }}{% endif %}{% if general_info.location.state %}, {{ general_info.location.state }}{% endif %}{% if general_info.location.zip %} – {{ general_info.location.zip }}{% endif %}
+        {% if home.location.street1 %}{{ home.location.street1 }}{% endif %}
+        {% if home.location.street2 %}<br>{{ home.location.street2 }}{% endif %}
+        {% if home.location.city %}<br>{{ home.location.city }}{% endif %}{% if home.location.state %}, {{ home.location.state }}{% endif %}{% if home.location.zip %} – {{ home.location.zip }}{% endif %}
         </h2>
       </div>
     </section>
 
-    {% if general_info.show_events %}
+    {% if home.show_events %}
       {# Grouped Featured events #}
       {% for eventGroup in home.featured_events %}
         {% if loop.first %}
@@ -170,7 +169,7 @@
 
       <section class="section__container calendar-box__container" id="events">
 
-        <h1 class="section__title">Events</h1>
+        <h1 class="section__title">{{ home.schedule_title }}</h1>
 
         <div class="calendar-box">
           <div class="calendar-box__toggle">
@@ -449,5 +448,33 @@
     {% endfor %}
     </div>
   </aside>
+
+  <footer class="FooterEndnotes">
+    <a href="https://www.risd.edu" target="_blank" rel="noopener">
+      {% include 'templates/partials/icons/risd-seal.svg' %}
+    </a>
+
+    <nav class="links">
+      <ul>
+        <li><a href="https://www.risd.edu" target="_blank" rel="noopener">risd.edu</a></li>
+        <li><a href="https://alumni.risd.edu" target="_blank" rel="noopener">Alumni resources</a></li>
+        <li><a href="https://engage.risd.edu/" target="_blank" rel="noopener">Support us</a></li>
+      </ul>
+    </nav>
+
+    <nav class="social-media">
+      <a href="https://twitter.com/RISDalumni" target="_blank" rel="noopener">
+        {% include 'templates/partials/icons/twitter.svg' %}
+      </a>
+
+      <a href="https://www.instagram.com/risd1877/" target="_blank" rel="noopener">
+        {% include 'templates/partials/icons/instagram.svg' %}
+      </a>
+
+      <a href="https://www.facebook.com/RISD.Alumni.Relations/" target="_blank" rel="noopener">
+        {% include 'templates/partials/icons/facebook.svg' %}
+      </a>
+    </nav>
+  </footer>
 
 {% endblock %}
