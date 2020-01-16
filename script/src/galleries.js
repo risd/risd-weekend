@@ -36,7 +36,7 @@ function extractSpec ( options ) {
   return extractSpecForElement;
 
   function extractSpecForElement ( index, element ) {
-    $element = $( element )
+    var $element = $( element )
     try {
       var specs = JSON.parse( $element.attr( attribute ) )
     } catch ( error ) {
@@ -72,8 +72,8 @@ function cycleManager ( options ) {
     function showNext () {
       previous = nextIndex( previous )
       current = nextIndex( current )
-      hideSpec( specs[ previous ] )
       showSpec( specs[ current ] )
+      hideSpec( specs[ previous ] )
     }
 
     function nextIndex ( index ) {
