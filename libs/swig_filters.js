@@ -4,7 +4,7 @@ var _ = require("lodash");
 var utils = require("./utils.js");
 var marked = require("marked");
 var dateFormatter = require("./dateformatter.js");
-var slugify = require("slugify");
+var slugger = require("uslug");
 
 if (typeof String.prototype.startsWith != "function") {
   String.prototype.startsWith = function(str) {
@@ -107,7 +107,7 @@ module.exports.init = function(swig) {
     return out;
   };
 
-  var googleImageSize = function(image, width, height, crop) {
+  var googleImageSize = function(image, width, height, crop, quality = 85) {
     var source = image.resize_url;
 
     if (width === "auto" && height === "auto") {
@@ -125,6 +125,8 @@ module.exports.init = function(swig) {
     if (crop) {
       source += "-c";
     }
+
+    source += `-l${quality}`;
 
     if (source.indexOf("http://") === 0) {
       source = source.replace("http://", "https://");
@@ -594,7 +596,7 @@ module.exports.init = function(swig) {
   };
 
   var slugifyString = function(string) {
-    var slug = slugify(string, { lower: true, remove: /and|or/g });
+    var slug = slugger(string).toLowerCase();
     return slug;
   };
 
@@ -605,6 +607,13 @@ module.exports.init = function(swig) {
   var debug = function(input) {
     console.log(input);
     return "";
+  };
+
+  var stringTrim = function ( input ) {
+    if ( typeof input === 'string' ) {
+      return input.trim()
+    }
+    return input;
   };
 
   markdown.safe = true;
@@ -649,4 +658,5 @@ module.exports.init = function(swig) {
   swig.setFilter("ceil", ceil);
   swig.setFilter("slugify", slugifyString);
   swig.setFilter("includes", includes);
+  swig.setFilter("trim", stringTrim);
 };
