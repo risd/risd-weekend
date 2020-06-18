@@ -13,10 +13,16 @@
 
 .section__title {
   color: $campaign-color;
+  margin-bottom: 2rem;
+
+  &::after {
+    display: none;
+  }
 }
 
 .information__main-description {
   color: white;
+    @include text-size($m);
 }
 
 .information__main-description a {
