@@ -1,0 +1,35 @@
+.layout__campaign-color {
+  background-color: black;
+}
+
+.poster-moment {
+  height: 80vh;
+}
+
+.poster-moment__container {
+  height: 80vh;
+  margin-top: 0;
+}
+
+.section__title {
+  color: $campaign-color;
+  margin-bottom: 2rem;
+
+  &::after {
+    display: none;
+  }
+}
+
+.information__main-description {
+  color: white;
+    @include text-size($m);
+}
+
+.information__main-description a {
+  color: white;
+  border-color: $campaign-color;
+
+  &:hover {
+    color: $campaign-color;
+  }
+}
