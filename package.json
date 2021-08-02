@@ -26,7 +26,8 @@
     "create-events:all-days": "npm run create-events:friday && npm run create-events:saturday && npm run create-events:sunday",
     "create-events:clean": "rm {friday,saturday,sunday}-event-list.json && rm indesign-csv/{friday,saturday,sunday}-event-list.csv",
     "create-events-csv": "mkdir -p indesign-csv && npm run create-events:backup && npm run create-events:all-days && npm run create-events:clean",
-    "develop": "grunt --force"
+    "develop": "grunt --force",
+    "conf": "rm-wh conf risd-weekend"
   },
   "homepage": "https://github.com/risd/webhook-generate",
   "dependencies": {
